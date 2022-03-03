@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     Verilated::traceEverOn(true);
 
 	// 为对象分配内存空间
-    top = new VDecoder;
+    top = new Vtop;
     tfp = new VerilatedVcdC;
 
     // tfp初始化工作
