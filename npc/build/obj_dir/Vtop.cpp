@@ -11,7 +11,14 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vtop__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
-    , led{vlSymsp->TOP.led}
+    , VGA_CLK{vlSymsp->TOP.VGA_CLK}
+    , VGA_HSYNC{vlSymsp->TOP.VGA_HSYNC}
+    , VGA_VSYNC{vlSymsp->TOP.VGA_VSYNC}
+    , VGA_BLANK_N{vlSymsp->TOP.VGA_BLANK_N}
+    , VGA_R{vlSymsp->TOP.VGA_R}
+    , VGA_G{vlSymsp->TOP.VGA_G}
+    , VGA_B{vlSymsp->TOP.VGA_B}
+    , ledr{vlSymsp->TOP.ledr}
     , rootp{&(vlSymsp->TOP)}
 {
 }

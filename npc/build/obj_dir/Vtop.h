@@ -26,7 +26,14 @@ class Vtop VL_NOT_FINAL {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
-    VL_OUT16(&led,15,0);
+    VL_OUT8(&VGA_CLK,0,0);
+    VL_OUT8(&VGA_HSYNC,0,0);
+    VL_OUT8(&VGA_VSYNC,0,0);
+    VL_OUT8(&VGA_BLANK_N,0,0);
+    VL_OUT8(&VGA_R,7,0);
+    VL_OUT8(&VGA_G,7,0);
+    VL_OUT8(&VGA_B,7,0);
+    VL_OUT16(&ledr,15,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
