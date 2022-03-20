@@ -61,7 +61,7 @@ static int cmd_x(char *args)  {
   int exp=0;
   char *arg1 = strtok(NULL, " ");
   sscanf(arg1,"%d",&exp);
-  printf("%d\n",exp);
+  printf("%32d\n",exp);
   //isa_reg_display();
   return 0;
 }
