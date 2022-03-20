@@ -53,15 +53,14 @@ static int cmd_info(char *args)  {
 }
 
 static int cmd_x(char *args)  {
-
   char *arg = strtok(NULL, " ");
   int n=0;
   sscanf(arg,"%d",&n);
   printf("%d\n",n);
-  int exp=0;
+  int exp=0x80000000;
   char *arg1 = strtok(NULL, " ");
   sscanf(arg1,"%d",&exp);
-  printf("%32d\n",exp);
+  printf("%d\n",exp);
   //isa_reg_display();
   return 0;
 }
