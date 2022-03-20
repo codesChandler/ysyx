@@ -57,7 +57,7 @@ static int cmd_x(char *args)  {
   int n=0;
   sscanf(arg,"%d",&n);
   printf("%d\n",n);
-  int unsigned exp=0x80000000;
+  unsigned int exp=0x80000000;
   //char *arg1 = strtok(NULL, " ");
   //sscanf(arg1,"%d",&exp);
   printf("%d\n",exp);
