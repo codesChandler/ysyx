@@ -58,8 +58,8 @@ static int cmd_x(char *args)  {
   sscanf(arg,"%d",&n);
   printf("%d\n",n);
   int exp=0x80000000;
-  char *arg1 = strtok(NULL, " ");
-  sscanf(arg1,"%d",&exp);
+  //char *arg1 = strtok(NULL, " ");
+  //sscanf(arg1,"%d",&exp);
   printf("%d\n",exp);
   //isa_reg_display();
   return 0;
