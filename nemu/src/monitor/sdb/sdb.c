@@ -8,6 +8,7 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+void execute(uint64_t n);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
@@ -35,7 +36,12 @@ static int cmd_c(char *args) {
 
 static int cmd_q(char *args) {
   return -1;
- // return 0;
+}
+
+static int cmd_si(char *args)  {
+  char *arg = strtok(strtok(args, " ")," ");
+  execute(*arg);
+  return 0;
 }
 
 static int cmd_help(char *args);
@@ -50,7 +56,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-
+  { "si", "execute a given number of instructions",cmd_si }
 };
 
 #define NR_CMD ARRLEN(cmd_table)
