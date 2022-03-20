@@ -60,7 +60,7 @@ static int cmd_x(char *args)  {
   unsigned int exp;
   char *arg1 = strtok(NULL, " ");
   sscanf(arg1,"%d",&exp);
-  printf("%s\n",arg1);
+  printf("%d\n",exp);
   //isa_reg_display();
   return 0;
 }
