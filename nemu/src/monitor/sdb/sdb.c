@@ -42,7 +42,7 @@ int hex2dec(char *hex)
         
         hex0=hex0+hex[i];
 
-        printf("%s\n",hex0);
+        printf("%d\n",hex[i]);
         }
         hex=hex0;
 
