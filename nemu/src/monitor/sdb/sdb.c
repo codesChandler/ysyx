@@ -47,13 +47,15 @@ static int cmd_si(char *args)  {
 }
 
 static int cmd_info(char *args)  {
-  printf("%s\n",args);
+  //printf("%s\n",args);
   if(strcmp(args, "r") == 0) isa_reg_display();
   return 0;
 }
 
 static int cmd_x(char *args)  {
   printf("%s\n",args);
+  char *arg = strtok(NULL, " ");
+  printf("%s\n",arg);
   isa_reg_display();
   return 0;
 }
