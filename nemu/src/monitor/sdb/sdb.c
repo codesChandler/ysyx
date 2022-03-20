@@ -111,9 +111,9 @@ static int cmd_x(char *args)  {
   int n=0;
   sscanf(arg,"%d",&n);
   //printf("%d\n",n);
-  //char *arg1 = strtok(NULL, " ");
-  //int exp = hex2dec(arg1);
-  //printf("%x\n",exp);
+  char *arg1 = strtok(NULL, " ");
+  int exp = hex2dec(arg1);
+  printf("%x\n",exp);
   
   return 0;
 }
