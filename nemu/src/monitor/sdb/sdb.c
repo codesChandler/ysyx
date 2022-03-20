@@ -46,6 +46,13 @@ static int cmd_si(char *args)  {
   return 0;
 }
 
+static int cmd_info(char *args)  {
+  printf("%s\n",args);
+  //if((*args)=="r") 
+  isa_reg_display();
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -58,7 +65,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-  { "si", "Execute a given number of instructions",cmd_si }
+  { "si", "Execute a given number of instructions",cmd_si },
+  { "info","Print register status or monitoring point information",cmd_info}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
