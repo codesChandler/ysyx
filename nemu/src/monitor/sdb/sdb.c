@@ -39,7 +39,8 @@ int hex2dec(char *hex)
         
         for(i=2;i<10;i++)
         hex0=hex0+hex[i];
-        //printf("%s",hex0);
+        
+        printf("%s",hex0);
         hex=hex0;
 
         // 此例中 hex = "1de" 长度为3, hex是main函数传递的
