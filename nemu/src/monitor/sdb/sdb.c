@@ -110,12 +110,11 @@ static int cmd_x(char *args)  {
   char *arg = strtok(NULL, " ");
   int n=0;
   sscanf(arg,"%d",&n);
-  printf("%d\n",n);
+  //printf("%d\n",n);
+  //char *arg1 = strtok(NULL, " ");
+  //int exp = hex2dec(arg1);
+  //printf("%x\n",exp);
   
-  char *arg1 = strtok(NULL, " ");
-  int exp = hex2dec(arg1);
-  printf("%x\n",exp);
-  //isa_reg_display();
   return 0;
 }
 
