@@ -38,11 +38,9 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args)  {
-  printf("%s\n",args);
-  char *arg = strtok(strtok(args, " ")," ");
-  if(arg==NULL) *arg=1;
-  printf("the number of instruction:%d \n",*arg);
-  cpu_exec(*arg);
+  if(args==NULL) *args=1;
+  printf("the number of instruction:%d \n",*args);
+  cpu_exec(*args);
   return 0;
 }
 
