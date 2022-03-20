@@ -48,7 +48,12 @@ static int cmd_si(char *args)  {
 
 static int cmd_info(char *args)  {
   printf("%s\n",args);
-  //if((*args)=="r") 
+  if(strcmp(args, "r") == 0) isa_reg_display();
+  return 0;
+}
+
+static int cmd_x(char *args)  {
+  printf("%s\n",args);
   isa_reg_display();
   return 0;
 }
@@ -66,7 +71,8 @@ static struct {
 
   /* TODO: Add more commands */
   { "si", "Execute a given number of instructions",cmd_si },
-  { "info","Print register status or monitoring point information",cmd_info}
+  { "info","Print register status or monitoring point information",cmd_info},
+  {"x","Output N consecutive 4 bytes in hexadecimal format",cmd_x}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
