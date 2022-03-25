@@ -116,7 +116,7 @@ static int cmd_x(char *args)  {
   char addr[8];
   for(int i=0;*arg1!='\0';arg1++,i++)
   { 
-    if(i==2)
+    if(i>=2)
       addr[i-2]=*arg1;
   }
   for(int i=0;i<8;i++)
