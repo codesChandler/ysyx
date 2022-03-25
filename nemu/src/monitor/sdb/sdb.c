@@ -114,8 +114,8 @@ static int cmd_x(char *args)  {
   //printf("%d\n",n);
   char *arg1 = strtok(NULL, " ");
   char addr[8];
-  for(int i=0;*arg1!='\0';arg1++)
-  { i++;
+  for(int i=0;*arg1!='\0';arg1++,i++)
+  { 
     if(i==2)
       addr[i-2]=*arg1;
   }
