@@ -119,10 +119,10 @@ static int cmd_x(char *args)  {
     if(i>=2)
       addr[i-2]=*arg1;
   }
-  for(int i=0;i<8;i++)
-    printf("I am here %c\n",addr[i]);
-  int exp = hex2dec(arg1);
-  //printf("%x\n",exp);
+  // for(int i=0;i<8;i++)
+  //   printf("I am here %c\n",addr[i]);
+  int exp = hex2dec(addr);
+  printf("%x\n",exp);
   for(int i=0;i<n;i++){
     printf("%ld\n",paddr_read(exp+i*32, 4));
   }
