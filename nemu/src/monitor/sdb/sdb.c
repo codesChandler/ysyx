@@ -11,23 +11,23 @@ static int is_batch_mode = false;
 void init_regex();
 void init_wp_pool();
 
-int c2i(char ch)
-{
-        // 如果是数字，则用数字的ASCII码减去48, 如果ch = '2' ,则 '2' - 48 = 2
-        if(isdigit(ch))
-                return ch - 48;
+// int c2i(char ch)
+// {
+//         // 如果是数字，则用数字的ASCII码减去48, 如果ch = '2' ,则 '2' - 48 = 2
+//         if(isdigit(ch))
+//                 return ch - 48;
  
-        // 如果是字母，但不是A~F,a~f则返回
-        if( ch < 'A' || (ch > 'F' && ch < 'a') || ch > 'z' )
-                return -1;
+//         // 如果是字母，但不是A~F,a~f则返回
+//         if( ch < 'A' || (ch > 'F' && ch < 'a') || ch > 'z' )
+//                 return -1;
  
-        // 如果是大写字母，则用数字的ASCII码减去55, 如果ch = 'A' ,则 'A' - 55 = 10
-        // 如果是小写字母，则用数字的ASCII码减去87, 如果ch = 'a' ,则 'a' - 87 = 10
-        if(isalpha(ch))
-                return isupper(ch) ? ch - 55 : ch - 87;
+//         // 如果是大写字母，则用数字的ASCII码减去55, 如果ch = 'A' ,则 'A' - 55 = 10
+//         // 如果是小写字母，则用数字的ASCII码减去87, 如果ch = 'a' ,则 'a' - 87 = 10
+//         if(isalpha(ch))
+//                 return isupper(ch) ? ch - 55 : ch - 87;
  
-        return -1;
-}
+//         return -1;
+// }
 
 int hex2dec(char *hex)
 {
@@ -47,7 +47,7 @@ int hex2dec(char *hex)
                 // 第一次：i=0, *(hex + i) = *(hex + 0) = '1', 即temp = 1
                 // 第二次：i=1, *(hex + i) = *(hex + 1) = 'd', 即temp = 13
                 // 第三次：i=2, *(hex + i) = *(hex + 2) = 'd', 即temp = 14
-                temp = c2i( *(hex + i) );
+                temp = *(hex + i)-48;
                 // 总共3位，一个16进制位用 4 bit保存
                 // 第一次：'1'为最高位，所以temp左移 (len - i -1) * 4 = 2 * 4 = 8 位
                 // 第二次：'d'为次高位，所以temp左移 (len - i -1) * 4 = 1 * 4 = 4 位
@@ -122,7 +122,7 @@ static int cmd_x(char *args)  {
   // for(int i=0;i<8;i++)
   //   printf("I am here %c\n",addr[i]);
   int exp = hex2dec(addr);
-  printf("%x\n",exp);
+  // printf("%x\n",exp);
   for(int i=0;i<n;i++){
     printf("%ld\n",paddr_read(exp+i*32, 4));
   }
