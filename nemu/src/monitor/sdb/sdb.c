@@ -115,7 +115,7 @@ static int cmd_x(char *args)  {
   char *arg1 = strtok(NULL, " ");
   char addr[]={*arg1};
   for(int i=0;i<10;i++)
-  printf("I am here %c\n",addr[i]);
+  printf("I am here %ld\n",sizeof(addr));
   int exp = hex2dec(arg1);
   //printf("%x\n",exp);
   for(int i=0;i<n;i++){
