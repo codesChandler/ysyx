@@ -33,33 +33,19 @@ int hex2dec(char *hex)
 {
         int len;
         int num = 0;
-        int temp;
+        //int temp;
         int bits;
-        int i;
         
-
-
-        // 此例中 hex = "1de" 长度为3, hex是main函数传递的
         len = strlen(hex);
  
-        for (i=0, temp=0; i<len; i++, temp=0)
+        for (int i=0, temp=0; i<len; i++, temp=0)
         {
-                // 第一次：i=0, *(hex + i) = *(hex + 0) = '1', 即temp = 1
-                // 第二次：i=1, *(hex + i) = *(hex + 1) = 'd', 即temp = 13
-                // 第三次：i=2, *(hex + i) = *(hex + 2) = 'd', 即temp = 14
                 temp = *(hex + i)-48;
-                // 总共3位，一个16进制位用 4 bit保存
-                // 第一次：'1'为最高位，所以temp左移 (len - i -1) * 4 = 2 * 4 = 8 位
-                // 第二次：'d'为次高位，所以temp左移 (len - i -1) * 4 = 1 * 4 = 4 位
-                // 第三次：'e'为最低位，所以temp左移 (len - i -1) * 4 = 0 * 4 = 0 位
                 bits = (len - i - 1) * 4;
                 temp = temp << bits;
- 
-                // 此处也可以用 num += temp;进行累加
                 num = num | temp;
         }
  
-        // 返回结果
         return num;
 }
 
