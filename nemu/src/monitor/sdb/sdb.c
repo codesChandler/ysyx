@@ -110,7 +110,7 @@ static int cmd_x(char *args)  {
   int exp = hex2dec(addr);
   // printf("%x\n",exp);
   for(int i=0;i<n;i++){
-    printf("0x%8lx\n",paddr_read(exp+i*32, 4));
+    printf("0x%08lx\n",paddr_read(exp+i*32, 4));
   }
   return 0;
 }
