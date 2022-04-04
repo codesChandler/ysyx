@@ -13,7 +13,7 @@ enum {
 
 };
 
-typedef struct point{
+typedef struct Point{
       int x;
       int y;
 } point;//mark the number
