@@ -95,8 +95,9 @@ static bool make_token(char *e) {
           TK_NR: {
                   for(int i=0;i<substr_len;i++){
                   tokens[nr_token].str[i]= *(substr_start+i);}
-                  tokens[nr_token].type=rules[i].token_type;}          
-          default: tokens[nr_token].type=rules[i].token_type;;
+                  tokens[nr_token].type=rules[i].token_type;
+                  break;}          
+          default: tokens[nr_token].type=rules[i].token_type;break;
         }
 
         nr_token++;
