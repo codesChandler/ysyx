@@ -32,9 +32,9 @@ for(int i=0;i<200;i++){
   char ref_result[100];
   word_t result;
   char expre[60300];
-  fscanf(fp,"%s",ref_result);
+  assert(fscanf(fp,"%s",ref_result));
   word_t ref_result_num=char2dec(ref_result);
-  fscanf(fp,"%s",expre);
+  assert(fscanf(fp,"%s",expre));
   result=expr(expre,success);
   if(result != ref_result_num || !success)
   printf("I am wrong");
