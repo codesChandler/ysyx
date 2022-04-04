@@ -1,10 +1,10 @@
-// #include <isa.h>
-// #include <common.h>
+#include <isa.h>
+#include <common.h>
 
-// /* We use the POSIX regex functions to process regular expressions.
-//  * Type 'man regex' for more information about POSIX regex functions.
-//  */
-// #include <regex.h>
+/* We use the POSIX regex functions to process regular expressions.
+ * Type 'man regex' for more information about POSIX regex functions.
+ */
+#include <regex.h>
 
 // enum {
 //   TK_NOTYPE = 256, TK_EQ,TK_NR,
