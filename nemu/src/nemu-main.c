@@ -24,7 +24,7 @@ word_t char2dec(char *hex)
 
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
-
+printf("I am here");
 FILE * fp;
 fp =fopen("~/ysyx-workbench/nemu/tools/gen-expr/input","r");
 bool *success=false;
