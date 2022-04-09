@@ -28,9 +28,9 @@ int choose(int mol){
 void gen_num(){
   // printf("num\n");
   //srand((unsigned)time(NULL));
-  char num[6];
+  char num[3];
   //printf(" before buf here\n");
-  sprintf(num,"%d",(unsigned)rand()%99999);
+  sprintf(num,"%d",(unsigned)rand()%99);
   //printf(" after buf here\n");
   int len=strlen(num);
   for(int i=0;*(num+i)!='\0';i++)
@@ -43,7 +43,7 @@ void gen_num(){
 void gen_rand_op(){
    //printf("op\n");
   //srand((unsigned)time(NULL));
-  switch(rand()%4) {
+  switch((unsigned)(rand()%4)) {
     case 0: *(buf+op)='+' ;break;
     case 1: *(buf+op)='-' ;break;
     case 2: *(buf+op)='*' ;break;
@@ -63,7 +63,8 @@ void gen(char sym){
 
 static void gen_rand_expr() {
   //printf("I am here\n");
-   switch (choose(3)) {
+  int n=choose(3);
+   switch (n) {
     case 0: {//printf("case 0\n");
               gen_num();break;}
     case 1: {//printf("case 1\n");
@@ -86,6 +87,7 @@ int main(int argc, char *argv[]) {
   
   int i;
   for (i = 0; i < loop; i++) {
+    op=0;
     gen_rand_expr();
     //printf("%s\n",buf);
     sprintf(code_buf, code_format, buf);
@@ -102,9 +104,7 @@ int main(int argc, char *argv[]) {
     assert(fp != NULL);
 
     int result;
-    if(fscanf(fp, "%d", &result)==1)
-    {continue;}
-    else assert(0);
+    fscanf(fp, "%d", &result);
     pclose(fp);
 
     printf("%u %s\n", result, buf);
