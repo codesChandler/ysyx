@@ -22,9 +22,7 @@ int choose(int mol){
   //printf("choose\n");
   //srand(time(0));
   //printf("%d", rand());
-  if(op<6000)
-  return (unsigned) (rand() % mol);
-  else return 0;//prevent buf overflow
+  return rand() % mol;
 }
 
 void gen_num(){
@@ -49,7 +47,8 @@ void gen_rand_op(){
     case 0: *(buf+op)='+' ;break;
     case 1: *(buf+op)='-' ;break;
     case 2: *(buf+op)='*' ;break;
-    default: *(buf+op)='/';break;
+    case 3: *(buf+op)='/';break;
+    //default: assert(0);break;
   }
   op++;
   //printf("op: %d",op);
@@ -99,7 +98,7 @@ int main(int argc, char *argv[]) {
     fclose(fp);
 
     int ret = system("gcc /tmp/.code.c -o /tmp/.expr");
-    if (ret != 0) continue;//exception handling
+    if (ret != 0) continue;
 
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);

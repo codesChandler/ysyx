@@ -1,10 +1,10 @@
-#include <isa.h>
-#include <common.h>
+#include "isa.h"
+#include "common.h"
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
-#include <regex.h>
+#include "regex.h"
 
 enum {
   TK_NOTYPE = 256, TK_EQ,TK_NR,
@@ -27,7 +27,7 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-  {"\\d+", TK_NR},        // number
+  {"\\w+", TK_NR},        // number
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"-", '-'},          // minus
@@ -40,7 +40,7 @@ static struct rule {
 
 #define NR_REGEX ARRLEN(rules)
 
-static regex_t re[NR_REGEX] = {};
+static regex_t re[NR_REGEX] ;
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -64,8 +64,8 @@ typedef struct token {
   char str[32];
 } Token;
 
-static Token tokens[32] __attribute__((used)) = {};
-static int nr_token __attribute__((used))  = 0;
+static Token tokens[1000]  ;
+static int nr_token  = 0;
 
 static bool make_token(char *e) {
   int position = 0;
@@ -77,11 +77,12 @@ static bool make_token(char *e) {
   while (e[position] != '\0') {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
+     // printf("%s\n",e);
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+       Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
@@ -90,11 +91,16 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+        //int type=rules[i].token_type;
+        //printf("I am here %d",type);
+        //int token_type=TK_NR;
+        //printf("I am here %d\n",token_type);
         switch (rules[i].token_type) {
-          TK_NR: {
+
+          case TK_NR: {
                   for(int i=0;i<substr_len;i++){
                   tokens[nr_token].str[i]= *(substr_start+i);}
+                  tokens[nr_token].str[substr_len]='\0';
                   tokens[nr_token].type=rules[i].token_type;
                   break;}          
           default: tokens[nr_token].type=rules[i].token_type;break;
@@ -118,14 +124,14 @@ static bool make_token(char *e) {
 //stack implement brackt matchment
 
 bool check_parentheses(int p,int q){
-  int top=-1;
+  int top=0;
   int cnt_l=0;
   int cnt_r=0;
 
   for (int i=p;i<=q;i++)
-    {if(tokens[i].type!='(')
+    {if(tokens[i].type=='(')
       cnt_l++;
-     else if(tokens[i].type!=')')
+     else if(tokens[i].type==')')
       cnt_r++;
     }
   
@@ -135,11 +141,11 @@ bool check_parentheses(int p,int q){
     return false;
   
   for(int i=p+1;i<=q-1;i++)
-  {if(tokens[i].type!='(')
+  {if(tokens[i].type=='(')
       top++;
-     else if(tokens[i].type!=')')
+     else if(tokens[i].type==')')
       {top--;
-      if (top <-1)
+      if (top <0)
       return false;
       }
     }
@@ -150,7 +156,7 @@ bool check_parentheses(int p,int q){
 word_t eval(int p, int q) {
   if (p > q) {
     /* Bad expression */
-    assert(0);
+    //assert(0);
   }
   else if (p == q) {
     /* Single token.
@@ -169,46 +175,59 @@ word_t eval(int p, int q) {
 
     //find the positon of bracket
 
-    point points[16];
-    int cnt=0;
+    point points[320];
+    struct {int location[320];
+            int top;} locations;
+    locations.top=-1;        
+    //int cnt[100];
+    //int pointer=0;
     int len=0;
 
     for (int i=p;i<=q;i++){
       
-    {if(tokens[i].type!='(')
-      {points[cnt].x=i;
-      cnt++;
-      len++;}
-     else if(tokens[i].type!=')')
-      {points[--cnt].y=i;}
+    {if(tokens[i].type=='(')
+      {points[len].x=i;
+        locations.location[++locations.top]=len++;
+      }
+     else if(tokens[i].type==')')
+      {
+         points[locations.location[locations.top--]].y=i;}
     }
-    assert(cnt);
+    //assert((cnt==0));
     }
 
     //find the position of dominant symbol
-    int ops[32];
+    int ops[10000];
     int len_ops=0;
+    int flag=0;
     for (int i=p;i<=q;i++){
+      flag=0;
       for(int j=0;j<len;j++)
       {
         if(i>=points[j].x && i<=points[j].y)
-        break;
+        flag=1;
+      }
+      if(flag==0){
         ops[len_ops++]=i;
       }
     }
-    int op=32;
-    for (int i=0;i<len_ops;i++){
-      if(tokens[ops[i]].type=='*'|| tokens[ops[i]].type=='/')
-      {op=ops[i];
-      break;}
-    }
-    
-    for (int i=0;i<len_ops;i++)
-      if ((tokens[ops[i]].type=='+'|| tokens[ops[i]].type=='-') && (op==32))
+
+    int op=10000;
+
+    for (int i=len_ops-1;i>=0;i--)
+      if (tokens[ops[i]].type=='+'|| tokens[ops[i]].type=='-') 
       {
         op=ops[i];
         break;
       }
+
+    for (int i=len_ops-1;i>=0;i--){
+      if((tokens[ops[i]].type=='*'|| tokens[ops[i]].type=='/')&& (op==10000))
+      {op=ops[i];
+      break;}
+    }
+    
+
     
 
     //op = the position of 主运算符 in the token expression;
@@ -223,9 +242,11 @@ word_t eval(int p, int q) {
       default: assert(0);
     }
   }
+  return 0;
 }
 
 word_t expr(char *e, bool *success) {
+  //init_regex();
   if (!make_token(e)) {
     *success = false;
     return 0;
@@ -233,6 +254,8 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
+  *success = true;
+  //printf("nr_token:%d",nr_token);
   return eval(0,--nr_token);
 
   //return 0;
