@@ -29,14 +29,12 @@ int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 
 FILE * fp;
-fp =fopen("./input","r");
+fp =fopen("/home/ysyx-workbench/nemu/tools/gen-expr/input","r");
 if(fp==NULL)
 printf("NULL\n");
 bool success;
 for(int i=0;i<200;i++){
-  printf("fscanf before");
   printf("time : %d\n",i);
-  printf("fscanf before");
   char ref_result[100];
   word_t result;
   printf("fscanf before");
