@@ -35,6 +35,7 @@ printf("NULL\n");
 bool success;
 for(int i=0;i<200;i++){
   printf("time : %d\n",i);
+  printf("fscanf before");
   char ref_result[100];
   word_t result;
   printf("fscanf before");
