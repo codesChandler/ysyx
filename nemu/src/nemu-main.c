@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 
 FILE * fp;
-fp =fopen("input","r");
+fp =fopen("~/ysyx-workbench/nemu/tools/gen-expr/input","r");
 if(fp==NULL)
 printf("NULL\n");
 bool success;
