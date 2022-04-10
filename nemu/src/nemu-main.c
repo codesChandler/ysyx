@@ -30,7 +30,8 @@ int main(int argc, char *argv[]) {
 
 FILE * fp;
 fp =fopen("~/ysyx-workbench/nemu/tools/gen-expr/input","r");
-assert(fp!=NULL);
+if(fp==NULL)
+printf("NULL");
 bool success;
 for(int i=0;i<200;i++){
   printf("time : %d\n",i);
