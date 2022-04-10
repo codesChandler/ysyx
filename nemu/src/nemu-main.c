@@ -25,22 +25,22 @@ word_t char2dec(char *hex)
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 
-printf("I am here");
-FILE * fp;
-fp =fopen("~/ysyx-workbench/nemu/tools/gen-expr/input","r");
-bool *success=false;
-for(int i=0;i<200;i++){
-  char ref_result[100];
-  word_t result;
-  char expre[60300];
-  int m=fscanf(fp,"%s",ref_result);
-  word_t ref_result_num=char2dec(ref_result);
-  int n=fscanf(fp,"%s",expre);
-  if(m==n){printf("I am OK");}
-  result=expr(expre,success);
-  if(result != ref_result_num || !success)
-  printf("I am wrong");
-}
+// printf("I am here");
+// FILE * fp;
+// fp =fopen("~/ysyx-workbench/nemu/tools/gen-expr/input","r");
+// bool *success=false;
+// for(int i=0;i<200;i++){
+//   char ref_result[100];
+//   word_t result;
+//   char expre[60300];
+//   int m=fscanf(fp,"%s",ref_result);
+//   word_t ref_result_num=char2dec(ref_result);
+//   int n=fscanf(fp,"%s",expre);
+//   if(m==n){printf("I am OK");}
+//   result=expr(expre,success);
+//   if(result != ref_result_num || !success)
+//   printf("I am wrong");
+// }
 
 
 #ifdef CONFIG_TARGET_AM
