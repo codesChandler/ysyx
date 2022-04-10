@@ -34,6 +34,7 @@ if(fp==NULL)
 printf("NULL\n");
 bool success;
 for(int i=0;i<200;i++){
+  printf("fscanf before");
   printf("time : %d\n",i);
   printf("fscanf before");
   char ref_result[100];
