@@ -37,6 +37,7 @@ for(int i=0;i<200;i++){
   printf("time : %d\n",i);
   char ref_result[100];
   word_t result;
+  printf("fscanf before");
   char expre[60300];
   int m=fscanf(fp,"%s",ref_result);
   printf("fscanf after");
