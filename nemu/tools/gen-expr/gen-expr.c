@@ -21,8 +21,9 @@ static char *code_format =
 int choose(int mol){
   //printf("choose\n");
   //srand(time(0));
-  //printf("%d", rand());
+  if(op<6000)
   return rand() % mol;
+  else return 0;
 }
 
 void gen_num(){
