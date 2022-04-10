@@ -34,13 +34,10 @@ if(fp==NULL)
 printf("NULL\n");
 bool success;
 for(int i=0;i<200;i++){
-  printf("time : %d\n",i);
   char ref_result[100];
   word_t result;
-  printf("fscanf before");
   char expre[60300];
   int m=fscanf(fp,"%s",ref_result);
-  printf("fscanf after");
   word_t ref_result_num=char2dec(ref_result);
   int n=fscanf(fp,"%s",expre);
   if(m==n){printf("I am OK");}
