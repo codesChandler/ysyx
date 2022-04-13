@@ -4,7 +4,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
-#include <memory/paddr.h>
+#include <memory/vaddr.h>
 
 static int is_batch_mode = false;
 
@@ -119,7 +119,7 @@ static int cmd_x(char *args)
   // printf("%x\n",exp);
   for (int i = 0; i < n; i++)
   {
-    printf("0x%08lx\n", paddr_read(exp + i * 32, 4));
+    printf("0x%08lx\n", vaddr_read(exp + i * 64, 8));
   }
   return 0;
 }
