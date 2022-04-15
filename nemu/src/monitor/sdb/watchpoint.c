@@ -58,3 +58,17 @@ void wp_evl(){
   }
   if(isChange==1) nemu_state.state=NEMU_STOP;
 };
+
+void wt_info()
+{
+  WP *temp=NULL;
+  printf("NO\tExpr        Old value\n");
+  for(temp=head;temp!=free_;temp++){
+    printf("%d\t%s        0x%08x\n",temp->NO,temp->expr,temp->old);
+  }
+};
+
+void delete_wt(int NO){
+  free_wp((head+NO));
+  printf("Watchpoint %d deleted",NO);
+}
