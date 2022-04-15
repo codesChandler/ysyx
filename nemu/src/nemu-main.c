@@ -28,15 +28,7 @@ word_t char2dec(char *hex)
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 
-#ifdef CONFIG_TARGET_AM
-  am_init_monitor();
-#else
-  init_monitor(argc, argv);
-#endif
-
-  /* Start engine. */
-  engine_start();
-
+  init_monitor(argc, argv); 
 FILE * fp;
 fp =fopen("/home/chandler/ysyx-workbench/nemu/tools/gen-expr/input","r");
 if(fp==NULL)
@@ -55,6 +47,16 @@ for(int i=0;i<200;i++){
   printf("I am wrong\n");
   else printf("succcess time: %d\n",i);
 }
+
+
+#ifdef CONFIG_TARGET_AM
+  am_init_monitor();
+#else
+  init_monitor(argc, argv);
+#endif
+
+  /* Start engine. */
+  engine_start();
 
   return is_exit_status_bad();
 }
