@@ -4,12 +4,15 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
-#include <memory/paddr.h>
+#include <memory/vaddr.h>
 
 static int is_batch_mode = false;
 
+word_t expr(char *e, bool *success);
 void init_regex();
 void init_wp_pool();
+void wt_info();
+void delete_wt(int NO);
 
 // int c2i(char ch)
 // {
@@ -97,6 +100,8 @@ static int cmd_info(char *args)
   // printf("%s\n",args);
   if (strcmp(args, "r") == 0)
     isa_reg_display();
+  else if(strcmp(args, "w") == 0)
+    wt_info();
   return 0;
 }
 
@@ -119,12 +124,35 @@ static int cmd_x(char *args)
   // printf("%x\n",exp);
   for (int i = 0; i < n; i++)
   {
-    printf("0x%08lx\n", paddr_read(exp + i * 32, 4));
+    printf("0x%08lx\n", vaddr_read(exp + i * 64, 8));
   }
   return 0;
 }
 
 static int cmd_help(char *args);
+
+static int cmd_w(char *args){
+  char *arg = strtok(NULL, " ");
+  WP * x_point=new_wp();
+  int len=strlen(arg);
+  for(int i=0;i<len;i++){
+  x_point->expr[i]= *(arg+i);}
+  x_point->expr[len]='\0';
+  bool *success=false;
+  x_point->old=expr(x_point->expr,success);
+  if(*success==true){
+    printf("Set watchpoint %d\n",x_point->NO);
+    printf("expr         = %s\n",x_point->expr);
+    printf("old value    = 0x%08x\n",x_point->old);
+  }
+  return 0;
+}
+
+static int cmd_d(char *args){
+  int NO=hex2dec(args);
+  delete_wt(NO);
+  return 0;
+}
 
 static struct
 {
@@ -139,7 +167,9 @@ static struct
     /* TODO: Add more commands */
     {"si", "Execute a given number of instructions", cmd_si},
     {"info", "Print register status or monitoring point information", cmd_info},
-    {"x", "Output N consecutive 4 bytes in hexadecimal format", cmd_x}};
+    {"x", "Output N consecutive 4 bytes in hexadecimal format", cmd_x},
+    {"w","set watchpoint for debug", cmd_w},
+    {"d","delete watchpoint",cmd_d}};
 
 #define NR_CMD ARRLEN(cmd_table)
 

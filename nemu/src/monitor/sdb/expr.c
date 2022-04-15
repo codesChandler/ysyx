@@ -1,17 +1,37 @@
 #include "isa.h"
 #include "common.h"
+#include <memory/vaddr.h>
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include "regex.h"
 
+// hexadecimal-number char 2 decimal chars
+void hnchar2dec(char *hex,char *dec)
+{
+  int len;
+  int num = 0;
+  //int temp0=0;
+
+  len = strlen(hex);
+
+  for (int i = 0, temp = 0; i < len; i++)
+  {
+    temp =( *(hex + i) - 48)*((int)pow(16,(double)(len - i - 1)));
+    num = num + temp;
+  }
+
+  sprintf(dec,"%d",num);
+}
+
 enum {
-  TK_NOTYPE = 256, TK_EQ,TK_NR,
+  TK_NOTYPE = 256, TK_EQ,TK_NR,TK_NEQ,TK_HN,TK_REG,DEREF,TK_AND
 
   /* TODO: Add more token types */
 
 };
+
 
 typedef struct Point{
       int x;
@@ -34,8 +54,13 @@ static struct rule {
   {"\\*",'*'},          //multiplication
   {"/",'/'},             //division 
   {"==", TK_EQ},        // equal
+  {"!=", TK_NEQ},       //not equal
+  {"&{2}",TK_AND},        //and
   {"\\(", '('},         //left bracket
   {"\\)",')'},          //right bracket
+  {"^0x\\w+",TK_HN},    //hexadecimal-number
+  {"^\\$\\w+",TK_REG}   //reg_name
+
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -102,7 +127,26 @@ static bool make_token(char *e) {
                   tokens[nr_token].str[i]= *(substr_start+i);}
                   tokens[nr_token].str[substr_len]='\0';
                   tokens[nr_token].type=rules[i].token_type;
-                  break;}          
+                  break;}
+          case TK_HN:{
+                  for(int i=2;i<substr_len;i++){
+                  tokens[nr_token].str[i]= *(substr_start+i);}
+                  tokens[nr_token].str[substr_len]='\0';
+                  tokens[nr_token].type=rules[i].token_type;
+                  hnchar2dec(tokens[nr_token].str, tokens[nr_token].str);
+                  break;
+                      }
+          case TK_REG:{
+                  for(int i=1;i<substr_len;i++){
+                  tokens[nr_token].str[i]= *(substr_start+i);}
+                  tokens[nr_token].str[substr_len]='\0';
+                  int trg=0;
+                  bool *success=false;
+                  trg=isa_reg_str2val(tokens[nr_token].str, success);
+                  if(*success==true)
+                  sprintf(tokens[nr_token].str,"%d",trg);
+                  tokens[nr_token].type=rules[i].token_type;
+          }       
           default: tokens[nr_token].type=rules[i].token_type;break;
         }
 
@@ -179,8 +223,8 @@ word_t eval(int p, int q) {
     struct {int location[320];
             int top;} locations;
     locations.top=-1;        
-    int cnt[100];
-    int pointer=0;
+    //int cnt[100];
+    //int pointer=0;
     int len=0;
 
     for (int i=p;i<=q;i++){
@@ -200,8 +244,7 @@ word_t eval(int p, int q) {
     int ops[10000];
     int len_ops=0;
     int flag=0;
-    for (int i=p;i<=q;i++){
-      flag=0;
+    for (int i=p;i<=q;i++,flag=0){
       for(int j=0;j<len;j++)
       {
         if(i>=points[j].x && i<=points[j].y)
@@ -212,22 +255,50 @@ word_t eval(int p, int q) {
       }
     }
 
-    int op=10000;
+    int op=0;
+
+    for (int i=len_ops-1;i>=0;i--){
+      if (tokens[ops[i]].type==TK_AND) 
+      {
+        flag=1;
+        op=ops[i];
+        break;
+      }}
+
+      for (int i=len_ops-1;i>=0;i--)
+      if ((tokens[ops[i]].type== TK_EQ || tokens[ops[i]].type==TK_NEQ) && (flag==0)) 
+      { flag=1;
+        op=ops[i];
+        break;
+      }
+
+
 
     for (int i=len_ops-1;i>=0;i--)
-      if (tokens[ops[i]].type=='+'|| tokens[ops[i]].type=='-') 
-      {
+      if ((tokens[ops[i]].type=='+'|| tokens[ops[i]].type=='-') && (flag==0)) 
+      { flag=1;
         op=ops[i];
         break;
       }
 
     for (int i=len_ops-1;i>=0;i--){
-      if((tokens[ops[i]].type=='*'|| tokens[ops[i]].type=='/')&& (op==10000))
-      {op=ops[i];
+      if((tokens[ops[i]].type=='*'|| tokens[ops[i]].type=='/')&& (flag==0))
+      {flag=1;
+        op=ops[i];
       break;}
     }
-    
 
+    for (int i=len_ops-1;i>=0;i--){
+      if((tokens[ops[i]].type== DEREF )&& (flag==0))
+      { flag=1;
+        op=ops[i];
+      break;}
+    }
+
+    
+    if(len_ops==1 && tokens[op].type==DEREF){
+      return vaddr_read(eval(op + 1, q), 8);
+    }
     
 
     //op = the position of 主运算符 in the token expression;
@@ -239,13 +310,17 @@ word_t eval(int p, int q) {
       case '-': return val1 - val2;
       case '*': return val1 * val2;
       case '/': return val1 / val2;
+      case TK_EQ: return val1 == val2;
+      case TK_NEQ: return val1 != val2;
+      case TK_AND: return val1 && val2;
       default: assert(0);
     }
   }
+  return 0;
 }
 
 word_t expr(char *e, bool *success) {
-  //init_regex();
+  init_regex();
   if (!make_token(e)) {
     *success = false;
     return 0;
@@ -253,6 +328,15 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
+  for (int i = 0; i < nr_token; i ++) {
+  if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == '+'\
+   || tokens[i - 1].type =='-' || tokens[i - 1].type =='*' || tokens[i - 1].type=='/'\
+   || tokens[i - 1].type=='(' || tokens[i - 1].type==TK_EQ ||tokens[i - 1].type==TK_NEQ\
+   || tokens[i - 1].type== TK_AND)) {
+    tokens[i].type = DEREF;
+   }
+  }
+
   *success = true;
   //printf("nr_token:%d",nr_token);
   return eval(0,--nr_token);
