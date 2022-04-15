@@ -8,6 +8,7 @@
 
 static int is_batch_mode = false;
 
+word_t expr(char *e, bool *success);
 void init_regex();
 void init_wp_pool();
 
@@ -126,6 +127,24 @@ static int cmd_x(char *args)
 
 static int cmd_help(char *args);
 
+static int cmd_w(char *args){
+  char *arg = strtok(NULL, " ");
+  WP * x_point=new_wp();
+  int len=strlen(arg);
+  for(int i=0;i<len;i++){
+  x_point->expr[i]= *(arg+i);}
+  x_point->expr[len]='\0';
+  bool *success=false;
+  x_point->old=expr(x_point->expr,success);
+  if(*success==true){
+    printf("Set watchpoint %d\n",x_point->NO);
+    printf("expr         = %s\n",x_point->expr);
+    printf("old value    = 0x%08x\n",x_point->old);
+  }
+  return 0;
+}
+
+
 static struct
 {
   const char *name;
@@ -139,7 +158,8 @@ static struct
     /* TODO: Add more commands */
     {"si", "Execute a given number of instructions", cmd_si},
     {"info", "Print register status or monitoring point information", cmd_info},
-    {"x", "Output N consecutive 4 bytes in hexadecimal format", cmd_x}};
+    {"x", "Output N consecutive 4 bytes in hexadecimal format", cmd_x},
+    {"w","set watchpoint for debug", cmd_w}};
 
 #define NR_CMD ARRLEN(cmd_table)
 
