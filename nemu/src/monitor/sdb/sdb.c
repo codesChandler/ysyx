@@ -124,7 +124,7 @@ static int cmd_x(char *args)
   // printf("%x\n",exp);
   for (int i = 0; i < n; i++)
   {
-    printf("0x%08lx\n", vaddr_read(exp + i * 64, 8));
+    printf("0x%08lx\n", vaddr_read(exp + i * 32, 4));
   }
   return 0;
 }
