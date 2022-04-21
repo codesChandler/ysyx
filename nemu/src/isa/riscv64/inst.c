@@ -64,6 +64,9 @@ static int decode_exec(Decode *s) {
                                                                 s->dnpc=(src1+src2) & (~((uint64_t) 1)));
                                                                 //printf("***%ld****/n",s->dnpc));
 
+  INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I, R(dest) =(int64_t) Mr(src1 + src2, 4));
+
+
   INSTPAT("??????? ????? ????? 011 ????? 01000 11", sd     , S, Mw(src1 + dest, 8, src2));
 
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
