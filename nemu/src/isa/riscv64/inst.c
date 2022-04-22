@@ -9,7 +9,7 @@
 
 enum {
   TYPE_I, TYPE_U, TYPE_S,
-  TYPE_N, TYPE_J,TYPE_R,// none
+  TYPE_N, TYPE_J,TYPE_R0,// none
 };
 
 #define src1R(n) do { *src1 = R(n); } while (0)
@@ -39,7 +39,7 @@ static void decode_operand(Decode *s, word_t *dest, word_t *src1, word_t *src2, 
     case TYPE_U: src1I(immU(i)); break;
     case TYPE_S: destI(immS(i)); src1R(rs1); src2R(rs2); break;
     case TYPE_J: src1I(immJ(i)); destR(rd);break;
-    case TYPE_R: destR(rd);src1R(rs1); src2R(rs2);break;
+    case TYPE_R0: destR(rd);src1R(rs1); src2R(rs2);break;
   }
 }
 
@@ -73,7 +73,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
 
-  INSTPAT("0000000 ????? ????? 000 ????? 0111011", addw    , R, R(dest) =(src1+ src2));
+  INSTPAT("0000000 ????? ????? 000 ????? 0111011", addw    , R0, R(dest) =(src1+ src2));
 
   INSTPAT_END();
 
