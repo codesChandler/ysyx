@@ -9,7 +9,7 @@
 
 enum {
   TYPE_I, TYPE_U, TYPE_S,
-  TYPE_N, TYPE_J,TYPE_k,// none
+  TYPE_N, TYPE_J,TYPE_R,// none
 };
 
 #define src1R(n) do { *src1 = R(n); } while (0)
@@ -39,7 +39,7 @@ static void decode_operand(Decode *s, word_t *dest, word_t *src1, word_t *src2, 
     case TYPE_U: src1I(immU(i)); break;
     case TYPE_S: destI(immS(i)); src1R(rs1); src2R(rs2); break;
     case TYPE_J: src1I(immJ(i)); destR(rd);break;
-    case TYPE_k: destR(rd);src1R(rs1); src2R(rs2);break;
+    case TYPE_R: destR(rd);src1R(rs1); src2R(rs2);break;
   }
 }
 
@@ -67,7 +67,7 @@ static int decode_exec(Decode *s) {
 
   INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I, R(dest) =(int64_t) Mr(src1 + src2, 4));
 
-  INSTPAT("0000000 ????? ????? 000 ????? 0111011", addw    , k, uint32_t src10=(uint32_t)src1;uint32_t src20=(uint32_t)src2;R(dest) = src10 + src20);
+  INSTPAT("0000000 ????? ????? 000 ????? 0111011", addw    , R, R(dest) = (int64_t)((uint32_t)src1 + (uint32_t)src2));
 
   INSTPAT("??????? ????? ????? 011 ????? 01000 11", sd     , S, Mw(src1 + dest, 8, src2));
 
