@@ -13,9 +13,31 @@
 
 // Include model header, generated from Verilating "top.v"
 #include "Vtop.h"
+int char2dec(char *hex)
+{
+  int len;
+  int num = 0;
+  //int temp0=0;
 
+  len = strlen(hex);
+
+  for (int i = 0, temp = 0; i < len; i++)
+  {
+    //temp0=*(hex + i) - 48;
+    temp =( *(hex + i) - 48)*((int)pow(10,(double)(len - i - 1)));
+    num = num + temp;
+  }
+
+  return num;
+}
 // Legacy function required only so linking works on Cygwin and MSVC++
 double sc_time_stamp() { return 0; }
+
+int pmen_read(int pc){
+  char * mem[1]={"001000000000_00000_000_10111_0010011","001000000000_00000_000_10111_0010011"};
+
+  return char2dec(mem[(pc-2147483648)/4]);
+}
 
 int main(int argc, char** argv, char** env) {
     // This is a more complicated example, please also see the simpler examples/make_hello_c.
@@ -89,7 +111,7 @@ int main(int argc, char** argv, char** env) {
             }
             // Assign some other inputs
         }
-
+        top->inst = pmem_read(top->pc);
         // Evaluate model
         // (If you have multiple models being simulated in the same
         // timestep then instead of eval(), call eval_step() on each, then

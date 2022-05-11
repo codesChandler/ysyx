@@ -1,4 +1,4 @@
-`include "ysyx_22040632_RISCV_PKG_.svh"
+//`include "ysyx_22040632_RISCV_PKG_.svh"
 module ysyx_22040632_Decoder
 import ysyx_22040632_RISCV_pkg::*;
 (input rst_n,
