@@ -2,9 +2,9 @@
 # DESCRIPTION: Verilator output: Makefile for building Verilated archive or executable
 #
 # Execute this makefile from the object directory:
-#    make -f Vtop.mk
+#    make -f Vysyx_22040632_top.mk
 
-default: /home/chandler/ysyx-workbench/npc/build/top
+default: Vysyx_22040632_top
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -30,47 +30,38 @@ VM_SC_TARGET_ARCH = linux
 
 ### Vars...
 # Design prefix (from --prefix)
-VM_PREFIX = Vtop
+VM_PREFIX = Vysyx_22040632_top
 # Module prefix (from --prefix)
-VM_MODPREFIX = Vtop
+VM_MODPREFIX = Vysyx_22040632_top
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I/home/chandler/ysyx-workbench/nvboard/include \
-	-DTOP_NAME="Vtop" \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	/home/chandler/ysyx-workbench/nvboard/build/nvboard.a \
-	-lSDL2 \
-	-lSDL2_image \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	auto_bind \
-	main \
+	sim_main \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/chandler/ysyx-workbench/npc/build \
-	/home/chandler/ysyx-workbench/npc/csrc \
+	. \
 
 
 ### Default rules...
 # Include list of all generated classes
-include Vtop_classes.mk
+include Vysyx_22040632_top_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
 
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-auto_bind.o: /home/chandler/ysyx-workbench/npc/build/auto_bind.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: /home/chandler/ysyx-workbench/npc/csrc/main.cpp
+sim_main.o: sim_main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
-/home/chandler/ysyx-workbench/npc/build/top: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+Vysyx_22040632_top: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
 	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
 
 
