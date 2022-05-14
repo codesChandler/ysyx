@@ -39,7 +39,6 @@ include $(NEMU_HOME)/scripts/config.mk
 
 CONFIG_TARGET_AM ?=
 ifdef CONFIG_TARGET_AM
-@echo here
 include $(AM_HOME)/Makefile
 LINKAGE += $(ARCHIVES)
 else
