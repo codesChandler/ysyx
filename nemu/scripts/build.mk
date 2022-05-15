@@ -51,7 +51,11 @@ $(OBJ_DIR)/%.o: %.cc
 app: $(BINARY)
 
 $(BINARY): $(OBJS) $(ARCHIVES)
-	@echo + LD $@
+	@echo need + LD $@
+	@echo need OBJS+ $(OBJS)
+	@echo need LDFLAGS+ $(LDFLAGS)
+	@echo need ARCHIVES+ $(ARCHIVES)
+	@echo need LIBS+ $(LIBS)
 	@$(LD) -o $@ $(OBJS) $(LDFLAGS) $(ARCHIVES) $(LIBS)
 
 clean:

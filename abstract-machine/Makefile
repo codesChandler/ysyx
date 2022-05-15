@@ -3,6 +3,7 @@
 ### *Get a more readable version of this Makefile* by `make html` (requires python-markdown)
 html:
 	cat Makefile | sed 's/^\([^#]\)/    \1/g' | markdown_py > Makefile.html
+	$(info ARCH:$(ARCH))
 .PHONY: html
 
 ## 1. Basic Setup and Checks
@@ -58,6 +59,7 @@ ARCHIVE   = $(WORK_DIR)/build/$(NAME)-$(ARCH).a
 ### Collect the files to be linked: object files (`.o`) and libraries (`.a`)
 OBJS      = $(addprefix $(DST_DIR)/, $(addsuffix .o, $(basename $(SRCS))))
 LIBS     := $(sort $(LIBS) am klib) # lazy evaluation ("=") causes infinite recursions
+#LIBS     := $(sort am klib)
 LINKAGE   = $(OBJS) \
   $(addsuffix -$(ARCH).a, $(join \
     $(addsuffix /build/, $(addprefix $(AM_HOME)/, $(LIBS))), \
@@ -123,7 +125,7 @@ $(DST_DIR)/%.o: %.S
 
 ### Rule (recursive make): build a dependent library (am, klib, ...)
 $(LIBS): %:
-	@$(MAKE) -s -C $(AM_HOME)/$* archive
+	@$(MAKE) -s -C $(AM_HOME)/$* $(NEMU_HOME)/build/riscv64-nemu-interpreter archive
 
 ### Rule (link): objects (`*.o`) and libraries (`*.a`) -> `IMAGE.elf`, the final ELF binary to be packed into image (ld)
 $(IMAGE).elf: $(OBJS) am $(LIBS)
