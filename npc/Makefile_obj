@@ -11,13 +11,13 @@
 #
 #######################################################################
 
-default: Vysyx_22040632_top
+default: Vtop
 
 # Include the rules made by Verilator
-include Vysyx_22040632_top.mk
+include Vtop.mk
 
 # Use OBJCACHE (ccache) if using gmake and its installed
-COMPILE.cc = $(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS)  $(TARGET_ARCH) -c
+COMPILE.cc = $(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
 
 #######################################################################
 # Compile flags
@@ -28,16 +28,11 @@ CPPFLAGS += -MMD -MP
 # Compile in Verilator runtime debugging, so +verilator+debug works
 CPPFLAGS += -DVL_DEBUG=1
 
-# for math.h
-CPPFLAGS += -lm
-
-CFG_WITH_CCWARN =yes
 # Turn on some more compiler lint flags (when configured appropriately)
 # For testing inside Verilator, "configure --enable-ccwarn" will do this
 # automatically; otherwise you may want this unconditionally enabled
 ifeq ($(CFG_WITH_CCWARN),yes)	# Local... Else don't burden users
-USER_CPPFLAGS_WALL += -W -g -Werror -Wall
-CPPFLAGS +=$(USER_CPPFLAGS_WALL)
+USER_CPPFLAGS_WALL += -W -Werror -Wall
 endif
 
 # See the benchmarking section of bin/verilator.

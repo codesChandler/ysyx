@@ -18,8 +18,7 @@ MCONF  := $(KCONFIG_PATH)/build/mconf
 FIXDEP := $(FIXDEP_PATH)/build/fixdep
 
 $(CONF):
-	$(Q)$(MAKE) 
-	$(silent) -C $(KCONFIG_PATH) NAME=conf
+	$(Q)$(MAKE) $(silent) -C $(KCONFIG_PATH) NAME=conf
 
 $(MCONF):
 	$(Q)$(MAKE) $(silent) -C $(KCONFIG_PATH) NAME=mconf

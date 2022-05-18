@@ -18,7 +18,6 @@ NEMU_EXEC := $(BINARY) $(ARGS) $(IMG)
 
 run-env: $(BINARY) $(DIFF_REF_SO)
 
-count: 
 run: run-env
 	$(call git_commit, "run NEMU")
 	$(NEMU_EXEC)

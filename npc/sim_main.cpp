@@ -7,14 +7,12 @@
 
 // For std::unique_ptr
 #include <memory>
-#include <math.h>
 
 // Include common routines
 #include <verilated.h>
 
 // Include model header, generated from Verilating "top.v"
-#include "Vysyx_22040632_top.h"
-#include "Vysyx_22040632_top__Dpi.h"
+#include "Vtop.h"
 int char2dec(char *hex)
 {
   int len;
@@ -32,20 +30,13 @@ int char2dec(char *hex)
 
   return num;
 }
-int exit_flag=0;
-
-void myexit(){exit_flag=1;}
-
 // Legacy function required only so linking works on Cygwin and MSVC++
 double sc_time_stamp() { return 0; }
 
-int pmem_read(int pc){
-  int mem[100000];//={0b00100000000000000000000000010011,0b00100000000000000000101110010011};
-  for(int i=0;i<100000;i++)
-      mem[i]=0b00100000000000000000101110010011;
+int pmen_read(int pc){
+  char * mem[1]={"001000000000_00000_000_10111_0010011","001000000000_00000_000_10111_0010011"};
 
-  mem[15]=0b00000000000100000000000001110011;
-  return mem[(int)(pc-2147483648)/4];
+  return char2dec(mem[(pc-2147483648)/4]);
 }
 
 int main(int argc, char** argv, char** env) {
@@ -84,7 +75,7 @@ int main(int argc, char** argv, char** env) {
     // Construct the Verilated model, from Vtop.h generated from Verilating "top.v".
     // Using unique_ptr is similar to "Vtop* top = new Vtop" then deleting at end.
     // "TOP" will be the hierarchical name of the module.
-    const std::unique_ptr<Vysyx_22040632_top> top{new Vysyx_22040632_top{contextp.get(), "TOP"}};
+    const std::unique_ptr<Vtop> top{new Vtop{contextp.get(), "TOP"}};
 
     // Set Vtop's input signals
     top->rst_n = !0;
@@ -120,19 +111,12 @@ int main(int argc, char** argv, char** env) {
             }
             // Assign some other inputs
         }
-        if(contextp->time() <= 1)
-          top->inst = pmem_read(2147483648);//top->pc);
-        //printf("pc初始值：%ld",top->pc);
-        else 
-          top->inst = pmem_read(top->pc);
+        top->inst = pmem_read(top->pc);
         // Evaluate model
         // (If you have multiple models being simulated in the same
         // timestep then instead of eval(), call eval_step() on each, then
         // eval_end_step() on each. See the manual.)
         top->eval();
-
-        if(exit_flag==1)
-          break;
 
     }
 

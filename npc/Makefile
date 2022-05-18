@@ -38,7 +38,7 @@ VERILATOR_FLAGS += -cc --exe
 # Optimize
 VERILATOR_FLAGS += -Os -x-assign 0
 # Warn abount lint issues; may not want this on less solid designs
-#VERILATOR_FLAGS += -Wall
+VERILATOR_FLAGS += -Wall
 # Make waveforms
 VERILATOR_FLAGS += --trace
 # Check SystemVerilog assertions
@@ -51,14 +51,13 @@ VERILATOR_FLAGS += --trace
 #VERILATOR_FLAGS += --gdbbt
 
 # Input files for Verilator
-VERILATOR_INPUT = -f input.vc ysyx_22040632_top.sv  sim_main.cpp
+VERILATOR_INPUT = -f input.vc ysyx_22040632_top.sv  sim_main.c
 #VERILATOR_SEARCHPATH=-I ../vsrc
 
 ######################################################################
 default: run
 
 run:
-	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo
 	@echo "-- Verilator tracing example"
 
@@ -79,12 +78,12 @@ run:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	obj_dir/Vysyx_22040632_top +trace
+	obj_dir/Vtop +trace
 
 	@echo
 	@echo "-- COVERAGE ----------------"
 	@rm -rf logs/annotated
-# $(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
+	$(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
 
 	@echo
 	@echo "-- DONE --------------------"
@@ -97,13 +96,6 @@ run:
 
 show-config:
 	$(VERILATOR) -V
-
-gdb:
-	gdb obj_dir/Vysyx_22040632_top
-
-wave:
-	gtkwave logs/vlt_dump.vcd
-
 
 maintainer-copy::
 clean mostlyclean distclean maintainer-clean::
