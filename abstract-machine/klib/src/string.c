@@ -82,11 +82,14 @@ int strncmp(const char *s1, const char *s2, size_t n)
   int len = 0;
   while (!(ret = *s1 - *s2) && *s1 && (len < n))
   {
+    //printf("s1:%c s2:%c\n",*s1,*s2);
     len++;
     s1++;
     s2++;
+    // printf("s1:%c s2:%c",*s1,*s2);
   }
-
+  //printf("len:%d\n",len);
+  ret = *(s1-1) - *(s2-1);
   if (ret < 0)
   {
     return -1;
@@ -96,7 +99,7 @@ int strncmp(const char *s1, const char *s2, size_t n)
     return 1;
   }
   return 0;
-  panic("Not implemented");
+  //panic("Not implemented");
 }
 
 void *memset(void *s, int c, size_t n)
@@ -116,7 +119,7 @@ void *memset(void *s, int c, size_t n)
 
 void *memmove(void *dst, const void *src, size_t n)
 {
-  assert(NULL != src && NULL != dst);
+  //assert(NULL != src && NULL != dst);
   char *tmpdst = (char *)dst;
   char *tmpsrc = (char *)src;
 
@@ -142,7 +145,7 @@ void *memmove(void *dst, const void *src, size_t n)
 
 void *memcpy(void *out, const void *in, size_t n)
 {
-  assert(NULL != out && NULL != in);
+  //assert(NULL != out && NULL != in);
   char *tmpout = (char *)out;
   char *tmpin = (char *)in;
   // panic("Not implemented");
