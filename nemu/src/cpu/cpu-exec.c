@@ -19,6 +19,7 @@ static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 int index_ibuf=0;//for iringbuf
 char iringbuf[16][128];
+int flag_cycle=0;
 
 void device_update();
 void wp_evl();
@@ -27,7 +28,8 @@ void inst_display(){
   if (index_ibuf==0) value=15;
   else value=index_ibuf-1;
   for(int i=0;i<16;i++){
-    if(i==value) printf("-->%s\n",iringbuf[i]);
+    if(i==value) {printf("-->%s\n",iringbuf[i]);
+    if(flag_cycle==0) break;}
     else printf("   %s\n",iringbuf[i]);
   }
 }
@@ -74,7 +76,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #ifdef CONFIG_IRINGBUF
   trace(iringbuf[index_ibuf],s);
   index_ibuf++;
-  if(index_ibuf==16) index_ibuf=0;
+  if(index_ibuf==16) {index_ibuf=0;flag_cycle=1;}
 #endif
   extern void assert_fail_msg();
   assert_fail_msg();
