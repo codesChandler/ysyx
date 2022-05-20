@@ -27,6 +27,7 @@ void inst_display(){
   int value=0;
   if (index_ibuf==0) value=15;
   else value=index_ibuf-1;
+  printf("*************instructions***************\n");
   for(int i=0;i<16;i++){
     if(i==value) {printf("-->%s\n",iringbuf[i]);
     if(flag_cycle==0) break;}
