@@ -9,8 +9,9 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
+  printf("*************registers*******************\n");
   for(int i=0;i<32;i++)
-  printf("NO:%d %s: 0x%08lx\n",i,regs[i],cpu.gpr[i]);
+  printf("   NO:%d %s: 0x%08lx\n",i,regs[i],cpu.gpr[i]);
 
 }
 

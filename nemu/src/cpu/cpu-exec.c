@@ -11,14 +11,50 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-void wp_evl();
+
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
+int index_ibuf=0;//for iringbuf
+char iringbuf[16][128];
+int flag_cycle=0;
 
 void device_update();
+void wp_evl();
+void inst_display(){
+  int value=0;
+  if (index_ibuf==0) value=15;
+  else value=index_ibuf-1;
+  printf("*************instructions***************\n");
+  for(int i=0;i<16;i++){
+    if(i==value) {printf("-->%s\n",iringbuf[i]);
+    if(flag_cycle==0) break;}
+    else printf("   %s\n",iringbuf[i]);
+  }
+}
+void trace(char *buf,Decode *s){
+  char *p = buf;
+  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
+  // printf("before itrace:%lx\n",s->pc);
+  int ilen = s->snpc - s->pc;
+  int i;
+  uint8_t *inst = (uint8_t *)&s->isa.inst.val;
+  for (i = 0; i < ilen; i ++) {
+    p += snprintf(p, 4, " %02x", inst[i]);
+  }
+  int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
+  int space_len = ilen_max - ilen;
+  if (space_len < 0) space_len = 0;
+  space_len = space_len * 3 + 1;
+  memset(p, ' ', space_len);
+  p += space_len;
+
+  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
+      MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+}
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
@@ -36,26 +72,15 @@ static void exec_once(Decode *s, vaddr_t pc) {
   isa_exec_once(s);
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
-  char *p = s->logbuf;
-  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
-  int ilen = s->snpc - s->pc;
-  int i;
-  uint8_t *inst = (uint8_t *)&s->isa.inst.val;
-  for (i = 0; i < ilen; i ++) {
-    p += snprintf(p, 4, " %02x", inst[i]);
-  }
-  int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
-  int space_len = ilen_max - ilen;
-  if (space_len < 0) space_len = 0;
-  space_len = space_len * 3 + 1;
-  memset(p, ' ', space_len);
-  p += space_len;
-
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
-      MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
-  printf("itrace:%s\n",p);
+  trace(s->logbuf,s);
 #endif
+#ifdef CONFIG_IRINGBUF
+  trace(iringbuf[index_ibuf],s);
+  index_ibuf++;
+  if(index_ibuf==16) {index_ibuf=0;flag_cycle=1;}
+#endif
+  // extern void assert_fail_msg();
+  // assert_fail_msg();
 }
 
 static void execute(uint64_t n) {
@@ -81,6 +106,7 @@ static void statistic() {
 void assert_fail_msg() {
   isa_reg_display();
   statistic();
+  inst_display();
 }
 
 /* Simulate how the CPU works. */

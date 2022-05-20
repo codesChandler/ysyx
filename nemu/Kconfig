@@ -113,7 +113,7 @@ config CC_DEBUG
   bool "Enable debug information"
   default n
 
-config CONFIG_WATCHPOINT
+config WATCHPOINT
   bool "Enable watchpoint"
   default n
 
@@ -149,6 +149,11 @@ config ITRACE_COND
   depends on ITRACE
   string "Only trace instructions when the condition is true"
   default "true"
+
+config IRINGBUF
+  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
+  bool "Enable instruction ring info"
+  default y
 
 
 config DIFFTEST
