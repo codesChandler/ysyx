@@ -79,8 +79,8 @@ static void exec_once(Decode *s, vaddr_t pc) {
   index_ibuf++;
   if(index_ibuf==16) {index_ibuf=0;flag_cycle=1;}
 #endif
-  extern void assert_fail_msg();
-  assert_fail_msg();
+  // extern void assert_fail_msg();
+  // assert_fail_msg();
 }
 
 static void execute(uint64_t n) {
