@@ -2,7 +2,9 @@
 #include <memory/paddr.h>
 #include <device/mmio.h>
 #include <isa.h>
+#include <common.h>
 
+// #define FMT_PADDR MUXDEF(PMEM64, "0x%016lx", "0x%08x")
 #if defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
 #else // CONFIG_PMEM_GARRAY
@@ -58,7 +60,7 @@ word_t paddr_read(paddr_t addr, int len)
   if (likely(in_pmem(addr)))
     data=pmem_read(addr, len);
   #ifdef CONFIG_MTRACE
-    if (likely(in_pmem(addr))) printf("paddr_read-addr:%ud  data:%ld\n",addr,data);
+    if (likely(in_pmem(addr))) printf("paddr_read-addr:"FMT_PADDR"  data:%ld\n",addr,data);
   #endif
   return data;
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
@@ -69,7 +71,7 @@ word_t paddr_read(paddr_t addr, int len)
 void paddr_write(paddr_t addr, int len, word_t data)
 {
   #ifdef CONFIG_MTRACE
-    if (likely(in_pmem(addr))) printf("paddr_write-addr:%ud  data:%ld\n",addr,data);
+    if (likely(in_pmem(addr))) printf("paddr_write-addr:"FMT_PADDR"  data:%ld\n",addr,data);
   #endif
   if (likely(in_pmem(addr)))
   {
