@@ -17,9 +17,9 @@ CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
-int index_ibuf=0;//for iringbuf
-char iringbuf[16][128];
-int flag_cycle=0;
+static int index_ibuf=0;//for iringbuf
+static char iringbuf[16][128];
+static int flag_cycle=0;
 
 void device_update();
 void wp_evl();
