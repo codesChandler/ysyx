@@ -68,7 +68,9 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(dest) = src1 + src2);
   INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, //if(dest !=0) {printf("***%ld****/n",dest); 
                                                                 R(dest) = s->dnpc;//}
-                                                                s->dnpc=(src1+src2) & (~((uint64_t) 1)));
+                                                                printf("***%ld****/n",src1+src2);
+                                                                s->dnpc=(src1+src2) & (~((uint64_t) 1));
+                                                                printf("***%ld****/n",s->dnpc));
                                                                 //printf("***%ld****/n",s->dnpc));
 
   INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I, R(dest) =(int64_t) Mr(src1 + src2, 4));
