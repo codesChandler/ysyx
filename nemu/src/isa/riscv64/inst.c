@@ -71,7 +71,7 @@ static int decode_exec(Decode *s) {
                                                                 s->dnpc=(src1+src2) & (~((uint64_t) 1)));
                                                                 //printf("***%ld****/n",s->dnpc));
 
-  INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I,printf("dest:%lx\n",(int64_t) (unsigned)Mr(src1 + src2, 4)); R(dest) =(int64_t) (signed)  Mr(src1 + src2, 4));
+  INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I,R(dest) =(int64_t) (signed)  Mr(src1 + src2, 4));//printf("dest:%lx\n",(int64_t) (unsigned)Mr(src1 + src2, 4)); R(dest) =(int64_t) (signed)  Mr(src1 + src2, 4));
   INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, if(src1<src2) R(dest) =1;else R(dest) =0);
   INSTPAT("??????? ????? ????? 000 ????? 00110 11", addiw  , I, R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));//printf("addiw src1:%d\n",(uint32_t)src1);printf("addiw src2:%d\n",(uint32_t)src2);printf("addiw src1+src2:%d\n",((uint32_t)src1 + (uint32_t)src2));printf("addiw src1+src2:%ld\n",(int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));
   INSTPAT("010000? ????? ????? 101 ????? 00100 11", srai   , I, R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));//printf("src1:%ld srai\n",(src1));printf("src2:%ld srai\n",SEXTU(BITS(src2, 5, 0), 6));printf("src1:%d srai after shift\n",((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6);printf("R(dest):%ld srai after shift\n",R(dest)););
