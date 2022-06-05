@@ -17,9 +17,9 @@ CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
-int index_ibuf=0;//for iringbuf
-char iringbuf[16][128];
-int flag_cycle=0;
+static int index_ibuf=0;//for iringbuf
+static char iringbuf[16][128];
+static int flag_cycle=0;
 
 void device_update();
 void wp_evl();
@@ -51,9 +51,9 @@ void trace(char *buf,Decode *s){
   memset(p, ' ', space_len);
   p += space_len;
 
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
-      MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+  //void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  //disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
+  //    MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 }
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
