@@ -73,8 +73,8 @@ static int decode_exec(Decode *s) {
 
   INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I,printf("dest:%lx\n",(int64_t) (unsigned)Mr(src1 + src2, 4)); R(dest) =(int64_t) (signed)  Mr(src1 + src2, 4));
   INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, if(src1<src2) R(dest) =1;else R(dest) =0);
-  INSTPAT("??????? ????? ????? 000 ????? 00110 11", addiw  , I, printf("addiw src1:%d\n",(uint32_t)src1);printf("addiw src2:%d\n",(uint32_t)src2);printf("addiw src1+src2:%d\n",((uint32_t)src1 + (uint32_t)src2));printf("addiw src1+src2:%ld\n",(int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));
-  INSTPAT("010000? ????? ????? 101 ????? 00100 11", srai   , I, printf("src1:%ld srai\n",(src1));printf("src2:%ld srai\n",SEXTU(BITS(src2, 5, 0), 6));printf("src1:%d srai after shift\n",((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6);printf("R(dest):%ld srai after shift\n",R(dest)););
+  INSTPAT("??????? ????? ????? 000 ????? 00110 11", addiw  , I, R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));//printf("addiw src1:%d\n",(uint32_t)src1);printf("addiw src2:%d\n",(uint32_t)src2);printf("addiw src1+src2:%d\n",((uint32_t)src1 + (uint32_t)src2));printf("addiw src1+src2:%ld\n",(int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));
+  INSTPAT("010000? ????? ????? 101 ????? 00100 11", srai   , I, R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));//printf("src1:%ld srai\n",(src1));printf("src2:%ld srai\n",SEXTU(BITS(src2, 5, 0), 6));printf("src1:%d srai after shift\n",((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6);printf("R(dest):%ld srai after shift\n",R(dest)););
   INSTPAT("000000? ????? ????? 001 ????? 00100 11", slli   , I, R(dest) =((uint64_t) src1) << SEXTU(BITS(src2, 5, 0), 6) ); 
   INSTPAT("000000? ????? ????? 101 ????? 00100 11", srli   , I, R(dest) =((uint64_t) src1) >> SEXTU(BITS(src2, 5, 0), 6) ); 
   INSTPAT("0000000 ????? ????? 101 ????? 00110 11", srliw   , I, R(dest) =(int64_t)(signed)(((uint32_t) src1) >> SEXTU(BITS(src2, 4, 0), 5)) ); 
@@ -86,10 +86,10 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 000 ????? 11000 11", beq    , B, if(src1==src2) s->dnpc=dest+s->pc);
   //      110 0011 0000 0100 0000 0101 0000 0000
   INSTPAT("??????? ????? ????? 001 ????? 11000 11", bne    , B, if(src1!=src2) s->dnpc=dest+s->pc);
-  INSTPAT("??????? ????? ????? 100 ????? 11000 11", blt    , B,printf("src1:%d\n",(signed)src1); printf("src2:%d\n",(signed)src2);if((signed)src1<(signed)src2) {printf("src1:%d<src2:%d\n",(signed)src1,(signed)src2);s->dnpc=dest+s->pc;}else printf("src1:%d>src2:%d\n",(signed)src1,(signed)src2););
+  INSTPAT("??????? ????? ????? 100 ????? 11000 11", blt    , B,if((signed)src1<(signed)src2) s->dnpc=dest+s->pc;);//printf("src1:%d\n",(signed)src1); printf("src2:%d\n",(signed)src2);if((signed)src1<(signed)src2) {printf("src1:%d<src2:%d\n",(signed)src1,(signed)src2);s->dnpc=dest+s->pc;}else printf("src1:%d>src2:%d\n",(signed)src1,(signed)src2););
   //      001 01111 10010 100 00000 1100011
-  INSTPAT("??????? ????? ????? 101 ????? 11000 11", bge    , B,printf("src1:%d bge\n",(signed)src1); printf("src2:%d bge\n",(signed)src2); if((signed)src1>=(signed)src2) s->dnpc=dest+s->pc);
-  INSTPAT("??????? ????? ????? 111 ????? 11000 11", bgeu    , B, if(src1>src2) s->dnpc=dest+s->pc);  
+  INSTPAT("??????? ????? ????? 101 ????? 11000 11", bge    , B,if((signed)src1>=(signed)src2) s->dnpc=dest+s->pc);//printf("src1:%d bge\n",(signed)src1); printf("src2:%d bge\n",(signed)src2); if((signed)src1>=(signed)src2) s->dnpc=dest+s->pc);
+  INSTPAT("??????? ????? ????? 111 ????? 11000 11", bgeu    , B, if(src1>=src2) s->dnpc=dest+s->pc);  
   INSTPAT("??????? ????? ????? 110 ????? 11000 11", bltu    , B, if(src1<src2)s->dnpc=dest+s->pc);
   //if(src1<src2){printf("src1:%d<src2:%d\n",(signed)src1,(signed)src2);s->dnpc=dest+s->pc;}else printf("src1:%d>src2:%d\n",(signed)src1,(signed)src2));
   INSTPAT("0000000 ????? ????? 000 ????? 0111011", addw    , R, R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));
