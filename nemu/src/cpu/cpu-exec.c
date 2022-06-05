@@ -13,9 +13,7 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-extern char *strtab;
-extern Elf64_Sym *symtab;
-extern int nr_symtab_entry;
+
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
@@ -61,6 +59,9 @@ void trace(char *buf,Decode *s){
 }
 
 int ftrace_imple(Decode *s){
+  extern char *strtab;
+extern Elf64_Sym *symtab;
+extern int nr_symtab_entry;
   uint32_t inst_f=s->isa.inst.val;
   if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
     return 0;
