@@ -3,8 +3,5 @@
 #include <elf.h>
 #include <stdlib.h>
 
-char *strtab;
-Elf64_Sym *symtab;
-int nr_symtab_entry;
 
 #endif

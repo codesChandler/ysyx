@@ -2,7 +2,9 @@
 #include <ftrace.h>
 
 char *exec_file = NULL;
-
+static char *strtab=NULL;
+static Elf64_Sym *symtab=NULL;
+static int nr_symtab_entry;
 
 void load_elf_tables(char *file) {
 	int ret;

@@ -13,7 +13,9 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-
+extern char *strtab;
+extern Elf64_Sym *symtab;
+extern int nr_symtab_entry;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
