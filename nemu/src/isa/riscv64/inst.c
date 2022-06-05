@@ -74,7 +74,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I,printf("dest:%lx\n",(int64_t) (unsigned)Mr(src1 + src2, 4)); R(dest) =(int64_t) (signed)  Mr(src1 + src2, 4));
   INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, if(src1<src2) R(dest) =1;else R(dest) =0);
   INSTPAT("??????? ????? ????? 000 ????? 00110 11", addiw  , I, R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));
-  INSTPAT("010000? ????? ????? 101 ????? 00100 11", srai   , I, printf("src1:%ld srai\n",(src1));printf("src1:%d srai after shift\n",((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6););
+  // INSTPAT("010000? ????? ????? 101 ????? 00100 11", srai   , I, printf("src1:%ld srai\n",(src1));printf("src1:%d srai after shift\n",((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6););
   INSTPAT("000000? ????? ????? 001 ????? 00100 11", slli   , I, R(dest) =((uint64_t) src1) << SEXTU(BITS(src2, 5, 0), 6) ); 
   INSTPAT("000000? ????? ????? 101 ????? 00100 11", srli   , I, R(dest) =((uint64_t) src1) >> SEXTU(BITS(src2, 5, 0), 6) ); 
   INSTPAT("0000000 ????? ????? 101 ????? 00110 11", srliw   , I, R(dest) =(int64_t)(signed)(((uint32_t) src1) >> SEXTU(BITS(src2, 4, 0), 5)) ); 
@@ -103,7 +103,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 011 ????? 0110011", sltu    , R, if(src1 < src2) R(dest) = 1;else R(dest) = 0);  
   INSTPAT("0000000 ????? ????? 001 ????? 0111011", sllw    , R, R(dest) = (int64_t)((int32_t)src1) << SEXTU(BITS(src2, 4, 0), 5));
   INSTPAT("0000001 ????? ????? 000 ????? 0111011", mulw    , R, R(dest) = (int64_t)((int32_t)src1*(int32_t)src2));  
-  INSTPAT("0000001 ????? ????? 100 ????? 0111011", divw    , R,printf("divw-src1:%ld\n",(src1));printf("divw-src2:%ld\n",(src2));printf("divw-src1/src2(32):%d\n",((int32_t)src1/(int32_t)src2));printf("divw-src1/src2(64):%ld\n",(int64_t)((int32_t)src1/(int32_t)src2)); R(dest) = (int64_t)((int32_t)src1/(int32_t)src2));   
+  // INSTPAT("0000001 ????? ????? 100 ????? 0111011", divw    , R,printf("divw-src1:%ld\n",(src1));printf("divw-src2:%ld\n",(src2));printf("divw-src1/src2(32):%d\n",((int32_t)src1/(int32_t)src2));printf("divw-src1/src2(64):%ld\n",(int64_t)((int32_t)src1/(int32_t)src2)); R(dest) = (int64_t)((int32_t)src1/(int32_t)src2));   
   INSTPAT("0000001 ????? ????? 101 ????? 0111011", divuw    , R, R(dest) = (int64_t)(signed)((uint32_t)src1/(uint32_t)src2));  
   INSTPAT("0000001 ????? ????? 111 ????? 0111011", remuw    , R, R(dest) = (int64_t)(signed)((uint32_t)src1%(uint32_t)src2));  
 
