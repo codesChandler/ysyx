@@ -3,6 +3,7 @@
 #include <cpu/difftest.h>
 #include <locale.h>
 #include <macro.h>
+#include <ftrace.h>
 // #include "src/monitor/sdb/sdb.h"
 
 /* The assembly code of instructions executed is only output to the screen
@@ -57,14 +58,24 @@ void trace(char *buf,Decode *s){
      MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 }
 
-void ftrace_imple(Decode *s){
+int ftrace_imple(Decode *s){
   uint32_t inst_f=s->isa.inst.val;
-  if(SEXTU(BITS(inst_f, 6, 0), 7)==111){
-    printf("I am jal\n");
+  if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
+    return 0;
   }
-  if(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0){
-    printf("I am jalr\n");
-  }
+  uint32_t strindex_low=0;
+  uint32_t strindex_high=0;
+  for(int i=0;i<nr_symtab_entry;i++){
+    if(symtab[i].st_info == STT_FUNC){
+      if(s->dnpc>=symtab[i].st_value && s->dnpc<=symtab[i].st_value+symtab[i].st_size)
+        {strindex_low=symtab[i].st_name;
+          strindex_high=symtab[i+1].st_name;
+    }
+  }}
+  for(int i=strindex_low;i<strindex_high;i++)
+  printf("call:%c",*(strtab+i));
+  return 1;
+  
 }
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
