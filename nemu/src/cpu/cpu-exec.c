@@ -2,6 +2,7 @@
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
+#include <macro.h>
 // #include "src/monitor/sdb/sdb.h"
 
 /* The assembly code of instructions executed is only output to the screen
@@ -56,6 +57,16 @@ void trace(char *buf,Decode *s){
      MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 }
 
+void ftrace_imple(Decode *s){
+  uint32_t inst_f=s->isa.inst.val;
+  if(SEXTU(BITS(inst_f, 6, 0), 7)==111){
+    printf("I am jal");
+  }
+  if(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0){
+    printf("I am jalr");
+  }
+}
+
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
@@ -81,6 +92,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
   // extern void assert_fail_msg();
   // assert_fail_msg();
+#ifdef CONFIG_FTRACE
+  ftrace_imple(s);
+#endif
 }
 
 static void execute(uint64_t n) {
