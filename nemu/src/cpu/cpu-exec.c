@@ -60,10 +60,10 @@ void trace(char *buf,Decode *s){
 void ftrace_imple(Decode *s){
   uint32_t inst_f=s->isa.inst.val;
   if(SEXTU(BITS(inst_f, 6, 0), 7)==111){
-    printf("I am jal");
+    printf("I am jal\n");
   }
   if(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0){
-    printf("I am jalr");
+    printf("I am jalr\n");
   }
 }
 
