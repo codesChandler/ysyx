@@ -82,14 +82,15 @@ int ftrace_imple(Decode *s){
           printf("ret [");
           for(int i=strindex_low;i<strindex_high;i++)
             printf("%c",*(strtab+i));   
-          printf("0x%lx]\n",s->dnpc);         
-          }
+          printf("0x%lx]\n",s->dnpc);}
+          else{
           for(int i=0;i<space_nr;i++)
-            printf(" ");
-          space_nr++;
+              printf(" ");
+            space_nr++;
+          printf("call [");
           for(int i=strindex_low;i<strindex_high;i++)
-            printf("%c",*(strtab+i));
-          printf("\n");
+            printf("%c",*(strtab+i));   
+          printf("0x%lx]\n",s->dnpc);}
     }
   }}
   return 1;
