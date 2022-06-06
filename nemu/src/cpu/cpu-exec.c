@@ -63,6 +63,7 @@ void trace(char *buf,Decode *s){
 int ftrace_imple(Decode *s){
   uint32_t inst_f=s->isa.inst.val;
   if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
+    printf("I am not jal or jalr/n");
     return 0;
   }
   uint32_t strindex_low=0;
