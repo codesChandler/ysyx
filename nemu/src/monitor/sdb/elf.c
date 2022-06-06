@@ -8,6 +8,7 @@ int nr_symtab_entry;
 
 void load_elf_tables(char *file) {
 	int ret;
+  printf("elf:%s",file);
 	//Assert(argc == 2, "run NEMU with format 'nemu [program]'");
 	exec_file =file;
 
