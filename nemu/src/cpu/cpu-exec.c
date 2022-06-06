@@ -80,7 +80,7 @@ int ftrace_imple(Decode *s){
     }
   }}
   for(int i=strindex_low;i<strindex_high;i++)
-  printf("call:%c",*(strtab+i));
+  printf("%c",*(strtab+i));
   return 1;
   
 }
