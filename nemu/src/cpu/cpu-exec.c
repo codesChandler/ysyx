@@ -106,7 +106,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   // extern void assert_fail_msg();
   // assert_fail_msg();
 #ifdef CONFIG_FTRACE
-  printf("Iam here");
+  printf("I am here\n");
   ftrace_imple(s);
 #endif
 }
