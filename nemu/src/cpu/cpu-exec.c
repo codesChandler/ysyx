@@ -66,6 +66,7 @@ int ftrace_imple(Decode *s){
     printf("I am not jal or jalr\n");
     return 0;
   }
+   printf("I am jal or jalr\n");
   uint32_t strindex_low=0;
   uint32_t strindex_high=0;
   for(int i=0;i<nr_symtab_entry;i++){
