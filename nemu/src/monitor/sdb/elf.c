@@ -32,7 +32,7 @@ void load_elf_tables(char *file) {
 			elf->e_ident[EI_OSABI] == ELFOSABI_LINUX); 	// UNIX - GNU
 	assert(elf->e_ident[EI_ABIVERSION] == 0);			// should be 0
 	assert(elf->e_type == ET_EXEC);						// executable file
-	assert(elf->e_machine == EM_386);					// Intel 80386 architecture
+	//assert(elf->e_machine == EM_386);					// Intel 80386 architecture
 	assert(elf->e_version == EV_CURRENT);				// current version
 
 
