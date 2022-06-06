@@ -63,23 +63,20 @@ void trace(char *buf,Decode *s){
 int ftrace_imple(Decode *s){
   uint32_t inst_f=s->isa.inst.val;
   if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
-    //printf("I am not jal or jalr\n");
     return 0;
   }
-   //printf("I am jal or jalr\n");
   uint32_t strindex_low=0;
   uint32_t strindex_high=0;
   for(int i=0;i<nr_symtab_entry;i++){
-     // printf("I am symtab-info:%d\n",symtab[i].st_info);
     if(symtab[i].st_info == 18){//STT_FUNC为2,不知道为啥不对
-      //printf("I am func\n");
       if(s->dnpc>=symtab[i].st_value && s->dnpc<=symtab[i].st_value+symtab[i].st_size)
-        {strindex_low=symtab[i].st_name;
-          //printf("low:%d high:%d",symtab[i].st_name,symtab[i+1].st_name);
+        {
+          strindex_low=symtab[i].st_name;
           strindex_high=symtab[i+1].st_name;
-            for(int i=strindex_low;i<strindex_high;i++)
+          printf("0x%lx",s->pc);
+          for(int i=strindex_low;i<strindex_high;i++)
             printf("%c",*(strtab+i));
-            printf("\n");
+          printf("\n");
     }
   }}
   return 1;
