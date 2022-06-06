@@ -79,7 +79,7 @@ int ftrace_imple(Decode *s){
             space_nr--;
             for(int i=0;i<space_nr;i++)
               printf(" ");
-          printf("ret [");
+          printf("ret  [");
           for(int i=strindex_low;i<strindex_high;i++)
             printf("%c",*(strtab+i));   
           printf("@0x%lx]\n",s->dnpc);}
