@@ -77,10 +77,12 @@ int ftrace_imple(Decode *s){
         {strindex_low=symtab[i].st_name;
           printf("low:%d high:%d",symtab[i].st_name,symtab[i+1].st_name);
           strindex_high=symtab[i+1].st_name;
+            for(int i=strindex_low;i<strindex_high;i++)
+            printf("%c",*(strtab+i));
     }
   }}
-  for(int i=strindex_low;i<strindex_high;i++)
-  printf("%c",*(strtab+i));
+  // for(int i=strindex_low;i<strindex_high;i++)
+  // printf("%c",*(strtab+i));
   return 1;
   
 }
