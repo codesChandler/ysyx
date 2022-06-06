@@ -24,6 +24,7 @@ static bool g_print_step = false;
 static int index_ibuf=0;//for iringbuf
 static char iringbuf[16][128];
 static int flag_cycle=0;
+int space_nr=1;
 
 void device_update();
 void wp_evl();
@@ -74,6 +75,9 @@ int ftrace_imple(Decode *s){
           strindex_low=symtab[i].st_name;
           strindex_high=symtab[i+1].st_name;
           printf("0x%lx",s->pc);
+          for(int i=0;i<space_nr;i++)
+            printf(" ");
+          space_nr++;
           for(int i=strindex_low;i<strindex_high;i++)
             printf("%c",*(strtab+i));
           printf("\n");
