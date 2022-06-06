@@ -2,6 +2,8 @@
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
+#include <macro.h>
+#include <ftrace.h>
 // #include "src/monitor/sdb/sdb.h"
 
 /* The assembly code of instructions executed is only output to the screen
@@ -11,7 +13,9 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-
+extern char *strtab;
+extern Elf64_Sym *symtab;
+extern int nr_symtab_entry;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
@@ -20,6 +24,7 @@ static bool g_print_step = false;
 static int index_ibuf=0;//for iringbuf
 static char iringbuf[16][128];
 static int flag_cycle=0;
+int space_nr=1;
 
 void device_update();
 void wp_evl();
@@ -51,9 +56,45 @@ void trace(char *buf,Decode *s){
   memset(p, ' ', space_len);
   p += space_len;
 
-  //void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-  //disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
-  //    MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
+     MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+}
+
+int ftrace_imple(Decode *s){
+  uint32_t inst_f=s->isa.inst.val;
+  if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
+    return 0;
+  }
+  uint32_t strindex_low=0;
+  uint32_t strindex_high=0;
+  for(int i=0;i<nr_symtab_entry;i++){
+    if(symtab[i].st_info == 18){//STT_FUNC为2,不知道为啥不对
+      if(s->dnpc>=symtab[i].st_value && s->dnpc<=symtab[i].st_value+symtab[i].st_size)
+        {
+          strindex_low=symtab[i].st_name;
+          strindex_high=symtab[i+1].st_name;
+          printf("0x%lx",s->pc);
+          if(inst_f==0x00008067){
+            space_nr--;
+            for(int i=0;i<space_nr;i++)
+              printf(" ");
+          printf("ret [");
+          for(int i=strindex_low;i<strindex_high;i++)
+            printf("%c",*(strtab+i));   
+          printf("0x%lx]\n",s->dnpc);}
+          else{
+          for(int i=0;i<space_nr;i++)
+              printf(" ");
+            space_nr++;
+          printf("call [");
+          for(int i=strindex_low;i<strindex_high;i++)
+            printf("%c",*(strtab+i));   
+          printf("0x%lx]\n",s->dnpc);}
+    }
+  }}
+  return 1;
+  
 }
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
@@ -81,6 +122,10 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
   // extern void assert_fail_msg();
   // assert_fail_msg();
+#ifdef CONFIG_FTRACE
+ // printf("I am here\n");
+  ftrace_imple(s);
+#endif
 }
 
 static void execute(uint64_t n) {

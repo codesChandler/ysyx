@@ -1,15 +1,14 @@
 #include "common.h"
-#include <stdlib.h>
-#include <elf.h>
+#include <ftrace.h>
 
 char *exec_file = NULL;
-
-static char *strtab = NULL;
-static Elf64_Sym *symtab = NULL;
-static int nr_symtab_entry;
+char *strtab=NULL;
+Elf64_Sym *symtab=NULL;
+int nr_symtab_entry;
 
 void load_elf_tables(char *file) {
 	int ret;
+  printf("elf:%s",file);
 	//Assert(argc == 2, "run NEMU with format 'nemu [program]'");
 	exec_file =file;
 
@@ -33,7 +32,7 @@ void load_elf_tables(char *file) {
 			elf->e_ident[EI_OSABI] == ELFOSABI_LINUX); 	// UNIX - GNU
 	assert(elf->e_ident[EI_ABIVERSION] == 0);			// should be 0
 	assert(elf->e_type == ET_EXEC);						// executable file
-	assert(elf->e_machine == EM_386);					// Intel 80386 architecture
+	//assert(elf->e_machine == EM_386);					// Intel 80386 architecture
 	assert(elf->e_version == EV_CURRENT);				// current version
 
 
