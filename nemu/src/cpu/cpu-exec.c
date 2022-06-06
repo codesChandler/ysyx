@@ -71,7 +71,7 @@ int ftrace_imple(Decode *s){
   uint32_t strindex_high=0;
   for(int i=0;i<nr_symtab_entry;i++){
       printf("I am symtab-info:%d\n",symtab[i].st_info);
-    if(symtab[i].st_info == STT_FUNC){
+    if(symtab[i].st_info == 18){
       printf("I am func\n");
       if(s->dnpc>=symtab[i].st_value && s->dnpc<=symtab[i].st_value+symtab[i].st_size)
         {strindex_low=symtab[i].st_name;
