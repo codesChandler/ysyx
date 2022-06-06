@@ -75,6 +75,15 @@ int ftrace_imple(Decode *s){
           strindex_low=symtab[i].st_name;
           strindex_high=symtab[i+1].st_name;
           printf("0x%lx",s->pc);
+          if(inst_f==0x00008067){
+            for(int i=0;i<space_nr;i++)
+              printf(" ");
+            space_nr--;
+          printf("ret [");
+          for(int i=strindex_low;i<strindex_high;i++)
+            printf("%c",*(strtab+i));   
+          printf("0x%lx]\n",s->dnpc);         
+          }
           for(int i=0;i<space_nr;i++)
             printf(" ");
           space_nr++;
