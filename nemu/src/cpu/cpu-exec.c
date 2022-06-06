@@ -73,6 +73,7 @@ int ftrace_imple(Decode *s){
     if(symtab[i].st_info == STT_FUNC){
       if(s->dnpc>=symtab[i].st_value && s->dnpc<=symtab[i].st_value+symtab[i].st_size)
         {strindex_low=symtab[i].st_name;
+          printf("low:%d high:%d",symtab[i].st_name,symtab[i+1].st_name);
           strindex_high=symtab[i+1].st_name;
     }
   }}
