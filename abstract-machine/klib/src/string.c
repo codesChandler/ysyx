@@ -25,7 +25,8 @@ char *strcpy(char *dst, const char *src)
   }
   *(dst + len) = '\0';
   return dst;
-  // panic("Not implemented");
+  assert(0);
+  panic("Not implemented");
 }
 
 char *strncpy(char *dst, const char *src, size_t n)
