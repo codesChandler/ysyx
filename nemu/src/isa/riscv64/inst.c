@@ -77,6 +77,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, if(src1<src2) R(dest) =1;else R(dest) =0);
   INSTPAT("??????? ????? ????? 000 ????? 00110 11", addiw  , I, R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));//printf("addiw src1:%d\n",(uint32_t)src1);printf("addiw src2:%d\n",(uint32_t)src2);printf("addiw src1+src2:%d\n",((uint32_t)src1 + (uint32_t)src2));printf("addiw src1+src2:%ld\n",(int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));R(dest) = (int64_t)(signed)((uint32_t)src1 + (uint32_t)src2));
   INSTPAT("010000? ????? ????? 101 ????? 00100 11", srai   , I, R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));//printf("src1:%ld srai\n",(src1));printf("src2:%ld srai\n",SEXTU(BITS(src2, 5, 0), 6));printf("src1:%d srai after shift\n",((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6));R(dest) =((signed) src1) >> SEXTU(BITS(src2, 5, 0), 6);printf("R(dest):%ld srai after shift\n",R(dest)););
+   INSTPAT("010000? ????? ????? 101 ????? 00100 11", sraiw   , I, R(dest) =(int64_t)((int32_t)src1) >> SEXTU(BITS(src2, 5, 0), 6));
   INSTPAT("000000? ????? ????? 001 ????? 00100 11", slli   , I, R(dest) =((uint64_t) src1) << SEXTU(BITS(src2, 5, 0), 6) ); 
   INSTPAT("000000? ????? ????? 101 ????? 00100 11", srli   , I, R(dest) =((uint64_t) src1) >> SEXTU(BITS(src2, 5, 0), 6) ); 
   INSTPAT("0000000 ????? ????? 101 ????? 00110 11", srliw   , I, R(dest) =(int64_t)(signed)(((uint32_t) src1) >> SEXTU(BITS(src2, 4, 0), 5)) ); 
