@@ -29,6 +29,7 @@ SRCS = difftest.cc
 
 $(BINARY): $(SPIKE) $(SRCS)
 	@echo $(BINARY)
+	@echo g++ -O2 -shared -fPIC $(INC_PATH) $(SRCS) $(INC_LIBS) -o $@
 	g++ -O2 -shared -fPIC $(INC_PATH) $(SRCS) $(INC_LIBS) -o $@
 
 clean:
