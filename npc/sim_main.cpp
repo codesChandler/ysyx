@@ -12,7 +12,7 @@
 #include <verilated.h>
 
 // Include model header, generated from Verilating "top.v"
-#include "Vtop.h"
+#include "Vysyx_22040632_top.h"
 int char2dec(char *hex)
 {
   int len;
@@ -33,7 +33,7 @@ int char2dec(char *hex)
 // Legacy function required only so linking works on Cygwin and MSVC++
 double sc_time_stamp() { return 0; }
 
-int pmen_read(int pc){
+int pmem_read(int pc){
   char * mem[1]={"001000000000_00000_000_10111_0010011","001000000000_00000_000_10111_0010011"};
 
   return char2dec(mem[(pc-2147483648)/4]);
@@ -75,7 +75,7 @@ int main(int argc, char** argv, char** env) {
     // Construct the Verilated model, from Vtop.h generated from Verilating "top.v".
     // Using unique_ptr is similar to "Vtop* top = new Vtop" then deleting at end.
     // "TOP" will be the hierarchical name of the module.
-    const std::unique_ptr<Vtop> top{new Vtop{contextp.get(), "TOP"}};
+    const std::unique_ptr<Vysyx_22040632_top> top{new Vysyx_22040632_top{contextp.get(), "TOP"}};
 
     // Set Vtop's input signals
     top->rst_n = !0;

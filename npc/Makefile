@@ -51,7 +51,7 @@ VERILATOR_FLAGS += --trace
 #VERILATOR_FLAGS += --gdbbt
 
 # Input files for Verilator
-VERILATOR_INPUT = -f input.vc ysyx_22040632_top.sv  sim_main.c
+VERILATOR_INPUT = -f input.vc ysyx_22040632_top.sv  sim_main.cpp
 #VERILATOR_SEARCHPATH=-I ../vsrc
 
 ######################################################################
@@ -72,18 +72,18 @@ run:
 # 2. Or, run the make rules Verilator does:
 #	$(MAKE) -j -C obj_dir -f Vtop.mk
 # 3. Or, call a submakefile where we can override the rules ourselves:
-	$(MAKE) -j -C obj_dir -f ../Makefile_obj
+	$(MAKE) -j -C obj_dir -f ../Makefile_obj 
 
 	@echo
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	obj_dir/Vtop +trace
+	obj_dir/Vtop +trace $(img)
 
 	@echo
 	@echo "-- COVERAGE ----------------"
 	@rm -rf logs/annotated
-	$(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
+#  $(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
 
 	@echo
 	@echo "-- DONE --------------------"

@@ -6,6 +6,7 @@ ARGS_DIFF = --diff=$(DIFF_REF_SO)
 
 ifndef CONFIG_DIFFTEST_REF_NEMU
 $(DIFF_REF_SO):
+	@echo $(MAKE) -s -C $(DIFF_REF_PATH) $(MKFLAGS)
 	$(MAKE) -s -C $(DIFF_REF_PATH) $(MKFLAGS)
 endif
 
