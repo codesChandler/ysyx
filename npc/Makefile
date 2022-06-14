@@ -78,7 +78,7 @@ run:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	obj_dir/Vtop +trace $(img)
+	obj_dir/Vysyx_22040632_top +trace $(img)
 
 	@echo
 	@echo "-- COVERAGE ----------------"

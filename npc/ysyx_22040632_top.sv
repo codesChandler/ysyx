@@ -12,8 +12,6 @@ logic [63:0] src1;
 logic [63:0] src2;
 logic [3:0] operation;
 
-
-
 ysyx_22040632_IFU ysyx_22040632_IFU_inst(
   .clk(clk),
   .rst_n(rst_n),

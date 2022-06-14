@@ -7,10 +7,10 @@
 
 #include "Vysyx_22040632_top___024root.h"
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root___initial__TOP__1(Vysyx_22040632_top___024root* vlSelf) {
+VL_ATTR_COLD void Vysyx_22040632_top___024root___initial__TOP__3(Vysyx_22040632_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___initial__TOP__1\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___initial__TOP__3\n"); );
     // Body
     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__pci = 0x80000000ULL;
 }
@@ -20,13 +20,13 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root___eval_initial(Vysyx_22040632_top
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___eval_initial\n"); );
     // Body
-    Vysyx_22040632_top___024root___initial__TOP__1(vlSelf);
-    vlSelf->__Vm_traceActivity[2U] = 1U;
-    vlSelf->__Vm_traceActivity[1U] = 1U;
-    vlSelf->__Vm_traceActivity[0U] = 1U;
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
     vlSelf->__Vclklast__TOP____VinpClk__TOP__ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n 
         = vlSelf->__VinpClk__TOP__ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n;
+    Vysyx_22040632_top___024root___initial__TOP__3(vlSelf);
+    vlSelf->__Vm_traceActivity[2U] = 1U;
+    vlSelf->__Vm_traceActivity[1U] = 1U;
+    vlSelf->__Vm_traceActivity[0U] = 1U;
 }
 
 VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__4(Vysyx_22040632_top___024root* vlSelf);

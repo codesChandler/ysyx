@@ -7,10 +7,10 @@
 
 #include "Vysyx_22040632_top___024root.h"
 
-VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__3(Vysyx_22040632_top___024root* vlSelf) {
+VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__2(Vysyx_22040632_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___sequent__TOP__3\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___sequent__TOP__2\n"); );
     // Init
     CData/*4:0*/ __Vdlyvdim0__ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr__v0;
     QData/*63:0*/ __Vdlyvval__ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr__v0;
@@ -53,9 +53,13 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__3(Vysyx_22040632
     __Vdlyvset__ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr__v0 = 0U;
     __Vdlyvset__ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr__v1 = 0U;
     __Vdlyvset__ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr__v33 = 0U;
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__pci 
-        = ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n)
-            ? (4ULL + vlSelf->pc) : 0x80000000ULL);
+    if (VL_UNLIKELY(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n)) {
+        vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__pci 
+            = (0x20ULL + vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__pci);
+        VL_WRITEF("I am change pc\n");
+    } else {
+        vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__pci = 0x80000000ULL;
+    }
     if (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n) {
         if (VL_UNLIKELY(((0U != (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__fun))
                           ? 0U : 1U))) {
@@ -300,7 +304,7 @@ void Vysyx_22040632_top___024root___eval(Vysyx_22040632_top___024root* vlSelf) {
     if ((((IData)(vlSelf->clk) & (~ (IData)(vlSelf->__Vclklast__TOP__clk))) 
          | ((~ (IData)(vlSelf->__VinpClk__TOP__ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n)) 
             & (IData)(vlSelf->__Vclklast__TOP____VinpClk__TOP__ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n)))) {
-        Vysyx_22040632_top___024root___sequent__TOP__3(vlSelf);
+        Vysyx_22040632_top___024root___sequent__TOP__2(vlSelf);
         vlSelf->__Vm_traceActivity[1U] = 1U;
     }
     Vysyx_22040632_top___024root___combo__TOP__5(vlSelf);

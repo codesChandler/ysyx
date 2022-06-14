@@ -7,12 +7,14 @@
 
 // For std::unique_ptr
 #include <memory>
+// #include <getopt_ext.h>
 
 // Include common routines
 #include <verilated.h>
 
 // Include model header, generated from Verilating "top.v"
 #include "Vysyx_22040632_top.h"
+#include "Vysyx_22040632_top__Dpi.h"
 int char2dec(char *hex)
 {
   int len;
@@ -24,19 +26,54 @@ int char2dec(char *hex)
   for (int i = 0, temp = 0; i < len; i++)
   {
     //temp0=*(hex + i) - 48;
-    temp =( *(hex + i) - 48)*((int)pow(10,(double)(len - i - 1)));
+    temp =( *(hex + i) - 48)*((int)pow(2,(double)(len - i - 1)));
     num = num + temp;
   }
 
   return num;
 }
 // Legacy function required only so linking works on Cygwin and MSVC++
-double sc_time_stamp() { return 0; }
+// double sc_time_stamp() { return 0; }
+// static int parse_args(int argc, char *argv[]) {
+//   const struct option table[] = {
+//     {"batch"    , no_argument      , NULL, 'b'},
+//     {"log"      , required_argument, NULL, 'l'},
+//     {"diff"     , required_argument, NULL, 'd'},
+//     {"port"     , required_argument, NULL, 'p'},
+//     {"help"     , no_argument      , NULL, 'h'},
+//     {"ftrace"   , required_argument, NULL, 'f'},
+//     {0          , 0                , NULL,  0 },
+//   };
+//   int o;
+//   while ( (o = getopt_long(argc, argv, "-bhl:d:p:f:", table, NULL)) != -1) {
+//     switch (o) {
+//       case 'b': sdb_set_batch_mode(); break;
+//       case 'p': sscanf(optarg, "%d", &difftest_port); break;
+//       case 'l': log_file = optarg; break;
+//       case 'd': diff_so_file = optarg; break;
+//       case 'f':printf("elf:%s\n",optarg); load_elf_tables(optarg);break;
+//       case 1: printf("img_o:%d\n",o);printf("0000000000img:%s\n",optarg); img_file = optarg; return 0;
+//       default:
+//         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
+//         printf("\t-b,--batch              run with batch mode\n");
+//         printf("\t-l,--log=FILE           output log to FILE\n");
+//         printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
+//         printf("\t-p,--port=PORT          run DiffTest with port PORT\n");
+//         printf("\n");
+//         exit(0);
+//     }
+//   }
+//   return 0;
+// }
 
 int pmem_read(int pc){
-  char * mem[1]={"001000000000_00000_000_10111_0010011","001000000000_00000_000_10111_0010011"};
-
-  return char2dec(mem[(pc-2147483648)/4]);
+  char *mem[3]={"00100000000000000000101110010011","00100000000000000 000101110010011","00000000000100000000000001110011"};
+ return char2dec(mem[(pc-0x80000000)/32]);
+}
+int break_flag=0;
+int eval_flag=0;
+void myexit(){
+  break_flag=1;
 }
 
 int main(int argc, char** argv, char** env) {
@@ -107,16 +144,26 @@ int main(int argc, char** argv, char** env) {
             if (contextp->time() > 1 && contextp->time() < 10) {
                 top->rst_n = !1;  // Assert reset
             } else {
-				top->rst_n = !0;  // Deassert reset
+                eval_flag=1;
+				        top->rst_n = !0;  // Deassert reset
             }
+
+           
             // Assign some other inputs
         }
-        top->inst = pmem_read(top->pc);
+        // printf("pc:%lx",top->pc);
+        
+        // top->inst=1;
         // Evaluate model
         // (If you have multiple models being simulated in the same
         // timestep then instead of eval(), call eval_step() on each, then
         // eval_end_step() on each. See the manual.)
+        if(eval_flag){
         top->eval();
+         top->inst = pmem_read(top->pc);}
+
+
+        if(break_flag==1) break;
 
     }
 
