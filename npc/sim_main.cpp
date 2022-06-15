@@ -12,35 +12,46 @@
 #include <verilated.h>
 
 // Include model header, generated from Verilating "top.v"
-#include "Vtop.h"
-int char2dec(char *hex)
-{
-  int len;
-  int num = 0;
-  //int temp0=0;
+#include "Vysyx_22040632_top.h"
+#include "Vysyx_22040632_top__Dpi.h"
+#include "memory.h"
+extern void init_monitor(int argc, char *argv[]);
+extern word_t paddr_read(paddr_t addr);
+// int char2dec(char *hex)
+// {
+//   int len;
+//   int num = 0;
+//   //int temp0=0;
 
-  len = strlen(hex);
+//   len = strlen(hex);
 
-  for (int i = 0, temp = 0; i < len; i++)
-  {
-    //temp0=*(hex + i) - 48;
-    temp =( *(hex + i) - 48)*((int)pow(10,(double)(len - i - 1)));
-    num = num + temp;
-  }
+//   for (int i = 0, temp = 0; i < len; i++)
+//   {
+//     //temp0=*(hex + i) - 48;
+//     temp =( *(hex + i) - 48)*((int)pow(2,(double)(len - i - 1)));
+//     num = num + temp;
+//   }
 
-  return num;
-}
+//   return num;
+// }
+
 // Legacy function required only so linking works on Cygwin and MSVC++
-double sc_time_stamp() { return 0; }
+// double sc_time_stamp() { return 0; }
 
-int pmen_read(int pc){
-  char * mem[1]={"001000000000_00000_000_10111_0010011","001000000000_00000_000_10111_0010011"};
 
-  return char2dec(mem[(pc-2147483648)/4]);
+// int pmem_read(int pc){
+//   char *mem[3]={"00100000000000000000101110010011","00100000000000000 000101110010011","00000000000100000000000001110011"};
+//  return char2dec(mem[(pc-0x80000000)/32]);
+// }
+int break_flag=0;
+int eval_flag=0;
+void myexit(){
+  break_flag=1;
 }
 
 int main(int argc, char** argv, char** env) {
     // This is a more complicated example, please also see the simpler examples/make_hello_c.
+    init_monitor(argc, argv);
 
     // Prevent unused variable warnings
     if (false && argc && argv && env) {}
@@ -75,7 +86,7 @@ int main(int argc, char** argv, char** env) {
     // Construct the Verilated model, from Vtop.h generated from Verilating "top.v".
     // Using unique_ptr is similar to "Vtop* top = new Vtop" then deleting at end.
     // "TOP" will be the hierarchical name of the module.
-    const std::unique_ptr<Vtop> top{new Vtop{contextp.get(), "TOP"}};
+    const std::unique_ptr<Vysyx_22040632_top> top{new Vysyx_22040632_top{contextp.get(), "TOP"}};
 
     // Set Vtop's input signals
     top->rst_n = !0;
@@ -107,16 +118,26 @@ int main(int argc, char** argv, char** env) {
             if (contextp->time() > 1 && contextp->time() < 10) {
                 top->rst_n = !1;  // Assert reset
             } else {
-				top->rst_n = !0;  // Deassert reset
+                eval_flag=1;
+				        top->rst_n = !0;  // Deassert reset
             }
+
+           
             // Assign some other inputs
         }
-        top->inst = pmem_read(top->pc);
+        // printf("pc:%lx",top->pc);
+        
+        // top->inst=1;
         // Evaluate model
         // (If you have multiple models being simulated in the same
         // timestep then instead of eval(), call eval_step() on each, then
         // eval_end_step() on each. See the manual.)
+        if(eval_flag){
         top->eval();
+        top->inst = paddr_read(top->pc);}
+
+
+        if(break_flag==1) break;
 
     }
 

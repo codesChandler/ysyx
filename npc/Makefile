@@ -51,8 +51,8 @@ VERILATOR_FLAGS += --trace
 #VERILATOR_FLAGS += --gdbbt
 
 # Input files for Verilator
-VERILATOR_INPUT = -f input.vc ysyx_22040632_top.sv  sim_main.c
-#VERILATOR_SEARCHPATH=-I ../vsrc
+VERILATOR_INPUT = -f input.vc ysyx_22040632_top.sv  *.cpp
+VERILATOR_SEARCHPATH=-I./hw -I./inlcude
 
 ######################################################################
 default: run
@@ -63,8 +63,9 @@ run:
 
 	@echo
 	@echo "-- VERILATE ----------------"
-#	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_SEARCHPATH) $(VERILATOR_INPUT)
-	$(VERILATOR) $(VERILATOR_FLAGS)  $(VERILATOR_INPUT)
+	@echo $(shell pwd)
+	@echo $(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_SEARCHPATH) $(VERILATOR_INPUT)
+	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_SEARCHPATH) $(VERILATOR_INPUT)
 	@echo
 	@echo "-- BUILD -------------------"
 # To compile, we can either
@@ -72,18 +73,18 @@ run:
 # 2. Or, run the make rules Verilator does:
 #	$(MAKE) -j -C obj_dir -f Vtop.mk
 # 3. Or, call a submakefile where we can override the rules ourselves:
-	$(MAKE) -j -C obj_dir -f ../Makefile_obj
+	$(MAKE) -j -C obj_dir -f ../Makefile_obj 
 
 	@echo
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	obj_dir/Vtop +trace
-
+	@echo obj_dir/Vysyx_22040632_top -b $(IMG) +trace
+	obj_dir/Vysyx_22040632_top -b $(IMG) +trace
 	@echo
 	@echo "-- COVERAGE ----------------"
 	@rm -rf logs/annotated
-	$(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
+#  $(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
 
 	@echo
 	@echo "-- DONE --------------------"
