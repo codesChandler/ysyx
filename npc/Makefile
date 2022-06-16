@@ -85,21 +85,41 @@
 # clean mostlyclean distclean maintainer-clean::
 # 	-rm -rf obj_dir logs *.log *.dmp *.vpd coverage.dat core
 objects = sim_main.o monitor.o paddr.o
+WORK_DIR  = $(shell pwd)
+BUILD_DIR = $(WORK_DIR)/build
 
-# VPATH = ./include
-vpath %.h ./include
-CFLAGS = -g -Wall
+INC_PATH = $(WORK_DIR)/include
+INCLUDES = $(addprefix -I, $(INC_PATH))
 
-run: edit
-	./edit -b $(IMG)
+DIRS-y = $(WORK_DIR)/srcs
+SRCS  = $(shell find $(DIRS-y) -name "*.c")
+OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
+
+CFLAGS = -g -Wall $(INCLUDES)
+LDFLAGS += 
+BINARY   = $(BUILD_DIR)/ysyx_22040632_top
+NEMU_EXEC := $(BINARY) -b $(IMG)
+
+run: $(NEMU_EXEC)
+	$(NEMU_EXEC)
 
 gdb:
 	gdb edit -b $(IMG)
 
-edit : $(objects)
-	cc  $(CFLAGS) -o edit $(objects)
 
-sim_main.o monitor.o paddr.o:memory.h
+# Compilation patterns
+$(BUILD_DIR)/%.o: %.c
+	@echo + CC $<
+	@mkdir -p $(dir $@)
+	@echo $(CFLAGS)
+	@$(CC) $(CFLAGS) -c -o $@ $<
+
+# sim_main.o monitor.o paddr.o:memory.h
+$(BINARY): $(OBJS) 
+	@echo + LD $@
+#	@echo $(LD) -o $@ $(OBJS) $(LDFLAGS) $(ARCHIVES) $(LIBS)
+	@$(LD) -o $@ $(OBJS) $(LDFLAGS) 
+
 
 .PHONY : clean
 
