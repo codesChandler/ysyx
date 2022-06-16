@@ -10,11 +10,12 @@
 
 // Include common routines
 #include <verilated.h>
+#include "memory.h"
 
 // Include model header, generated from Verilating "top.v"
 #include "Vysyx_22040632_top.h"
 #include "Vysyx_22040632_top__Dpi.h"
-#include "memory.h"
+
 extern void init_monitor(int argc, char *argv[]);
 extern word_t paddr_read(paddr_t addr);
 // int char2dec(char *hex)

@@ -1,10 +1,14 @@
 #include "memory.h"
-
+#include <stdint.h>
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
 uint8_t *guest_to_host(paddr_t paddr)
 {
   return pmem + paddr - CONFIG_MBASE;
+}
+
+static inline word_t host_read(void *addr) {
+    return *(uint32_t *) addr;
 }
 
 static word_t pmem_read(paddr_t addr)
@@ -13,9 +17,7 @@ static word_t pmem_read(paddr_t addr)
   return ret;
 }
 
-static inline word_t host_read(void *addr) {
-    return *(uint32_t *) addr;
-}
+
 
 word_t paddr_read(paddr_t addr)
 { word_t data=0;

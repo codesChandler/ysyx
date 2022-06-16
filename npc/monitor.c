@@ -1,9 +1,18 @@
 #include <stdio.h>
 #include <getopt.h>
 #include "memory.h"
+#include <stdint.h>
+
+extern uint8_t *guest_to_host(paddr_t paddr);
 static char *img_file = NULL;
 static long load_img() {
-
+  if(img_file == NULL){
+    printf("no input\n");
+    return 0;
+  }
+  else{
+    printf("img:%s\n",img_file);
+  }
   FILE *fp = fopen(img_file, "rb");
   // Assert(fp, "Can not open '%s'", img_file);
 
@@ -22,7 +31,7 @@ static long load_img() {
 
 static int parse_args(int argc, char *argv[]) {
   const struct option table[] = {
-    {"binary"    , no_argument      , NULL, 'b'},
+    {"binary"    , required_argument      , NULL, 'b'},
     // {"log"      , required_argument, NULL, 'l'},
     // {"diff"     , required_argument, NULL, 'd'},
     // {"port"     , required_argument, NULL, 'p'},
@@ -30,10 +39,11 @@ static int parse_args(int argc, char *argv[]) {
     // {"ftrace"   , required_argument, NULL, 'f'},
     {0          , 0                , NULL,  0 },
   };
+
   int o;
-  while ( (o = getopt_long(argc, argv, "-b:hl:d:p:f:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "b:hl:d:p:f:", table, NULL)) != -1) {
     switch (o) {
-      case 'b': printf("0000000000img:%s\n",optarg); break;
+      case 'b': img_file=optarg; break;
       // case 'p': sscanf(optarg, "%d", &difftest_port); break;
       // case 'l': log_file = optarg; break;
       // case 'd': diff_so_file = optarg; break;
