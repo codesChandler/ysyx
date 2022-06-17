@@ -43,7 +43,7 @@ static int parse_args(int argc, char *argv[]) {
   int o;
   while ( (o = getopt_long(argc, argv, "b:hl:d:p:f:", table, NULL)) != -1) {
     switch (o) {
-      case 'b': img_file=optarg; break;
+      case 'b': img_file=optarg; printf("img_o:%s\n",optarg);break;
       // case 'p': sscanf(optarg, "%d", &difftest_port); break;
       // case 'l': log_file = optarg; break;
       // case 'd': diff_so_file = optarg; break;

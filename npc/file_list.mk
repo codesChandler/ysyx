@@ -1,1 +1,0 @@
-DIRS-y = srcs

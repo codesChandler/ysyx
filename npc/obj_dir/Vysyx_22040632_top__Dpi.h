@@ -16,8 +16,8 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at hw/ysyx_22040632_IDU.sv:1:30
-    extern void myexit();
+    // DPI import at /home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_IDU.sv:1:30
+    extern void npcexit(int pc, int code);
 
 #ifdef __cplusplus
 }

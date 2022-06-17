@@ -62,7 +62,7 @@ static void _eval_initial_loop(Vysyx_22040632_top__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = Vysyx_22040632_top___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("hw/ysyx_22040632_top.sv", 2, "",
+            VL_FATAL_MT("/home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_top.sv", 2, "",
                 "Verilated model didn't DC converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
@@ -93,7 +93,7 @@ void Vysyx_22040632_top::eval_step() {
             Verilated::debug(1);
             __Vchange = Vysyx_22040632_top___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("hw/ysyx_22040632_top.sv", 2, "",
+            VL_FATAL_MT("/home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_top.sv", 2, "",
                 "Verilated model didn't converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {

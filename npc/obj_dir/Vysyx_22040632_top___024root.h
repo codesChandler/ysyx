@@ -19,8 +19,11 @@ VL_MODULE(Vysyx_22040632_top___024root) {
     VL_IN8(clk,0,0);
     CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n;
     VL_IN8(rst_n,0,0);
+    CData/*0:0*/ ysyx_22040632_top__DOT__pcchg;
     CData/*3:0*/ ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__fun;
     CData/*3:0*/ ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__type_t;
+    CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_EXU_inst__DOT__rrst_n;
+    CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_EXU_inst__DOT__gprchg;
     CData/*0:0*/ __VinpClk__TOP__ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP____VinpClk__TOP__ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__rrst_n;
@@ -32,7 +35,8 @@ VL_MODULE(Vysyx_22040632_top___024root) {
     QData/*63:0*/ ysyx_22040632_top__DOT__src1;
     QData/*63:0*/ ysyx_22040632_top__DOT__src2;
     QData/*63:0*/ ysyx_22040632_top__DOT__ysyx_22040632_IFU_inst__DOT__pci;
-    QData/*63:0*/ ysyx_22040632_top__DOT__ysyx_22040632_EXU_inst__DOT__data_op;
+    QData/*63:0*/ ysyx_22040632_top__DOT__ysyx_22040632_EXU_inst__DOT__src1_op;
+    QData/*63:0*/ ysyx_22040632_top__DOT__ysyx_22040632_EXU_inst__DOT__src2_op;
     VlUnpacked<QData/*63:0*/, 32> ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr;
     VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
 
