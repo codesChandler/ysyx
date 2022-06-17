@@ -44,7 +44,7 @@ int main(int argc, char** argv, char** env) {
 
     const std::unique_ptr<Vysyx_22040632_top> top{new Vysyx_22040632_top{contextp.get(), "TOP"}};
 
-    top->rst_n = !0;
+    top->rst_n = 1;
     top->clk = 0;
 
     while (!contextp->gotFinish()) {
@@ -54,19 +54,19 @@ int main(int argc, char** argv, char** env) {
 
 
         if (!top->clk) {
-            if (contextp->time() > 1 && contextp->time() < 10) {
-                top->rst_n = !1;  // Assert reset
+            if (contextp->time() > 4 && contextp->time() < 10) {
+                top->rst_n = 0;  // Assert reset
+
             } else {
                 eval_flag=1;
-				        top->rst_n = !0;  // Deassert reset
+				        top->rst_n = 1;  // Deassert reset
             }
 
            
             // Assign some other inputs
         }
-
-        if(eval_flag){
         top->eval();
+        if(eval_flag){
         top->inst = paddr_read(top->pc);}
 
 

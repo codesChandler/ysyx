@@ -49,9 +49,13 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__6(Vysyx_22040632_t
         VL_WRITEF("instruction:%b not implemented\n",
                   32,vlSelf->inst);
     }
-    if ((0U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__type_t))) {
+    if (VL_UNLIKELY((0U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__type_t)))) {
         vlSelf->ysyx_22040632_top__DOT__src1 = vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__gpr
             [(0x1fU & (vlSelf->inst >> 0xfU))];
+        VL_WRITEF("rd:%2#,src1:%20#\n\n",5,(0x1fU & 
+                                            (vlSelf->inst 
+                                             >> 0xfU)),
+                  64,vlSelf->ysyx_22040632_top__DOT__src1);
         vlSelf->ysyx_22040632_top__DOT__src2 = (((- (QData)((IData)(
                                                                     (vlSelf->inst 
                                                                      >> 0x1fU)))) 
@@ -59,6 +63,7 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__6(Vysyx_22040632_t
                                                 | (QData)((IData)(
                                                                   (vlSelf->inst 
                                                                    >> 0x14U))));
+        VL_WRITEF("src2:%20#\n\n",64,vlSelf->ysyx_22040632_top__DOT__src2);
     } else if ((1U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_inst__DOT__type_t))) {
         vlSelf->ysyx_22040632_top__DOT__src1 = (((QData)((IData)(
                                                                  (- (IData)(
