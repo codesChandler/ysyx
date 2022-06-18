@@ -18,7 +18,7 @@ static void welcome() {
         "to record the trace. This may lead to a large log file. "
         "If it is not necessary, you can disable it in menuconfig"));
   Log("Build time: %s, %s", __TIME__, __DATE__);
-  printf("Welcome to %s-NEMU!\n", ASNI_FMT(str(riscv64), ASNI_FG_YELLOW ASNI_BG_RED));
+  printf("Welcome to %s-npc!\n", ASNI_FMT(str(riscv64), ASNI_FG_YELLOW ASNI_BG_RED));
   printf("For help, type \"help\"\n");
   //Log("Exercise: Please remove me in the source code and compile NEMU again.");
 }
@@ -96,13 +96,13 @@ void inti_vei(int argc, char *argv[]){
     main_time++;
     top->clk = !top->clk;
     if (!top->clk) 
-      if (main_time > 1 && main_time < 10) {
+      {if (main_time > 1 && main_time < 8) 
                 top->rst_n = 0;  // Assert rese
-      }
+      else top->rst_n = 1;}
+      
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
     }
-    top->rst_n = 1;
 }
 
 void init_monitor(int argc, char *argv[]){
