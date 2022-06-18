@@ -1,10 +1,11 @@
-#include <cpu.h>
+#include "cpu.h"
 #include "common.h"
 #include "time.h"
 #include "debug.h"
 
 int break_flag=0;
 extern word_t paddr_read(paddr_t addr);
+extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 extern uint64_t get_time();
 extern vluint64_t main_time;           // 仿真时间戳
 static uint64_t g_timer = 0; // unit: us
@@ -37,11 +38,20 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   memset(p, ' ', space_len);
   p += space_len;
 
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  
   disassemble(p, buf + sizeof(buf) - p,
      pc, (uint8_t *)&inst, ilen);
 }
 
+static void trace_and_difftest(char *logbuf,Decode *_this, vaddr_t dnpc) {
+#ifdef CONFIG_ITRACE_COND
+  if (ITRACE_COND) { log_write("%s\n", logbuf); }
+#endif
+  if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(logbuf)); }
+  // IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+  // IFDEF(CONFIG_WATCHPOINT, wp_evl());
+
+}
 
 static void exec_once() {
   for(int i=0;i<2;i++){
@@ -72,8 +82,7 @@ static void execute(uint64_t n) {
   for (;n > 0; n --) {
     exec_once();
     g_nr_guest_inst ++;
-    // g_nr_guest_inst ++;
-    // trace_and_difftest(&s, cpu.pc);
+    trace_and_difftest(&s, cpu.pc);
     if (break_flag==1) {
       top->final();
       tfp->close();
