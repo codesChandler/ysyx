@@ -1,87 +1,38 @@
-// For std::unique_ptr
-#include <memory>
 
-// Include common routines
-#include <verilated.h>
 #include "memory.h"
 #include "debug.h"
-
-// Include model header, generated from Verilating "top.v"
-#include "Vysyx_22040632_top.h"
-#include "Vysyx_22040632_top__Dpi.h"
+#include "vrltr.h"
 
 
 extern void init_monitor(int argc, char *argv[]);
-extern word_t paddr_read(paddr_t addr);
+extern void engine_start();
 
-int break_flag=0;
-int eval_flag=0;
-void npcexit(int pc,int code){
-    Log("npc: %s at pc = " FMT_WORD,
-           (code == 0 ? ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN) :
-            ASNI_FMT("HIT BAD TRAP", ASNI_FG_RED)),
-          pc);
-  break_flag=1;
-}
+
+
 
 int main(int argc, char** argv, char** env) {
-
     init_monitor(argc, argv);
-
-    if (false && argc && argv && env) {}
-
-    Verilated::mkdir("logs");
-
-    const std::unique_ptr<VerilatedContext> contextp{new VerilatedContext};
-
-    contextp->debug(0);
-
-    contextp->randReset(2);
-
-    contextp->traceEverOn(true);
-
-    contextp->commandArgs(argc, argv);
-
-    const std::unique_ptr<Vysyx_22040632_top> top{new Vysyx_22040632_top{contextp.get(), "TOP"}};
-
-    top->rst_n = 1;
-    top->clk = 0;
-
-    while (!contextp->gotFinish()) {
-
-        contextp->timeInc(1);  // 1 timeprecision period 
-        top->clk = !top->clk;
+    engine_start();
 
 
-        if (!top->clk) {
-            if (contextp->time() > 4 && contextp->time() < 10) {
-                top->rst_n = 0;  // Assert reset
+    // while ( main_time>=10) {
+    //     main_time++;
+    //     top->clk = !top->clk;
 
-            } else {
-                eval_flag=1;
-				        top->rst_n = 1;  // Deassert reset
-            }
-
-           
-            // Assign some other inputs
-        }
-        top->eval();
-        if(eval_flag){
-        top->inst = paddr_read(top->pc);}
+    //     top->inst = paddr_read(top->pc);
+    //     top->eval();
+    //     tfp->dump(main_time);   // 波形文件写入步进
 
 
-        if(break_flag==1) break;
+    //     if(break_flag==1) break;
 
-    }
+    // }
 
-    top->final();
-
-    // Coverage analysis (calling write only after the test is known to pass)
-#if VM_COVERAGE
-    Verilated::mkdir("logs");
-    contextp->coveragep()->write("logs/coverage.dat");
-#endif
-
+    // top->final();
+    // tfp->close();
+    // delete top;
+    // delete tfp;
+    exit(0);
     return 0;
 }
 

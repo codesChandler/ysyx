@@ -29,44 +29,42 @@ VERILATOR_FLAGS += -cc --exe
 VERILATOR_FLAGS += -Os -x-assign 0
 VERILATOR_FLAGS += --trace
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
+ifeq ($(MAKECMDGOALS),gdb)
+  VERILATOR_FLAGS += --gdb
+endif
 CXXFLAGS += $(INCLUDES)
-export CXXFLAGS
-######################################################################
+LIBS += -lreadline
+export CXXFLAGS LIBS
+
+BINARY = obj_dir/Vysyx_22040632_top
+
 default: run
 
-run:
-	@echo
-	@echo "-- VERILATE ----------------"
-	@echo $(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
+run:$(BINARY)
+	$(BINARY) -b $(IMG)
+	@rm -rf logs/annotated
+	make clean
+
+
+# Other targets
+gdb: $(BINARY)
+	gdb $(BINARY) -b $(IMG)
+
+wave:
+	gtkwave Vysyx_22040632_top.vcd
+
+$(BINARY):
+	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+	@echo + VERILATE
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
-
-	@echo
-	@echo "-- BUILD -------------------"
+	@echo + BUILD
 	$(MAKE) -j -C obj_dir -f ../Makefile_obj
-
-	@echo
-	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	obj_dir/Vysyx_22040632_top -b $(IMG) +trace
-
-	@echo
-	@echo "-- COVERAGE ----------------"
-	@rm -rf logs/annotated
-# $(VERILATOR_COVERAGE) --annotate logs/annotated logs/coverage.dat
-
-	@echo
-	@echo "-- DONE --------------------"
-	@echo "To see waveforms, open vlt_dump.vcd in a waveform viewer"
-	@echo
-
-
-######################################################################
-# Other targets
 
 show-config:
 	$(VERILATOR) -V
 
 maintainer-copy::
 clean mostlyclean distclean maintainer-clean::
-	-rm -rf obj_dir logs *.log *.dmp *.vpd coverage.dat core
+	-rm -rf obj_dir build logs *.log *.dmp *.vpd coverage.dat core
