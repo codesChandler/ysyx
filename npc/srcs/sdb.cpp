@@ -9,6 +9,7 @@
 
 static int is_batch_mode = false;
 extern void cpu_exec(uint64_t n);
+extern void isa_reg_display();
 // word_t expr(char *e, bool *success);
 // void init_regex();
 // void init_wp_pool();
@@ -100,7 +101,7 @@ static int cmd_info(char *args)
 {
   // // printf("%s\n",args);
   // if (strcmp(args, "r") == 0)
-  //   isa_reg_display();
+    isa_reg_display();
   // else if(strcmp(args, "w") == 0)
   //   wt_info();
   return 0;

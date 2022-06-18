@@ -1,18 +1,48 @@
-#include <cpu.h>
+#include "cpu.h"
+#include "common.h"
 #include "time.h"
 #include "debug.h"
 
 int break_flag=0;
 extern word_t paddr_read(paddr_t addr);
+extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 extern uint64_t get_time();
 extern vluint64_t main_time;           // 仿真时间戳
 static uint64_t g_timer = 0; // unit: us
 uint64_t g_nr_guest_inst = 0;
 static int code_t;
+char logbuf[128];
 void npcexit(int pc,int code){
   break_flag=1;
   code_t=code;
 }
+
+void trace(char *buf,uint32_t instr,uint64_t pc){
+  char *p = buf;
+  #pragma GCC diagnostic push//避免报错
+  #pragma GCC diagnostic ignored "-Wformat-truncation"
+  p += snprintf(p, sizeof(buf), FMT_WORD ":", pc);
+  assert(strlen(p) <= sizeof(buf));
+  #pragma GCC diagnostic pop
+  // printf("before itrace:%lx\n",s->pc);
+  int ilen = 4;
+  int i;
+  uint8_t *inst = (uint8_t *)&instr;
+  for (i = 0; i < ilen; i ++) {
+    p += snprintf(p, 4, " %02x", inst[i]);
+  }
+  int ilen_max = 4;
+  int space_len = ilen_max - ilen;
+  if (space_len < 0) space_len = 0;
+  space_len = space_len * 3 + 1;
+  memset(p, ' ', space_len);
+  p += space_len;
+
+  
+  disassemble(p, buf + sizeof(buf) - p,
+     pc, (uint8_t *)&inst, ilen);
+}
+
 
 static void exec_once() {
   for(int i=0;i<2;i++){
@@ -26,7 +56,7 @@ static void exec_once() {
   }
   
 #ifdef CONFIG_ITRACE
-  trace(s->logbuf,s);
+  trace(logbuf,top->inst,top->pc);
 #endif
 #ifdef CONFIG_IRINGBUF
   trace(iringbuf[index_ibuf],s);

@@ -2,6 +2,9 @@ ifneq ($(words $(CURDIR)),1)
  $(error Unsupported: GNU Make cannot build in directories containing spaces, build elsewhere: '$(CURDIR)')
 endif
 
+FILELIST_MK = $(shell find ./srcs -name "filelist.mk")
+include $(FILELIST_MK)
+
 ifeq ($(VERILATOR_ROOT),)
 VERILATOR = verilator
 VERILATOR_COVERAGE = verilator_coverage
@@ -22,8 +25,9 @@ DIRS-y = $(WORK_DIR)/srcs
 SIM_PATH = $(addprefix -I, $(DIRS-y))
 SRCS  = $(shell find $(DIRS-y) -name "*.c")
 CPP-SRCS= $(shell find $(DIRS-y) -name "*.cpp")
+CC-SRCS= $(shell find $(DIRS-y) -name "*.cc")
 SV-SRCS  = $(shell find $(WORK_DIR)/hw -name "*top.sv")
-VERILATOR_INPUT = $(SV-SRCS) $(SRCS) $(CPP-SRCS)
+VERILATOR_INPUT = $(SV-SRCS) $(SRCS) $(CPP-SRCS) $(CC-SRCS)  
 
 VERILATOR_FLAGS += -cc --exe
 VERILATOR_FLAGS += -Os -x-assign 0
@@ -55,9 +59,9 @@ wave:
 
 $(BINARY):
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo + VERILATE
+	@echo + VERILATE -> $(VERILATOR_INPUT)
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
-	@echo + BUILD
+	@echo + BUILD -> $(VERILATOR_INPUT)
 	$(MAKE) -j -C obj_dir -f ../Makefile_obj
 	@rm -rf logs
 	@mkdir -p logs
