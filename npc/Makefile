@@ -59,9 +59,9 @@ wave:
 
 $(BINARY):
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo + VERILATE -> $(VERILATOR_INPUT)
+	@echo + VERILATE "->" $(BINARY)
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
-	@echo + BUILD -> $(VERILATOR_INPUT)
+	@echo + BUILD "->" $(BINARY)
 	$(MAKE) -j -C obj_dir -f ../Makefile_obj
 	@rm -rf logs
 	@mkdir -p logs

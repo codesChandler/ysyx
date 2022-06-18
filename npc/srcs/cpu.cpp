@@ -2,6 +2,9 @@
 #include "common.h"
 #include "time.h"
 #include "debug.h"
+#include "autoconfig.h"
+#define MAX_INST_TO_PRINT 10
+
 
 int break_flag=0;
 extern word_t paddr_read(paddr_t addr);
@@ -10,8 +13,10 @@ extern uint64_t get_time();
 extern vluint64_t main_time;           // 仿真时间戳
 static uint64_t g_timer = 0; // unit: us
 uint64_t g_nr_guest_inst = 0;
+static bool g_print_step = false;
 static int code_t;
 char logbuf[128];
+
 void npcexit(int pc,int code){
   break_flag=1;
   code_t=code;
@@ -39,10 +44,19 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   p += space_len;
 
   
-  disassemble(p, buf + sizeof(buf) - p,
-     pc, (uint8_t *)&inst, ilen);
+  // disassemble(p, buf + sizeof(buf) - p,
+  //    pc, (uint8_t *)&inst, ilen);
 }
 
+static void trace_and_difftest(char *logbuf) {
+#ifdef CONFIG_ITRACE_COND
+  // if (ITRACE_COND) { log_write("%s\n", logbuf); }
+#endif
+  if (g_print_step) { printf("here\n");IFDEF(CONFIG_ITRACE, puts(logbuf)); }
+  // IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+  // IFDEF(CONFIG_WATCHPOINT, wp_evl());
+
+}
 
 static void exec_once() {
   for(int i=0;i<2;i++){
@@ -72,9 +86,9 @@ static void exec_once() {
 static void execute(uint64_t n) {
   for (;n > 0; n --) {
     exec_once();
+    // printf("here");
     g_nr_guest_inst ++;
-    // g_nr_guest_inst ++;
-    // trace_and_difftest(&s, cpu.pc);
+    trace_and_difftest(logbuf);
     if (break_flag==1) {
       top->final();
       tfp->close();
@@ -95,7 +109,7 @@ static void statistic() {
 }
 
 void cpu_exec(uint64_t n) {
-  // g_print_step = (n < MAX_INST_TO_PRINT);
+  g_print_step = (n < MAX_INST_TO_PRINT);
   if (break_flag==1) {
           printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
       return;
