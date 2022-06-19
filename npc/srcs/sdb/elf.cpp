@@ -8,19 +8,19 @@ int nr_symtab_entry;
 
 void load_elf_tables(char *file) {
 	int ret;
-  printf("elf:%s",file);
+  printf("elf:%s\n",file);
 	//Assert(argc == 2, "run NEMU with format 'nemu [program]'");
 	exec_file =file;
 
 	FILE *fp = fopen(exec_file, "rb");
-	Assert(fp, "Can not open '%s'", exec_file);
+	// Assert(fp, "Can not open '%s'", exec_file);
 
 	uint8_t buf[sizeof(Elf64_Ehdr)];
 	ret = fread(buf, sizeof(Elf64_Ehdr), 1, fp);
 	assert(ret == 1);
 
 	/* The first several bytes contain the ELF header. */
-	Elf64_Ehdr *elf = (void *)buf;
+	Elf64_Ehdr *elf = (	Elf64_Ehdr *)(void *)buf;
 	char magic[] = {ELFMAG0, ELFMAG1, ELFMAG2, ELFMAG3};
 
 	/* Check ELF header */
@@ -40,13 +40,13 @@ void load_elf_tables(char *file) {
 
 	/* Load section header table */
 	uint32_t sh_size = elf->e_shentsize * elf->e_shnum;//e_shnum保存的是section header table的entry数量；e_shentsize保存的是section's header的大小
-	Elf64_Shdr *sh = malloc(sh_size);
+	Elf64_Shdr *sh =(	Elf64_Shdr *) malloc(sh_size);
 	fseek(fp, elf->e_shoff, SEEK_SET);//e_shoff保存的是节头表以bytes为单位的偏移量
 	ret = fread(sh, sh_size, 1, fp);//sh保存的是节头表
 	assert(ret == 1);
 
 	/* Load section header string table */
-	char *shstrtab = malloc(sh[elf->e_shstrndx].sh_size);//e_shstrndx保存与section name string table相关联的节头表的索引号；shsize为节的大小
+	char *shstrtab =(	char *) malloc(sh[elf->e_shstrndx].sh_size);//e_shstrndx保存与section name string table相关联的节头表的索引号；shsize为节的大小
 	fseek(fp, sh[elf->e_shstrndx].sh_offset, SEEK_SET);
 	ret = fread(shstrtab, sh[elf->e_shstrndx].sh_size, 1, fp);
 	assert(ret == 1);
@@ -56,7 +56,7 @@ void load_elf_tables(char *file) {
 		if(sh[i].sh_type == SHT_SYMTAB && 
 				strcmp(shstrtab + sh[i].sh_name, ".symtab") == 0) {
 			/* Load symbol table from exec_file */
-			symtab = malloc(sh[i].sh_size);
+			symtab =(Elf64_Sym *) malloc(sh[i].sh_size);
 			fseek(fp, sh[i].sh_offset, SEEK_SET);
 			ret = fread(symtab, sh[i].sh_size, 1, fp);//symtab即为符号表
 			assert(ret == 1);
@@ -65,7 +65,7 @@ void load_elf_tables(char *file) {
 		else if(sh[i].sh_type == SHT_STRTAB && 
 				strcmp(shstrtab + sh[i].sh_name, ".strtab") == 0) {
 			/* Load string table from exec_file */
-			strtab = malloc(sh[i].sh_size);
+			strtab =(char *) malloc(sh[i].sh_size);
 			fseek(fp, sh[i].sh_offset, SEEK_SET);
 			ret = fread(strtab, sh[i].sh_size, 1, fp);//strstb即为字符串表
 			assert(ret == 1);

@@ -13,7 +13,7 @@ void load_elf_tables(char *file) {
 	exec_file =file;
 
 	FILE *fp = fopen(exec_file, "rb");
-	Assert(fp, "Can not open '%s'", exec_file);
+	// Assert(fp, "Can not open '%s'", exec_file);
 
 	uint8_t buf[sizeof(Elf64_Ehdr)];
 	ret = fread(buf, sizeof(Elf64_Ehdr), 1, fp);

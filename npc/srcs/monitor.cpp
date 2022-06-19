@@ -9,6 +9,7 @@
 
 extern uint8_t *guest_to_host(paddr_t paddr);
 extern "C" void init_disasm(const char *triple);
+extern void load_elf_tables(char *file);
 static char *img_file = NULL;
 Vysyx_22040632_top* top;                  // 顶层dut对象指针
 VerilatedVcdC* tfp;             // 波形生成对象指针
@@ -67,7 +68,7 @@ static int parse_args(int argc, char *argv[]) {
       // case 'p': sscanf(optarg, "%d", &difftest_port); break;
       // case 'l': log_file = optarg; break;
       // case 'd': diff_so_file = optarg; break;
-      // case 'f':printf("elf:%s\n",optarg); load_elf_tables(optarg);break;
+      case 'f': load_elf_tables(optarg);break;
       case 1: return 0; //img_file = optarg; 
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);

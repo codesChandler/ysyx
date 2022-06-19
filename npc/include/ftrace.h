@@ -2,6 +2,7 @@
 #define __FTRACE_H__
 #include <elf.h>
 #include <stdlib.h>
+#include <common.h>
 
 
 #endif
