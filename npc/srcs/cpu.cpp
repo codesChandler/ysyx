@@ -26,13 +26,13 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   char *p = buf;
   #pragma GCC diagnostic push//避免报错
   #pragma GCC diagnostic ignored "-Wformat-truncation"
-  p += snprintf(p, sizeof(buf), FMT_WORD ":", pc);
-  assert(strlen(p) <= sizeof(buf));
+  p+= snprintf(p, sizeof(logbuf), FMT_WORD ":", pc);
   #pragma GCC diagnostic pop
-  // printf("before itrace:%lx\n",s->pc);
   int ilen = 4;
   int i;
-  uint8_t *inst = (uint8_t *)&instr;
+  struct {union {uint32_t val;} inst;} s;
+  s.inst.val=instr;
+  uint8_t *inst = (uint8_t *)&s.inst.val;
   for (i = 0; i < ilen; i ++) {
     p += snprintf(p, 4, " %02x", inst[i]);
   }
@@ -42,10 +42,7 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
-
-  
-  // disassemble(p, buf + sizeof(buf) - p,
-  //    pc, (uint8_t *)&inst, ilen);
+  disassemble(p, buf + sizeof(logbuf) - p,pc, (uint8_t *)&s.inst.val, ilen);
 }
 
 static void trace_and_difftest(char *logbuf) {
@@ -70,6 +67,8 @@ static void exec_once() {
   }
   
 #ifdef CONFIG_ITRACE
+  // printf("bufsize:%ld\n",sizeof(logbuf));
+  
   trace(logbuf,top->inst,top->pc);
 #endif
 #ifdef CONFIG_IRINGBUF

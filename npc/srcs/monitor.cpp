@@ -5,8 +5,10 @@
 #include <debug.h>
 #include "vrltr.h"
 #include "macro.h"
+#include "autoconfig.h"
 
 extern uint8_t *guest_to_host(paddr_t paddr);
+extern "C" void init_disasm(const char *triple);
 static char *img_file = NULL;
 Vysyx_22040632_top* top;                  // 顶层dut对象指针
 VerilatedVcdC* tfp;             // 波形生成对象指针
@@ -109,5 +111,11 @@ void init_monitor(int argc, char *argv[]){
     parse_args(argc,argv);
     load_img();
     inti_vei(argc,argv);
+    IFDEF(CONFIG_ITRACE, init_disasm(
+    MUXDEF(CONFIG_ISA_x86,     "i686",
+    MUXDEF(CONFIG_ISA_mips32,  "mipsel",
+    MUXDEF(CONFIG_ISA_riscv32, "riscv32",
+    MUXDEF(1, "riscv64", "bad")))) "-pc-linux-gnu"
+  ));
     welcome();
 }
