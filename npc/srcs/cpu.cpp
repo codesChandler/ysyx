@@ -47,7 +47,7 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   // disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
     //  MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
   // (char *str, int size, uint64_t pc, uint8_t *code, int nbyte)
-  // disassemble(p, buf + sizeof(logbuf) - p,pc, (uint8_t *)&s.inst.val, ilen);
+  disassemble(p, buf + sizeof(logbuf) - p,pc, (uint8_t *)&s.inst.val, ilen);
 }
 
 static void trace_and_difftest(char *logbuf) {
