@@ -5,6 +5,7 @@
 #include <debug.h>
 #include "vrltr.h"
 #include "macro.h"
+#include "autoconfig.h"
 
 extern uint8_t *guest_to_host(paddr_t paddr);
 static char *img_file = NULL;

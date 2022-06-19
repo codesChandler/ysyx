@@ -2,6 +2,9 @@
 #include "common.h"
 #include "time.h"
 #include "debug.h"
+#include "autoconfig.h"
+#define MAX_INST_TO_PRINT 10
+
 
 int break_flag=0;
 extern word_t paddr_read(paddr_t addr);
@@ -10,8 +13,10 @@ extern uint64_t get_time();
 extern vluint64_t main_time;           // 仿真时间戳
 static uint64_t g_timer = 0; // unit: us
 uint64_t g_nr_guest_inst = 0;
+static bool g_print_step = false;
 static int code_t;
 char logbuf[128];
+
 void npcexit(int pc,int code){
   break_flag=1;
   code_t=code;
@@ -21,13 +26,15 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   char *p = buf;
   #pragma GCC diagnostic push//避免报错
   #pragma GCC diagnostic ignored "-Wformat-truncation"
-  p += snprintf(p, sizeof(buf), FMT_WORD ":", pc);
-  assert(strlen(p) <= sizeof(buf));
+  p+= snprintf(p, sizeof(logbuf), FMT_WORD ":", pc);
+  // assert(j <= sizeof(buf));
   #pragma GCC diagnostic pop
   // printf("before itrace:%lx\n",s->pc);
   int ilen = 4;
   int i;
-  uint8_t *inst = (uint8_t *)&instr;
+  struct {union {uint32_t val;} inst;} s;
+  s.inst.val=instr;
+  uint8_t *inst = (uint8_t *)&s.inst.val;
   for (i = 0; i < ilen; i ++) {
     p += snprintf(p, 4, " %02x", inst[i]);
   }
@@ -37,17 +44,17 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
-
-  
-  disassemble(p, buf + sizeof(buf) - p,
-     pc, (uint8_t *)&inst, ilen);
+  // disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
+    //  MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
+  // (char *str, int size, uint64_t pc, uint8_t *code, int nbyte)
+  // disassemble(p, buf + sizeof(logbuf) - p,pc, (uint8_t *)&s.inst.val, ilen);
 }
 
-static void trace_and_difftest(char *logbuf,Decode *_this, vaddr_t dnpc) {
+static void trace_and_difftest(char *logbuf) {
 #ifdef CONFIG_ITRACE_COND
-  if (ITRACE_COND) { log_write("%s\n", logbuf); }
+  // if (ITRACE_COND) { log_write("%s\n", logbuf); }
 #endif
-  if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(logbuf)); }
+  if (g_print_step) { printf("here\n");IFDEF(CONFIG_ITRACE, puts(logbuf)); }
   // IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   // IFDEF(CONFIG_WATCHPOINT, wp_evl());
 
@@ -65,6 +72,8 @@ static void exec_once() {
   }
   
 #ifdef CONFIG_ITRACE
+  // printf("bufsize:%ld\n",sizeof(logbuf));
+  
   trace(logbuf,top->inst,top->pc);
 #endif
 #ifdef CONFIG_IRINGBUF
@@ -81,8 +90,9 @@ static void exec_once() {
 static void execute(uint64_t n) {
   for (;n > 0; n --) {
     exec_once();
+    // printf("here");
     g_nr_guest_inst ++;
-    trace_and_difftest(&s, cpu.pc);
+    trace_and_difftest(logbuf);
     if (break_flag==1) {
       top->final();
       tfp->close();
@@ -103,7 +113,7 @@ static void statistic() {
 }
 
 void cpu_exec(uint64_t n) {
-  // g_print_step = (n < MAX_INST_TO_PRINT);
+  g_print_step = (n < MAX_INST_TO_PRINT);
   if (break_flag==1) {
           printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
       return;

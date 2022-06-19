@@ -4,6 +4,7 @@
 #include <locale.h>
 #include <macro.h>
 #include <ftrace.h>
+
 // #include "src/monitor/sdb/sdb.h"
 
 /* The assembly code of instructions executed is only output to the screen

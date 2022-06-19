@@ -34,7 +34,9 @@ VERILATOR_FLAGS += -Os -x-assign 0
 VERILATOR_FLAGS += --trace
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
 ifeq ($(MAKECMDGOALS),gdb)
-  VERILATOR_FLAGS += --gdb
+	VERILATOR_FLAGS += --debug
+  # VERILATOR_FLAGS += --gdb
+	CXXFLAGS += -g
 endif
 CXXFLAGS += $(INCLUDES)
 LIBS += -lreadline
