@@ -44,16 +44,19 @@ VM_USER_CLASSES = \
 	cpu \
 	init \
 	isa \
-	monitor \
 	paddr \
+	monitor \
+	elf \
 	sdb \
 	sim_main \
-	timer \
 	disasm \
+	timer \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	/home/chandler/ysyx-workbench/npc/srcs \
+	/home/chandler/ysyx-workbench/npc/srcs/memory \
+	/home/chandler/ysyx-workbench/npc/srcs/sdb \
 	/home/chandler/ysyx-workbench/npc/srcs/utils \
 
 
@@ -72,17 +75,19 @@ init.o: /home/chandler/ysyx-workbench/npc/srcs/init.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 isa.o: /home/chandler/ysyx-workbench/npc/srcs/isa.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+paddr.o: /home/chandler/ysyx-workbench/npc/srcs/memory/paddr.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 monitor.o: /home/chandler/ysyx-workbench/npc/srcs/monitor.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-paddr.o: /home/chandler/ysyx-workbench/npc/srcs/paddr.cpp
+elf.o: /home/chandler/ysyx-workbench/npc/srcs/sdb/elf.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/chandler/ysyx-workbench/npc/srcs/sdb.cpp
+sdb.o: /home/chandler/ysyx-workbench/npc/srcs/sdb/sdb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sim_main.o: /home/chandler/ysyx-workbench/npc/srcs/sim_main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-timer.o: /home/chandler/ysyx-workbench/npc/srcs/timer.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: /home/chandler/ysyx-workbench/npc/srcs/utils/disasm.cc
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+timer.o: /home/chandler/ysyx-workbench/npc/srcs/utils/timer.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)

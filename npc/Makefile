@@ -47,14 +47,14 @@ BINARY = obj_dir/Vysyx_22040632_top
 default: run
 
 run:$(BINARY)
-	$(BINARY) -b $(IMG)
+	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf)
 	@rm -rf logs/annotated
 	make clean
 
 
 # Other targets
 gdb: $(BINARY)
-	gdb $(BINARY) -b $(IMG)
+	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf)
 
 wave:
 	gtkwave Vysyx_22040632_top.vcd

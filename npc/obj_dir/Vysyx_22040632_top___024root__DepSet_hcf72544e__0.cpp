@@ -74,8 +74,10 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__2(Vysyx_22040632
                 : (4ULL + vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_i__DOT__pci));
         if (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_EXU_i__DOT__gprchg) {
             __Vdlyvval__ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__gpr__v0 
-                = (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_EXU_i__DOT__src1_op 
-                   + vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_EXU_i__DOT__src2_op);
+                = ((0U != (0x1fU & (vlSelf->inst >> 7U)))
+                    ? (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_EXU_i__DOT__src1_op 
+                       + vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_EXU_i__DOT__src2_op)
+                    : 0ULL);
             __Vdlyvset__ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__gpr__v0 = 1U;
             __Vdlyvdim0__ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__gpr__v0 
                 = (0x1fU & (vlSelf->inst >> 7U));

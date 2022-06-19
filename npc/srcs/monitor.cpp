@@ -8,6 +8,8 @@
 #include "autoconfig.h"
 
 extern uint8_t *guest_to_host(paddr_t paddr);
+extern "C" void init_disasm(const char *triple);
+extern void load_elf_tables(char *file);
 static char *img_file = NULL;
 Vysyx_22040632_top* top;                  // 顶层dut对象指针
 VerilatedVcdC* tfp;             // 波形生成对象指针
@@ -66,7 +68,7 @@ static int parse_args(int argc, char *argv[]) {
       // case 'p': sscanf(optarg, "%d", &difftest_port); break;
       // case 'l': log_file = optarg; break;
       // case 'd': diff_so_file = optarg; break;
-      // case 'f':printf("elf:%s\n",optarg); load_elf_tables(optarg);break;
+      case 'f': load_elf_tables(optarg);break;
       case 1: return 0; //img_file = optarg; 
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
@@ -90,10 +92,9 @@ void inti_vei(int argc, char *argv[]){
     // tfp初始化工作
     top->trace(tfp, 99);
     tfp->open("./build/Vysyx_22040632_top.vcd");
-
     top->rst_n = 1;
     top->clk = 0;
-    while(main_time<10){
+    while(main_time<9){
     main_time++;
     top->clk = !top->clk;
     if (!top->clk) 
@@ -110,5 +111,11 @@ void init_monitor(int argc, char *argv[]){
     parse_args(argc,argv);
     load_img();
     inti_vei(argc,argv);
+    IFDEF(CONFIG_ITRACE, init_disasm(
+    MUXDEF(CONFIG_ISA_x86,     "i686",
+    MUXDEF(CONFIG_ISA_mips32,  "mipsel",
+    MUXDEF(CONFIG_ISA_riscv32, "riscv32",
+    MUXDEF(1, "riscv64", "bad")))) "-pc-linux-gnu"
+  ));
     welcome();
 }

@@ -35,7 +35,11 @@ always_ff @(posedge clk or negedge rrst_n) begin
   end
   else if(rdy) begin 
       // $display("rd:%d datain:%d",rd,data_in);
-      gpr[rd] <= data_in;end
+      if(rd!=0)
+      gpr[rd] <= data_in;
+      else
+      gpr[rd] <= '0;
+      end
   else 
     for(int i=0;i<32;i++)
       gpr[i]<=gpr[i];

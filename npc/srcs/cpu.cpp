@@ -3,8 +3,13 @@
 #include "time.h"
 #include "debug.h"
 #include "autoconfig.h"
+#include "ftrace.h"
 #define MAX_INST_TO_PRINT 10
 
+extern char *strtab;
+extern Elf64_Sym *symtab;
+extern int nr_symtab_entry;
+int space_nr=1;
 
 int break_flag=0;
 extern word_t paddr_read(paddr_t addr);
@@ -22,14 +27,48 @@ void npcexit(int pc,int code){
   code_t=code;
 }
 
+int ftrace_imple(uint32_t inst,uint64_t dnpc){
+  uint32_t inst_f=inst;
+  if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
+    return 0;
+  }
+  uint32_t strindex_low=0;
+  uint32_t strindex_high=0;
+  for(int i=0;i<nr_symtab_entry;i++){
+    if(symtab[i].st_info == 18){//STT_FUNC为2,不知道为啥不对
+      if(dnpc>=symtab[i].st_value && dnpc<=symtab[i].st_value+symtab[i].st_size)
+        {
+          strindex_low=symtab[i].st_name;
+          strindex_high=symtab[i+1].st_name;
+          printf("0x%lx",dnpc);//(pc)
+          if(inst_f==0x00008067){
+            space_nr--;
+            for(int i=0;i<space_nr;i++)
+              printf(" ");
+          printf("ret  [");
+          for(int i=strindex_low;i<strindex_high;i++)
+            printf("%c",*(strtab+i));   
+          printf("@0x%lx]\n",dnpc);}
+          else{
+          for(int i=0;i<space_nr;i++)
+              printf(" ");
+            space_nr++;
+          printf("call [");
+          for(int i=strindex_low;i<strindex_high;i++)
+            printf("%c",*(strtab+i));   
+          printf("@0x%lx]\n",dnpc);}
+    }
+  }}
+  return 1;
+  
+}
+
 void trace(char *buf,uint32_t instr,uint64_t pc){
   char *p = buf;
   #pragma GCC diagnostic push//避免报错
   #pragma GCC diagnostic ignored "-Wformat-truncation"
   p+= snprintf(p, sizeof(logbuf), FMT_WORD ":", pc);
-  // assert(j <= sizeof(buf));
   #pragma GCC diagnostic pop
-  // printf("before itrace:%lx\n",s->pc);
   int ilen = 4;
   int i;
   struct {union {uint32_t val;} inst;} s;
@@ -44,9 +83,6 @@ void trace(char *buf,uint32_t instr,uint64_t pc){
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
-  // disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
-    //  MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
-  // (char *str, int size, uint64_t pc, uint8_t *code, int nbyte)
   disassemble(p, buf + sizeof(logbuf) - p,pc, (uint8_t *)&s.inst.val, ilen);
 }
 
@@ -82,8 +118,8 @@ static void exec_once() {
   if(index_ibuf==16) {index_ibuf=0;flag_cycle=1;}
 #endif
 #ifdef CONFIG_FTRACE
- // printf("I am here\n");
-  ftrace_imple(s);
+  // printf("I am here\n");
+  ftrace_imple(top->inst,top->pc);
 #endif
 }
 
