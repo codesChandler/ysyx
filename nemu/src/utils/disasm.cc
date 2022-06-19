@@ -71,7 +71,7 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
   llvm::ArrayRef<uint8_t> arr(code, nbyte);
   uint64_t dummy_size = 0;
   printf("pc:%08lx\n",pc);
-  printf("pc:%s\n",code);
+  printf("pc:%d\n",*code);
   gDisassembler->getInstruction(inst, dummy_size, arr, pc, llvm::nulls());
 
   std::string s;
