@@ -6,6 +6,7 @@
 #include "vrltr.h"
 #include "macro.h"
 #include "autoconfig.h"
+#include "isa.h"
 
 extern uint8_t *guest_to_host(paddr_t paddr);
 extern "C" void init_disasm(const char *triple);
@@ -14,6 +15,7 @@ extern void init_difftest(char *ref_so_file, long img_size, int port);
 static char *img_file = NULL;
 static char *diff_so_file = NULL;
 static int difftest_port = 1234;
+extern cpu_state cpu;
 
 Vysyx_22040632_top* top;                  // 顶层dut对象指针
 VerilatedVcdC* tfp;             // 波形生成对象指针
@@ -109,6 +111,7 @@ void inti_vei(int argc, char *argv[]){
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
     }
+
 }
 
 void init_monitor(int argc, char *argv[]){

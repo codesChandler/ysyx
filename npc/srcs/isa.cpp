@@ -6,8 +6,8 @@
 cpu_state cpu;
 extern Vysyx_22040632_top* top; 
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
-  cpu.gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
-  cpu.pc=top->pc;
+  cpu.gpr_pc = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+  *(cpu.gpr_pc+32)=0x80000000;
 }
 
 
@@ -21,6 +21,6 @@ const char *regs[] = {
 void isa_reg_display() {
   printf("*************registers*******************\n");
   for(int i=0;i<32;i++)
-  printf("   NO:%d %s: 0x%08lx\n",i,regs[i],*(cpu.gpr+i));
+  printf("   NO:%d %s: 0x%08lx\n",i,regs[i],*(cpu.gpr_pc+i));
 
 }
