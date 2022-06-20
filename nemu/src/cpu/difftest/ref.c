@@ -7,7 +7,7 @@ void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
   if (direction == DIFFTEST_TO_REF) {
     uint8_t *buf_t=(uint8_t *) buf;
     for(int i=0;i<n;i++){
-    printf("buf_t%x",*(buf_t+i));
+    printf("buf_t:%x\n",*(buf_t+i));
     paddr_write(addr, 1, *(buf_t+i));}
   } else {
     assert(0);
@@ -19,6 +19,7 @@ void difftest_regcpy(void *dut, bool direction) {
     if (direction == DIFFTEST_TO_REF) {
       for(int i=0;i<32;i++)
         cpu.gpr[i]=*(dut_t+i);
+      printf("pc_t:%lx\n",*(dut_t+32));
       cpu.pc=*(dut_t+32);
   } else {
       for(int i=0;i<32;i++)
