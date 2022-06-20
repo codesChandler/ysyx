@@ -8,5 +8,6 @@
 #define PG_ALIGN __attribute((aligned(4096)))
 typedef uint64_t word_t;
 typedef uint64_t paddr_t;
+typedef word_t vaddr_t;
 
 #endif

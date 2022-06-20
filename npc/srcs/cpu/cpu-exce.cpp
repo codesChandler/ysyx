@@ -4,6 +4,8 @@
 #include "debug.h"
 #include "autoconfig.h"
 #include "ftrace.h"
+#include "isa.h"
+
 #define MAX_INST_TO_PRINT 10
 
 extern char *strtab;
@@ -11,7 +13,10 @@ extern Elf64_Sym *symtab;
 extern int nr_symtab_entry;
 int space_nr=1;
 
+extern cpu_state cpu;
+
 int break_flag=0;
+extern void difftest_step(vaddr_t pc);
 extern word_t paddr_read(paddr_t addr);
 extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 extern uint64_t get_time();
@@ -19,15 +24,33 @@ extern vluint64_t main_time;           // 仿真时间戳
 static uint64_t g_timer = 0; // unit: us
 uint64_t g_nr_guest_inst = 0;
 static bool g_print_step = false;
-static int code_t;
+static uint64_t pc_l;
+// static int code_t;
+int code_t;
 char logbuf[128];
 
-void npcexit(int pc,int code){
+static int index_ibuf=0;//for iringbuf
+static char iringbuf[16][128];
+static int flag_cycle=0;
+
+void npcexit(int code){
   break_flag=1;
   code_t=code;
 }
 
-int ftrace_imple(uint32_t inst,uint64_t dnpc){
+void inst_display(){
+  int value=0;
+  if (index_ibuf==0) value=15;
+  else value=index_ibuf-1;
+  printf("*************instructions***************\n");
+  for(int i=0;i<16;i++){
+    if(i==value) {printf("-->%s\n",iringbuf[i]);
+    if(flag_cycle==0) break;}
+    else printf("   %s\n",iringbuf[i]);
+  }
+}
+
+int ftrace_imple(uint32_t inst,uint64_t dnpc,uint64_t pc){
   uint32_t inst_f=inst;
   if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
     return 0;
@@ -40,7 +63,7 @@ int ftrace_imple(uint32_t inst,uint64_t dnpc){
         {
           strindex_low=symtab[i].st_name;
           strindex_high=symtab[i+1].st_name;
-          printf("0x%lx",dnpc);//(pc)
+          printf("0x%lx",pc);//(pc)
           if(inst_f==0x00008067){
             space_nr--;
             for(int i=0;i<space_nr;i++)
@@ -90,13 +113,15 @@ static void trace_and_difftest(char *logbuf) {
 #ifdef CONFIG_ITRACE_COND
   // if (ITRACE_COND) { log_write("%s\n", logbuf); }
 #endif
-  if (g_print_step) { printf("here\n");IFDEF(CONFIG_ITRACE, puts(logbuf)); }
-  // IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+  if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(logbuf)); }
+  IFDEF(CONFIG_DIFFTEST, difftest_step(top->pc));
   // IFDEF(CONFIG_WATCHPOINT, wp_evl());
 
 }
 
 static void exec_once() {
+  uint64_t inst_l=paddr_read(top->pc);
+  pc_l=top->pc;
   for(int i=0;i<2;i++){
     main_time++;
     top->clk = !top->clk;
@@ -106,20 +131,20 @@ static void exec_once() {
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
   }
-  
+  *(cpu.gpr_pc+32)=top->pc;
 #ifdef CONFIG_ITRACE
   // printf("bufsize:%ld\n",sizeof(logbuf));
   
-  trace(logbuf,top->inst,top->pc);
+  trace(logbuf,inst_l,pc_l);
 #endif
 #ifdef CONFIG_IRINGBUF
-  trace(iringbuf[index_ibuf],s);
+  trace(iringbuf[index_ibuf],inst_l,pc_l);
   index_ibuf++;
   if(index_ibuf==16) {index_ibuf=0;flag_cycle=1;}
 #endif
 #ifdef CONFIG_FTRACE
   // printf("I am here\n");
-  ftrace_imple(top->inst,top->pc);
+  ftrace_imple(inst_l,top->pc,pc_l);
 #endif
 }
 
@@ -151,7 +176,7 @@ static void statistic() {
 void cpu_exec(uint64_t n) {
   g_print_step = (n < MAX_INST_TO_PRINT);
   if (break_flag==1) {
-          printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
+          printf("Program execution has ended. To restart the program, exit npc and run again.\n");
       return;
   }
 
@@ -166,7 +191,7 @@ void cpu_exec(uint64_t n) {
         Log("npc: %s at pc = " FMT_WORD,
            (code_t == 0 ? ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN) :
             ASNI_FMT("HIT BAD TRAP", ASNI_FG_RED)),
-          top->pc);
+          pc_l);
         statistic();
 }
 

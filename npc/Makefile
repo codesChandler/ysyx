@@ -43,11 +43,12 @@ LIBS += -lreadline
 export CXXFLAGS LIBS
 
 BINARY = obj_dir/Vysyx_22040632_top
+ARGS_DIFF = -d /home/chandler/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
 
 default: run
 
 run:$(BINARY)
-	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf)
+	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF)
 	@rm -rf logs/annotated
 	make clean
 
@@ -61,7 +62,7 @@ wave:
 
 $(BINARY):
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo + VERILATE "->" $(BINARY)
+	@echo + VERILATE "->" $(BINARY) $(VERILATOR_INPUT)
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
 	@echo + BUILD "->" $(BINARY)
 	$(MAKE) -j -C obj_dir -f ../Makefile_obj

@@ -34,7 +34,7 @@ always_comb begin
 end
 
 always_comb
-    data_op=src1_op+src2_op;
+    data_op=src1_op;//+src2_op;
 
 always_comb
     if(operation==jal)

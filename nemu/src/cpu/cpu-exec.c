@@ -40,6 +40,8 @@ void inst_display(){
     else printf("   %s\n",iringbuf[i]);
   }
 }
+
+IFDEF(CONFIG_ITRACE, 
 void trace(char *buf,Decode *s){
   char *p = buf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
@@ -56,11 +58,11 @@ void trace(char *buf,Decode *s){
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
-
+  
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
      MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
-}
+});
 
 int ftrace_imple(Decode *s){
   uint32_t inst_f=s->isa.inst.val;
