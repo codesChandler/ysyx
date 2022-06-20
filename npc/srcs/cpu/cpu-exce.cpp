@@ -4,12 +4,16 @@
 #include "debug.h"
 #include "autoconfig.h"
 #include "ftrace.h"
+#include "isa.h"
+
 #define MAX_INST_TO_PRINT 10
 
 extern char *strtab;
 extern Elf64_Sym *symtab;
 extern int nr_symtab_entry;
 int space_nr=1;
+
+extern cpu_state cpu;
 
 int break_flag=0;
 extern void difftest_step(vaddr_t pc);
@@ -110,7 +114,7 @@ static void exec_once() {
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
   }
-  
+  *(cpu.gpr_pc+32)=top->pc;
 #ifdef CONFIG_ITRACE
   // printf("bufsize:%ld\n",sizeof(logbuf));
   
@@ -170,7 +174,7 @@ void cpu_exec(uint64_t n) {
         Log("npc: %s at pc = " FMT_WORD,
            (code_t == 0 ? ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN) :
             ASNI_FMT("HIT BAD TRAP", ASNI_FG_RED)),
-          top->pc);
+          top->pc-4);
         statistic();
 }
 
