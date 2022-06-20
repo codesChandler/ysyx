@@ -19,14 +19,13 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root___initial__TOP__3(Vysyx_22040632_
     Vysyx_22040632_top___024unit____Vdpiimwrap_set_gpr_ptr__Vdpioc2_TOP____024unit(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__gpr);
 }
 
-void Vysyx_22040632_top___024unit____Vdpiimwrap_npcexit_TOP____024unit(IData/*31:0*/ pc, IData/*31:0*/ code);
+void Vysyx_22040632_top___024unit____Vdpiimwrap_npcexit_TOP____024unit(IData/*31:0*/ code);
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__6(Vysyx_22040632_top___024root* vlSelf) {
+VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__4(Vysyx_22040632_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___settle__TOP__6\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___settle__TOP__4\n"); );
     // Body
-    vlSelf->pc = vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_i__DOT__pci;
     if (VL_LIKELY(((((((((0x13U == (0x707fU & vlSelf->inst)) 
                          | (0x67U == (0x707fU & vlSelf->inst))) 
                         | (0x17U == (0x7fU & vlSelf->inst))) 
@@ -35,41 +34,34 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__6(Vysyx_22040632_t
                      | (0x3023U == (0x707fU & vlSelf->inst))) 
                     | (0x100073U == vlSelf->inst)) 
                    | (0U == vlSelf->inst)))) {
-        if (VL_UNLIKELY((0x13U == (0x707fU & vlSelf->inst)))) {
+        if ((0x13U == (0x707fU & vlSelf->inst))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__fun = 0U;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t = 0U;
-            VL_WRITEF("addi\n\n");
-        } else if (VL_UNLIKELY((0x67U == (0x707fU & vlSelf->inst)))) {
-            VL_WRITEF("jalr\n\n");
+        } else if ((0x67U == (0x707fU & vlSelf->inst))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__fun = 4U;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t = 0U;
-        } else if (VL_UNLIKELY((0x17U == (0x7fU & vlSelf->inst)))) {
-            VL_WRITEF("auipc\n\n");
+        } else if ((0x17U == (0x7fU & vlSelf->inst))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__fun = 1U;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t = 1U;
-        } else if (VL_UNLIKELY((0x37U == (0x7fU & vlSelf->inst)))) {
-            VL_WRITEF("lui\n\n");
+        } else if ((0x37U == (0x7fU & vlSelf->inst))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__fun = 2U;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t = 1U;
-        } else if (VL_UNLIKELY((0x6fU == (0x7fU & vlSelf->inst)))) {
-            VL_WRITEF("jal\n\n");
+        } else if ((0x6fU == (0x7fU & vlSelf->inst))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__fun = 3U;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t = 2U;
-        } else if (VL_UNLIKELY((0x3023U == (0x707fU 
-                                            & vlSelf->inst)))) {
-            VL_WRITEF("sd\n\n");
+        } else if ((0x3023U == (0x707fU & vlSelf->inst))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__fun = 5U;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t = 3U;
-        } else if (VL_UNLIKELY((0x100073U == vlSelf->inst))) {
-            Vysyx_22040632_top___024unit____Vdpiimwrap_npcexit_TOP____024unit((IData)(vlSelf->pc), (IData)(
+        } else if ((0x100073U == vlSelf->inst)) {
+            Vysyx_22040632_top___024unit____Vdpiimwrap_npcexit_TOP____024unit((IData)(
                                                                                 vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__gpr
                                                                                 [0xaU]));
-            VL_WRITEF("ebreak\n");
         }
     } else {
         VL_WRITEF("instruction:%b not implemented\n",
                   32,vlSelf->inst);
     }
+    vlSelf->pc = vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IFU_i__DOT__pci;
     if ((0U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__type_t))) {
         vlSelf->ysyx_22040632_top__DOT__src1 = vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_IDU_i__DOT__gpr
             [(0x1fU & (vlSelf->inst >> 0xfU))];

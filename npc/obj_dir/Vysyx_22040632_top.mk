@@ -41,7 +41,8 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	cpu \
+	cpu-exce \
+	dut \
 	init \
 	isa \
 	paddr \
@@ -55,6 +56,8 @@ VM_USER_CLASSES = \
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	/home/chandler/ysyx-workbench/npc/srcs \
+	/home/chandler/ysyx-workbench/npc/srcs/cpu \
+	/home/chandler/ysyx-workbench/npc/srcs/cpu/difftest \
 	/home/chandler/ysyx-workbench/npc/srcs/memory \
 	/home/chandler/ysyx-workbench/npc/srcs/sdb \
 	/home/chandler/ysyx-workbench/npc/srcs/utils \
@@ -69,7 +72,9 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-cpu.o: /home/chandler/ysyx-workbench/npc/srcs/cpu.cpp
+cpu-exce.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/cpu-exce.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+dut.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/difftest/dut.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 init.o: /home/chandler/ysyx-workbench/npc/srcs/init.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

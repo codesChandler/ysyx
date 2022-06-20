@@ -17,7 +17,7 @@ extern "C" {
 
     // DPI IMPORTS
     // DPI import at /home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_IDU.sv:1:30
-    extern void npcexit(int pc, int code);
+    extern void npcexit(int code);
     // DPI import at /home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_IDU.sv:2:30
     extern void set_gpr_ptr(const svOpenArrayHandle a);
 

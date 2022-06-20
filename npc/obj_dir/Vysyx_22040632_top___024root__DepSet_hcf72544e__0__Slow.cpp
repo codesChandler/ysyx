@@ -23,14 +23,14 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root___eval_initial(Vysyx_22040632_top
     vlSelf->__Vm_traceActivity[0U] = 1U;
 }
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__6(Vysyx_22040632_top___024root* vlSelf);
+VL_ATTR_COLD void Vysyx_22040632_top___024root___settle__TOP__4(Vysyx_22040632_top___024root* vlSelf);
 
 VL_ATTR_COLD void Vysyx_22040632_top___024root___eval_settle(Vysyx_22040632_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___eval_settle\n"); );
     // Body
-    Vysyx_22040632_top___024root___settle__TOP__6(vlSelf);
+    Vysyx_22040632_top___024root___settle__TOP__4(vlSelf);
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->__Vm_traceActivity[1U] = 1U;
     vlSelf->__Vm_traceActivity[0U] = 1U;
