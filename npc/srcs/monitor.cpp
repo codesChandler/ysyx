@@ -111,6 +111,7 @@ void inti_vei(int argc, char *argv[]){
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
     }
+      *(cpu.gpr_pc+32)=top->pc;
 
 }
 

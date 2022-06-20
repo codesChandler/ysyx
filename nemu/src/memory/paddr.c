@@ -62,6 +62,7 @@ word_t paddr_read(paddr_t addr, int len)
   #ifdef CONFIG_MTRACE
     if (likely(in_pmem(addr))) printf("paddr_read-addr: "FMT_PADDR"  data:%ld\n",addr,data);
   #endif
+  printf("paddr_read-addr: "FMT_PADDR"  data:%ld\n",addr,data);
   return data;
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
   out_of_bound(addr);

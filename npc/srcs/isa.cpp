@@ -7,7 +7,6 @@ cpu_state cpu;
 extern Vysyx_22040632_top* top; 
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu.gpr_pc = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
-  *(cpu.gpr_pc+32)=0x80000000;
 }
 
 
