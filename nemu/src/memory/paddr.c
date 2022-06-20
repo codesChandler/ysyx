@@ -74,6 +74,7 @@ void paddr_write(paddr_t addr, int len, word_t data)
   #ifdef CONFIG_MTRACE
     if (likely(in_pmem(addr))) printf("paddr_write-addr:"FMT_PADDR"  data:%ld\n",addr,data);
   #endif
+  printf("paddr_write-addr:"FMT_PADDR"  data:%ld\n",addr,data);
   if (likely(in_pmem(addr)))
   {
     pmem_write(addr, len, data);
