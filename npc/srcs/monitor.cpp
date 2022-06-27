@@ -45,12 +45,13 @@ static long load_img() {
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
-
+  // printf("here\n");
   Log("The image is %s, size = %ld", img_file, size);
-
+  // printf("here\n");
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
-  // assert(ret == 1);
+  // printf("here\n");
+  assert(ret == 1);
 
   fclose(fp);
   return size;
@@ -94,12 +95,12 @@ void inti_vei(int argc, char *argv[]){
     // 为对象分配内存空间
     top = new Vysyx_22040632_top;
     tfp = new VerilatedVcdC;
-
     // tfp初始化工作
     top->trace(tfp, 99);
     tfp->open("./build/Vysyx_22040632_top.vcd");
     top->rst_n = 1;
     top->clk = 0;
+    //main_time=0;
     while(main_time<9){
     main_time++;
     top->clk = !top->clk;
@@ -107,11 +108,11 @@ void inti_vei(int argc, char *argv[]){
       {if (main_time > 1 && main_time < 8) 
                 top->rst_n = 0;  // Assert rese
       else top->rst_n = 1;}
-      
+
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
     }
-      *(cpu.gpr_pc+32)=top->pc;
+    *(cpu.gpr_pc+32)=top->pc;
 
 }
 
@@ -126,5 +127,6 @@ void init_monitor(int argc, char *argv[]){
     MUXDEF(1, "riscv64", "bad")))) "-pc-linux-gnu"
   ));
     init_difftest(diff_so_file, img_size, difftest_port);
+
     welcome();
 }

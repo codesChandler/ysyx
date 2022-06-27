@@ -34,9 +34,9 @@ VERILATOR_FLAGS += -Os -x-assign 0
 VERILATOR_FLAGS += --trace
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
 ifeq ($(MAKECMDGOALS),gdb)
-	VERILATOR_FLAGS += --debug
-  # VERILATOR_FLAGS += --gdb
-	CXXFLAGS += -g
+	 VERILATOR_FLAGS += --debug
+#   VERILATOR_FLAGS += --gdb
+	 CXXFLAGS += -g
 endif
 CXXFLAGS += $(INCLUDES)
 LIBS += -lreadline
@@ -55,7 +55,7 @@ run:$(BINARY)
 
 # Other targets
 gdb: $(BINARY)
-	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf)
+	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF)
 
 wave:
 	gtkwave Vysyx_22040632_top.vcd

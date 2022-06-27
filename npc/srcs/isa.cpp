@@ -4,6 +4,7 @@
 #include "isa.h"
 
 cpu_state cpu;
+extern uint64_t ref_r[33];;
 extern Vysyx_22040632_top* top; 
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu.gpr_pc = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
@@ -20,6 +21,6 @@ const char *regs[] = {
 void isa_reg_display() {
   printf("*************registers*******************\n");
   for(int i=0;i<32;i++)
-  printf("   NO:%d %s: 0x%08lx\n",i,regs[i],*(cpu.gpr_pc+i));
+  printf("   NO:%d %s: 0x%08lx ref:0x%08lx\n",i,regs[i],*(cpu.gpr_pc+i),*(ref_r+i));
 
 }

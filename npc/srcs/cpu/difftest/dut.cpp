@@ -18,6 +18,7 @@ void npcexit(int code){
   break_flag=1;
   code_t=code;
 }//不知道为啥npcexit链接不上
+extern void inst_display();
 // extern void npcexit(int code);
 #ifdef CONFIG_DIFFTEST
 extern uint8_t *guest_to_host(paddr_t paddr);
@@ -27,6 +28,7 @@ extern void isa_reg_display();
 
 static bool is_skip_ref = false;
 static int skip_dut_nr_inst = 0;
+uint64_t ref_r[33];
 
 // this is used to let ref skip instructions which
 // can not produce consistent behavior with NEMU
@@ -58,6 +60,7 @@ void difftest_skip_dut(int nr_ref, int nr_dut) {
 
 void init_difftest(char *ref_so_file, long img_size, int port) {
   assert(ref_so_file != NULL);
+  printf("ref:%s\n",ref_so_file);
 
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY | MUXNDEF(CONFIG_CC_ASAN, RTLD_DEEPBIND, 0));
@@ -90,20 +93,23 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
 bool isa_difftest_checkregs(uint64_t *ref_r, vaddr_t pc) {
   for(int i=0;i<33;i++){
-    if(*(ref_r+i)!=*(cpu.gpr_pc+i))
-      return false;}
+    if(*(ref_r+i)!=*(cpu.gpr_pc+i)){
+      printf("NO[%d]:gpr is wrong\nright:0x%lx\nwrong:0x%lx\n",i,*(ref_r+i),*(cpu.gpr_pc+i));
+      return false;}}
   return true;
 }
 
 static void checkregs(uint64_t *ref, vaddr_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
     npcexit(1);
-    isa_reg_display();
+    //isa_reg_display();
+    inst_display();
+    //printf("I am working diff\n");
   }
 }
 
 void difftest_step(vaddr_t pc) {
-  uint64_t ref_r[33];
+
   ref_difftest_exec(1);
   ref_difftest_regcpy(ref_r, DIFFTEST_TO_DUT);
 
