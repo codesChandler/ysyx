@@ -17,7 +17,7 @@ extern cpu_state cpu;
 
 int break_flag=0;
 extern void difftest_step(vaddr_t pc);
-extern word_t paddr_read(paddr_t addr);
+//extern "C" void paddr_read(paddr_t raddr,word_t* rdata);
 extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 extern uint64_t get_time();
 extern vluint64_t main_time;           // 仿真时间戳
@@ -38,6 +38,12 @@ void npcexit(int code){
   code_t=code;
 }
 
+void out_of_bound(paddr_t addr)
+{
+  panic("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR ", " FMT_PADDR ") at pc = " FMT_WORD,
+        addr, CONFIG_MBASE, CONFIG_MBASE + CONFIG_MSIZE, top->pc);
+}
+
 void inst_display(){
   int value=0;
   if (index_ibuf==0) value=15;
@@ -50,6 +56,9 @@ void inst_display(){
   }
 }
 
+void assert_fail_msg(){
+  inst_display();
+}
 int ftrace_imple(uint32_t inst,uint64_t dnpc,uint64_t pc){
   uint32_t inst_f=inst;
   if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
@@ -120,14 +129,14 @@ static void trace_and_difftest(char *logbuf) {
 }
 
 static void exec_once() {
-  uint64_t inst_l=paddr_read(top->pc);
+  uint64_t inst_l=top->inst;
   pc_l=top->pc;
   for(int i=0;i<2;i++){
     main_time++;
     top->clk = !top->clk;
     // printf("pc:0x%08x\n",top->pc);
     // printf("rst_n:%d\n",top->rst_n);
-    top->inst = paddr_read(top->pc);
+    //top->inst = paddr_read(top->pc);
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
   }

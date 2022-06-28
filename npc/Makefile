@@ -34,9 +34,9 @@ VERILATOR_FLAGS += -Os -x-assign 0
 VERILATOR_FLAGS += --trace
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
 ifeq ($(MAKECMDGOALS),gdb)
-	VERILATOR_FLAGS += --debug
-  # VERILATOR_FLAGS += --gdb
-	CXXFLAGS += -g
+	 VERILATOR_FLAGS += --debug
+#   VERILATOR_FLAGS += --gdb
+	 CXXFLAGS += -g
 endif
 CXXFLAGS += $(INCLUDES)
 LIBS += -lreadline
@@ -48,14 +48,14 @@ ARGS_DIFF = -d /home/chandler/ysyx-workbench/nemu/build/riscv64-nemu-interpreter
 default: run
 
 run:$(BINARY)
-	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF)
+	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF) -p
 	@rm -rf logs/annotated
 	make clean
 
 
 # Other targets
 gdb: $(BINARY)
-	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf)
+	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF) -p
 
 wave:
 	gtkwave Vysyx_22040632_top.vcd

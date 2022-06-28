@@ -11,6 +11,7 @@
 extern uint8_t *guest_to_host(paddr_t paddr);
 extern "C" void init_disasm(const char *triple);
 extern void load_elf_tables(char *file);
+extern void sdb_set_batch_mode();
 extern void init_difftest(char *ref_so_file, long img_size, int port);
 static char *img_file = NULL;
 static char *diff_so_file = NULL;
@@ -45,12 +46,13 @@ static long load_img() {
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
-
+  // printf("here\n");
   Log("The image is %s, size = %ld", img_file, size);
-
+  // printf("here\n");
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
-  // assert(ret == 1);
+  // printf("here\n");
+  assert(ret == 1);
 
   fclose(fp);
   return size;
@@ -61,27 +63,28 @@ static int parse_args(int argc, char *argv[]) {
     {"binary"    , required_argument      , NULL, 'b'},
     // {"log"      , required_argument, NULL, 'l'},
     {"diff"     , required_argument, NULL, 'd'},
-    // {"port"     , required_argument, NULL, 'p'},
+    {"batch"     , no_argument      , NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
     {"ftrace"   , required_argument, NULL, 'f'},
     {0          , 0                , NULL,  0 },
   };
 
   int o;
-  while ( (o = getopt_long(argc, argv, "b:hl:d:p:f:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "b:hl:d:pf:", table, NULL)) != -1) {
     switch (o) {
       case 'b': img_file=optarg; break;
-      // case 'p': sscanf(optarg, "%d", &difftest_port); break;
+      case 'p': sdb_set_batch_mode(); break;
       // case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
       case 'f': load_elf_tables(optarg);break;
       case 1: return 0; //img_file = optarg; 
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
-        printf("\t-b,--batch              run with batch mode\n");
-        printf("\t-l,--log=FILE           output log to FILE\n");
+        printf("\t-p,--batch              run with batch mode\n");
+        //printf("\t-l,--log=FILE           output log to FILE\n");
         printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
-        printf("\t-p,--port=PORT          run DiffTest with port PORT\n");
+        printf("\t-b,--binary=.bin          input binary file\n");
+        printf("\t-f,--ftrace=.elf          input elf file\n");
         printf("\n");
         // exit(0);
     }
@@ -94,12 +97,12 @@ void inti_vei(int argc, char *argv[]){
     // 为对象分配内存空间
     top = new Vysyx_22040632_top;
     tfp = new VerilatedVcdC;
-
     // tfp初始化工作
     top->trace(tfp, 99);
     tfp->open("./build/Vysyx_22040632_top.vcd");
     top->rst_n = 1;
     top->clk = 0;
+    //main_time=0;
     while(main_time<9){
     main_time++;
     top->clk = !top->clk;
@@ -107,11 +110,11 @@ void inti_vei(int argc, char *argv[]){
       {if (main_time > 1 && main_time < 8) 
                 top->rst_n = 0;  // Assert rese
       else top->rst_n = 1;}
-      
+
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
     }
-      *(cpu.gpr_pc+32)=top->pc;
+    *(cpu.gpr_pc+32)=top->pc;
 
 }
 
@@ -126,5 +129,6 @@ void init_monitor(int argc, char *argv[]){
     MUXDEF(1, "riscv64", "bad")))) "-pc-linux-gnu"
   ));
     init_difftest(diff_so_file, img_size, difftest_port);
+
     welcome();
 }

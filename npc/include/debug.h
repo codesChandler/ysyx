@@ -1,6 +1,8 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+#include <assert.h>
+
 #define ASNI_FG_BLACK   "\33[1;30m"
 #define ASNI_FG_RED     "\33[1;31m"
 #define ASNI_FG_GREEN   "\33[1;32m"
@@ -30,6 +32,19 @@
     printf(__VA_ARGS__); \
      } while (0)
     // log_write(__VA_ARGS__); 
+
+#define Assert(cond, format, ...) \
+  do { \
+    if (!(cond)) { \
+      MUXDEF(CONFIG_TARGET_AM, printf(ASNI_FMT(format, ASNI_FG_RED) "\n", ## __VA_ARGS__), \
+        (fflush(stdout), fprintf(stderr, ASNI_FMT(format, ASNI_FG_RED) "\n", ##  __VA_ARGS__))); \
+      extern void assert_fail_msg(); \
+      assert_fail_msg(); \
+      assert(cond); \
+    } \
+  } while (0)
+
+#define panic(format, ...) Assert(0, format, ## __VA_ARGS__)
  
 
 

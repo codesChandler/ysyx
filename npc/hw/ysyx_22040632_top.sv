@@ -1,22 +1,27 @@
-module ysyx_22040632_top(
+`include "ysyx_22040632_RISCV_PKG.svh"
+module ysyx_22040632_top import ysyx_22040632_RISCV_PKG::*;
+(
   input logic clk,
   input logic rst_n,
-  input logic [31:0] inst,
-  output logic [63:0] pc);
+  output logic [63:0] pc,
+  output logic [31:0] inst);
 
 logic pcchg;
 logic rdy;
 logic [63:0] src1;
-logic [63:0] src2;
-logic [3:0] operation;
+logic [63:0] src2,dest;
+func operation;
 logic [63:0] data;
 logic [63:0] pc_op;
+
+//logic [31:0] inst;
 ysyx_22040632_EXU ysyx_22040632_EXU_i
 (
     .clk(clk),
     .rst_n(rst_n),
     .src1(src1),
     .src2(src2),
+    .dest(dest),
     .pc(pc),
     .operation(operation),
     .data_out(data),
@@ -30,7 +35,8 @@ ysyx_22040632_IFU ysyx_22040632_IFU_i(
   .rst_n(rst_n),
   .pcchg(pcchg),
   .pc_op(pc_op),
-  .pc(pc)
+  .pc(pc),
+  .inst(inst)
 );
 
 ysyx_22040632_IDU ysyx_22040632_IDU_i(
@@ -42,6 +48,7 @@ ysyx_22040632_IDU ysyx_22040632_IDU_i(
   .pc(pc),
   .src1(src1),
   .src2(src2),
+  .dest(dest),
   .operation(operation)
 );
 
