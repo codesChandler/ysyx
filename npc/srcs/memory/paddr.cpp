@@ -46,7 +46,7 @@ static inline void host_write(void *waddr, char wmask, word_t wdata) {
   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
   char msk=1;
   for(int i=0;i<8;i++){
-    if((wmask&(msk<<i)!=0))
+    if((wmask&(msk<<i))==(msk<<i))
       *(uint8_t  *)(waddr+i) = wdata>>(8*i);
   }
 }

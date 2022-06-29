@@ -39,6 +39,7 @@ ifeq ($(MAKECMDGOALS),gdb)
 	 CXXFLAGS += -g
 endif
 CXXFLAGS += $(INCLUDES)
+#CXXFLAGS += -fsanitize=address
 LIBS += -lreadline
 export CXXFLAGS LIBS
 
@@ -48,14 +49,14 @@ ARGS_DIFF = -d /home/chandler/ysyx-workbench/nemu/build/riscv64-nemu-interpreter
 default: run
 
 run:$(BINARY)
-	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF)
+	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF) -p
 	@rm -rf logs/annotated
 	make clean
 
 
 # Other targets
 gdb: $(BINARY)
-	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF)
+	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF) -p
 
 wave:
 	gtkwave Vysyx_22040632_top.vcd
