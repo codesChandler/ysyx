@@ -17,22 +17,11 @@ void itoa(unsigned int n, char * buf)
   *(buf+len+1)='\0';
 }
 
-int printf(const char *fmt, ...) {
-  panic("Not implemented");
-}
-
-int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
-}
-
-int sprintf(char *out, const char *fmt, ...)
-{
+void input_decoder(va_list ap,char *out, const char *fmt){
   char *str = out;
-  va_list ap;
   int d;
   char *s,buf[100];
 
-  va_start(ap, fmt);
   while (*fmt){
     // printf("fmt:%c\n",*fmt);
     switch (*fmt++)
@@ -60,7 +49,23 @@ int sprintf(char *out, const char *fmt, ...)
     *str='\0';
   }
   va_end(ap);
-  return strlen(str);
+}
+
+int printf(const char *fmt, ...) {
+  panic("Not implemented");
+}
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
+  panic("Not implemented");
+}
+
+int sprintf(char *out, const char *fmt, ...)
+{
+  va_list ap;
+  va_start(ap, fmt);
+  input_decoder(ap,out,fmt);
+  va_end(ap);
+  return strlen(out);
   // panic("Not implemented");
 }
 
