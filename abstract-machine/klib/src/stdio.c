@@ -52,15 +52,13 @@ void input_decoder(va_list ap,char *out, const char *fmt){
 }
 
 int printf(const char *fmt, ...) {
+  char out[100];
   va_list ap;
   va_start(ap, fmt);
-  char out[100];
   input_decoder(ap,out,fmt);
   va_end(ap);
-  for(int i=0;i<strlen(out);i++)
-    putch(*(out+i));
   return strlen(out);
-  // panic("Not implemented");
+  panic("Not implemented");
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
@@ -73,6 +71,7 @@ int sprintf(char *out, const char *fmt, ...)
   va_start(ap, fmt);
   input_decoder(ap,out,fmt);
   va_end(ap);
+  return strlen(out);
   return strlen(out);
   // panic("Not implemented");
 }
