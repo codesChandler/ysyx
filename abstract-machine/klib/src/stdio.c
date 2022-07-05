@@ -57,6 +57,8 @@ int printf(const char *fmt, ...) {
   va_start(ap, fmt);
   input_decoder(ap,out,fmt);
   va_end(ap);
+  for(int i=0;i<strlen(out);i++)
+    putch(*(out+i));
   return strlen(out);
   //panic("Not implemented");
 }
