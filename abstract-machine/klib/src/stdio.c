@@ -58,7 +58,7 @@ int printf(const char *fmt, ...) {
   input_decoder(ap,out,fmt);
   va_end(ap);
   return strlen(out);
-  panic("Not implemented");
+  //panic("Not implemented");
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
