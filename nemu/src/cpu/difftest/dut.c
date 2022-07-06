@@ -16,7 +16,7 @@ void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 static bool is_skip_ref = false;
 static int skip_dut_nr_inst = 0;
 extern void inst_display();
-extern void ref_reg_display(CPU_state *ref);
+extern void isa_ref_reg_display(CPU_state *ref);
 // this is used to let ref skip instructions which
 // can not produce consistent behavior with NEMU
 void difftest_skip_ref() {
@@ -82,9 +82,9 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
     nemu_state.state = NEMU_ABORT;
     nemu_state.halt_pc = pc;
     printf("*************DiffTest Wrong*************\n");
-    isa_reg_display();
+    isa_ref_reg_display(ref);
     inst_display();
-    ref_reg_display(ref);
+    
   }
 }
 
