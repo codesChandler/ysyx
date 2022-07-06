@@ -31,6 +31,10 @@ void input_decoder(va_list ap,char *out, const char *fmt){
       memcpy(str, s, strlen(s));
       str += strlen(s);
       break;
+    case 'c': /* string */
+      *str = (char)va_arg(ap, int);
+      str ++;
+      break;    
     case 'd': /* int */
       d = va_arg(ap, int);
       if (d < 0)
