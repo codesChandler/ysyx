@@ -23,7 +23,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
   char *s,buf[100];
 
   while (*fmt){
-    // printf("fmt:%c\n",*fmt);
+    if((*fmt)=='%'){
     switch (*fmt++)
     {
     case 's': /* string */
@@ -48,11 +48,10 @@ void input_decoder(va_list ap,char *out, const char *fmt){
       itoa(d, buf);
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
-      break;
-    case '%':break;
-    default:*str=*(fmt-1);str++;break;}
+      break;}}
+    else *(str++)=*(fmt++);}
     *str='\0';
-  }
+  
   va_end(ap);
 }
 
