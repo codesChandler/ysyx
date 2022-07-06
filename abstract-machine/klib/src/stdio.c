@@ -34,6 +34,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
     case 'c': /* string */
       *str = (char)va_arg(ap, int);
       str ++;
+      str='\0';
       break;    
     case 'd': /* int */
       d = va_arg(ap, int);
