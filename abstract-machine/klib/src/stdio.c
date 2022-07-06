@@ -24,17 +24,15 @@ void input_decoder(va_list ap,char *out, const char *fmt){
 
   while (*fmt){
     if((*fmt)=='%'){
-    switch (*(fmt+1))
+    switch (*(++fmt))
     {
     case 's': /* string */
       s = va_arg(ap, char *);
-      memcpy(str, s, strlen(s));
-      str += strlen(s);
+      while(*s) {*str=*s;str++;s++;}
       break;
     case 'c': /* string */
       *str = (char)va_arg(ap, int);
       str ++;
-      str='\0';
       break;    
     case 'd': /* int */
       d = va_arg(ap, int);
@@ -48,63 +46,63 @@ void input_decoder(va_list ap,char *out, const char *fmt){
       itoa(d, buf);
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
-      break;}}
-    else *str=*fmt;
-    str++;fmt++;}
+      break;}fmt++;}
+    else {*str=*fmt;
+    str++;fmt++;}}
     *str='\0';
   
   va_end(ap);
 }
 
-int printf(const char *format, ...) {
-  // char out[1000];
-  // va_list ap;
-  // va_start(ap, fmt);
-  // input_decoder(ap,out,fmt);
-  // va_end(ap);
-  // for(int i=0;i<strlen(out);i++)
-  //   putch(*(out+i));
-  // return strlen(out);
+int printf(const char *fmt, ...) {
+  char out[100];
+  va_list ap;
+  va_start(ap, fmt);
+  input_decoder(ap,out,fmt);
+  va_end(ap);
+  for(int i=0;i<strlen(out);i++)
+    putch(*(out+i));
+  return strlen(out);
   //panic("Not implemented");
-  va_list arg;
-	va_start(arg, format);
+  // va_list arg;
+	// va_start(arg, format);
  
-	while (*format)
-	{
-		char ret = *format;
-		if (ret == '%')
-		{
-			switch (*++format)
-			{
-			case 'c':
-			{
-						char ch = (char) va_arg(arg, int);
-						putch(ch);
-						break;
-			}
-			case 's':
-			{
-						char *pc = va_arg(arg, char *);
-						while (*pc)
-						{
-							putch(*pc);
-							pc++;
-						}
-						break;
-			}
-			default:
-				break;
-			}
-		}
-		else
-		{
-			putch(*format);
-		}
-		format++;
-	}
-	va_end(arg);
+	// while (*format)
+	// {
+	// 	char ret = *format;
+	// 	if (ret == '%')
+	// 	{
+	// 		switch (*++format)
+	// 		{
+	// 		case 'c':
+	// 		{
+	// 					char ch = (char) va_arg(arg, int);
+	// 					putch(ch);
+	// 					break;
+	// 		}
+	// 		case 's':
+	// 		{
+	// 					char *pc = va_arg(arg, char *);
+	// 					while (*pc)
+	// 					{
+	// 						putch(*pc);
+	// 						pc++;
+	// 					}
+	// 					break;
+	// 		}
+	// 		default:
+	// 			break;
+	// 		}
+	// 	}
+	// 	else
+	// 	{
+	// 		putch(*format);
+	// 	}
+	// 	format++;
+	// }
+	// va_end(arg);
 
-  return 0;
+  // return 0;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
