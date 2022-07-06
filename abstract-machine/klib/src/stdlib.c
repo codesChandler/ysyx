@@ -28,27 +28,40 @@ int atoi(const char* nptr) {
   }
   return x;
 }
-// extern Area heap;
+extern Area heap;
+static int init_flag=0;
+void *malloc_ptr;
 
-// void *malloc_ptr=heap.start;
+static void bench_reset() {
+  malloc_ptr = (void *)ROUNDUP(heap.start, 8);
+}
 
 void *malloc(size_t size) {
   // On native, malloc() will be called during initializaion of C runtime.
   // Therefore do not call panic() here, else it will yield a dead recursion:
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
-#if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
-  // if(size == 0) return NULL;
-  // size  = (size_t)ROUNDUP(size, 8);
-  // char *old = malloc_ptr;
-  // malloc_ptr += size;
-  // assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr) & ((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
-  // for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p ++) {
-  //   *p = 0;
-  // }
-  // // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
-  // return old;
-  panic("Not implemented");
-#endif
+  printf("-1\n");
+  if(init_flag==0){
+    bench_reset();
+    init_flag=1;
+    printf("0\n");
+  }
+// #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
+  printf("1\n");
+  if(size == 0) return NULL;
+  size  = (size_t)ROUNDUP(size, 8);
+  char *old = malloc_ptr;
+  malloc_ptr += size;
+  printf("2\n");
+  assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr) & ((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
+  printf("3\n");
+  for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p ++) {
+    *p = 0;
+  }
+  // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
+  return old;
+  // panic("Not implemented");
+// #endif
   return NULL;
 }
 
