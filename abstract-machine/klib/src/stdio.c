@@ -57,7 +57,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
 }
 
 int printf(const char *fmt, ...) {
-  char out[100];
+  char out[1000];
   va_list ap;
   va_start(ap, fmt);
   input_decoder(ap,out,fmt);
@@ -78,7 +78,6 @@ int sprintf(char *out, const char *fmt, ...)
   va_start(ap, fmt);
   input_decoder(ap,out,fmt);
   va_end(ap);
-  return strlen(out);
   return strlen(out);
   // panic("Not implemented");
 }
