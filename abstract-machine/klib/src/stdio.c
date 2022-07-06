@@ -56,7 +56,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
   va_end(ap);
 }
 
-int printf(const char *fmt, ...) {
+int printf(const char *format, ...) {
   // char out[1000];
   // va_list ap;
   // va_start(ap, fmt);
@@ -66,6 +66,44 @@ int printf(const char *fmt, ...) {
   //   putch(*(out+i));
   // return strlen(out);
   //panic("Not implemented");
+  va_list arg;
+	va_start(arg, format);
+ 
+	while (*format)
+	{
+		char ret = *format;
+		if (ret == '%')
+		{
+			switch (*++format)
+			{
+			case 'c':
+			{
+						char ch = (char) va_arg(arg, int);
+						putch(ch);
+						break;
+			}
+			case 's':
+			{
+						char *pc = va_arg(arg, char *);
+						while (*pc)
+						{
+							putch(*pc);
+							pc++;
+						}
+						break;
+			}
+			default:
+				break;
+			}
+		}
+		else
+		{
+			putch(*format);
+		}
+		format++;
+	}
+	va_end(arg);
+
   return 0;
 }
 
