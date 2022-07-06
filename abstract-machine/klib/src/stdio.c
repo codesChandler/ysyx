@@ -24,7 +24,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
 
   while (*fmt){
     if((*fmt)=='%'){
-    switch (*++fmt)
+    switch (*(fmt+1))
     {
     case 's': /* string */
       s = va_arg(ap, char *);
@@ -49,7 +49,8 @@ void input_decoder(va_list ap,char *out, const char *fmt){
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
       break;}}
-    else *str++=*fmt++;}
+    else *str=*fmt;
+    str++;fmt++;}
     *str='\0';
   
   va_end(ap);
