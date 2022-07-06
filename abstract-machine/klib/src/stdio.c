@@ -63,46 +63,6 @@ int printf(const char *fmt, ...) {
   for(int i=0;i<strlen(out);i++)
     putch(*(out+i));
   return strlen(out);
-  //panic("Not implemented");
-  // va_list arg;
-	// va_start(arg, format);
- 
-	// while (*format)
-	// {
-	// 	char ret = *format;
-	// 	if (ret == '%')
-	// 	{
-	// 		switch (*++format)
-	// 		{
-	// 		case 'c':
-	// 		{
-	// 					char ch = (char) va_arg(arg, int);
-	// 					putch(ch);
-	// 					break;
-	// 		}
-	// 		case 's':
-	// 		{
-	// 					char *pc = va_arg(arg, char *);
-	// 					while (*pc)
-	// 					{
-	// 						putch(*pc);
-	// 						pc++;
-	// 					}
-	// 					break;
-	// 		}
-	// 		default:
-	// 			break;
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-	// 		putch(*format);
-	// 	}
-	// 	format++;
-	// }
-	// va_end(arg);
-
-  // return 0;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
