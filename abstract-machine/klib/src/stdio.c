@@ -49,7 +49,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
       break;}}
-    else *(str++)=*(fmt++);}
+    else *str++=*fmt++;}
     *str='\0';
   
   va_end(ap);
