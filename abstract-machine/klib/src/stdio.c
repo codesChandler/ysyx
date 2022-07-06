@@ -24,7 +24,7 @@ void input_decoder(va_list ap,char *out, const char *fmt){
 
   while (*fmt){
     if((*fmt)=='%'){
-    switch (*fmt++)
+    switch (*++fmt)
     {
     case 's': /* string */
       s = va_arg(ap, char *);
