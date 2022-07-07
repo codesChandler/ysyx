@@ -47,23 +47,23 @@ void *malloc(size_t size) {
     bench_reset();
     init_flag=1;
   }
-  // #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
+  #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
   //   panic("Not implemented");
-  // #endif
-
-  if(size == 0) return NULL;
-  size  = (size_t)ROUNDUP(size, 8);
-  char *old = malloc_ptr;
-  malloc_ptr += size;
+      if(size == 0) return NULL;
+    size  = (size_t)ROUNDUP(size, 8);
+    char *old = malloc_ptr;
+    malloc_ptr += size;
   // return old;
-  assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr) & ((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
+    assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr) & ((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
  
-  for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p++) {
-    assert(p!=NULL);
-    *p = 0;
-  }
+    for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p++) {
+      assert(p!=NULL);
+      *p = 0;
+    }
   // // // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
-  return old;
+    return old;
+  #endif
+  return NULL;
 
 }
 
