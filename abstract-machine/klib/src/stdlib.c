@@ -1,6 +1,7 @@
 #include <am.h>
 #include <klib.h>
 #include <klib-macros.h>
+#include <stdio.h>
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 static unsigned long int next = 1;
@@ -28,6 +29,7 @@ int atoi(const char* nptr) {
   }
   return x;
 }
+
 extern Area heap;
 static int init_flag=0;
 void *malloc_ptr;
@@ -40,29 +42,29 @@ void *malloc(size_t size) {
   // On native, malloc() will be called during initializaion of C runtime.
   // Therefore do not call panic() here, else it will yield a dead recursion:
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
-  printf("-1\n");
+
   if(init_flag==0){
     bench_reset();
     init_flag=1;
-    printf("0\n");
   }
-// #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
-  printf("1\n");
+  #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
+    panic("Not implemented");
+  #endif
+
   if(size == 0) return NULL;
   size  = (size_t)ROUNDUP(size, 8);
   char *old = malloc_ptr;
   malloc_ptr += size;
-  printf("2\n");
-  assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr) & ((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
-  printf("3\n");
-  for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p ++) {
-    *p = 0;
+  // return old;
+  // assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr) & ((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
+ 
+  for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p++) {
+    assert(p!=NULL);
+    // *p = 0;
   }
-  // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
-  return old;
-  // panic("Not implemented");
-// #endif
+  // // // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
   return NULL;
+
 }
 
 void free(void *ptr) {
