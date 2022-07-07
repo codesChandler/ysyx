@@ -63,7 +63,7 @@ void *malloc(size_t size) {
     // *p = 0;
   }
   // // // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
-  return NULL;
+  return old;
 
 }
 
