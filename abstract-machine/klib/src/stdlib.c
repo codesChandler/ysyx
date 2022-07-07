@@ -60,7 +60,7 @@ void *malloc(size_t size) {
  
   for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p++) {
     assert(p!=NULL);
-    // *p = 0;
+    *p = 0;
   }
   // // // assert((uintptr_t)hbrk - (uintptr_t)heap.start <= setting->mlim);
   return old;
