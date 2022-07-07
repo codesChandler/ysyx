@@ -34,7 +34,7 @@ extern Area heap;
 static int init_flag=0;
 void *malloc_ptr;
 
-static void bench_reset() {
+static void ptr_init() {
   malloc_ptr = (void *)ROUNDUP(heap.start, 8);
 }
 
@@ -44,7 +44,7 @@ void *malloc(size_t size) {
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
 
   if(init_flag==0){
-    bench_reset();
+    ptr_init();
     init_flag=1;
   }
   #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
