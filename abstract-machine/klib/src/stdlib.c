@@ -47,9 +47,9 @@ void *malloc(size_t size) {
     bench_reset();
     init_flag=1;
   }
-  #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
-    panic("Not implemented");
-  #endif
+  // #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
+  //   panic("Not implemented");
+  // #endif
 
   if(size == 0) return NULL;
   size  = (size_t)ROUNDUP(size, 8);
