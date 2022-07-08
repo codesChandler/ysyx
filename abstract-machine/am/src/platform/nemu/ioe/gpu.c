@@ -28,9 +28,6 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buff
   //int x, y; void *pixels; int w, h; bool sync
   // outl(FB_ADDR, *(uint32_t *)ctl->pixels);
   // static int cnt_p=0;
-  if (!ctl->sync)outl(SYNC_ADDR, 0);
-  else outl(SYNC_ADDR, 1);
-  
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   int cnt=0;
   for(int y_=ctl->y;y_<ctl->y+ctl->h;y_++)
@@ -38,6 +35,8 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buff
     {
       *(fb+w*y_+x_)=*(((uint32_t *)ctl->pixels)+cnt);cnt++;}
 
+  if (!ctl->sync)outl(SYNC_ADDR, 0);
+  else outl(SYNC_ADDR, 1);
 }
 
 void __am_gpu_status(AM_GPU_STATUS_T *status) {//同步寄存器
