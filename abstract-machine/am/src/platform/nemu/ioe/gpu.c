@@ -27,17 +27,17 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {//显示控制器信息
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buffer draw
   //int x, y; void *pixels; int w, h; bool sync
   // outl(FB_ADDR, *(uint32_t *)ctl->pixels);
-  static int cnt_p=0;
-  if (!ctl->sync){
-  outl(SYNC_ADDR, 0);
+  // static int cnt_p=0;
+  if (!ctl->sync)outl(SYNC_ADDR, 0);
+  else outl(SYNC_ADDR, 1);
+  
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   int cnt=0;
   for(int y_=ctl->y;y_<ctl->y+ctl->h;y_++)
     for(int x_=ctl->x;x_<ctl->x+ctl->w;x_++)
     {
       *(fb+w*y_+x_)=*(((uint32_t *)ctl->pixels)+cnt);cnt++;}
-  cnt_p++;}
-  else {outl(SYNC_ADDR, 1);printf("***************cnt_p:%d\n",cnt_p);}
+
 }
 
 void __am_gpu_status(AM_GPU_STATUS_T *status) {//同步寄存器
