@@ -28,6 +28,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buff
   //int x, y; void *pixels; int w, h; bool sync
   // outl(FB_ADDR, *(uint32_t *)ctl->pixels);
   if (!ctl->sync){
+  outl(SYNC_ADDR, 0);
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   int cnt=0;
   static int cnt_p=0;
