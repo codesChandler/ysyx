@@ -39,6 +39,7 @@ ifeq ($(MAKECMDGOALS),gdb)
 	 CXXFLAGS += -g
 endif
 CXXFLAGS += $(INCLUDES)
+#CXXFLAGS += -fsanitize=address
 LIBS += -lreadline
 export CXXFLAGS LIBS
 
