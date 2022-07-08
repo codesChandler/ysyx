@@ -3,11 +3,13 @@
 #include <string.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
+static int w;
+static int h;
 
 void __am_gpu_init() {
   int i;
-  int w = inw(VGACTL_ADDR+2);  // TODO: get the correct width
-  int h = inw(VGACTL_ADDR);  // TODO: get the correct height
+  w = inw(VGACTL_ADDR+2);  // TODO: get the correct width
+  h = inw(VGACTL_ADDR);  // TODO: get the correct height
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for (i = 0; i < w * h; i ++) fb[i] = i;
   outl(SYNC_ADDR, 1);
@@ -24,6 +26,12 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {//显示控制器信息
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buffer draw
   //int x, y; void *pixels; int w, h; bool sync
   // outl(FB_ADDR, *(uint32_t *)ctl->pixels);
+  uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+  //int start=w*ctl->y+ctr->x;
+  int cnt=0;
+  for(int x_=ctl->x;x_<=ctl->x+w;x_++)
+    for(int y_=ctl->y;y_<=ctl->y+h;y_++){
+      *(fb+w*y_+x_)=*((uint32_t *)ctl->pixels+cnt);cnt++;}
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
