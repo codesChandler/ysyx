@@ -30,14 +30,13 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buff
   // static int cnt_p=0;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   int cnt=0;
-  // int y_cnt=0;
-  // int x_cnt=0;
+  int y_cnt=0;
+  if(y_cnt<ctl->y) y_cnt=ctl->y;
   for(int y_=ctl->y;y_<ctl->y+ctl->h;y_++)
     for(int x_=ctl->x;x_<ctl->x+ctl->w;x_++)
     { 
       *(fb+w*y_+x_)=*(((uint32_t *)ctl->pixels)+cnt);cnt++;}
-
-  if (!ctl->sync)outl(SYNC_ADDR, 0);
+  if (!ctl->sync){outl(SYNC_ADDR, 0);printf("ymax:%d\n",y_cnt);}
   else outl(SYNC_ADDR, 1);
 }
 
