@@ -31,7 +31,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buff
   for(int y_=ctl->y;y_<=ctl->y+h;y_++)
     for(int x_=ctl->x;x_<=ctl->x+w;x_++)
     {
-      *(fb+w*y_+x_)=*((uint32_t *)ctl->pixels+cnt);cnt++;}
+      *(fb+w*y_+x_)=*(((uint32_t *)ctl->pixels)+cnt);cnt++;}
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
