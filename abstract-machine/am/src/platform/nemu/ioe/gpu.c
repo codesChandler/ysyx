@@ -1,6 +1,7 @@
 #include <am.h>
 #include <nemu.h>
 #include <string.h>
+#include <stdio.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 static int w;
@@ -28,10 +29,12 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buff
   // outl(FB_ADDR, *(uint32_t *)ctl->pixels);
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   int cnt=0;
+  static int cnt_p=0;
   for(int y_=ctl->y;y_<=ctl->y+ctl->h;y_++)
     for(int x_=ctl->x;x_<=ctl->x+ctl->w;x_++)
     {
-      *(fb+w*y_+x_)=*(((uint32_t *)ctl->pixels)+cnt);cnt++;}
+      *(fb+w*y_+x_)=*(((uint32_t *)ctl->pixels)+cnt);cnt++;cnt_p++;}
+  printf("***************cnt_p:%d\n",cnt_p);
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
