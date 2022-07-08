@@ -60,7 +60,7 @@ void vga_update_screen() {
   // TODO: call `update_screen()` when the sync register is non-zero,
   // then zero out the sync register
   #ifndef CONFIG_HAS_PORT_IO
-  bool ready=mmio_read(CONFIG_VGA_CTL_MMIO+4,4);;
+  bool ready=mmio_read(CONFIG_VGA_CTL_MMIO+4,1);;
   if(ready) update_screen();
   #endif
 }
