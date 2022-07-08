@@ -15,7 +15,7 @@ void __am_gpu_init() {
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {//显示控制器信息
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width = inw(VGACTL_ADDR+2), .height =inw(VGACTL_ADDR),
+    .width = inw(VGACTL_ADDR), .height =inw(VGACTL_ADDR+2),
     .vmemsz = 0
   };
 }
