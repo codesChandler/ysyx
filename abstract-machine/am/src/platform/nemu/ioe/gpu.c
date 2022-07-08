@@ -24,7 +24,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {//显示控制器信息
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {//帧缓冲控制器信息frame buffer draw
   //int x, y; void *pixels; int w, h; bool sync
-  outl(FB_ADDR, *(uint32_t *)ctl->pixels);
+  // outl(FB_ADDR, *(uint32_t *)ctl->pixels);
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
