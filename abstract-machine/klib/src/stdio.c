@@ -62,7 +62,7 @@ int printf(const char *fmt, ...) {
   va_end(ap);
   for(int i=0;i<strlen(out);i++)
     putch(*(out+i));
-  while(1);
+  // while(1);
   return strlen(out)-1;
   // return 0;
 }
