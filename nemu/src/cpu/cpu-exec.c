@@ -30,6 +30,9 @@ int space_nr=1;
 void device_update();
 void wp_evl();
 void inst_display(){
+  #ifndef CONFIG_ITRACE
+    return;
+  #endif
   int value=0;
   if (index_ibuf==0) value=15;
   else value=index_ibuf-1;
