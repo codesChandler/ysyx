@@ -17,11 +17,61 @@ void itoa(unsigned int n, char * buf)
   *(buf+len+1)='\0';
 }
 
-void input_decoder(va_list ap,char *out, const char *fmt){
+// void input_decoder(va_list ap,char *out, const char *fmt){
+//   char *str = out;
+//   int d;
+//   char *s,buf[100];
+
+//   while (*fmt){
+//     if((*fmt)=='%'){
+//     switch (*(++fmt))
+//     {
+//     case 's': /* string */
+//       s = va_arg(ap, char *);
+//       while(*s) {*str=*s;str++;s++;}
+//       break;
+//     case 'c': /* string */
+//       *str = (char)va_arg(ap, int);
+//       str ++;
+//       break;    
+//     case 'd': /* int */
+//       d = va_arg(ap, int);
+//       if (d < 0)
+//       {
+//         *str = '-';
+//         str++;
+//         d = -d;
+//       }
+//       // printf("case d n=[%d]\n", d);
+//       itoa(d, buf);
+//       memcpy(str, buf, strlen(buf));
+//       str += strlen(buf);
+//       break;}fmt++;}
+//     else {*str=*fmt;
+//     str++;fmt++;}}
+//     *str='\0';
+  
+//   va_end(ap);
+// }
+
+int printf(const char *fmt, ...) {
+  char out[100];
+  va_list ap;
+  va_start(ap, fmt);
+  int n=vsprintf(out,fmt,ap);
+  va_end(ap);
+  for(int i=0;i<strlen(out);i++)
+    putch(*(out+i));
+  return n;
+  // return 0;
+}
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
   char *str = out;
   int d;
   char *s,buf[100];
-
+  //char *fmt;//=fmt_t;
+  //fmt=fmt_t;
   while (*fmt){
     if((*fmt)=='%'){
     switch (*(++fmt))
@@ -52,32 +102,17 @@ void input_decoder(va_list ap,char *out, const char *fmt){
     *str='\0';
   
   va_end(ap);
+return strlen(out);  
 }
 
-int printf(const char *fmt, ...) {
-  char out[100];
-  va_list ap;
-  va_start(ap, fmt);
-  input_decoder(ap,out,fmt);
-  va_end(ap);
-  for(int i=0;i<strlen(out);i++)
-    putch(*(out+i));
-  // while(1);
-  return strlen(out)-1;
-  // return 0;
-}
-
-int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
-}
 
 int sprintf(char *out, const char *fmt, ...)
 {
   va_list ap;
   va_start(ap, fmt);
-  input_decoder(ap,out,fmt);
+  int n=vsprintf(out,fmt,ap);
   va_end(ap);
-  return strlen(out);
+  return n;
   // panic("Not implemented");
 }
 
