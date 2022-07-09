@@ -67,42 +67,74 @@ int printf(const char *fmt, ...) {
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
-  char *str = out;
-  int d;
-  char *s,buf[100];
-  //char *fmt;//=fmt_t;
-  //fmt=fmt_t;
-  while (*fmt){
-    if((*fmt)=='%'){
-    switch (*(++fmt))
-    {
-    case 's': /* string */
-      s = va_arg(ap, char *);
-      while(*s) {*str=*s;str++;s++;}
-      break;
-    case 'c': /* string */
-      *str = (char)va_arg(ap, int);
-      str ++;
-      break;    
-    case 'd': /* int */
-      d = va_arg(ap, int);
-      if (d < 0)
-      {
-        *str = '-';
-        str++;
-        d = -d;
-      }
-      // printf("case d n=[%d]\n", d);
-      itoa(d, buf);
-      memcpy(str, buf, strlen(buf));
-      str += strlen(buf);
-      break;}fmt++;}
-    else {*str=*fmt;
-    str++;fmt++;}}
-    *str='\0';
+//   char *str = out;
+//   int d;
+//   char *s,buf[100];
+//   //char *fmt;//=fmt_t;
+//   //fmt=fmt_t;
+//   while (*fmt){
+//     if((*fmt)=='%'){
+//     switch (*(++fmt))
+//     {
+//     case 's': /* string */
+//       s = va_arg(ap, char *);
+//       while(*s) {*str=*s;str++;s++;}
+//       break;
+//     case 'c': /* string */
+//       *str = (char)va_arg(ap, int);
+//       str ++;
+//       break;    
+//     case 'd': /* int */
+//       d = va_arg(ap, int);
+//       if (d < 0)
+//       {
+//         *str = '-';
+//         str++;
+//         d = -d;
+//       }
+//       // printf("case d n=[%d]\n", d);
+//       itoa(d, buf);
+//       memcpy(str, buf, strlen(buf));
+//       str += strlen(buf);
+//       break;}fmt++;}
+//     else {*str=*fmt;
+//     str++;fmt++;}}
+//     *str='\0';
   
-  va_end(ap);
-return str-out;//strlen(out);  
+//   va_end(ap);
+// return str-out;//strlen(out);
+char *s;
+  char *str;
+  for (str = out; *fmt; fmt++) {
+    if (*fmt != '%') {
+      *str++ = *fmt;
+      continue;
+    }
+    fmt++;
+    switch (*fmt) {
+      case 'c':
+        *str++ = va_arg(ap, int);
+        break;
+      // case 'd':
+      //   // cannot handle %02d etc. maybe fix future.
+      //   str = num2str(str, va_arg(ap, ll), 10);
+      //   break;
+      // case 'p':
+      //   str = num2str(str, va_arg(ap, ll), 16);
+      //   break;
+      case 's':
+        s = va_arg(ap, char *);
+        while (*s) *str++ = *s++;
+        break;
+      default:
+        if (*fmt != '%') *str++ = '%';
+        if (*fmt) *str++ = *fmt;
+        else fmt--;
+        break;
+    }
+  }
+  *str = '\0';
+  return str - out;
 }
 
 
