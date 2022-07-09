@@ -63,7 +63,7 @@ int printf(const char *fmt, ...) {
   for(int i=0;i<strlen(out);i++)
     putch(*(out+i));
   while(1);
-  return strlen(out);
+  return strlen(out)-1;
   // return 0;
 }
 
