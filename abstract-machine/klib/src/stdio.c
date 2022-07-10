@@ -32,7 +32,7 @@ int printf(const char *fmt, ...) {
 int vsprintf(char *out, const char *fmt, va_list ap) {
   char *str = out;
   int d;
-  char *s,buf[8096];
+  char *s,buf[100];
 
   while (*fmt){
     if((*fmt)=='%'){
