@@ -18,7 +18,7 @@ void itoa(unsigned int n, char * buf)
 }
 
 int printf(const char *fmt, ...) {
-  char out[100];
+  char out[8196];
   va_list ap;
   va_start(ap, fmt);
   int n=vsprintf(out,fmt,ap);
