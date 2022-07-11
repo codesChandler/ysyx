@@ -27,7 +27,9 @@ static void restart() {
   for(int i=0;i<CSR_LEN;i++){
     csrs[i].index=csr_index[i];
     csrs[i].name=csr_char[i];
+    if(csr_index[i]==0x300) csrs[i].reg=0xa00001800;
   }
+
 }
 
 void init_isa() {
