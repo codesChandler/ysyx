@@ -8,7 +8,7 @@ CSR csrs[CSR_LEN];
 word_t csr_r(word_t index){
   for(int i=0;i<CSR_LEN;i++){
     if(index==csrs[i].index)
-      return csrs[i].index;
+      return csrs[i].reg;
   }
   panic("no control and statues register:"FMT_WORD,index);
 }
