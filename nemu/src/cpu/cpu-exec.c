@@ -13,6 +13,7 @@
  * You can modify this value as you want.
  */
 #define MAX_INST_TO_PRINT 10
+#define IRING_BUGGER_LEN 100
 
 extern char *strtab;
 extern Elf64_Sym *symtab;
@@ -23,18 +24,21 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 static int index_ibuf=0;//for iringbuf
-static char iringbuf[16][128];
+static char iringbuf[IRING_BUGGER_LEN][128];
 static int flag_cycle=0;
 int space_nr=1;
 
 void device_update();
 void wp_evl();
 void inst_display(){
+  #ifndef CONFIG_ITRACE
+    return;
+  #endif
   int value=0;
   if (index_ibuf==0) value=15;
   else value=index_ibuf-1;
   printf("*************instructions***************\n");
-  for(int i=0;i<16;i++){
+  for(int i=0;i<IRING_BUGGER_LEN;i++){
     if(i==value) {printf("-->%s\n",iringbuf[i]);
     if(flag_cycle==0) break;}
     else printf("   %s\n",iringbuf[i]);
@@ -121,7 +125,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #ifdef CONFIG_IRINGBUF
   trace(iringbuf[index_ibuf],s);
   index_ibuf++;
-  if(index_ibuf==16) {index_ibuf=0;flag_cycle=1;}
+  if(index_ibuf==IRING_BUGGER_LEN) {index_ibuf=0;flag_cycle=1;}
 #endif
   // extern void assert_fail_msg();
   // assert_fail_msg();

@@ -17,7 +17,19 @@ void itoa(unsigned int n, char * buf)
   *(buf+len+1)='\0';
 }
 
-void input_decoder(va_list ap,char *out, const char *fmt){
+int printf(const char *fmt, ...) {
+  char out[8196];
+  va_list ap;
+  va_start(ap, fmt);
+  int n=vsprintf(out,fmt,ap);
+  va_end(ap);
+  for(int i=0;i<strlen(out);i++)
+    putch(*(out+i));
+  return n;
+  // return 0;
+}
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
   char *str = out;
   int d;
   char *s,buf[100];
@@ -52,30 +64,17 @@ void input_decoder(va_list ap,char *out, const char *fmt){
     *str='\0';
   
   va_end(ap);
+return str-out;//strlen(out);
 }
 
-int printf(const char *fmt, ...) {
-  char out[100];
-  va_list ap;
-  va_start(ap, fmt);
-  input_decoder(ap,out,fmt);
-  va_end(ap);
-  for(int i=0;i<strlen(out);i++)
-    putch(*(out+i));
-  return strlen(out);
-}
-
-int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
-}
 
 int sprintf(char *out, const char *fmt, ...)
 {
   va_list ap;
   va_start(ap, fmt);
-  input_decoder(ap,out,fmt);
+  int n=vsprintf(out,fmt,ap);
   va_end(ap);
-  return strlen(out);
+  return n;
   // panic("Not implemented");
 }
 

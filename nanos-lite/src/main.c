@@ -9,6 +9,7 @@ void init_proc(void);
 
 int main() {
   extern const char logo[];
+  // char *logo="logo\n";
   printf("%s", logo);
   Log("'Hello World!' from Nanos-lite");
   Log("Build time: %s, %s", __TIME__, __DATE__);
@@ -17,7 +18,7 @@ int main() {
 
   init_device();
 
-  init_ramdisk();
+  // init_ramdisk();
 
 #ifdef HAS_CTE
   init_irq();
