@@ -5,6 +5,7 @@
 
 extern word_t csr_r(word_t index);
 extern void csr_w(word_t index,word_t data);
+extern word_t isa_raise_intr(word_t NO, vaddr_t epc);
 
 #define R(i) gpr(i)
 #define Mr vaddr_read
@@ -136,7 +137,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 010 ????? 01000 11", sw     , S, Mw(src1 + dest, 4, src2));
   INSTPAT("??????? ????? ????? 001 ????? 01000 11", sh     , S, Mw(src1 + dest, 2, src2));
   //INSTPAT("0011111 01010 01111 000 11000 01000 11", sd     , S, Mw(src1 + dest, 8,src2)); //              10   15         24
-
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall , N, s->dnpc=isa_raise_intr(1, s->dnpc)); // R(10) is $a0
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
 
