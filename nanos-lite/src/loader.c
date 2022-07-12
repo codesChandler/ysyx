@@ -44,7 +44,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       memcpy((void *)Phdr[i].p_vaddr,pbuf,Phdr[i].p_filesz);
       printf("0\n");
       assert(Phdr[i].p_vaddr+Phdr[i].p_filesz!=0);
-      memcpy((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
+      memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
       printf("1\n");
     }
   }
