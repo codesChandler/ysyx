@@ -20,7 +20,7 @@ typedef struct {
 #define MSTATUS_INDEX 0x300
 #define MCAUSE_INDEX 0x342
 
-#define En_Call_M 0xb //Environment call from M-mode
+#define Env_Call_M 0xb //Environment call from M-mode
 
 // decode
 typedef struct {
