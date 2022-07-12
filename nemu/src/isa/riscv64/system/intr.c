@@ -28,7 +28,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   #ifdef CONFIG_ETRACE
     switch(NO){
-      case En_Call_M: Log("Environment call from M-mode");break;
+      case En_Call_M: Log("Environment call from M-mode");//break;
       default: panic("Unhandled Exception Code = "FMT_WORD , NO);
     }
   #endif
