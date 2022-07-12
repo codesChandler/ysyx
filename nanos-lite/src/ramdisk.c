@@ -13,7 +13,7 @@ extern uint8_t ramdisk_end;
 size_t ramdisk_read(void *buf, size_t offset, size_t len) {
   assert(offset + len <= RAMDISK_SIZE);
   printf("I am back0\n");
-  memcpy(buf, &ramdisk_start + offset, len);
+  // memcpy(buf, &ramdisk_start + offset, len);
   printf("I am back\n");
   return len;
 }
