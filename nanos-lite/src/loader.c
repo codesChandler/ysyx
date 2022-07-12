@@ -26,14 +26,13 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   printf("size:%d\n",phentsize*phennum);
   Elf_Phdr Phdr[phennum];//=(Elf_Phdr *)malloc(phentsize*phennum);
   assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
-  printf("I am here-1\n");
+  // printf("I am here-1\n");
   for(int i=0;i<phennum;i++){
     printf("for_before;%d\n",i);
     if(Phdr[i].p_type == PT_LOAD){
-      printf("for;%d\n",i);
-      uint8_t pbuf[Phdr[i].p_filesz];//=(uint8_t *)malloc(Phdr[i]->p_filesz);
+      printf("for_after%d\n",i);
+      uint8_t pbuf[Phdr[i].p_filesz];
       assert(ramdisk_read(pbuf,Phdr[i].p_offset,Phdr[i].p_filesz)==Phdr[i].p_filesz);
-      // free(pbuf);
     }
   }
   // return elf_size;
