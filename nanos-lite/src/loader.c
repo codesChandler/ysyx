@@ -27,6 +27,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
   printf("I am here-1\n");
   for(int i=0;i<phennum;i++){
+    printf("for_before;%d\n",i);
     if(Phdr[i]-> p_type == PT_LOAD){
       printf("for;%d\n",i);
       uint8_t *pbuf=(uint8_t *)malloc(Phdr[i]->p_filesz);
