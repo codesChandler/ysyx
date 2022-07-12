@@ -58,7 +58,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
       itoa(d, buf);
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
-      break;}fmt++;}
+      break;
+    default:panic("not implement this format");break;}fmt++;}
     else {*str=*fmt;
     str++;fmt++;}}
     *str='\0';
