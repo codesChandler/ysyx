@@ -20,20 +20,20 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   // printf("elf_size:%d\n",elf_size);
   int rlen=ramdisk_read(buf,0,elf_size);
   assert(rlen==elf_size);
-  // Elf_Ehdr *Ehdr=(void *)buf;
-  // int phentsize=Ehdr->e_phentsize;
-  // int phennum=Ehdr->e_phnum;
-  // Elf_Phdr *Phdr[phennum];
-  // assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
-  // for(int i=0;i<phennum;i++){
-  //   if(Phdr[i]-> p_type == PT_LOAD){
-  //     uint8_t *pbuf=(uint8_t *)malloc(Phdr[i]->p_filesz);
-  //     assert(ramdisk_read(pbuf,Phdr[i]->p_offset,Phdr[i]->p_filesz)==Phdr[i]->p_filesz);
-  //     free(pbuf);
-  //   }
-  // }
-  return elf_size;
-  // return Ehdr->e_entry;
+  Elf_Ehdr *Ehdr=(void *)buf;
+  int phentsize=Ehdr->e_phentsize;
+  int phennum=Ehdr->e_phnum;
+  Elf_Phdr *Phdr[phennum];
+  assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
+  for(int i=0;i<phennum;i++){
+    if(Phdr[i]-> p_type == PT_LOAD){
+      uint8_t *pbuf=(uint8_t *)malloc(Phdr[i]->p_filesz);
+      assert(ramdisk_read(pbuf,Phdr[i]->p_offset,Phdr[i]->p_filesz)==Phdr[i]->p_filesz);
+      free(pbuf);
+    }
+  }
+  // return elf_size;
+  return Ehdr->e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
