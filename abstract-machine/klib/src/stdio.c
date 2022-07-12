@@ -5,13 +5,13 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-void itoa(unsigned int n, char * buf)
+void itoa(unsigned int n, char * buf,int base)
 { int len,m;
-  for(len=0,m=n;m/10!=0;len++)
-    m/=10;
+  for(len=0,m=n;m/base!=0;len++)
+    m/=base;
   for(int i=0;i<=len;i++){
-    *(buf+len-i)=n%10+'0';
-    n=n/10;
+    *(buf+len-i)=n%base+'0';
+    n=n/base;
   }
   // printf("len:%d\n",len);
   *(buf+len+1)='\0';
@@ -46,8 +46,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
       *str = (char)va_arg(ap, int);
       str ++;
       break;    
-    //case 'd': /* int */
-    default:
+    case 'd': /* int */
       d = va_arg(ap, int);
       if (d < 0)
       {
@@ -56,7 +55,20 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
         d = -d;
       }
       // printf("case d n=[%d]\n", d);
-      itoa(d, buf);
+      itoa(d, buf,10);
+      memcpy(str, buf, strlen(buf));
+      str += strlen(buf);
+      break;
+    case 'x':
+      d = va_arg(ap, int);
+      if (d < 0)
+      {
+        *str = '-';
+        str++;
+        d = -d;
+      }
+      // printf("case d n=[%d]\n", d);
+      itoa(d, buf,16);
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
       break;}fmt++;}
