@@ -10,8 +10,14 @@ void itoa(unsigned int n, char * buf,int base)
   for(len=0,m=n;m/base!=0;len++)
     m/=base;
   for(int i=0;i<=len;i++){
-    *(buf+len-i)=n%base+'0';
-    n=n/base;
+    if(n%base<10){
+      *(buf+len-i)=n%base+'0';
+      n=n/base;}
+    else{
+      *(buf+len-i)=n%base+'0'+8;
+      n=n/base;
+    }
+
   }
   // printf("len:%d\n",len);
   *(buf+len+1)='\0';
