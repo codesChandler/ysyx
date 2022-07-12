@@ -49,7 +49,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   // return elf_size;
-  printf("I am here:%d\n",(uint32_t)(unsigned)Ehdr->e_entry);
+  printf("I am here:%d\n",(unsigned)Ehdr->e_entry);
   // assert(0);
   return (uint32_t)Ehdr->e_entry;
 }
