@@ -145,7 +145,8 @@ void *memmove(void *dst, const void *src, size_t n)
 
 void *memcpy(void *out, const void *in, size_t n)
 {
-  //assert(NULL != out && NULL != in);
+  assert(NULL != out && NULL != in);
+  if(n<=0) return out;
   char *tmpout = (char *)out;
   char *tmpin = (char *)in;
   // panic("Not implemented");

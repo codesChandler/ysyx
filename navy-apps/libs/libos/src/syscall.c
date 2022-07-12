@@ -2,7 +2,7 @@
 #include <sys/stat.h>
 #include <setjmp.h>
 #include <sys/time.h>
-#include <assert.h>
+#include "assert.h"
 #include <time.h>
 #include "syscall.h"
 
