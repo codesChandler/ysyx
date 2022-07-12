@@ -54,12 +54,12 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
       break;    
     case 'd': /* int */
       d = va_arg(ap, int);
-      if (d < 0)
-      {
-        *str = '-';
-        str++;
-        d = -d;
-      }
+      // if (d < 0)
+      // {
+      //   *str = '-';
+      //   str++;
+      //   d = -d;
+      // }
       // printf("case d n=[%d]\n", d);
       itoa(d, buf,10);
       memcpy(str, buf, strlen(buf));
@@ -68,12 +68,12 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
     case 'p':
     case 'x':
       d = va_arg(ap, int);
-      if (d < 0)
-      {
-        *str = '-';
-        str++;
-        d = -d;
-      }
+      // if (d < 0)
+      // {
+      //   *str = '-';
+      //   str++;
+      //   d = -d;
+      // }
       itoa(d, buf,16);
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
