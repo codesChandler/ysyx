@@ -49,14 +49,14 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   // return elf_size;
-  // printf("I am here\n");
+  printf("I am here\n");
   // assert(0);
   return Ehdr->e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
-  Log("Jump to entry = %p", entry);
+  Log("Jump to entry = %d", entry);
   ((void(*)())entry) ();
 }
 
