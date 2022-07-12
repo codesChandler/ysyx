@@ -54,8 +54,8 @@ void *malloc(size_t size) {
     char *old = malloc_ptr;
     malloc_ptr += size;
   // return old;
-    // assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr));
-    assert(((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
+    assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr));
+    // assert(((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
  
     for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)malloc_ptr; p++) {
       assert(p!=NULL);
