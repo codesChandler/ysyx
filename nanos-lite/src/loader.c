@@ -16,6 +16,7 @@ extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
   // TODO();
   int elf_size=get_ramdisk_size();
+  printf("elf_size:%d\n",elf_size);
   // uint8_t *buf[elf_size];
   // assert(ramdisk_read(buf,0,elf_size)==elf_size);
   // Elf_Ehdr *Ehdr=(void *)buf;
