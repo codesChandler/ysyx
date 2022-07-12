@@ -14,7 +14,7 @@ void itoa(unsigned int n, char * buf,int base)
       *(buf+len-i)=n%base+'0';
       n=n/base;}
     else{
-      *(buf+len-i)=n%base+'0'+40;
+      *(buf+len-i)=n%base+'0'+39;
       n=n/base;
     }
 
