@@ -40,11 +40,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
     if(Phdr[i].p_type == PT_LOAD){
 
-      assert(ramdisk_read(pbuf,Phdr[i].p_offset,Phdr[i].p_filesz)==Phdr[i].p_filesz);
+      assert(ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz)==Phdr[i].p_filesz);
       assert(Phdr[i].p_vaddr!=0);
-      printf("Phdr[i].p_vaddr:%x\n",Phdr[i].p_vaddr);
+
       memcpy((void *)Phdr[i].p_vaddr,pbuf,Phdr[i].p_filesz);
-      printf("Phdr[i].p_vaddr+Phdr[i].p_filesz:%x\n",Phdr[i].p_vaddr+Phdr[i].p_filesz);
+
       assert(Phdr[i].p_vaddr+Phdr[i].p_filesz!=0);
       memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
 
