@@ -23,6 +23,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr *Ehdr=(void *)buf;
   int phentsize=Ehdr->e_phentsize;
   int phennum=Ehdr->e_phnum;
+  printf("size:%d\n",phentsize*phennum);
   Elf_Phdr *Phdr=(Elf_Phdr *)malloc(phentsize*phennum);
   assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
   printf("I am here-1\n");
