@@ -18,7 +18,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int elf_size=get_ramdisk_size();
   // printf("elf_size:%d\n",elf_size);
   uint8_t *buf[elf_size];
-  assert(ramdisk_read(buf,0,elf_size)==elf_size);
+  int rlen=ramdisk_read(buf,0,elf_size);
+  assert(rlen==elf_size);
   // Elf_Ehdr *Ehdr=(void *)buf;
   // int phentsize=Ehdr->e_phentsize;
   // int phennum=Ehdr->e_phnum;
