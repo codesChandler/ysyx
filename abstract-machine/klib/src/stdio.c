@@ -82,7 +82,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
     else {*str=*fmt;
     str++;fmt++;}}
     *str='\0';
-  
+
   va_end(ap);
 return str-out;//strlen(out);
 }
