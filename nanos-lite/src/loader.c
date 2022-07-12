@@ -14,7 +14,6 @@ extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
-  // TODO();
   int elf_size=get_ramdisk_size();
   uint8_t buf[elf_size];
 
@@ -42,13 +41,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
       ramdisk_read(pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
       memcpy((void *)Phdr[i].p_vaddr,pbuf,Phdr[i].p_filesz);
-      memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
+      // memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
 
     }
   }
-  // return elf_size;
-  // printf("I am here:%d\n",(unsigned)Ehdr->e_entry);
-  // assert(0);
+
   return (uint32_t)Ehdr->e_entry;
 }
 
