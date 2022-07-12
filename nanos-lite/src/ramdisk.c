@@ -2,7 +2,7 @@
 
 extern uint8_t ramdisk_start;
 extern uint8_t ramdisk_end;
-#define RAMDISK_SIZE (uint64_t)(((uint64_t)&ramdisk_end) - ((uint64_t)&ramdisk_start))
+#define RAMDISK_SIZE ((&ramdisk_end) - (&ramdisk_start))
 
 /* The kernel is monolithic, therefore we do not need to
  * translate the address `buf' from the user process to
@@ -24,8 +24,8 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len) {
 }
 
 void init_ramdisk() {
-  Log("ramdisk info: start = %p, end = %p, size = %d bytes",
-      (uint64_t)&ramdisk_start, (uint64_t)&ramdisk_end, RAMDISK_SIZE);
+  Log("ramdisk info: start = %d, end = %d, size = %d bytes",
+      &ramdisk_start, &ramdisk_end, RAMDISK_SIZE);
 }
 
 size_t get_ramdisk_size() {
