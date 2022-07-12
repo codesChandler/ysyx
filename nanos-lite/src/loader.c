@@ -44,7 +44,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   }
   // return elf_size;
   printf("I am here\n");
-  while(1);
+  assert(0);
   return Ehdr->e_entry;
 }
 
