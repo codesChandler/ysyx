@@ -30,9 +30,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     printf("for_before;%d\n",i);
     if(Phdr[i]-> p_type == PT_LOAD){
       printf("for;%d\n",i);
-      uint8_t *pbuf=(uint8_t *)malloc(Phdr[i]->p_filesz);
+      uint8_t pbuf[Phdr[i]->p_filesz];//=(uint8_t *)malloc(Phdr[i]->p_filesz);
       assert(ramdisk_read(pbuf,Phdr[i]->p_offset,Phdr[i]->p_filesz)==Phdr[i]->p_filesz);
-      free(pbuf);
+      // free(pbuf);
     }
   }
   // return elf_size;
