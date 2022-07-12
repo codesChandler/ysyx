@@ -30,6 +30,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       free(pbuf);
     }
   }
+  while(1){}
   return Ehdr->e_entry;
 }
 
