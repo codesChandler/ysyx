@@ -13,6 +13,7 @@
 extern size_t get_ramdisk_size();
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
+
 static uintptr_t loader(PCB *pcb, const char *filename) {
   // TODO();
   int elf_size=get_ramdisk_size();
@@ -27,11 +28,17 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Phdr Phdr[phennum];//=(Elf_Phdr *)malloc(phentsize*phennum);
   assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
   // printf("I am here-1\n");
+
+  int filesz=0;
+  for(int i=0;i<phennum;i++){//find max size
+    if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
+  }
+  uint8_t pbuf[filesz];
+
   for(int i=0;i<phennum;i++){
     printf("for_before;%d\n",i);
     if(Phdr[i].p_type == PT_LOAD){
       printf("for_after%d\n",i);
-      uint8_t pbuf[Phdr[i].p_filesz];
       assert(ramdisk_read(pbuf,Phdr[i].p_offset,Phdr[i].p_filesz)==Phdr[i].p_filesz);
     }
   }
