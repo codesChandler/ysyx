@@ -54,7 +54,7 @@ void *malloc(size_t size) {
     char *old = malloc_ptr;
     malloc_ptr += size;
   // return old;
-    printf("heap.start:%d--malloc_ptr:%d\n",heap.start,malloc_ptr);
+    printf("heap.start:%d--malloc_ptr:%d--heap.end:%d\n",heap.start,malloc_ptr,heap.end);
     assert(((uintptr_t)heap.start <= (uintptr_t)malloc_ptr));
     // assert(((uintptr_t)malloc_ptr< (uintptr_t)heap.end));
  
