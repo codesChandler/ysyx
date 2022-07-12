@@ -46,7 +46,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
       *str = (char)va_arg(ap, int);
       str ++;
       break;    
-    case 'd': /* int */
+    //case 'd': /* int */
+    default:
       d = va_arg(ap, int);
       if (d < 0)
       {
@@ -58,8 +59,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
       itoa(d, buf);
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
-      break;
-    default:panic("not implement this format");break;}fmt++;}
+      break;}fmt++;}
     else {*str=*fmt;
     str++;fmt++;}}
     *str='\0';
