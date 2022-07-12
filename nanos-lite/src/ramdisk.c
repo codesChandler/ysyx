@@ -31,6 +31,6 @@ void init_ramdisk() {
 }
 
 size_t get_ramdisk_size() {
-  printf("I am back-1s\n");
+  
   return RAMDISK_SIZE;
 }
