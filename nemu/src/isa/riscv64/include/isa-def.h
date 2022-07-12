@@ -15,6 +15,12 @@ typedef struct {
 } CSR;//for cte
 
 #define CSR_LEN 4
+#define MTVEC_INDEX 0x305
+#define MEPC_INDEX 0x341
+#define MSTATUS_INDEX 0x300
+#define MCAUSE_INDEX 0x342
+
+#define Env_Call_M 0xb //Environment call from M-mode
 
 // decode
 typedef struct {

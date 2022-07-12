@@ -26,9 +26,15 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * Then return the address of the interrupt/exception vector.
    */
-  csr_w(0x341,epc);
-  csr_w(0x342,NO);
-  return csr_r(0x305);
+  #ifdef CONFIG_ETRACE
+    switch(NO){
+      case Env_Call_M: Log("Environment call from M-mode");break;
+      default: panic("Unhandled Exception Code = "FMT_WORD , NO);
+    }
+  #endif
+  csr_w(MEPC_INDEX,epc);
+  csr_w(MCAUSE_INDEX,NO);
+  return csr_r(MTVEC_INDEX);
 }
 
 word_t isa_query_intr() {
