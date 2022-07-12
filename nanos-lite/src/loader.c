@@ -36,16 +36,16 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   uint8_t pbuf[filesz];
 
   for(int i=0;i<phennum;i++){
-    printf("for_before;%d\n",i);
+    // printf("for_before;%d\n",i);
     if(Phdr[i].p_type == PT_LOAD){
-      printf("for_after%d\n",i);
+      // printf("for_after%d\n",i);
       assert(ramdisk_read(pbuf,Phdr[i].p_offset,Phdr[i].p_filesz)==Phdr[i].p_filesz);
       assert(Phdr[i].p_vaddr!=0);
       memcpy((void *)Phdr[i].p_vaddr,pbuf,Phdr[i].p_filesz);
-      printf("0\n");
+      // printf("0\n");
       assert(Phdr[i].p_vaddr+Phdr[i].p_filesz!=0);
       memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
-      printf("1\n");
+      // printf("1\n");
     }
   }
   // return elf_size;
@@ -56,8 +56,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = (loader(pcb, filename) & 0xFFFF);
-  printf("Jump to entry = %ps\n",(int)entry);
-  Log("Jump to entry = %x", entry);
+  Log("Jump to entry = %p", entry);
   ((void(*)())entry) ();
 }
 
