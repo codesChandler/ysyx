@@ -40,11 +40,13 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     if(Phdr[i].p_type == PT_LOAD){
       printf("for_after%d\n",i);
       assert(ramdisk_read(pbuf,Phdr[i].p_offset,Phdr[i].p_filesz)==Phdr[i].p_filesz);
+      memcpy((void *)Phdr[i].p_vaddr,pbuf,Phdr[i].p_filesz);
+      memcpy((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
     }
   }
   // return elf_size;
-  printf("I am here\n");
-  assert(0);
+  // printf("I am here\n");
+  // assert(0);
   return Ehdr->e_entry;
 }
 
