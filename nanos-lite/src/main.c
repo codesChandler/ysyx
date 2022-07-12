@@ -16,7 +16,7 @@ int main() {
 
   init_mm();
 
-  // init_device();
+  init_device();
 
   init_ramdisk();
 
