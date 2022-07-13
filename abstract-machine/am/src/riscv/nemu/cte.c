@@ -4,7 +4,7 @@
 
 static Context* (*user_handler)(Event, Context*) = NULL;
 //uintptr_t gpr[32],mcause,mstatus,mepc;
-Context* __am_irq_handle(Context *c) {
+Context* __am_irq_handle(Context *c) {//猜测该函数的地址接近异常入口地址
   // printf("c->mcause:%d---c->mstatus:%d---c->mepc:%d\n",c->mcause,c->mstatus,c->mepc);
   if (user_handler) {
     Event ev = {0};
