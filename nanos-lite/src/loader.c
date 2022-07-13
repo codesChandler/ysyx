@@ -21,6 +21,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   assert(rlen==elf_size);
   Elf_Ehdr *Ehdr=(void *)buf;
   assert(*(uint32_t *)(Ehdr->e_ident) == 0x464C457f);
+  assert(Ehdr->e_machine == EM_RISCV);
 
   int phentsize=Ehdr->e_phentsize;
   int phennum=Ehdr->e_phnum;
