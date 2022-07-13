@@ -143,28 +143,53 @@ void *memmove(void *dst, const void *src, size_t n)
   return dst;
 }
 
-void *memcpy(void *out, const void *in, size_t n)
+void *memcpy(void *dst, const void *src, size_t len)
 {
-  assert(NULL != out && NULL != in);
-  if(n<=0) return out;
-  char *tmpout = (char *)out;
-  char *tmpin = (char *)in;
-  // panic("Not implemented");
-  if (tmpout < tmpin ||tmpin+n-1 <tmpout){
-    printf("I am here-1\n");
-    while (n--)
-    {
-      *tmpout++ = *tmpin++;
-    }}
-  else{
-    printf("I am here0\n");
-    tmpout=tmpout+n-1;
-    tmpin=tmpin+n-1;
-    while(n--){
-      *tmpout--=*tmpin--;
-    }
-  }
-  return out;
+  // assert(NULL != out && NULL != in);
+  // if(n<=0) return out;
+  // char *tmpout = (char *)out;
+  // char *tmpin = (char *)in;
+  // // panic("Not implemented");
+  // if (tmpout < tmpin ||tmpin+n-1 <tmpout){
+  //   printf("I am here-1\n");
+  //   while (n--)
+  //   {
+  //     *tmpout++ = *tmpin++;
+  //   }}
+  // else{
+  //   printf("I am here0\n");
+  //   tmpout=tmpout+n-1;
+  //   tmpin=tmpin+n-1;
+  //   while(n--){
+  //     *tmpout--=*tmpin--;
+  //   }
+  // }
+  // return out;
+  if(NULL == dst || NULL == src){
+		return NULL;
+	}
+	
+	void *ret = dst;
+	
+	if(dst <= src || (char *)dst >= (char *)src + len){
+		//没有内存重叠，从低地址开始复制
+		while(len--){
+			*(char *)dst = *(char *)src;
+			dst = (char *)dst + 1;
+			src = (char *)src + 1;
+		}
+	}else{
+		//有内存重叠，从高地址开始复制
+		src = (char *)src + len - 1;
+		dst = (char *)dst + len - 1;
+		while(len--){
+			*(char *)dst = *(char *)src;
+			dst = (char *)dst - 1;
+			src = (char *)src - 1;
+		}
+	}
+	return ret;
+
 }
 
 int memcmp(const void *s1, const void *s2, size_t n)
