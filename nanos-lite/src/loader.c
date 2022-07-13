@@ -34,7 +34,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
   }
   // printf("p_filesz:%d\n",filesz);
-  uint8_t pbuf[256];//256可以运行成功，257失败
+  uint8_t pbuf[257];//256可以运行成功，257失败
   // uint8_t *bbuf=pbuf;
 
   for(int i=0;i<phennum;i++){
