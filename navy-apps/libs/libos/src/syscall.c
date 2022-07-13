@@ -64,8 +64,19 @@ int _write(int fd, void *buf, size_t count) {
   return _syscall_(SYS_write, fd, (int)buf, count);;//write返回值需要查man
 }
 
+extern char end;
 void *_sbrk(intptr_t increment) {
-  return (void *)-1;
+  static intptr_t pgb=(intptr_t)&end;
+  intptr_t old=pgb;
+  intptr_t new=pgb+increment;
+  // char buf[100];
+  if(!_syscall_(SYS_brk,0, 0, 0)){
+    // sprintf(buf,"I am here\n");
+    // _write(1, buf, 10);
+    pgb=new;
+    return (void *)old;}
+  else return (void *)-1;
+  // return (void *)-1;
 }
 
 int _read(int fd, void *buf, size_t count) {
