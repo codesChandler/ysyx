@@ -15,8 +15,11 @@ void sys_exit(Context *c){
 int sys_write(Context *c){
   printf("I am here\n");
   int fd=c->GPR1;
+  printf("fd:%d\n",fd);
   uintptr_t buf=c->GPR2;
+  printf("buf:%d\n",buf);
   int len=c->GPR3;
+  printf("len:%d\n",len);
   int i=0;
   if(fd==1 || fd==2){
   for(;i<len;i++){
