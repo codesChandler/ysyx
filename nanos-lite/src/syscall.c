@@ -17,9 +17,9 @@ int sys_write(Context *c){
   int fd=c->GPR2;
   printf("fd:%d\n",fd);
   uintptr_t buf=c->GPR3;
-  printf("buf:%d\n",buf);
+  printf("buf:%x\n",buf);
   int len=c->GPR4;
-  printf("len:%x\n",len);
+  printf("len:%d\n",len);
   int i=0;
   if(fd==1 || fd==2){
   for(;i<len;i++){
