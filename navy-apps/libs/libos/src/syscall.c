@@ -70,6 +70,7 @@ void *_sbrk(intptr_t increment) {
   intptr_t old=pgb;
   intptr_t new=pgb+increment;
   if(!_syscall_(SYS_brk,0, 0, 0)){
+    putch('0');
     pgb=new;
     return (void *)old;}
   else return (void *)-1;
