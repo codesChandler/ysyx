@@ -150,18 +150,18 @@ void *memcpy(void *out, const void *in, size_t n)
   char *tmpout = (char *)out;
   char *tmpin = (char *)in;
   // panic("Not implemented");
-  if (tmpout < tmpin ||tmpin+n-1 <tmpout){
+  //if (tmpout < tmpin ||tmpin+n-1 <tmpout){
     while (n--)
     {
       *tmpout++ = *tmpin++;
-    }}
-  else{
-    tmpout=tmpout+n-1;
-    tmpin=tmpin+n-1;
-    while(n--){
-      *tmpout--=*tmpin--;
-    }
-  }
+    }//}
+  // else{
+  //   tmpout=tmpout+n-1;
+  //   tmpin=tmpin+n-1;
+  //   while(n--){
+  //     *tmpout--=*tmpin--;
+  //   }
+  // }
   return out;
 }
 
