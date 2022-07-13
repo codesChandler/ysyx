@@ -29,21 +29,21 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
 
 
-  int filesz=0;
-  for(int i=0;i<phennum;i++){//find max size
-    if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
-  }
+  // int filesz=0;
+  // for(int i=0;i<phennum;i++){//find max size
+  //   if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
+  // }
   // printf("p_filesz:%d\n",filesz);
-  uint8_t pbuf[256];//256可以运行成功，257失败
+  // uint8_t pbuf[256];//256可以运行成功，257失败
   // uint8_t *bbuf=pbuf;
 
   for(int i=0;i<phennum;i++){
 
     if(Phdr[i].p_type == PT_LOAD){
-      // ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);
+      ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);//不明白为啥采用buf传递就不对，可能与内存存放，地址对齐有关
     
-      ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
-      memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_filesz);
+      // ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
+      // memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_filesz);
       memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
 
     }
