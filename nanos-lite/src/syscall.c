@@ -20,11 +20,11 @@ int sys_write(Context *c){
   printf("buf:%x\n",buf);
   int len=c->GPR4;
   printf("len:%d\n",len);
-  int i=0;
+  // int i=0;
   if(fd==1 || fd==2){
     extern void putch(char ch);
     putch(*(char *)buf);}
-  return i;
+  return 7;
 }
 
 
