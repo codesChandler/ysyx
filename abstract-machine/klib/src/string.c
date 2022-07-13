@@ -151,11 +151,13 @@ void *memcpy(void *out, const void *in, size_t n)
   char *tmpin = (char *)in;
   // panic("Not implemented");
   if (tmpout < tmpin ||tmpin+n-1 <tmpout){
+    printf("I am here-1\n");
     while (n--)
-    {printf("I am here\n");
+    {
       *tmpout++ = *tmpin++;
     }}
   else{
+    printf("I am here0\n");
     tmpout=tmpout+n-1;
     tmpin=tmpin+n-1;
     while(n--){
