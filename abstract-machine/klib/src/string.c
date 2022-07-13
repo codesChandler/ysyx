@@ -143,26 +143,37 @@ void *memmove(void *dst, const void *src, size_t n)
   return dst;
 }
 
-void *memcpy(void *out, const void *in, size_t n)
+void *memcpy(void *dest, const void *src, size_t count)
 {
-  assert(NULL != out && NULL != in);
-  if(n<=0) return out;
-  char *tmpout = (char *)out;
-  char *tmpin = (char *)in;
-  // panic("Not implemented");
-  //if (tmpout < tmpin ||tmpin+n-1 <tmpout){
-    while (n--)
-    {
-      *tmpout++ = *tmpin++;
-    }//}
-  // else{
-  //   tmpout=tmpout+n-1;
-  //   tmpin=tmpin+n-1;
-  //   while(n--){
-  //     *tmpout--=*tmpin--;
-  //   }
-  // }
-  return out;
+  // assert(NULL != out && NULL != in);
+  // if(n<=0) return out;
+  // char *tmpout = (char *)out;
+  // char *tmpin = (char *)in;
+  // // panic("Not implemented");
+  // //if (tmpout < tmpin ||tmpin+n-1 <tmpout){
+  //   while (n--)
+  //   {
+  //     *tmpout++ = *tmpin++;
+  //   }//}
+  // // else{
+  // //   tmpout=tmpout+n-1;
+  // //   tmpin=tmpin+n-1;
+  // //   while(n--){
+  // //     *tmpout--=*tmpin--;
+  // //   }
+  // // }
+  // return out;
+  if (dest == NULL || src == NULL || dest <= src+count)
+{
+return NULL;
+}
+
+char *tmp_dest = dest;
+const char *tmp_src = src;
+
+while (count--) *tmp_dest++ = *tmp_src++ ;
+
+return dest;
 }
 
 int memcmp(const void *s1, const void *s2, size_t n)
