@@ -1,5 +1,6 @@
 #include <am.h>
 #include <nemu.h>
+#include "stdio.h"
 
 extern char _heap_start;
 int main(const char *args);
@@ -11,7 +12,7 @@ Area heap = RANGE(&_heap_start, PMEM_END);
 static const char mainargs[] = MAINARGS;
 
 void putch(char ch) {
-  // printf("RISC_H:%s",ARCH_H);
+  printf("RISC_H:%s",ARCH_H);
   outb(SERIAL_PORT, ch);
 }
 
