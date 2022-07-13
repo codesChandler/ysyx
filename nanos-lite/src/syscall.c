@@ -17,11 +17,11 @@ int sys_write(Context *c){
   // printf("fd:%d\n",fd);
   uintptr_t buf=c->GPR3;
   // printf("buf:%x\n",buf);
-  // int len=c->GPR4;
+  int len=c->GPR4;
   // printf("len:%d\n",len);
   int i=0;
   if(fd==1 || fd==2){
-    for(;i<13;i++){
+    for(;i<len;i++){
     putch(*((char *)buf+i));}
     }
   return i;
