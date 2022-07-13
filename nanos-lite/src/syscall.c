@@ -26,7 +26,7 @@ int sys_write(Context *c){
     // extern void putch(char ch);
     // putch(*(char *)buf);
     }
-  return 7;
+  return len;
 }
 
 
