@@ -13,6 +13,7 @@ void sys_exit(Context *c){
 }
 
 int sys_write(Context *c){
+  printf("I am here\n");
   int fd=c->GPR1;
   uintptr_t buf=c->GPR2;
   int len=c->GPR3;
