@@ -23,6 +23,7 @@ int sys_write(Context *c){
   int i=0;
   if(fd==1 || fd==2){
   for(;i<len;i++){
+    printf("I am outputing\n");
     putch(*(((char *)buf)+i));
   }}
   return i;
