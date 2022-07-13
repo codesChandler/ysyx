@@ -34,7 +34,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
   }
   printf("p_filesz:%d\n",filesz);
-  uint8_t pbuf[2];
+  uint8_t pbuf[filesz];
   // uint8_t *bbuf=pbuf;
 
   for(int i=0;i<phennum;i++){
@@ -43,7 +43,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       // ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);
     
       ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
-      printf("pbuf:%s\n",pbuf);
+      printf("pbuf:%s\n",pbuf[0]);
+      printf("pbuf+1:%s\n",pbuf+1);
       memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_filesz);
       memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
 
