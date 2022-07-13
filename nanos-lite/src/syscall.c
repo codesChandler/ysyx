@@ -22,7 +22,7 @@ int sys_write(Context *c){
   printf("len:%d\n",len);
   int i=0;
   if(fd==1 || fd==2){
-    for(;i<len;i++)
+    for(;i<13;i++)
     putch(*((char *)buf+i));
     }
   return i;
