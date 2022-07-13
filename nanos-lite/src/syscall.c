@@ -23,8 +23,9 @@ int sys_write(Context *c){
   // int i=0;
   if(fd==1 || fd==2){
      printf("I am here\n");
-    extern void putch(char ch);
-    putch(*(char *)buf);}
+    // extern void putch(char ch);
+    // putch(*(char *)buf);
+    }
   return 7;
 }
 
