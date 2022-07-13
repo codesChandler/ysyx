@@ -19,7 +19,7 @@ int sys_write(Context *c){
   uintptr_t buf=c->GPR3;
   printf("buf:%x\n",buf);
   int len=c->GPR4;
-  printf("len:%d\n",len);
+  printf("len:%x\n",len);
   int i=0;
   if(fd==1 || fd==2){
   for(;i<len;i++){
