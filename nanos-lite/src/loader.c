@@ -31,9 +31,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
   int filesz=0;
   for(int i=0;i<phennum;i++){//find max size
-    if(filesz<Phdr[i].p_memsz) filesz=Phdr[i].p_memsz;
+    if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
   }
-  uint8_t pbuf[filesz];
+  uint8_t pbuf[filesz+100];
   // uint8_t *bbuf=pbuf;
 
   for(int i=0;i<phennum;i++){
@@ -41,9 +41,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     if(Phdr[i].p_type == PT_LOAD){
       // ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);
     
-      ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_memsz);
-      printf("pbuf:%s\n",pbuf);
-      memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_memsz);
+      ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
+      printf("pbuf:%x\n",pbuf);
+      memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_filesz);
       memset((void *)Phdr[i].p_vaddr+Phdr[i].p_filesz,0,Phdr[i].p_memsz-Phdr[i].p_filesz);
 
     }
