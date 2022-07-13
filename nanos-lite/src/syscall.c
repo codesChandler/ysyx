@@ -12,8 +12,7 @@ void sys_exit(Context *c){
   halt(c->GPRx);
 }
 
-int sys_write(Context *c){
- 
+int sys_write(Context *c){ 
   int fd=c->GPR2;
   printf("fd:%d\n",fd);
   uintptr_t buf=c->GPR3;
@@ -22,8 +21,8 @@ int sys_write(Context *c){
   printf("len:%d\n",len);
   int i=0;
   if(fd==1 || fd==2){
-    for(;i<13;i++)
-    putch(*((char *)buf+i));
+    for(;i<13;i++){
+    putch(*((char *)buf+i));}
     }
   return i;
 }
