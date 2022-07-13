@@ -8,13 +8,21 @@
 
 #if defined(__ISA_X86__)
 # define nemu_trap(code) asm volatile ("int3" : :"a"(code))
+# define EXPECT_TYPE EM_X86_64
 #elif defined(__ISA_MIPS32__)
 # define nemu_trap(code) asm volatile ("move $v0, %0; sdbbp" : :"r"(code))
+# define EXPECT_TYPE EM_MIPS_X
 #elif defined(__ISA_RISCV32__) || defined(__ISA_RISCV64__)
 # define nemu_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code))
+# define EXPECT_TYPE EM_RISCV
+#elif defined(__ISA_AM_NATIVE__)
+# define EXPECT_TYPE EM_X86_64
 #elif
 # error unsupported ISA __ISA__
 #endif
+
+
+
 
 #if defined(__ARCH_X86_NEMU)
 # define DEVICE_BASE 0x0

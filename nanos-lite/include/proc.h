@@ -18,4 +18,16 @@ typedef union {
 
 extern PCB *current;
 
+#if defined(__ISA_X86__)
+# define EXPECT_TYPE EM_X86_64
+#elif defined(__ISA_MIPS32__)
+# define EXPECT_TYPE EM_MIPS_X
+#elif defined(__ISA_RISCV32__) || defined(__ISA_RISCV64__)
+# define EXPECT_TYPE EM_RISCV
+#elif defined(__ISA_AM_NATIVE__)
+# define EXPECT_TYPE EM_X86_64
+#elif
+# error unsupported ISA __ISA__
+#endif
+
 #endif

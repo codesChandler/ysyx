@@ -18,10 +18,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   uint8_t buf[elf_size];
 
   int rlen=ramdisk_read(buf,0,elf_size);
+
   assert(rlen==elf_size);
   Elf_Ehdr *Ehdr=(void *)buf;
   assert(*(uint32_t *)(Ehdr->e_ident) == 0x464C457f);
-  assert(Ehdr->e_machine == EM_RISCV);
+
+  assert(Ehdr->e_machine == EXPECT_TYPE);
 
   int phentsize=Ehdr->e_phentsize;
   int phennum=Ehdr->e_phnum;
