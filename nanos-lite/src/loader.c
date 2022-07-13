@@ -33,6 +33,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   for(int i=0;i<phennum;i++){//find max size
     if(filesz<Phdr[i].p_filesz) filesz=Phdr[i].p_filesz;
   }
+  printf("p_filesz:%d\n",filesz);
   uint8_t pbuf[2];
   // uint8_t *bbuf=pbuf;
 
