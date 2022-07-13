@@ -70,6 +70,8 @@ void *_sbrk(intptr_t increment) {
   intptr_t old=pgb;
   intptr_t new=pgb+increment;
   char buf[100];
+  sprintf(buf,"I am here\n");
+  _write(1, buf, 10);
   if(1){//!_syscall_(SYS_brk,0, 0, 0)){
     sprintf(buf,"I am here\n");
     _write(1, buf, 10);
