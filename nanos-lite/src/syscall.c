@@ -24,6 +24,13 @@ int sys_write(Context *c){
   return i;
 }
 
+extern int fs_open(const char *pathname, int flags, int mode);
+int sys_open(Context *c){
+  char *pathname=(char *)c->GPR2;
+  return fs_open(pathname,0,0);
+}
+
+
 int sys_brk(){
   return 0;
 }
@@ -42,6 +49,7 @@ void do_syscall(Context *c) {
     case SYS_exit:sys_exit(c);break;
     case SYS_brk:c->GPRx=sys_brk();break;
     case SYS_write:c->GPRx=sys_write(c);break;
+    case SYS_open:c->GPRx=sys_open(c);break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }
