@@ -47,7 +47,7 @@ extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
   if(len==0) return 0;
-  printf("fs_read\n");
+  // printf("fs_read\n");
   assert(fd>2);
   // assert((open_offset[fd]+len)<=file_table[fd].size);
   if((open_offset[fd]+len)>file_table[fd].size)
@@ -59,7 +59,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
-  printf("fs_write\n");
+  // printf("fs_write\n");
   if(fd==1 || fd==2){
     int i=0;
     for(;i<len;i++){
@@ -79,7 +79,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
 
 //enum {SEEK_SET,SEEK_CUR,SEEK_end};
 size_t fs_lseek(int fd, size_t offset, int whence){
-  printf("fs_lseek\n");
+  // printf("fs_lseek\n");
   if(whence == SEEK_SET) open_offset[fd]=offset;
   else if(whence == SEEK_CUR) open_offset[fd]+=offset;
   else open_offset[fd] = file_table[fd].size;
