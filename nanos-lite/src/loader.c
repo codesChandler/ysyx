@@ -49,7 +49,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
     if(Phdr[i].p_type == PT_LOAD){
       // ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);//不明白为啥采用buf传递就不对，可能与内存存放，地址对齐有关
-      fs_read(fd, (void *)Phdr[i].p_vaddr, Phdr[i].p_filesz);
+      // fs_read(fd, (void *)Phdr[i].p_vaddr, Phdr[i].p_filesz);
     
       // ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
       // memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_filesz);
