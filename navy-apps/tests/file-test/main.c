@@ -4,7 +4,7 @@
 #define SYS_open 2
 int main() {
   printf("I am in file-test:%d\n",_syscall_(SYS_open, (int)&"/share/files/num", 0, 0));
-  // _syscall_(SYS_open, (int)&"/share/files/num", 0, 0);
+  
   // FILE *fp = fopen("/share/files/num", "r+");
   // assert(fp);
 
