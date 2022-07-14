@@ -33,10 +33,6 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 #include "files.h"
 };
 
-void init_fs() {
-  // TODO: initialize the size of /dev/fb
-}
-
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table);i++){
     if(strcmp(pathname,file_table[i].name)==0){
@@ -54,7 +50,7 @@ size_t fs_read(int fd, void *buf, size_t len){
   printf("fs_read\n");
   assert(fd>2);
   assert((open_offset[fd]+len)<=file_table[fd].size);
-  ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len);
+  assert(ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
   open_offset[fd]+=len;
   return len;
 }
@@ -69,7 +65,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
     return i;}
   else{
     assert(buf!=NULL);
-    assert(open_offset[fd]+len<=file_table[fd].size);
+    assert((open_offset[fd]+len)<=file_table[fd].size);
     assert(ramdisk_write(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
     open_offset[fd]+=len;
     return len;
@@ -92,5 +88,11 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 int fs_close(int fd){
   return 0;
 }
+
+void init_fs() {
+  // TODO: initialize the size of /dev/fb
+}
+
+
 
 
