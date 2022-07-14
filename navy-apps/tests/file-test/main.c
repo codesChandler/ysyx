@@ -1,5 +1,18 @@
 #include "stdio.h"
 #include <assert.h>
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "%W% (Berkeley) %G%";
+#endif /* LIBC_SCCS and not lint */
+
+#include <_ansi.h>
+#include <reent.h>
+#include <stdio.h>
+#include <errno.h>
+#include <sys/lock.h>
+#ifdef __CYGWIN__
+#include <fcntl.h>
+#endif
+// #include "local.h"
 
 // FILE *fopen (const char *file,
 //        const char *mode)
@@ -12,7 +25,7 @@
 int main() {
   printf("I am in file-test:%d\n",_syscall_(SYS_open, (int)&"/share/files/num", 0, 0));
 
-  FILE *fp = fopen("/share/files/num", "r+");
+  FILE *fp = _fopen_r (_REENT,"/share/files/num", "r+");
   printf("I am in file-test:%d\n",fp);
 
   // fseek(fp, 0, SEEK_END);
