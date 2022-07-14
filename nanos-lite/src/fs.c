@@ -57,7 +57,6 @@ size_t fs_read(int fd, void *buf, size_t len){
   return len;
 }
 
-
 int fs_size(int fd){
   return file_table[fd].size;
 }
