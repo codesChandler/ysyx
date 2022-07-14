@@ -92,6 +92,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int phennum=Ehdr->e_phnum;
 
   Elf_Phdr Phdr[phennum];
+
   assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
 
 
@@ -106,6 +107,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   for(int i=0;i<phennum;i++){
 
     if(Phdr[i].p_type == PT_LOAD){
+      printf("Phdr[i].p_offset:%d\n",Phdr[i].p_offset);
       ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);//不明白为啥采用buf传递就不对，可能与内存存放，地址对齐有关
     
       // ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
