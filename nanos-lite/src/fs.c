@@ -81,18 +81,19 @@ int fs_close(int fd){
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
-  int len_ = len;
-    if(file_table[fd].write !=NULL){
-      len_ = file_table[fd].write(buf,file_table[fd].disk_offset+open_offset[fd],len_);
-    }else{
-      if(len_==0 || open_offset[fd]>=file_table[fd].size)
-        assert(0);
-      if(open_offset[fd]+len>file_table[fd].size)
-        len_ = file_table[fd].size-open_offset[fd];
-      len_ = ramdisk_write(buf,file_table[fd].disk_offset+open_offset[fd],len_);
-    }  
-    open_offset[fd] += len_; 
-    return len_;
+  if(fd==1 || fd==2){
+    int i=0;
+    for(;i<len;i++){
+    putch(*((char *)buf+i));}
+    return i;}
+  else{
+    assert(buf!=NULL);
+    assert(open_offset[fd]+len<=file_table[fd].size);
+    assert(ramdisk_write(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
+    open_offset[fd]+=len;
+    return len;
+  }
+  assert(0);
 }
 
 // #include <fs.h>

@@ -12,16 +12,12 @@ void sys_exit(Context *c){
   halt(c->GPRx);
 }
 
+extern size_t fs_write(int fd, const void *buf, size_t len);
 int sys_write(Context *c){ 
   int fd=c->GPR2;
   uintptr_t buf=c->GPR3;
   int len=c->GPR4;
-  int i=0;
-  if(fd==1 || fd==2){
-    for(;i<len;i++){
-    putch(*((char *)buf+i));}
-    }
-  return i;
+  return fs_write(fd, (void *)buf, len);
 }
 
 extern int fs_open(const char *pathname, int flags, int mode);
