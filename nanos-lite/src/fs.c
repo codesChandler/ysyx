@@ -55,10 +55,10 @@ size_t fs_read(int fd, void *buf, size_t len){
   return len;
 }
 
-size_t fs_write(int fd, const void *buf, size_t len){
-  printf("I am here\n");
-  return 0;
-}
+// size_t fs_write(int fd, const void *buf, size_t len){
+//   printf("I am here\n");
+//   return 0;
+// }
 
 int fs_size(int fd){
   return file_table[fd].size;
