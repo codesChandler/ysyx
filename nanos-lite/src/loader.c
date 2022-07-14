@@ -12,14 +12,19 @@
 extern size_t get_ramdisk_size();
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
+extern int fs_open(const char *pathname, int flags, int mode);
+extern size_t fs_read(int fd, void *buf, size_t len);
+extern int fs_size(int fd);
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
-  int elf_size=get_ramdisk_size();
+  int fd=fs_open(filename, 0, 0);
+
+  int elf_size=fs_size(fd);
   uint8_t buf[elf_size];
 
-  int rlen=ramdisk_read(buf,0,elf_size);
-
+  int rlen=fs_read(fd,buf,elf_size);
   assert(rlen==elf_size);
+
   Elf_Ehdr *Ehdr=(void *)buf;
   assert(*(uint32_t *)(Ehdr->e_ident) == 0x464C457f);
 
@@ -29,7 +34,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int phennum=Ehdr->e_phnum;
 
   Elf_Phdr Phdr[phennum];
-  assert(ramdisk_read(Phdr,Ehdr-> e_ehsize,phentsize*phennum)==phentsize*phennum);
+  assert(fs_read(fd,Phdr,phentsize*phennum)==phentsize*phennum);
 
 
   // int filesz=0;
@@ -43,7 +48,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   for(int i=0;i<phennum;i++){
 
     if(Phdr[i].p_type == PT_LOAD){
-      ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);//不明白为啥采用buf传递就不对，可能与内存存放，地址对齐有关
+      // ramdisk_read((void *)Phdr[i].p_vaddr,Phdr[i].p_offset,Phdr[i].p_filesz);//不明白为啥采用buf传递就不对，可能与内存存放，地址对齐有关
+      fs_read(fd, (void *)Phdr[i].p_vaddr, Phdr[i].p_filesz);
     
       // ramdisk_read((void *)pbuf,Phdr[i].p_offset,Phdr[i].p_filesz);
       // memcpy((void *)Phdr[i].p_vaddr,(void *)pbuf,Phdr[i].p_filesz);
