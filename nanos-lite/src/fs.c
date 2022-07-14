@@ -57,25 +57,6 @@ size_t fs_read(int fd, void *buf, size_t len){
   return len;
 }
 
-int fs_size(int fd){
-  return file_table[fd].size;
-}
-
-//enum {SEEK_SET,SEEK_CUR,SEEK_end};
-
-size_t fs_lseek(int fd, size_t offset, int whence){
-  printf("fs_lseek\n");
-  if(whence == SEEK_SET) open_offset[fd]=offset;
-  else if(whence == SEEK_CUR) open_offset[fd]+=offset;
-  else open_offset[fd] = file_table[fd].size;
-
-  return open_offset[fd];
-}
-
-int fs_close(int fd){
-  return 0;
-}
-
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
   printf("fs_write\n");
@@ -94,3 +75,20 @@ size_t fs_write(int fd, const void *buf, size_t len){
 
   assert(0);
 }
+
+
+//enum {SEEK_SET,SEEK_CUR,SEEK_end};
+size_t fs_lseek(int fd, size_t offset, int whence){
+  printf("fs_lseek\n");
+  if(whence == SEEK_SET) open_offset[fd]=offset;
+  else if(whence == SEEK_CUR) open_offset[fd]+=offset;
+  else open_offset[fd] = file_table[fd].size;
+
+  return open_offset[fd];
+}
+
+int fs_close(int fd){
+  return 0;
+}
+
+
