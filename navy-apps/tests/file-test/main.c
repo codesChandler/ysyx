@@ -12,7 +12,7 @@ FILE *fopen (const char *file,
 int main() {
   printf("I am in file-test:%d\n",_syscall_(SYS_open, (int)&"/share/files/num", 0, 0));
 
-  FILE *fp = _fopen_r (_REENT,"/share/files/num", "r+");
+  FILE *fp = fopen("/share/files/num", "r+");
   printf("I am in file-test:%d\n",fp);
 
   // fseek(fp, 0, SEEK_END);
