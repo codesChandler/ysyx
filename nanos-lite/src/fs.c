@@ -35,7 +35,8 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 #include "files.h"
 };
 
-void Log_(int ID,int fd){
+int Log_(int ID,int fd){
+  return 0;
   // extern char *syscall_name[];
   // Log("file syscall ID= %s file= %s", syscall_name[ID],file_table[fd].name);
 }

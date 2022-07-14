@@ -57,7 +57,7 @@ void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
 
-  extern void Log_(int ID,int fd);
+  extern int Log_(int ID,int fd);
   #ifdef CONFIG_STRACE
         if((a[0]==2||a[0]==3||a[0]==4||a[0]==7||a[0]==8))
           Log_(a[0],c->GPR2);
