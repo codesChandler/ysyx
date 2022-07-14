@@ -35,11 +35,11 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 #include "files.h"
 };
 
-char *name_(int fd){
-  static char name[100];
-  strcpy(name,file_table[fd].name);
-  return name;
-}
+// char *name_(int fd){
+//   static char name[100];
+//   strcpy(name,file_table[fd].name);
+//   return name;
+// }
 
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table);i++){
