@@ -30,6 +30,13 @@ int sys_open(Context *c){
   return fs_open(pathname,0,0);
 }
 
+extern size_t fs_read(int fd, void *buf, size_t len);
+int sys_read(Context *c){
+   int fd=c->GPR2;
+   void *buf=(void *)c->GPR3;
+   size_t len=c->GPR4;
+  return fs_read(fd, buf,len);
+}
 
 int sys_brk(){
   return 0;
@@ -49,6 +56,7 @@ void do_syscall(Context *c) {
     case SYS_exit:sys_exit(c);break;
     case SYS_brk:c->GPRx=sys_brk();break;
     case SYS_write:c->GPRx=sys_write(c);break;
+    case SYS_read:c->GPRx=sys_read(c);break;
     case SYS_open:c->GPRx=sys_open(c);break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
