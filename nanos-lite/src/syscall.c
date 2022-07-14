@@ -60,8 +60,8 @@ void do_syscall(Context *c) {
   extern void Log_(int ID,int fd);
   #ifdef CONFIG_STRACE
         if((a[0]==2||a[0]==3||a[0]==4||a[0]==7||a[0]==8))
-          //Log_(a[0],c->GPR2);
-          Log("syscall ID= %s", syscall_name[a[0]]);
+          Log_(a[0],c->GPR2);
+          // Log("syscall ID= %s", syscall_name[a[0]]);
         else
           Log("syscall ID= %s", syscall_name[a[0]]);
   #endif
