@@ -49,7 +49,7 @@ int fs_open(const char *pathname, int flags, int mode){
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
-  // printf("file_table[fd].open_offset:%d\n",open_offset[fd]);
+  assert(fd>2);
   assert((open_offset[fd]+len)<=file_table[fd].size);
   ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len);
   open_offset[fd]+=len;
