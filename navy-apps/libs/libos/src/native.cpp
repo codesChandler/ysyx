@@ -150,7 +150,7 @@ static const char* redirect_path(char *newpath, const char *path) {
 }
 
 // extern "C" FILE *fopen(const char *path, const char *mode);
-extern "C" int open(const char *path, int flags, ...);
+// extern "C" int open(const char *path, int flags, ...);
 extern "C" ssize_t read(int fd, void *buf, size_t count);
 extern "C" ssize_t write(int fd, const void *buf, size_t count);
 extern "C" int execve(const char *filename, char *const argv[], char *const envp[]);
