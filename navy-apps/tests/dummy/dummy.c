@@ -1,6 +1,6 @@
 #include <stdint.h>
-#include "stdio.h"
-#include <assert.h>
+// #include "stdio.h"
+// #include <assert.h>
 
 #ifdef __ISA_NATIVE__
 #error can not support ISA=native
@@ -11,7 +11,5 @@ extern int _syscall_(int, uintptr_t, uintptr_t, uintptr_t);
 
 int main() {
   // printf("I am here\n");
-  // assert(fopen("/share/files/num", "r+")!=0);
-  printf("I am here\n");
   return _syscall_(SYS_yield, 0, 0, 0);
 }
