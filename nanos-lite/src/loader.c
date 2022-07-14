@@ -41,9 +41,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   assert(fs_read(fd,Phdr,phentsize*phennum)==phentsize*phennum);
 
   for(int i=0;i<phennum;i++){
-
     if(Phdr[i].p_type == PT_LOAD){
-
+      printf("Phdr[i].p_offset:%d\n",Phdr[i].p_offset);
       assert(fs_lseek(fd,Phdr[i].p_offset,SEEK_SET)==Phdr[i].p_offset);
       assert(fs_read(fd,(void *)Phdr[i].p_vaddr,Phdr[i].p_filesz)==Phdr[i].p_filesz);
 
