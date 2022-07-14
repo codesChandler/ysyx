@@ -1,5 +1,5 @@
 #include <fs.h>
-
+#include <common.h>
 
 typedef size_t (*ReadFn) (void *buf, size_t offset, size_t len);
 typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
@@ -55,7 +55,9 @@ int fs_open(const char *pathname, int flags, int mode){
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
-  Log("syscall ID= sys_read file= %s", file_table[fd].name);
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_read file= %s", file_table[fd].name);
+  #endif
   if(len==0) return 0;
   // printf("fs_read\n");
   assert(fd>2);
@@ -69,7 +71,9 @@ size_t fs_read(int fd, void *buf, size_t len){
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
-  Log("syscall ID= sys_write file= %s", file_table[fd].name);
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_write file= %s", file_table[fd].name);
+  #endif
   if(fd==1 || fd==2){
     int i=0;
     for(;i<len;i++){
@@ -89,7 +93,9 @@ size_t fs_write(int fd, const void *buf, size_t len){
 
 //enum {SEEK_SET,SEEK_CUR,SEEK_end};
 size_t fs_lseek(int fd, size_t offset, int whence){
-  Log("syscall ID= sys_lseek file= %s", file_table[fd].name);
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_lseek file= %s", file_table[fd].name);
+  #endif
   // printf("fs_lseek\n");
   if(whence == SEEK_SET) open_offset[fd]=offset;
   else if(whence == SEEK_CUR) open_offset[fd]+=offset;
@@ -99,7 +105,9 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 }
 
 int fs_close(int fd){
-  Log("syscall ID= sys_close file= %s", file_table[fd].name);
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_close file= %s", file_table[fd].name);
+  #endif
   return 0;
 }
 
