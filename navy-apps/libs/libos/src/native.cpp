@@ -157,7 +157,6 @@ extern "C" int execve(const char *filename, char *const argv[], char *const envp
 
 FILE *fopen(const char *path, const char *mode) {
   char newpath[512];
-  printf("I am in fopen\n");
   return glibc_fopen(redirect_path(newpath, path), mode);
 }
 
