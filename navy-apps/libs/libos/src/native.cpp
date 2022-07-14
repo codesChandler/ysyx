@@ -149,16 +149,16 @@ static const char* redirect_path(char *newpath, const char *path) {
   return path;
 }
 
-extern "C" FILE *fopen(const char *path, const char *mode);
+// extern "C" FILE *fopen(const char *path, const char *mode);
 extern "C" int open(const char *path, int flags, ...);
 extern "C" ssize_t read(int fd, void *buf, size_t count);
 extern "C" ssize_t write(int fd, const void *buf, size_t count);
 extern "C" int execve(const char *filename, char *const argv[], char *const envp[]);
 
-FILE *fopen(const char *path, const char *mode) {
-  char newpath[512];
-  return glibc_fopen(redirect_path(newpath, path), mode);
-}
+// FILE *fopen(const char *path, const char *mode) {
+//   char newpath[512];
+//   return glibc_fopen(redirect_path(newpath, path), mode);
+// }
 
 int open(const char *path, int flags, ...) {
   if (strcmp(path, "/proc/dispinfo") == 0) {
