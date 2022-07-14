@@ -1,19 +1,12 @@
 #include "stdio.h"
 #include <assert.h>
 
-// FILE *fopen (const char *file,
-//        const char *mode)
-// {
-//   // printf("I am here\n");
-//   return 1;
-//   // return _fopen_r (_REENT, file, mode);
-// }
 #define SYS_open 2
 int main() {
-  //printf("I am in file-test:%d\n",_syscall_(SYS_open, (int)&"/share/files/num", 0, 0));
+  printf("I am in file-test:%d\n",_syscall_(SYS_open, (int)&"/share/files/num", 0, 0));
 
   FILE *fp = fopen("/share/files/num", "r+");
-  //printf("I am in file-test:%d\n",fp);
+  printf("I am in file-test:%d\n",fp);
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
@@ -44,7 +37,7 @@ int main() {
 
   fclose(fp);
 
-  //printf("PASS!!!\n");
+  printf("PASS!!!\n");
 
   return 0;
 }
