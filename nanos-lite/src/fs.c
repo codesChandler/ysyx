@@ -36,7 +36,9 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 };
 
 char *name_(int fd){
-  return file_table[fd].name;
+  static char name[100];
+  strcpy(name,file_table[fd].name);
+  return name;
 }
 
 int fs_open(const char *pathname, int flags, int mode){
