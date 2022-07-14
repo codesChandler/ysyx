@@ -1,5 +1,6 @@
 #include <stdint.h>
-// #include "stdio.h"
+#include "stdio.h"
+#include <assert.h>
 
 #ifdef __ISA_NATIVE__
 #error can not support ISA=native
