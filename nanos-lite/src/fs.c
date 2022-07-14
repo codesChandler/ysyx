@@ -1,5 +1,6 @@
 #include <fs.h>
 
+
 typedef size_t (*ReadFn) (void *buf, size_t offset, size_t len);
 typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
 
@@ -10,6 +11,7 @@ typedef struct {
   ReadFn read;
   WriteFn write;
 } Finfo;
+
 
 static int open_offset[25];
 
@@ -32,6 +34,11 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
   [FD_STDERR] = {"stderr", 0, 0,invalid_read, invalid_write},
 #include "files.h"
 };
+
+void Log_(int ID,int fd){
+  extern char *syscall_name[];
+  Log("file syscall ID= %s file= %s", syscall_name[ID],file_table[fd].name);
+}
 
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table);i++){
