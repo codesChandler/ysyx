@@ -78,6 +78,7 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 int fs_close(int fd){
   return 0;
 }
+
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
   int len_ = len;
