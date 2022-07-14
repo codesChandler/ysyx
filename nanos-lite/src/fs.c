@@ -45,6 +45,7 @@ int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table);i++){
     if(strcmp(pathname,file_table[i].name)==0){
       open_offset[i]=0;
+      Log("syscall ID= sys_open file= %s", file_table[i].name);
       return i;}
   }
   assert(0);
@@ -54,6 +55,7 @@ int fs_open(const char *pathname, int flags, int mode){
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
+  Log("syscall ID= sys_read file= %s", file_table[fd].name);
   if(len==0) return 0;
   // printf("fs_read\n");
   assert(fd>2);
@@ -67,7 +69,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
-  // printf("fs_write\n");
+  Log("syscall ID= sys_write file= %s", file_table[fd].name);
   if(fd==1 || fd==2){
     int i=0;
     for(;i<len;i++){
@@ -87,6 +89,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
 
 //enum {SEEK_SET,SEEK_CUR,SEEK_end};
 size_t fs_lseek(int fd, size_t offset, int whence){
+  Log("syscall ID= sys_lseek file= %s", file_table[fd].name);
   // printf("fs_lseek\n");
   if(whence == SEEK_SET) open_offset[fd]=offset;
   else if(whence == SEEK_CUR) open_offset[fd]+=offset;
@@ -96,6 +99,7 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 }
 
 int fs_close(int fd){
+  Log("syscall ID= sys_close file= %s", file_table[fd].name);
   return 0;
 }
 
