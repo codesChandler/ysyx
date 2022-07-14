@@ -38,7 +38,6 @@ void init_fs() {
 }
 
 int fs_open(const char *pathname, int flags, int mode){
-  assert(0);
   for(int i=0;i<sizeof(file_table);i++){
     if(strcmp(pathname,file_table[i].name)==0){
       open_offset[i]=0;
@@ -51,6 +50,7 @@ int fs_open(const char *pathname, int flags, int mode){
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
+  if(len==0) return 0;
   printf("fs_read\n");
   assert(fd>2);
   assert((open_offset[fd]+len)<=file_table[fd].size);
