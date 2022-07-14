@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "stdio.h"
 #include <assert.h>
 
 #define SYS_open 2
