@@ -3,8 +3,8 @@
 
 int main() {
   printf("I am in file-test\n");
-  // FILE *fp = fopen("/share/files/num", "r+");
-  // assert(fp);
+  FILE *fp = fopen("/share/files/num", "r+");
+  assert(fp);
 
   // fseek(fp, 0, SEEK_END);
   // long size = ftell(fp);
