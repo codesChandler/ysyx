@@ -44,6 +44,14 @@ int sys_close(Context *c){
   return fs_close(fd);
 }
 
+extern size_t fs_lseek(int fd, size_t offset, int whence);
+int sys_lseek(Context *c){
+  int fd=c->GPR2;
+  size_t offset=c->GPR3;
+  int whence=c->GPR4;
+  return fs_lseek(fd, offset, whence);
+}
+
 int sys_brk(){
   return 0;
 }
@@ -65,6 +73,7 @@ void do_syscall(Context *c) {
     case SYS_read:c->GPRx=sys_read(c);break;
     case SYS_open:c->GPRx=sys_open(c);break;
     case SYS_close:c->GPRx=sys_close(c);break;
+    case SYS_lseek:c->GPRx=sys_lseek(c);break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }
