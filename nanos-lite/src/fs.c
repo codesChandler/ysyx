@@ -49,7 +49,9 @@ size_t fs_read(int fd, void *buf, size_t len){
   if(len==0) return 0;
   printf("fs_read\n");
   assert(fd>2);
-  assert((open_offset[fd]+len)<=file_table[fd].size);
+  // assert((open_offset[fd]+len)<=file_table[fd].size);
+  if((open_offset[fd]+len)>file_table[fd].size)
+    len=file_table[fd].size-open_offset[fd];
   assert(ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
   open_offset[fd]+=len;
   return len;
