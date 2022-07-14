@@ -5,9 +5,8 @@ int main() {
   printf("I am here\n");
   // FILE *fp = fopen("/share/files/num", "r+");
   // assert(fp);
-  int fp=23;
 
-  fseek(fp, 0, SEEK_END);
+  // fseek(fp, 0, SEEK_END);
   // long size = ftell(fp);
   // assert(size == 5000);
 
