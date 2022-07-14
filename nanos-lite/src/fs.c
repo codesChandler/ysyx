@@ -38,12 +38,14 @@ void init_fs() {
 }
 
 int fs_open(const char *pathname, int flags, int mode){
+  assert(0);
   for(int i=0;i<sizeof(file_table);i++){
     if(strcmp(pathname,file_table[i].name)==0){
       open_offset[i]=0;
       return i;}
   }
   assert(0);
+  return -1;
 }
 
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
