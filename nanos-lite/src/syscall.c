@@ -24,6 +24,34 @@ int sys_write(Context *c){
   return i;
 }
 
+extern int fs_open(const char *pathname, int flags, int mode);
+int sys_open(Context *c){
+  char *pathname=(char *)c->GPR2;
+  return fs_open(pathname,0,0);
+}
+
+extern size_t fs_read(int fd, void *buf, size_t len);
+int sys_read(Context *c){
+   int fd=c->GPR2;
+   void *buf=(void *)c->GPR3;
+   size_t len=c->GPR4;
+  return fs_read(fd, buf,len);
+}
+
+extern int fs_close(int fd);
+int sys_close(Context *c){
+  int fd=c->GPR2;
+  return fs_close(fd);
+}
+
+extern size_t fs_lseek(int fd, size_t offset, int whence);
+int sys_lseek(Context *c){
+  int fd=c->GPR2;
+  size_t offset=c->GPR3;
+  int whence=c->GPR4;
+  return fs_lseek(fd, offset, whence);
+}
+
 int sys_brk(){
   return 0;
 }
@@ -42,6 +70,10 @@ void do_syscall(Context *c) {
     case SYS_exit:sys_exit(c);break;
     case SYS_brk:c->GPRx=sys_brk();break;
     case SYS_write:c->GPRx=sys_write(c);break;
+    case SYS_read:c->GPRx=sys_read(c);break;
+    case SYS_open:c->GPRx=sys_open(c);break;
+    case SYS_close:c->GPRx=sys_close(c);break;
+    case SYS_lseek:c->GPRx=sys_lseek(c);break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }
