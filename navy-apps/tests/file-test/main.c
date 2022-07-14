@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
-extern int _open(const char *path, int flags, int mode);
+// extern int _open(const char *path, int flags, int mode);
 int main() {
   printf("I am here\n");
   // FILE *fp = _open("/share/files/num", '0','0');
