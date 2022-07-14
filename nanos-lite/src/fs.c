@@ -81,7 +81,8 @@ int fs_close(int fd){
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
-  printf("I am here\n");
+  // printf("I am here\n");
+  putch('0');
   if(fd==1 || fd==2){
     int i=0;
     for(;i<len;i++){
