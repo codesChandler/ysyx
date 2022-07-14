@@ -67,13 +67,13 @@ int fs_size(int fd){
 
 //enum {SEEK_SET,SEEK_CUR,SEEK_end};
 
-size_t fs_lseek(int fd, size_t offset, int whence){
-  if(whence == SEEK_SET) open_offset[fd]=offset;
-  else if(whence == SEEK_CUR) open_offset[fd]+=offset;
-  else open_offset[fd] = file_table[fd].size;
+// size_t fs_lseek(int fd, size_t offset, int whence){
+//   if(whence == SEEK_SET) open_offset[fd]=offset;
+//   else if(whence == SEEK_CUR) open_offset[fd]+=offset;
+//   else open_offset[fd] = file_table[fd].size;
 
-  return open_offset[fd];
-}
+//   return open_offset[fd];
+// }
 
 int fs_close(int fd){
   return 0;
@@ -179,17 +179,17 @@ size_t fs_write(int fd, const void *buf, size_t len){
 //   return 0;
 // }
 
-// size_t fs_lseek(int fd, size_t offset, int whence){
-//   switch(whence){
-//     case SEEK_SET:file_table[fd].f_offset = offset;break;
-//     case SEEK_CUR:file_table[fd].f_offset += offset;break;
-//     case SEEK_END:file_table[fd].f_offset = file_table[fd].size+ offset;break;
-//     default:file_table[fd].f_offset = -1;break;
-//   }
-//   if(file_table[fd].f_offset>file_table[fd].size)
-//     file_table[fd].f_offset = -1;
-//   return file_table[fd].f_offset;
-// }
+size_t fs_lseek(int fd, size_t offset, int whence){
+  switch(whence){
+    case SEEK_SET:open_offset[fd] = offset;break;
+    case SEEK_CUR:open_offset[fd] += offset;break;
+    case SEEK_END:open_offset[fd] = file_table[fd].size+ offset;break;
+    default:open_offset[fd] = -1;break;
+  }
+  if(open_offset[fd]>file_table[fd].size)
+    open_offset[fd] = -1;
+  return open_offset[fd];
+}
 
 
 
