@@ -49,7 +49,7 @@ int fs_open(const char *pathname, int flags, int mode){
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
-  // printf("I am here\n");
+  printf("I am here\n");
   assert(fd>2);
   assert((open_offset[fd]+len)<=file_table[fd].size);
   ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len);
@@ -57,10 +57,6 @@ size_t fs_read(int fd, void *buf, size_t len){
   return len;
 }
 
-// size_t fs_write(int fd, const void *buf, size_t len){
-//   printf("I am here\n");
-//   return 0;
-// }
 
 int fs_size(int fd){
   return file_table[fd].size;
@@ -82,9 +78,7 @@ int fs_close(int fd){
 
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t fs_write(int fd, const void *buf, size_t len){
-  // printf("I am here\n");
-  // putch('0');
-  // assert(0);
+
   if(fd==1 || fd==2){
     int i=0;
     for(;i<len;i++){
@@ -99,104 +93,3 @@ size_t fs_write(int fd, const void *buf, size_t len){
   }
   assert(0);
 }
-
-// #include <fs.h>
-
-// typedef size_t (*ReadFn) (void *buf, size_t offset, size_t len);
-// typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
-
-// typedef struct {
-//   char *name;
-//   size_t size;
-//   size_t disk_offset;
-//   ReadFn read;
-//   WriteFn write;
-//   size_t f_offset;
-// } Finfo;
-
-// enum {FD_STDIN=0, FD_STDOUT, FD_STDERR, FD_FB};
-
-// size_t invalid_read(void *buf, size_t offset, size_t len) {
-//   panic("should not reach here");
-//   return 0;
-// }
-
-// size_t invalid_write(const void *buf, size_t offset, size_t len) {
-//   panic("should not reach here");
-//   return 0;
-// }
-
-// size_t serial_write(const void *buf, size_t offset, size_t len);
-// /* This is the information about all files in disk. */
-// static Finfo file_table[] __attribute__((used)) = {
-//   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
-//   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
-//   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
-// #include "files.h"
-// };
-
-// int f_num = sizeof(file_table)/sizeof(file_table[0]);
-// int fs_open(const char *pathname, int flags, int mode){
-//   int i;
-//   int fd = -1;
-//   for(i=0;i<f_num;i++){
-//     fd = strcmp(file_table[i].name,pathname);
-//     if(fd==0){
-//       file_table[i].f_offset = 0;
-//       printf("The strace is SYS_open,The open file is %s\n",file_table[fd].name);
-//       return i;
-//     }
-//   }
-//   printf("pathname %s is not existing\n",file_table[i].name);
-//   assert(0);
-// }
-
-// size_t ramdisk_read(void *buf, size_t offset, size_t len);
-// size_t fs_read(int fd, void *buf, size_t len){
-//   int len_ = 0;
-//   if(len==0 || file_table[fd].f_offset>=file_table[fd].size)
-//     return 0;
-//   if(file_table[fd].f_offset+len>file_table[fd].size)
-//     len = file_table[fd].size-file_table[fd].f_offset;
-//   len_ = ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].f_offset,len);
-//   file_table[fd].f_offset += len; 
-//   return len_;
-// }
-
-// size_t ramdisk_write(const void *buf, size_t offset, size_t len);
-// size_t fs_write(int fd, const void *buf, size_t len){
-//   int len_ = len;
-//     if(file_table[fd].write !=NULL){
-//       len_ = file_table[fd].write(buf,file_table[fd].disk_offset+open_offset[fd],len_);
-//     }else{
-//       if(len_==0 || open_offset[fd]>=file_table[fd].size)
-//         assert(0);
-//       if(open_offset[fd]+len>file_table[fd].size)
-//         len_ = file_table[fd].size-open_offset[fd];
-//       len_ = ramdisk_write(buf,file_table[fd].disk_offset+open_offset[fd],len_);
-//     }  
-//     open_offset[fd] += len_; 
-//     return len_;
-// }
-
-// int fs_close(int fd){
-//   return 0;
-// }
-
-// size_t fs_lseek(int fd, size_t offset, int whence){
-//   switch(whence){
-//     case SEEK_SET:open_offset[fd] = offset;break;
-//     case SEEK_CUR:open_offset[fd] += offset;break;
-//     case SEEK_END:open_offset[fd] = file_table[fd].size+ offset;break;
-//     default:open_offset[fd] = -1;break;
-//   }
-//   if(open_offset[fd]>file_table[fd].size)
-//     open_offset[fd] = -1;
-//   return open_offset[fd];
-// }
-
-
-
-// void init_fs() {
-//   // TODO: initialize the size of /dev/fb
-// }
