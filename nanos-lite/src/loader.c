@@ -1,5 +1,6 @@
 #include <proc.h>
 #include <elf.h>
+#include "fs.h"
 
 #ifdef __LP64__
 # define Elf_Ehdr Elf64_Ehdr
@@ -15,6 +16,7 @@ extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 extern int fs_open(const char *pathname, int flags, int mode);
 extern size_t fs_read(int fd, void *buf, size_t len);
 extern int fs_size(int fd);
+extern size_t fs_lseek(int fd, size_t offset, int whence);
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd=fs_open(filename, 0, 0);
@@ -34,6 +36,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int phennum=Ehdr->e_phnum;
 
   Elf_Phdr Phdr[phennum];
+  assert(fs_lseek(fd,Ehdr-> e_ehsize,SEEK_SET)==Ehdr-> e_ehsize);
   assert(fs_read(fd,Phdr,phentsize*phennum)==phentsize*phennum);
 
 
