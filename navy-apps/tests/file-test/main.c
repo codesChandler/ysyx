@@ -1,26 +1,13 @@
 #include "stdio.h"
 #include <assert.h>
-#if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "%W% (Berkeley) %G%";
-#endif /* LIBC_SCCS and not lint */
 
-#include <_ansi.h>
-#include <reent.h>
-#include <stdio.h>
-#include <errno.h>
-#include <sys/lock.h>
-#ifdef __CYGWIN__
-#include <fcntl.h>
-#endif
-// #include "local.h"
-
-// FILE *fopen (const char *file,
-//        const char *mode)
-// {
-//   // printf("I am here\n");
-//   return 1;
-//   // return _fopen_r (_REENT, file, mode);
-// }
+FILE *fopen (const char *file,
+       const char *mode)
+{
+  // printf("I am here\n");
+  return 1;
+  // return _fopen_r (_REENT, file, mode);
+}
 #define SYS_open 2
 int main() {
   printf("I am in file-test:%d\n",_syscall_(SYS_open, (int)&"/share/files/num", 0, 0));
