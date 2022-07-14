@@ -10,5 +10,6 @@ extern int _syscall_(int, uintptr_t, uintptr_t, uintptr_t);
 
 int main() {
   // printf("I am here\n");
+  assert(fopen("/share/files/num", "r+")!=0);
   return _syscall_(SYS_yield, 0, 0, 0);
 }
