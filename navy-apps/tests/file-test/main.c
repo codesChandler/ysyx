@@ -44,7 +44,7 @@ int main() {
 
   fclose(fp);
 
-  printf("PASS!!!\n");
-
+  // printf("PASS!!!\n");
+  putch("0");
   return 0;
 }
