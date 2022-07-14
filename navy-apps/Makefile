@@ -107,7 +107,7 @@ $(DST_DIR)/%.o: %.cc
 
 ### Rule (compile): a single `.cpp` -> `.o` (g++)
 $(DST_DIR)/%.o: %.cpp
-	@mkdir -p $(dir $@) && echo + CXX $<
+	@mkir -p $(dir $@) && echo + CXX $<d
 	@$(CXX) -std=c++17 $(CXXFLAGS) -c -o $@ $(realpath $<)
 
 ### Rule (compile): a single `.S` -> `.o` (gcc, which calls as)
@@ -167,7 +167,7 @@ $(CLEAN_ALL):
 
 ### Build fsimg and ramdisk for Nanos-lite
 APPS =
-TESTS = dummy hello
+TESTS = dummy hello# file-test
 
 fsimg: $(addprefix apps/, $(APPS)) $(addprefix tests/, $(TESTS))
 	-for t in $^; do $(MAKE) -s -C $(NAVY_HOME)/$$t install; done
