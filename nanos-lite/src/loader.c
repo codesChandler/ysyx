@@ -23,7 +23,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd=fs_open(filename, 0, 0);
 
   int elf_size=sizeof(Elf_Ehdr);//fs_size(fd);
-  printf("elf_size:%d\n",elf_size);
+  // printf("elf_size:%d\n",elf_size);
   uint8_t buf[elf_size];
 
   int rlen=fs_read(fd,buf,elf_size);
