@@ -1,0 +1,100 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/chandler/ysyx-workbench/nanos-lite/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20220508.0/
+./src/resources.S	Makefile	/^.\/src\/resources.S: $(RAMDISK_FILE)$/;"	t
+Elf_Ehdr	src/loader.c	/^# define Elf_Ehdr /;"	d	file:
+Elf_Phdr	src/loader.c	/^# define Elf_Phdr /;"	d	file:
+FD_FB	src/fs.c	/^enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};$/;"	e	enum:__anoncf300d260203	file:
+FD_STDERR	src/fs.c	/^enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};$/;"	e	enum:__anoncf300d260203	file:
+FD_STDIN	src/fs.c	/^enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};$/;"	e	enum:__anoncf300d260203	file:
+FD_STDOUT	src/fs.c	/^enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};$/;"	e	enum:__anoncf300d260203	file:
+Finfo	src/fs.c	/^} Finfo;$/;"	t	typeref:struct:__anoncf300d260108	file:
+HAS_CTE	include/common.h	/^#define HAS_CTE$/;"	d
+ISA	Makefile	/^ISA = am_native$/;"	m
+Log	include/debug.h	/^#define Log(/;"	d
+MAX_NR_PROC	src/proc.c	/^#define MAX_NR_PROC /;"	d	file:
+MULTIPROGRAM_YIELD	src/device.c	/^# define MULTIPROGRAM_YIELD(/;"	d	file:
+NAME	Makefile	/^NAME = nanos-lite$/;"	m
+NAME	src/device.c	/^#define NAME(/;"	d	file:
+Nanos-lite	README.md	/^# Nanos-lite$/;"	c
+PCB	include/proc.h	/^} PCB;$/;"	t	typeref:union:__anon64b71c42010a
+PGSIZE	include/memory.h	/^#define PGSIZE /;"	d
+PG_ALIGN	include/memory.h	/^#define PG_ALIGN /;"	d
+RAMDISK_FILE	Makefile	/^RAMDISK_FILE = build\/ramdisk.img$/;"	m
+RAMDISK_SIZE	src/ramdisk.c	/^#define RAMDISK_SIZE /;"	d	file:
+ReadFn	src/fs.c	/^typedef size_t (*ReadFn) (void *buf, size_t offset, size_t len);$/;"	t	typeref:typename:size_t (*)(void * buf,size_t offset,size_t len)	file:
+SEEK_CUR	include/fs.h	/^enum {SEEK_SET, SEEK_CUR, SEEK_END};$/;"	e	enum:__anon69db2b070103
+SEEK_END	include/fs.h	/^enum {SEEK_SET, SEEK_CUR, SEEK_END};$/;"	e	enum:__anon69db2b070103
+SEEK_SET	include/fs.h	/^enum {SEEK_SET, SEEK_CUR, SEEK_END};$/;"	e	enum:__anon69db2b070103
+SRCS	Makefile	/^SRCS = $(shell find -L .\/src\/ -name "*.c" -o -name "*.cpp" -o -name "*.S")$/;"	m
+STACK_SIZE	include/proc.h	/^#define STACK_SIZE /;"	d
+TODO	include/debug.h	/^#define TODO(/;"	d
+WriteFn	src/fs.c	/^typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);$/;"	t	typeref:typename:size_t (*)(const void * buf,size_t offset,size_t len)	file:
+__COMMON_H__	include/common.h	/^#define __COMMON_H__$/;"	d
+__DEBUG_H__	include/debug.h	/^#define __DEBUG_H__$/;"	d
+__FS_H__	include/fs.h	/^#define __FS_H__$/;"	d
+__MEMORY_H__	include/memory.h	/^#define __MEMORY_H__$/;"	d
+__PROC_H__	include/proc.h	/^#define __PROC_H__$/;"	d
+__anon64b71c42010a	include/proc.h	/^typedef union {$/;"	u
+__anon64b71c420208	include/proc.h	/^  struct {$/;"	s	union:__anon64b71c42010a
+__anon69db2b070103	include/fs.h	/^enum {SEEK_SET, SEEK_CUR, SEEK_END};$/;"	g
+__anoncf300d260108	src/fs.c	/^typedef struct {$/;"	s	file:
+__anoncf300d260203	src/fs.c	/^enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};$/;"	g	file:
+as	include/proc.h	/^    AddrSpace as;$/;"	m	struct:__anon64b71c42010a::__anon64b71c420208	typeref:typename:AddrSpace
+assert	include/debug.h	/^#define assert(/;"	d
+cp	include/proc.h	/^    Context *cp;$/;"	m	struct:__anon64b71c42010a::__anon64b71c420208	typeref:typename:Context *
+current	src/proc.c	/^PCB *current = NULL;$/;"	v	typeref:typename:PCB *
+disk_offset	src/fs.c	/^  size_t disk_offset;$/;"	m	struct:__anoncf300d260108	typeref:typename:size_t	file:
+dispinfo_read	src/device.c	/^size_t dispinfo_read(void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+do_event	src/irq.c	/^static Context* do_event(Event e, Context* c) {$/;"	f	typeref:typename:Context *	file:
+do_syscall	src/syscall.c	/^void do_syscall(Context *c) {$/;"	f	typeref:typename:void
+events_read	src/device.c	/^size_t events_read(void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+fb_write	src/device.c	/^size_t fb_write(const void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+file_table	src/fs.c	/^static Finfo file_table[] __attribute__((used)) = {$/;"	v	typeref:typename:Finfo[]	file:
+files	Makefile	/^files = $(RAMDISK_FILE) src\/files.h src\/syscall.h$/;"	m
+free_page	src/mm.c	/^void free_page(void *p) {$/;"	f	typeref:typename:void
+get_ramdisk_size	src/ramdisk.c	/^size_t get_ramdisk_size() {$/;"	f	typeref:typename:size_t
+hello_fun	src/proc.c	/^void hello_fun(void *arg) {$/;"	f	typeref:typename:void
+init_device	src/device.c	/^void init_device() {$/;"	f	typeref:typename:void
+init_fs	src/fs.c	/^void init_fs() {$/;"	f	typeref:typename:void
+init_irq	src/irq.c	/^void init_irq(void) {$/;"	f	typeref:typename:void
+init_mm	src/mm.c	/^void init_mm() {$/;"	f	typeref:typename:void
+init_proc	src/proc.c	/^void init_proc() {$/;"	f	typeref:typename:void
+init_ramdisk	src/ramdisk.c	/^void init_ramdisk() {$/;"	f	typeref:typename:void
+invalid_read	src/fs.c	/^size_t invalid_read(void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+invalid_write	src/fs.c	/^size_t invalid_write(const void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+keyname	src/device.c	/^static const char *keyname[256] __attribute__((used)) = {$/;"	v	typeref:typename:const char * [256]	file:
+loader	src/loader.c	/^static uintptr_t loader(PCB *pcb, const char *filename) {$/;"	f	typeref:typename:uintptr_t	file:
+logo	src/resources.S	/^logo:$/;"	l
+main	src/main.c	/^int main() {$/;"	f	typeref:typename:int
+makefile.extensionOutputFolder	.vscode/settings.json	/^  "makefile.extensionOutputFolder": ".\/.vscode"$/;"	s
+max_brk	include/proc.h	/^    uintptr_t max_brk;$/;"	m	struct:__anon64b71c42010a::__anon64b71c420208	typeref:typename:uintptr_t
+mm_brk	src/mm.c	/^int mm_brk(uintptr_t brk) {$/;"	f	typeref:typename:int
+naive_uload	src/loader.c	/^void naive_uload(PCB *pcb, const char *filename) {$/;"	f	typeref:typename:void
+name	src/fs.c	/^  char *name;$/;"	m	struct:__anoncf300d260108	typeref:typename:char *	file:
+new_page	src/mm.c	/^void* new_page(size_t nr_page) {$/;"	f	typeref:typename:void *
+panic	include/debug.h	/^#define panic(/;"	d
+pcb	src/proc.c	/^static PCB pcb[MAX_NR_PROC] __attribute__((used)) = {};$/;"	v	typeref:typename:PCB[]	file:
+pcb_boot	src/proc.c	/^static PCB pcb_boot = {};$/;"	v	typeref:typename:PCB	file:
+pf	src/mm.c	/^static void *pf = NULL;$/;"	v	typeref:typename:void *	file:
+pg_alloc	src/mm.c	/^static void* pg_alloc(int n) {$/;"	f	typeref:typename:void *	file:
+ramdisk_end	src/resources.S	/^ramdisk_end:$/;"	l
+ramdisk_read	src/ramdisk.c	/^size_t ramdisk_read(void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+ramdisk_start	src/resources.S	/^ramdisk_start:$/;"	l
+ramdisk_write	src/ramdisk.c	/^size_t ramdisk_write(const void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+read	src/fs.c	/^  ReadFn read;$/;"	m	struct:__anoncf300d260108	typeref:typename:ReadFn	file:
+schedule	src/proc.c	/^Context* schedule(Context *prev) {$/;"	f	typeref:typename:Context *
+serial_write	src/device.c	/^size_t serial_write(const void *buf, size_t offset, size_t len) {$/;"	f	typeref:typename:size_t
+size	src/fs.c	/^  size_t size;$/;"	m	struct:__anoncf300d260108	typeref:typename:size_t	file:
+stack	include/proc.h	/^  uint8_t stack[STACK_SIZE] PG_ALIGN;$/;"	m	union:__anon64b71c42010a	typeref:typename:uint8_t[STACK_SIZE]PG_ALIGN
+switch_boot_pcb	src/proc.c	/^void switch_boot_pcb() {$/;"	f	typeref:typename:void
+update	Makefile	/^update:$/;"	t
+write	src/fs.c	/^  WriteFn write;$/;"	m	struct:__anoncf300d260108	typeref:typename:WriteFn	file:

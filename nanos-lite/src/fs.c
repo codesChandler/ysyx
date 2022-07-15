@@ -1,4 +1,5 @@
 #include <fs.h>
+#include <common.h>
 
 typedef size_t (*ReadFn) (void *buf, size_t offset, size_t len);
 typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
@@ -33,41 +34,68 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 #include "files.h"
 };
 
-void init_fs() {
-  // TODO: initialize the size of /dev/fb
-}
+// char *name_(int fd){
+//   static char name[100];
+//   strcpy(name,file_table[fd].name);
+//   return name;
+// }
 
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table);i++){
     if(strcmp(pathname,file_table[i].name)==0){
       open_offset[i]=0;
+      Log("syscall ID= sys_open file= %s", file_table[i].name);
       return i;}
   }
   assert(0);
+  return -1;
 }
 
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 size_t fs_read(int fd, void *buf, size_t len){
-  // printf("file_table[fd].open_offset:%d\n",open_offset[fd]);
-  assert((open_offset[fd]+len)<=file_table[fd].size);
-  ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len);
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_read file= %s", file_table[fd].name);
+  #endif
+  if(len==0) return 0;
+  // printf("fs_read\n");
+  assert(fd>2);
+  // assert((open_offset[fd]+len)<=file_table[fd].size);
+  if((open_offset[fd]+len)>file_table[fd].size)
+    len=file_table[fd].size-open_offset[fd];
+  assert(ramdisk_read(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
   open_offset[fd]+=len;
   return len;
 }
 
-// size_t fs_write(int fd, const void *buf, size_t len){
-//   printf("I am here\n");
-//   return 0;
-// }
+size_t ramdisk_write(const void *buf, size_t offset, size_t len);
+size_t fs_write(int fd, const void *buf, size_t len){
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_write file= %s", file_table[fd].name);
+  #endif
+  if(fd==1 || fd==2){
+    int i=0;
+    for(;i<len;i++){
+    putch(*((char *)buf+i));}
+    return i;}
+  else{
+    assert(buf!=NULL);
+    assert((open_offset[fd]+len)<=file_table[fd].size);
+    assert(ramdisk_write(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
+    open_offset[fd]+=len;
+    return len;
+  }
 
-int fs_size(int fd){
-  return file_table[fd].size;
+  assert(0);
 }
 
-//enum {SEEK_SET,SEEK_CUR,SEEK_end};
 
+//enum {SEEK_SET,SEEK_CUR,SEEK_end};
 size_t fs_lseek(int fd, size_t offset, int whence){
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_lseek file= %s", file_table[fd].name);
+  #endif
+  // printf("fs_lseek\n");
   if(whence == SEEK_SET) open_offset[fd]=offset;
   else if(whence == SEEK_CUR) open_offset[fd]+=offset;
   else open_offset[fd] = file_table[fd].size;
@@ -76,5 +104,16 @@ size_t fs_lseek(int fd, size_t offset, int whence){
 }
 
 int fs_close(int fd){
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_close file= %s", file_table[fd].name);
+  #endif
   return 0;
 }
+
+void init_fs() {
+  // TODO: initialize the size of /dev/fb
+}
+
+
+
+
