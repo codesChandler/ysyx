@@ -27,7 +27,7 @@ enum {
 static uint32_t keymap[256] = {};
 
 static void init_keymap() {
-  MAP(_KEYS, SDL_KEYMAP)
+  MAP(_KEYS, SDL_KEYMAP)//SDL扫描码分配
 }
 
 #define KEY_QUEUE_LEN 1024

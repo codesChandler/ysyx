@@ -1,4 +1,5 @@
 #include <common.h>
+#include <string.h>
 
 #if defined(MULTIPROGRAM) && !defined(TIME_SHARING)
 # define MULTIPROGRAM_YIELD() yield()
@@ -15,11 +16,33 @@ static const char *keyname[256] __attribute__((used)) = {
 };
 
 size_t serial_write(const void *buf, size_t offset, size_t len) {
-  return 0;
+  // printf("I am using serial_write\n");
+  int i=0;
+  for(;i<len;i++)
+    putch(*((char *)buf+i));
+  return i;
 }
 
 size_t events_read(void *buf, size_t offset, size_t len) {
-  return 0;
+  // printf("events_read\n");
+  AM_INPUT_KEYBRD_T ev = io_read(AM_INPUT_KEYBRD);
+  if (ev.keycode == AM_KEY_NONE) return 0;
+  char *down="kd ";
+  char *up="ku ";
+  if(ev.keydown) //DOWN
+  {
+    strcat(down,keyname[ev.keycode]);
+    memcpy(buf+offset,down,strlen(down));
+    memset(buf+offset+strlen(down),'\n',1);
+    memset(buf+offset+strlen(down)+1,0,len-strlen(up)-1-3);
+    return len;}
+  else           //UP
+  {
+    strcat(up,keyname[ev.keycode]);
+    memcpy(buf+offset,up,strlen(up));
+    memset(buf+offset+strlen(up),'\n',1);
+    memset(buf+offset+strlen(up)+1,0,len-strlen(up)-1-3);
+    return len;}
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {

@@ -8,7 +8,6 @@
 //#define TIME_SHARING
 #define CONFIG_STRACE 1
 
-
 #include <am.h>
 #include <klib.h>
 #include <klib-macros.h>
