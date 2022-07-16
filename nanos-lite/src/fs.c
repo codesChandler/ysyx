@@ -31,12 +31,16 @@ extern size_t serial_write(const void *buf, size_t offset, size_t len);
 extern size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
 extern size_t events_read(void *buf, size_t offset, size_t len);
+size_t dispinfo_read(void *buf, size_t offset, size_t len);
+extern size_t fb_write(const void *buf, size_t offset, size_t len);
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {//文件记录表
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
   [FD_STDOUT] = {"stdout", 0, 0,invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0,invalid_read, serial_write},
   {"/dev/events", 0, 0},
+  {"/dev/fb",0,0},
+  {"/proc/dispinfo",0,0},
 #include "files.h"
   
 };
@@ -52,10 +56,13 @@ int fs_open(const char *pathname, int flags, int mode){
 
       if(i==1||i==2)
         file_table[i].write=serial_write;
+      else if(i==4) file_table[i].write=fb_write;
       else file_table[i].write=ramdisk_write;
 
       if(i==3)
         file_table[i].read=events_read;
+      else if(i==5)
+        file_table[i].read=dispinfo_read;
       else file_table[i].read=ramdisk_read;
 
       return i;}
@@ -135,6 +142,11 @@ int fs_close(int fd){
 
 void init_fs() {
   // TODO: initialize the size of /dev/fb
+  // static char fb[400*300*32/8];
+  for(int i=0;i<sizeof(file_table)/sizeof(Finfo);i++){
+    if(strcmp("/dev/fb",file_table[i].name)==0){
+        file_table[i].size=400*300*32/8;
+    }}
 }
 
 
