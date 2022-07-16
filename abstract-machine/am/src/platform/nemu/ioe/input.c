@@ -10,7 +10,11 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   kbd->keycode=code & (~KEYDOWN_MASK);
   if((code & KEYDOWN_MASK) == KEYDOWN_MASK)
   { //printf("I am down\n");
+    kbd->keycode=code & (~KEYDOWN_MASK);
     kbd->keydown = 1;}
-  else
+  else{
+    // printf("I am UP\n");
+    kbd->keycode=code;
     kbd->keydown = 0;
+    }
 }
