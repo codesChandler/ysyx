@@ -44,6 +44,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     memcpy(buf,up,strlen(up));    
     memset(buf+strlen(up),'\n',1);
     memset(buf+strlen(up)+1,0,len-strlen(up)-1-3);
+    
     return len;}
 }
 
