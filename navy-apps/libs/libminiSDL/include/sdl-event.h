@@ -32,25 +32,25 @@ enum SDL_EventAction {
 };
 
 typedef struct {
-  uint8_t sym;
+  uint8_t sym;/**< SDL virtual key code - see ::SDL_Keycode for details */
 } SDL_keysym;
 
 typedef struct {
-  uint8_t type;
-  SDL_keysym keysym;
+  uint8_t type; /**< ::SDL_KEYDOWN or ::SDL_KEYUP */
+  SDL_keysym keysym;/**< The key that was pressed or released */
 } SDL_KeyboardEvent;
 
 typedef struct {
-  uint8_t type;
-  int code;
-  void *data1;
-  void *data2;
+  uint8_t type;/**< ::SDL_USEREVENT through ::SDL_LASTEVENT-1 */
+  int code;/**< User defined event code */
+  void *data1; /**< User defined data pointer */
+  void *data2; /**< User defined data pointer */
 } SDL_UserEvent;
 
 typedef union {
-  uint8_t type;
-  SDL_KeyboardEvent key;
-  SDL_UserEvent user;
+  uint8_t type;/**< Event type, shared with all events */
+  SDL_KeyboardEvent key;/**< Keyboard event data */
+  SDL_UserEvent user;/**< Custom event data */
 } SDL_Event;
 
 int SDL_PushEvent(SDL_Event *ev);

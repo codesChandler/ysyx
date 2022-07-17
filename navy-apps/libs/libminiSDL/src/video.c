@@ -3,16 +3,66 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
+  
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+
+  SDL_Rect fulldst,fullsrc;
+  int srcx, srcy, w, h;
+
+    /* If the destination rectangle is NULL, use the entire dest surface */
+    //If dstrect is NULL, then the destination position (upper left corner) is (0, 0).
+    if (dstrect == NULL) {
+        fulldst.x = fulldst.y = 0;
+        fulldst.w = dst->w;
+        fulldst.h = dst->h;
+        dstrect = &fulldst;
+    }
+
+    if (srcrect==NULL){
+        fullsrc.x = fullsrc.y = 0;
+        fullsrc.w = src->w;
+        fullsrc.h = src->h;
+        srcrect=&fullsrc;
+    } 
+
+    int start_src=src->w*srcrect->y+srcrect->x;
+    int start_dst=dst->w*dstrect->y+dstrect->x;
+    int len=(srcrect->w)*(srcrect->h);
+
+
+    for(int h=0;h<srcrect->h;h++)
+      for(int w=0;w<srcrect->w;w++){
+        *((uint32_t *)dst->pixels+start_dst+(h*dst->w+w))=*((uint32_t *)src->pixels+start_src+(h*src->w+w));
+      }
+    
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+
+  if(dstrect==NULL){
+    for(int i=0;i<dst->w*dst->h;i++){
+      // printf("i:%d\n",i);
+      *(((uint32_t *)dst->pixels)+i)=color;}
+    // printf("dst->w-%d, dst->h-%d\n",dst->w, dst->h);
+    // while(1);
+    NDL_DrawRect((uint32_t *)dst->pixels, 0, 0, dst->w, dst->h);
+    // while(1);
+    return;
+  }
+
+  assert(0);
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
+  // assert(0);
+  if(x==0 && y==0 && w==0 && h==0){
+    NDL_DrawRect((uint32_t *)s->pixels, 0, 0, s->w, s->h);
+    return;}
+  assert(0);
 }
 
 // APIs below are already implemented.
@@ -193,8 +243,10 @@ uint32_t SDL_MapRGBA(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b, uint
 }
 
 int SDL_LockSurface(SDL_Surface *s) {
+  assert(0);
   return 0;
 }
 
 void SDL_UnlockSurface(SDL_Surface *s) {
+  assert(0);
 }

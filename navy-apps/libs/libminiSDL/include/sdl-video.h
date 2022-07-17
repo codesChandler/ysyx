@@ -14,11 +14,6 @@
 #define DEFAULT_BMASK 0x000000ff
 #define DEFAULT_AMASK 0xff000000
 
-typedef struct {
-	int16_t x, y;
-	uint16_t w, h;
-} SDL_Rect;
-
 typedef union {
   struct {
     uint8_t r, g, b, a;
@@ -40,13 +35,37 @@ typedef struct {
 	uint32_t Rmask, Gmask, Bmask, Amask;
 } SDL_PixelFormat;
 
+
+/**
+ * A rectangle, with the origin at the upper left (integer).
+ *
+ * \sa SDL_RectEmpty
+ * \sa SDL_RectEquals
+ * \sa SDL_HasIntersection
+ * \sa SDL_IntersectRect
+ * \sa SDL_IntersectRectAndLine
+ * \sa SDL_UnionRect
+ * \sa SDL_EnclosePoints
+ */
 typedef struct {
-	uint32_t flags;
-	SDL_PixelFormat *format;
-	int w, h;
-	uint16_t pitch;
-	uint8_t *pixels;
+	int16_t x, y;//the x location of the rectangle's upper left corner;the y location of the rectangle's upper left corner
+	uint16_t w, h;//the width of the rectangle;the height of the rectangle
+} SDL_Rect;
+
+/**
+ * \brief A collection of pixels used in software blitting.
+ *
+ * \note  This structure should be treated as read-only, except for \c pixels,
+ *        which, if not NULL, contains the raw pixel data for the surface.
+ */
+typedef struct {
+	uint32_t flags;//(internal use)
+	SDL_PixelFormat *format; //the format of the pixels stored in the surface; see SDL_PixelFormat for details (read-only)
+	int w, h; //the width and height in pixels (read-only)
+	uint16_t pitch; //the length of a row of pixels in bytes (read-only)
+	uint8_t *pixels; //the pointer to the actual pixel data; see Remarks for details (read-write)
 } SDL_Surface;
+
 
 SDL_Surface* SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int depth,
     int pitch, uint32_t Rmask, uint32_t Gmask, uint32_t Bmask, uint32_t Amask);

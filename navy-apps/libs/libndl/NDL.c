@@ -12,7 +12,7 @@
 static int evtdev = -1;
 static int fbdev = -1;
 static int dpdev=-1;
-static int screen_w = 0, screen_h = 0;//画布的宽度和高度
+static int screen_w = 0, screen_h = 0;//屏幕的宽度和高度
 
 uint32_t NDL_GetTicks() {
   struct timeval tv;
@@ -34,7 +34,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
     // let NWM resize the window and create the frame buffer
-    write(fbctl, buf, len);
+    assert(write(fbctl, buf, len)!=0);
     while (1) {
       // 3 = evtdev
       int nread = read(3, buf, sizeof(buf) - 1);
@@ -45,7 +45,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     close(fbctl);
   }
   char buf[100];
-  read(dpdev,buf,30);
+  assert(read(dpdev,buf,30)!=0);
   int wp=0;int flag=0;int hp=0;
   for(int i=0;i<30;i++){
     if(*(buf+i)==':') flag++;
@@ -56,25 +56,39 @@ void NDL_OpenCanvas(int *w, int *h) {
         hp=hp*10+*(buf+i)-'0';}
     }
   // printf("wp:%d--hp:%d\n",wp,hp);
-  if(*w>wp) screen_w=wp;
-  else screen_w = *w;
-  if(*h>hp) screen_h=hp;
-  else screen_h = *h;
+  screen_w=wp;
+  screen_h=hp;
+  if(*w==0 && *h==0){
+  *w=wp;
+  *h=hp;}
+  // else{
+  // if(*w>wp) screen_w=wp;
+  // else screen_w = *w;
+  // if(*h>hp) screen_h=hp;
+  // else screen_h = *h;}
   //read(fbdev,0,screen_w*screen_h);
   // screen_w = *w; screen_h = *h;
 
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {//对于len,前32位为w,后32位为h
-  printf("I am here\n");
+  // printf("I am here\n");
   // uint64_t h_=h;
   // lseek(fbdev,screen_w*y+x,SEEK_SET);
   // for(int i=0;i<32;i++)
   //   h_=h_*2;
+  #if defined(__ISA_RISCV64__)
+  assert(0);
   size_t len=(uint64_t )w + (((uint64_t )h)<<32);
-  printf("len%lx=(uint64_t )w%lx + (((uint64_t )h)<<32)%lx\n",len,(uint64_t )w,(((uint64_t )h)<<32));
-  printf("w:%d--h:%d--size_t len:%lx\n",w,h,len);
+  // printf("len%lx=(uint64_t )w%lx + (((uint64_t )h)<<32)%lx\n",len,(uint64_t )w,(((uint64_t )h)<<32));
+  // printf("w:%d--h:%d--size_t len:%lx\n",w,h,len);
   write(fbdev,pixels,len);
+  #elif defined(__ISA_NATIVE__)
+    for(int i=0;i<h;i++){
+      // printf("screen_w%d--screen_h%d\n",screen_w,screen_h);
+      lseek(fbdev,(screen_w*(y+i)+x)*4,SEEK_SET);
+      assert(write(fbdev,pixels+i*w,w*4)!=0);}
+  #endif
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {

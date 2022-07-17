@@ -107,7 +107,7 @@ $(DST_DIR)/%.o: %.cc
 
 ### Rule (compile): a single `.cpp` -> `.o` (g++)
 $(DST_DIR)/%.o: %.cpp
-	@mkir -p $(dir $@) && echo + CXX $<d
+	@mkdir -p $(dir $@) && echo + CXX $<d
 	@$(CXX) -std=c++17 $(CXXFLAGS) -c -o $@ $(realpath $<)
 
 ### Rule (compile): a single `.S` -> `.o` (gcc, which calls as)

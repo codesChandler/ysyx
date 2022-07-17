@@ -26,7 +26,6 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
   return 0;
 }
 
-
 extern size_t serial_write(const void *buf, size_t offset, size_t len);
 extern size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 extern size_t ramdisk_read(void *buf, size_t offset, size_t len);
