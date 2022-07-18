@@ -19,20 +19,20 @@ typedef union {
     uint8_t r, g, b, a;
   };
   uint32_t val;
-} SDL_Color;
+} SDL_Color;//A structure that represents a color.
 
 typedef struct {
-	int ncolors;
-	SDL_Color *colors;
+	int ncolors;//the number of colors in the palette
+	SDL_Color *colors;//an array of SDL_Color structures representing the palette!!!这里才有数组
 } SDL_Palette;
 
 typedef struct {
-	SDL_Palette *palette;
-	uint8_t BitsPerPixel;
-	uint8_t BytesPerPixel;
-	uint8_t Rloss, Gloss, Bloss, Aloss;
-	uint8_t Rshift, Gshift, Bshift, Ashift;
-	uint32_t Rmask, Gmask, Bmask, Amask;
+	SDL_Palette *palette;//	an SDL_Palette structure associated with this pixel format, or NULL if the format doesn't have a palette
+	uint8_t BitsPerPixel;//the number of significant bits in a pixel value, eg: 8, 15, 16, 24, 32
+	uint8_t BytesPerPixel;//the number of bytes required to hold a pixel value, eg: 1, 2, 3, 4; see Remarks for related data type
+	uint8_t Rloss, Gloss, Bloss, Aloss;//(internal use)
+	uint8_t Rshift, Gshift, Bshift, Ashift;//(internal use)
+	uint32_t Rmask, Gmask, Bmask, Amask;//a mask representing the location of the red/green/blue/alpha component of the pixel
 } SDL_PixelFormat;
 
 

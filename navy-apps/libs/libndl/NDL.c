@@ -17,7 +17,8 @@ static int screen_w = 0, screen_h = 0;//屏幕的宽度和高度
 uint32_t NDL_GetTicks() {
   struct timeval tv;
   assert(gettimeofday(&tv,NULL)==0);
-  return tv.tv_usec/1000;
+  uint32_t time=tv.tv_usec/1000+tv.tv_sec*1000;
+  return time;
 }
 
 int NDL_PollEvent(char *buf, int len) {
