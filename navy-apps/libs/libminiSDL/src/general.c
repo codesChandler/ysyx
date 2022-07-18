@@ -6,7 +6,7 @@ int SDL_Init(uint32_t flags) {
 }
 
 void SDL_Quit() {
-  assert(0);
+  // assert(0);
   NDL_Quit();
 }
 
@@ -16,7 +16,7 @@ char *SDL_GetError() {
 }
 
 int SDL_SetError(const char* fmt, ...) {
-  assert(0);
+  // assert(0);
   return -1;
 }
 

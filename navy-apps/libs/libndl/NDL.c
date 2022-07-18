@@ -80,8 +80,6 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {//对于len,前
   #if defined(__ISA_RISCV64__)
   assert(0);
   size_t len=(uint64_t )w + (((uint64_t )h)<<32);
-  // printf("len%lx=(uint64_t )w%lx + (((uint64_t )h)<<32)%lx\n",len,(uint64_t )w,(((uint64_t )h)<<32));
-  // printf("w:%d--h:%d--size_t len:%lx\n",w,h,len);
   write(fbdev,pixels,len);
   #elif defined(__ISA_NATIVE__)
     for(int i=0;i<h;i++){
