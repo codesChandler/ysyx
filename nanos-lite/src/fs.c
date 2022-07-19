@@ -46,7 +46,9 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table)/sizeof(Finfo);i++){
+    printf("int fs_open---%s0000\n",file_table[i].name);
     if(strcmp(pathname,file_table[i].name)==0){
+      
       file_table[i].open_offset=file_table[i].disk_offset;
 
       #ifdef CONFIG_STRACE
@@ -66,6 +68,7 @@ int fs_open(const char *pathname, int flags, int mode){
 
       return i;}
   }
+  printf("int fs_open---%s0000\n",pathname);
   assert(0);
   return -1;
 }
@@ -120,10 +123,11 @@ size_t fs_write(int fd, const void *buf, size_t len){
 
 //enum {SEEK_SET,SEEK_CUR,SEEK_end};
 size_t fs_lseek(int fd, size_t offset, int whence){
+
   #ifdef CONFIG_STRACE
     Log("syscall ID= sys_lseek file= %s", file_table[fd].name);
   #endif
-  // printf("fs_lseek\n")
+  // printf("fs_lseek\n");
   switch(whence){
   case SEEK_SET: file_table[fd].open_offset=file_table[fd].disk_offset+offset;break;
   case SEEK_CUR: file_table[fd].open_offset+=offset;break;
