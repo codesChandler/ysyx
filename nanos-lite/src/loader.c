@@ -38,7 +38,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int phennum=Ehdr->e_phnum;
   
   Elf_Phdr Phdr[phennum];
-  assert(fs_lseek(fd,Ehdr-> e_ehsize,SEEK_SET)==Ehdr-> e_ehsize);
+  fs_lseek(fd,Ehdr-> e_ehsize,SEEK_SET);//==Ehdr-> e_ehsize;
   assert(fs_read(fd,Phdr,phentsize*phennum)==phentsize*phennum);
 
   for(int i=0;i<phennum;i++){

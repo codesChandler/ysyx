@@ -47,7 +47,7 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table)/sizeof(Finfo);i++){
     if(strcmp(pathname,file_table[i].name)==0){
-      file_table[i].open_offset=0;
+      file_table[i].open_offset=file_table[i].disk_offset;
 
       #ifdef CONFIG_STRACE
         Log("syscall ID= sys_open file= %s", file_table[i].name);
@@ -78,7 +78,7 @@ size_t fs_read(int fd, void *buf, size_t len){
   if(len==0) return 0;
   int len_r=0;
   // printf("fs_read\n");
-  len_r=file_table[fd].read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
+  len_r=file_table[fd].read(buf,file_table[fd].open_offset,len);
   file_table[fd].open_offset+=len_r;
   return len_r;
 
@@ -96,7 +96,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
   #ifdef CONFIG_STRACE
     Log("syscall ID= sys_write file= %s", file_table[fd].name);
   #endif
-  int ret=file_table[fd].write(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
+  int ret=file_table[fd].write(buf,file_table[fd].open_offset,len);
   file_table[fd].open_offset+=ret;
   return ret;
   // return file_table[fd].write(buf,file_table[fd].disk_offset+open_offset[fd],len);
@@ -125,12 +125,12 @@ size_t fs_lseek(int fd, size_t offset, int whence){
   #endif
   // printf("fs_lseek\n")
   switch(whence){
-  case SEEK_SET: file_table[fd].open_offset=offset;break;//file_table[fd].disk_offset+offset;
+  case SEEK_SET: file_table[fd].open_offset=file_table[fd].disk_offset+offset;break;
   case SEEK_CUR: file_table[fd].open_offset+=offset;break;
-  case SEEK_END: file_table[fd].open_offset = file_table[fd].size+offset;printf("+++++++++offset:%d",file_table[fd].open_offset);break;//+file_table[fd].disk_offset;
+  case SEEK_END: file_table[fd].open_offset = file_table[fd].size+offset+file_table[fd].disk_offset;break;//+file_table[fd].disk_offset;
   default:assert(0);return -1;}
 
-  return file_table[fd].open_offset;//-file_table[fd].disk_offset;
+  return file_table[fd].open_offset-file_table[fd].disk_offset;
 }
 
 int fs_close(int fd){
