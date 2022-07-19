@@ -162,7 +162,7 @@ static SDL_Surface* STBIMG__CreateSurfaceImpl(STBIMG__image img, int origin_has_
 	surf = SDL_CreateRGBSurfaceFrom((void*)img.data, img.w, img.h,
 	                                img.format*8, img.format*img.w,
 	                                rmask, gmask, bmask, amask);
-
+  assert(surf!=NULL);
 	if(surf == NULL)
 	{
 		// hopefully SDL_CreateRGBSurfaceFrom() has set an sdl error
@@ -222,7 +222,7 @@ SDL_STBIMG_DEF SDL_Surface* STBIMG_LoadFromMemory(const unsigned char* buffer, i
 	img.format = bppToUse;
 
 	ret = STBIMG__CreateSurfaceImpl(img, origin_has_alpha, 1);
-
+  assert(ret!=NULL);
 	if(ret == NULL)
 	{
 		// no need to log an error here, it was an SDL error which should still be available through SDL_GetError()

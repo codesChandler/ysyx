@@ -22,9 +22,7 @@ uint32_t NDL_GetTicks() {
 }
 
 int NDL_PollEvent(char *buf, int len) {
-  // printf("NDL_PollEvent:%d\n",fbdev);
   return read(evtdev,buf,len);
-  // return 0;
 }
 
 void NDL_OpenCanvas(int *w, int *h) {
@@ -72,6 +70,13 @@ void NDL_OpenCanvas(int *w, int *h) {
 
 }
 
+typedef union {
+  struct {
+    uint32_t w, h;
+  };
+  uint64_t len;
+} NDL_len;
+
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {//对于len,前32位为w,后32位为h
   // printf("I am here\n");
   // uint64_t h_=h;
@@ -79,9 +84,10 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {//对于len,前
   // for(int i=0;i<32;i++)
   //   h_=h_*2;
   #if defined(__ISA_RISCV64__)
-  assert(0);
-  size_t len=(uint64_t )w + (((uint64_t )h)<<32);
-  write(fbdev,pixels,len);
+  NDL_len len_;
+  len_.w=w;len_.h=h;
+  lseek(fbdev,(screen_w*(y))*4,SEEK_SET);
+  write(fbdev,pixels,len_.len);
   #elif defined(__ISA_NATIVE__)
     for(int i=0;i<h;i++){
       // printf("screen_w%d--screen_h%d\n",screen_w,screen_h);

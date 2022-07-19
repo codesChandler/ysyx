@@ -85,20 +85,20 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   return len;
 }
 
-size_t fb_write(const void *buf, size_t offset, size_t len) { printf("fb_write\n");
+size_t fb_write(const void *buf, size_t offset, size_t len) { 
+  // printf("fb_write--offset:%d\n",offset);
   //对于len,前32位为w,后32位为h
   int y=offset/width;
   int x=offset%width;
   int w=(uint32_t )len;
-  int h=(int)((size_t)len>>32);//不知道为啥len>>32就不行
-  // printf("w=:%d--len:%d--sizeof(size_t):%d\n",w,h,sizeof(size_t));
+  int h=(int)((size_t)len>>32);
+  // printf("x=:%d--y:%d--len:%d\n",x,y,h);
   bool sync=true;
-  int i=0;for(;i<h;i++);//不知道为啥一定要用这种方法，C语言底层就很神奇
   void *pixels = (void *)buf;
   //int x, y; void *pixels; int w, h; bool sync
-  io_write(AM_GPU_FBDRAW,x,y,pixels,w,i,sync);
-  printf("w=:%d--h:%d\n",w,h);
-  return len;
+  io_write(AM_GPU_FBDRAW,x,y,pixels,w,h,sync);
+  // printf("w=:%d--h:%d\n",w,h);
+  return w*h*4;
   // int y=offset/width;
   // int x=offset%width;
   // int w=len;

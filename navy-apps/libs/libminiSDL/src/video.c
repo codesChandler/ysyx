@@ -5,29 +5,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-uint32_t rdb2color(SDL_Surface *s, int i, int j,int x,int y,int flag,int offset)
+uint32_t rdb2color(SDL_Surface *s, int i, int j,int x,int y)//必须采用，小端存放
 {
   uint8_t r;
   uint8_t g;
   uint8_t b;
   uint8_t a;
   uint32_t color;
-  if(flag==0)//for SDL_UpdateRect
-  {
   a = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].a;
   b = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].b;
   g = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].g;
   r = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].r;
   color=a << 24 | r << 16 | g << 8 | b;
-  printf("rdb2color:%x---val%x\n",color,s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].val);}
-  else{
-  a = s->format->palette->colors[*(s->pixels + offset + (i * s->w + j))].a;
-  b = s->format->palette->colors[*(s->pixels + offset + (i * s->w + j))].b;
-  g = s->format->palette->colors[*(s->pixels + offset + (i * s->w + j))].g;
-  r = s->format->palette->colors[*(s->pixels + offset + (i * s->w + j))].r;
-  color=a << 24 | r << 16 | g << 8 | b;
-  printf("rdb2color:%x---val%x\n",color,s->format->palette->colors[*(s->pixels + offset + (i * s->w + j))].val);
-  }
   
   return color;
 }
@@ -36,7 +25,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 {
   // assert(0);
   assert(dst && src);
-  assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+  assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);//判断调色板都是相同的
 
   SDL_Rect fulldst, fullsrc;
   int srcx, srcy, w, h;
@@ -69,10 +58,11 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
       if (dst->format->palette == NULL)
         *((uint32_t *)dst->pixels + start_dst + (h * dst->w + w)) = *((uint32_t *)src->pixels + start_src + (h * src->w + w));
       else
-        dst->format->palette->colors[*(dst->pixels + start_dst + (h * dst->w + w))].val = rdb2color(src, h, w,0,0,1,start_src);
-      // *((uint32_t *)dst->pixels+start_dst+(h*dst->w+w))=*((uint32_t *)src->pixels+start_src+(h*src->w+w));
+        *((uint8_t *)dst->pixels + start_dst + (h * dst->w + w)) = *((uint8_t *)src->pixels + start_src + (h * src->w + w));
+      
     }
 }
+
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
 {
@@ -101,7 +91,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
   if (s->format->palette == NULL)
   {
     if (x == 0 && y == 0 && w == 0 && h == 0)
-    {
+    { //NDL_OpenCanvas(&s->w, &s->h);
       NDL_DrawRect((uint32_t *)s->pixels, 0, 0, s->w, s->h);
       return;
     }
@@ -113,7 +103,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
   else
   {
     if (x == 0 && y == 0 && w == 0 && h == 0)
-    {
+    { //NDL_OpenCanvas(&s->w, &s->h);
       w = s->w;
       h = s->h;
       uint8_t r, g, b, a;
@@ -121,7 +111,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
       for (int i = y; i < h; i++)   // for y direction
         for (int j = x; j < w; j++) // for x direction
         {
-          *(color_buf + w * i + j) = rdb2color(s, i, j,x,y,0,0);
+          *(color_buf + w * i + j) = rdb2color(s, i, j,x,y);
         }
       NDL_DrawRect(color_buf, x, y, w, h);
       free(color_buf);
@@ -133,7 +123,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
       for (int i = y; i < h; i++)   // for y direction
         for (int j = x; j < w; j++) // for x direction
         {
-          *(color_buf + w * i + j) = rdb2color(s, i, j,x,y,0,0);
+          *(color_buf + w * i + j) = rdb2color(s, i, j,x,y);
         }
       NDL_DrawRect(color_buf, x, y, w, h);
       free(color_buf);

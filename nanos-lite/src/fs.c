@@ -10,9 +10,9 @@ typedef struct {
   size_t disk_offset;
   ReadFn read;
   WriteFn write;
+  size_t open_offset;
 } Finfo;
 
-static int open_offset[25];
 
 enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
 
@@ -47,7 +47,7 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table)/sizeof(Finfo);i++){
     if(strcmp(pathname,file_table[i].name)==0){
-      open_offset[i]=0;
+      file_table[i].open_offset=0;
 
       #ifdef CONFIG_STRACE
         Log("syscall ID= sys_open file= %s", file_table[i].name);
@@ -78,8 +78,8 @@ size_t fs_read(int fd, void *buf, size_t len){
   if(len==0) return 0;
   int len_r=0;
   // printf("fs_read\n");
-  len_r=file_table[fd].read(buf,file_table[fd].disk_offset+open_offset[fd],len);
-  open_offset[fd]+=len_r;
+  len_r=file_table[fd].read(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
+  file_table[fd].open_offset+=len_r;
   return len_r;
 
   // printf("fs_read\n");
@@ -92,14 +92,13 @@ size_t fs_read(int fd, void *buf, size_t len){
   // return len;
 }
 
-
 size_t fs_write(int fd, const void *buf, size_t len){
   #ifdef CONFIG_STRACE
     Log("syscall ID= sys_write file= %s", file_table[fd].name);
   #endif
-  assert(file_table[fd].write(buf,file_table[fd].disk_offset+open_offset[fd],len)==len);
-  open_offset[fd]+=len;
-  return len;
+  int ret=file_table[fd].write(buf,file_table[fd].disk_offset+file_table[fd].open_offset,len);
+  file_table[fd].open_offset+=ret;
+  return ret;
   // return file_table[fd].write(buf,file_table[fd].disk_offset+open_offset[fd],len);
 
   // if(fd==1 || fd==2){
@@ -124,12 +123,14 @@ size_t fs_lseek(int fd, size_t offset, int whence){
   #ifdef CONFIG_STRACE
     Log("syscall ID= sys_lseek file= %s", file_table[fd].name);
   #endif
-  // printf("fs_lseek\n");
-  if(whence == SEEK_SET) open_offset[fd]=offset;
-  else if(whence == SEEK_CUR) open_offset[fd]+=offset;
-  else open_offset[fd] = file_table[fd].size;
+  // printf("fs_lseek\n")
+  switch(whence){
+  case SEEK_SET: file_table[fd].open_offset=offset;break;//file_table[fd].disk_offset+offset;
+  case SEEK_CUR: file_table[fd].open_offset+=offset;break;
+  case SEEK_END: file_table[fd].open_offset = file_table[fd].size+offset;printf("+++++++++offset:%d",file_table[fd].open_offset);break;//+file_table[fd].disk_offset;
+  default:assert(0);return -1;}
 
-  return open_offset[fd];
+  return file_table[fd].open_offset;//-file_table[fd].disk_offset;
 }
 
 int fs_close(int fd){

@@ -80,7 +80,6 @@ int _open(const char *path, int flags, mode_t mode) {
 }
 
 int _read(int fd, void *buf, size_t count) {
-  // _exit(SYS_read);
   return _syscall_(SYS_read, fd, (int)buf, count);
 }
 
@@ -100,8 +99,8 @@ int _gettimeofday(struct timeval *tv, struct timezone *tz) {
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
-  _exit(SYS_execve);
-  return 0;
+  // _exit(SYS_execve);
+  return _syscall_(SYS_execve, (int)fname, 0, 0);
 }
 
 // Syscalls below are not used in Nanos-lite.

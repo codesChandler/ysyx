@@ -17,13 +17,17 @@ SDL_Surface* IMG_Load(const char *filename) {
   printf("IMG_Load:%s\n",filename);
   FILE *fp = fopen(filename, "r+");
   assert(fp!=NULL);
+
   fseek(fp,0,SEEK_END);
   int size=ftell(fp);
+  printf("SDL_Surface* IMG_Load:%d\n",size);
   uint8_t *buf=(uint8_t *)malloc(size);
   fseek(fp,0,SEEK_SET);
   assert(fread(buf,size,1,fp)==1);
   SDL_Surface* screen=STBIMG_LoadFromMemory(buf, size);
+  assert(screen!=NULL);
   free(buf);
+  printf("=====================SDL_Surface* IMG_Load\n");
   return screen;
 }
 
