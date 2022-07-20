@@ -88,8 +88,8 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 size_t fb_write(const void *buf, size_t offset, size_t len) { 
   // printf("fb_write--offset:%d\n",offset);
   //对于len,前32位为w,后32位为h
-  int y=offset/width;
-  int x=offset%width;
+  int y=offset/width/4;
+  int x=offset%width/4;
   int w=(uint32_t )len;
   int h=(int)((size_t)len>>32);
   // printf("x=:%d--y:%d--len:%d\n",x,y,h);

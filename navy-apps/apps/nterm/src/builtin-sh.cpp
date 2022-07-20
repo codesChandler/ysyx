@@ -23,10 +23,16 @@ static void sh_prompt() {
 }
 
 static void sh_handle_cmd(const char *cmd) {
-  char cmd_q[64];
-  memcpy(cmd_q,cmd,sizeof(cmd)+1);
-  memset(cmd_q+sizeof(cmd)+1,'\0',1);
-  execve(cmd_q, NULL, NULL);
+  char path[6]="PATH";
+  char value[6]="/bin/";
+  int overwrite=0;
+  setenv(path, value, overwrite);
+  static char cmd_q[64];
+  memcpy(cmd_q,cmd,strlen(cmd));
+  memset(cmd_q+strlen(cmd)-1,'\0',1);//Carriage Return
+  memset(cmd_q+strlen(cmd),0,64-strlen(cmd));
+
+  execvp(cmd_q, NULL);
 }
 
 void builtin_sh_run() {

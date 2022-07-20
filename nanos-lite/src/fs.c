@@ -46,7 +46,7 @@ static Finfo file_table[] __attribute__((used)) = {//文件记录表
 
 int fs_open(const char *pathname, int flags, int mode){
   for(int i=0;i<sizeof(file_table)/sizeof(Finfo);i++){
-    printf("int fs_open---%s0000\n",file_table[i].name);
+    //printf("pathname---%s--len-%d----file_table[i].name---%s--len--%d--result---%d\n",pathname,strlen(pathname),file_table[i].name,strlen(file_table[i].name),strcmp(pathname,file_table[i].name));
     if(strcmp(pathname,file_table[i].name)==0){
       
       file_table[i].open_offset=file_table[i].disk_offset;
@@ -68,7 +68,7 @@ int fs_open(const char *pathname, int flags, int mode){
 
       return i;}
   }
-  printf("int fs_open---%s0000\n",pathname);
+  // printf("int fs_open---%s\n",pathname);
   assert(0);
   return -1;
 }
@@ -79,8 +79,9 @@ size_t fs_read(int fd, void *buf, size_t len){
   #endif
   // printf()
   if(len==0) return 0;
+  if(fd!=5 && fd!=3 &&  file_table[fd].open_offset>=file_table[fd].size+file_table[fd].disk_offset) return 0;
   int len_r=0;
-  // printf("fs_read\n");
+    // printf("fs_read\n");
   len_r=file_table[fd].read(buf,file_table[fd].open_offset,len);
   file_table[fd].open_offset+=len_r;
   return len_r;
@@ -99,6 +100,8 @@ size_t fs_write(int fd, const void *buf, size_t len){
   #ifdef CONFIG_STRACE
     Log("syscall ID= sys_write file= %s", file_table[fd].name);
   #endif
+  if(len==0) return 0;
+  if(fd!=2 && fd!=1  && file_table[fd].open_offset>=file_table[fd].size+file_table[fd].disk_offset) return 0;
   int ret=file_table[fd].write(buf,file_table[fd].open_offset,len);
   file_table[fd].open_offset+=ret;
   return ret;

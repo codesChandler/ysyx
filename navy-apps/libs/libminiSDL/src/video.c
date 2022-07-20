@@ -79,6 +79,9 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
       NDL_DrawRect((uint32_t *)dst->pixels, 0, 0, dst->w, dst->h);
       return;
     }
+    else{
+      assert(0);
+    }
   }
   else
   {
