@@ -12,8 +12,11 @@ module ysyx_22040632_EXU import ysyx_22040632_RISCV_PKG::*;
     output logic [63:0] data_out,
     output logic [63:0] pc_op,
     output logic pcchg,
-    output logic rdy
+    output logic rdy,
+    ysyx_22040632_divif.cpu dif
 );
+
+
 
 logic [63:0] data_op;
 logic rrst_n;
@@ -70,16 +73,40 @@ always_comb
     sraiw,sraw:data_op={{32{1'b0}},($signed(src1_op[31:0]))>>>src2_op[4:0]};
     srliw,srlw:data_op={{32{1'b0}},(src1_op[31:0])>>src2_op[4:0]};
     mulw:data_op=$signed(src1_op[31:0])*$signed(src2_op[31:0]);
-    divw:data_op={{32{1'b0}},$signed(src1_op[31:0])/$signed(src2_op[31:0])};
-    divuw:data_op={{32{1'b0}},src1_op[31:0]/src2_op[31:0]};
-    remw:data_op={{32{1'b0}},$signed(src1_op[31:0])%$signed(src2_op[31:0])};
-    remuw:data_op={{32{1'b0}},src1_op[31:0]%src2_op[31:0]};
+    // divw:data_op={{32{1'b0}},$signed(src1_op[31:0])/$signed(src2_op[31:0])};
+    // divuw:data_op={{32{1'b0}},src1_op[31:0]/src2_op[31:0]};
+    divw:data_op=dif.quotient;
+    divuw:data_op=dif.quotient;
+    remw:data_op=dif.remainder;
+    remuw:data_op=dif.remainder;
     sltiu,sltu:data_op=(src1_op<src2_op)?64'b1:'0;
     slt:data_op=($signed(src1_op)<$signed(src2_op))?64'b1:'0;
     mul:data_op=src1_op*src2_op;
     default:data_op=src1_op+src2_op;
     endcase
 
+//for divide
+assign dif.dividend=src1_op;
+assign dif.divisor=src2_op;
+always_comb
+    case(operation)
+      divw,divuw,remw,remuw:dif.div_valid=1'b1;
+      default:dif.div_valid=1'b0;
+    endcase
+
+always_comb
+    case(operation)
+      divw,remw:dif.div_signed=1'b1;
+      default:dif.div_signed=1'b0;
+    endcase
+
+always_comb 
+  case(operation)
+    divw,divuw,remw,remuw:dif.divw=1'b1;
+    default:dif.divw=1'b0;
+  endcase
+
+//for load and store
 always_comb begin
   case(operation)
   lw,ld,lbu,lh,lhu:begin paddr_read(data_op, ld_wr);end//$display("addr%x",data_op);$display("data%x",ld_wr);end
@@ -140,8 +167,7 @@ always_comb begin
   endcase
 end
 
-
-
+//for jump
 always_comb
   case(operation)
     jal:pc_op=src1+pc;

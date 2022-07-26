@@ -3,6 +3,7 @@ ifneq ($(words $(CURDIR)),1)
 endif
 
 FILELIST_MK = $(shell find ./srcs -name "filelist.mk")
+FILELIST_MK += $(shell find ./hw -name "filelist.mk")
 include $(FILELIST_MK)
 
 ifeq ($(VERILATOR_ROOT),)
@@ -18,52 +19,65 @@ WORK_DIR  = $(shell pwd)
 BUILD_DIR = $(WORK_DIR)/build
 
 INC_PATH = $(WORK_DIR)/include
-HW_PATH  = $(addprefix -I, $(WORK_DIR)/hw)
-INCLUDES = $(addprefix -I, $(INC_PATH))
+HW_PATH  += $(addprefix -I, $(WORK_DIR)/hw)
+# HW_PATH  += $(addprefix -I, $(WORK_DIR)/hw/axi)
+INCLUDES += $(addprefix -I, $(INC_PATH))
+
 
 DIRS-y = $(WORK_DIR)/srcs
 SIM_PATH = $(addprefix -I, $(DIRS-y))
-SRCS  = $(shell find $(DIRS-y) -name "*.c")
-CPP-SRCS= $(shell find $(DIRS-y) -name "*.cpp")
-CC-SRCS= $(shell find $(DIRS-y) -name "*.cc")
-SV-SRCS  = $(shell find $(WORK_DIR)/hw -name "*top.sv")
-VERILATOR_INPUT = $(SV-SRCS) $(SRCS) $(CPP-SRCS) $(CC-SRCS)  
+SRCS  = $(shell find $(DIRS-y) -name "*.c" -o -name "*.cpp" -o -name "*.cc")
+
+SVtop-SRCS  = $(shell find $(WORK_DIR)/hw -name "*top.sv")
+SVother-SRCS  = $(shell find $(WORK_DIR)/hw -name "*.sv" -o -name "*.svh")
+SVother-SRCS  :=$(filter-out $(SVtop-SRCS),$(SVother-SRCS))
+
+VERILATOR_INPUT = $(SVtop-SRCS) $(SVother-SRCS) $(SRCS)
 
 VERILATOR_FLAGS += -cc --exe
 VERILATOR_FLAGS += -Os -x-assign 0
-VERILATOR_FLAGS += --trace
+VERILATOR_FLAGS += --trace -sv
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
 ifeq ($(MAKECMDGOALS),gdb)
 	 VERILATOR_FLAGS += --debug
 #   VERILATOR_FLAGS += --gdb
 	 CXXFLAGS += -g
 endif
+
 CXXFLAGS += $(INCLUDES)
-#CXXFLAGS += -fsanitize=address
+# CXXFLAGS   += -M  #dependency relationship
+# CXXFLAGS += -fsanitize=address
 LIBS += -lreadline
 export CXXFLAGS LIBS
 
 BINARY = obj_dir/Vysyx_22040632_top
 ARGS_DIFF = -d /home/chandler/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
 
+NPCARGS +=-b $(IMG) #binary file
+NPCARGS += -f $(IMG:.bin=.elf) #elf file
+NPCARGS += $(ARGS_DIFF) #difftest
+NPCARGS += -p #batch mode
+
 default: run
 
 run:$(BINARY)
-	$(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF) -p
-	@rm -rf logs/annotated
-	make clean
+	$(BINARY) $(NPCARGS)
+#	make wave
 
 
 # Other targets
 gdb: $(BINARY)
-	gdb $(BINARY) -b $(IMG) -f $(IMG:.bin=.elf) $(ARGS_DIFF) -p
+	gdb --args $(BINARY) $(NPCARGS)
+	@rm -rf logs/annotated
+	make clean
 
 wave:
-	gtkwave Vysyx_22040632_top.vcd
+	gtkwave ./logs/Vysyx_22040632_top.vcd
 
-$(BINARY):
+$(BINARY):$(VERILATOR_INPUT)
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo + VERILATE "->" $(BINARY) $(VERILATOR_INPUT)
+#	@echo + BINARY "->" $(VERILATOR_INPUT)
+	@echo + VERILATE "->" $(BINARY) $(VERILATOR_FLAGS)
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
 	@echo + BUILD "->" $(BINARY)
 	$(MAKE) -j -C obj_dir -f ../Makefile_obj

@@ -99,7 +99,7 @@ void inti_vei(int argc, char *argv[]){
     tfp = new VerilatedVcdC;
     // tfp初始化工作
     top->trace(tfp, 99);
-    tfp->open("./build/Vysyx_22040632_top.vcd");
+    tfp->open("./logs/Vysyx_22040632_top.vcd");
     top->rst_n = 1;
     top->clk = 0;
     //main_time=0;

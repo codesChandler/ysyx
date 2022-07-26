@@ -13,6 +13,7 @@ logic [63:0] src2,dest;
 func operation;
 logic [63:0] data;
 logic [63:0] pc_op;
+ysyx_22040632_divif dif();
 
 //logic [31:0] inst;
 ysyx_22040632_EXU ysyx_22040632_EXU_i
@@ -27,7 +28,14 @@ ysyx_22040632_EXU ysyx_22040632_EXU_i
     .data_out(data),
     .pc_op(pc_op),
     .pcchg(pcchg),
-    .rdy(rdy)
+    .rdy(rdy),
+    .dif(dif)
+);
+
+ysyx_22040632_DIV ysyx_22040632_DIV_i(
+  .clk(clk),
+  .rst_n(rst_n),
+  .dif(dif)
 );
 
 ysyx_22040632_IFU ysyx_22040632_IFU_i(

@@ -1,0 +1,1 @@
+HW_PATH  += $(addprefix -I, $(shell pwd)/hw/alu_ext)
