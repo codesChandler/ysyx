@@ -12,7 +12,7 @@ logic [XLEN-1:0] dvs;//divisor
 logic [6:0] eval_cnt;
 logic [XLEN-1:0] result;
 logic sgn_rmd,sgn_qt,sgn;//sign of quotient && remainder
-logic eval_flag;
+logic eval_flag,idle_flag;
 logic valid_out;
 logic [6:0] len;//64 or 32
 logic [63:0] rmd_tr,qt_tr;
@@ -60,9 +60,9 @@ begin
   else if(dif.div_valid)
   begin
     if(dif.divw)//32 bits
-      sgn_qt <= dif.dividend[31] ~^ dif.divisor[31] ;
+      sgn_qt <= dif.dividend[31] ^ dif.divisor[31] ;
     else
-      sgn_qt <= dif.dividend[63] ~^ dif.divisor[63] ;
+      sgn_qt <= dif.dividend[63] ^ dif.divisor[63] ;
   end
   else
     sgn_qt <= sgn_qt;
@@ -99,7 +99,7 @@ always_comb begin
   end
   valid:begin
     if(dif.div_valid) ns=eval;
-    else ns=valid;
+    else ns=idle;
   end
   default:ns=idle;
   endcase
@@ -156,16 +156,16 @@ begin
     1'b1:
       begin
         if(!dif.div_signed || dif.dividend[31]== 1'b0)
-          qt_rmd[31:0] <= dif.dividend[31:0];
+          qt_rmd <= {{96{1'b0}},dif.dividend[31:0]};
         else
-          qt_rmd[31:0] <= ~dif.dividend[31:0]+32'd1;
+          qt_rmd <= {{96{1'b0}},~dif.dividend[31:0]+32'd1};
       end
     1'b0:
       begin
         if(!dif.div_signed || dif.dividend[63]== 1'b0)
-          qt_rmd[63:0] <= dif.dividend[63:0];
+          qt_rmd <= {{64{1'b0}},dif.dividend[63:0]};
         else
-          qt_rmd[63:0] <= ~dif.dividend[63:0]+64'd1;
+          qt_rmd <= {{64{1'b0}},~dif.dividend[63:0]+64'd1};
       end
     endcase
     end
@@ -251,15 +251,15 @@ begin
 unique0 case(len)/* verilator lint_off CASEINCOMPLETE */
   7'd64:
     begin
-      if(sgn && sgn_rmd==1'b1)
+      if(sgn && sgn_qt==1'b1)
         dif.quotient={sgn_qt,qt_tr[62:0]};
       else 
         dif.quotient=qt_rmd[2*XLEN-1-:XLEN];
     end
   7'd32:
     begin
-    if(sgn && sgn_rmd==1'b1)
-      dif.quotient={{33{sgn_rmd}},qt_tr[30:0]};
+    if(sgn && sgn_qt==1'b1)
+      dif.quotient={{33{sgn_qt}},qt_tr[30:0]};
     else
       dif.quotient={{32{qt_rmd[2*32-1]}},qt_rmd[2*32-1-:32]};
     end
@@ -271,15 +271,15 @@ always_comb begin
   unique0 case(len)/* verilator lint_off CASEINCOMPLETE */
   7'd64:
     begin
-      if(sgn && sgn_qt==1'b1)
-        dif.remainder={sgn_qt,rmd_tr[62:0]};
+      if(sgn && sgn_rmd==1'b1)
+        dif.remainder={sgn_rmd,rmd_tr[62:0]};
       else
         dif.remainder=qt_rmd[0+:XLEN];
     end
   7'd32:
     begin
-      if(sgn && sgn_qt==1'b1)
-        dif.remainder={{33{sgn_qt}},rmd_tr[30:0]};
+      if(sgn && sgn_rmd==1'b1)
+        dif.remainder={{33{sgn_rmd}},rmd_tr[30:0]};
       else
         dif.remainder={{32{qt_rmd[31]}},qt_rmd[0+:32]};
     end

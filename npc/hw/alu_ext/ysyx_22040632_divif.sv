@@ -22,5 +22,10 @@ modport cpu(
   input div_ready,out_valid,quotient,remainder
 );
 
+modport idu(
+  input out_valid
+);
+
+
 
 endinterface

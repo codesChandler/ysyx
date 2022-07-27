@@ -9,7 +9,9 @@ module ysyx_22040632_IDU import ysyx_22040632_RISCV_PKG::*;(
   output logic [63:0] src1,
   output logic [63:0] src2,
   output func operation,
-  output logic [63:0] dest
+  output logic [63:0] dest,
+  output logic op_div,
+  ysyx_22040632_divif.idu dif
 );
 
 logic [63:0] gpr [31:0];
@@ -32,7 +34,7 @@ always_ff @(posedge clk or negedge rrst_n) begin
       gpr[i]<='0;
   // $display("reset\n");
   end
-  else if(rdy) begin 
+  else if((rdy && !op_div) || (op_div && dif.out_valid)) begin 
       // $display("rd:%d datain:%d",rd,data_in);
       if(rd!=0)
       gpr[rd] <= data_in;
@@ -126,5 +128,14 @@ always_comb begin
   endcase
 end
 
+always_comb
+    case(operation)
+      divw,divuw,remw,remuw:op_div=1'b1;
+      default:op_div=1'b0;
+    endcase
+
+
 assign operation=fun;
+
+
 endmodule

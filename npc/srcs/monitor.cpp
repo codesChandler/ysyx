@@ -38,9 +38,7 @@ static long load_img() {
     printf("no input\n");
     return 0;
   }
-  else{
-    printf("img:%s\n",img_file);
-  }
+
   FILE *fp = fopen(img_file, "rb");
   // Assert(fp, "Can not open '%s'", img_file);
 

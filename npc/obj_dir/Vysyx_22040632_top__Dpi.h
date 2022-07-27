@@ -16,6 +16,8 @@ extern "C" {
 
 
     // DPI IMPORTS
+    // DPI import at /home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_RISCV_PKG.svh:10:30
+    extern void div_exec(int cycle);
     // DPI import at /home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_RISCV_PKG.svh:8:30
     extern void npcexit(int code);
     // DPI import at /home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_RISCV_PKG.svh:4:30

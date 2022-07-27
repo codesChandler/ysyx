@@ -60,7 +60,7 @@ void difftest_skip_dut(int nr_ref, int nr_dut) {
 
 void init_difftest(char *ref_so_file, long img_size, int port) {
   assert(ref_so_file != NULL);
-  printf("ref:%s\n",ref_so_file);
+  // printf("ref:%s\n",ref_so_file);
 
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY | MUXNDEF(CONFIG_CC_ASAN, RTLD_DEEPBIND, 0));
@@ -94,7 +94,10 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 bool isa_difftest_checkregs(uint64_t *ref_r, vaddr_t pc) {
   for(int i=0;i<33;i++){
     if(*(ref_r+i)!=*(cpu.gpr_pc+i)){
-      printf("NO[%d]:gpr is wrong\nright:0x%lx\nwrong:0x%lx\n",i,*(ref_r+i),*(cpu.gpr_pc+i));
+      if(i==32)
+        printf("pc is wrong\nright:0x%lx\nwrong:0x%lx\n",*(ref_r+i),*(cpu.gpr_pc+i));
+      else
+        printf("NO[%d]:gpr is wrong\nright:0x%lx\nwrong:0x%lx\n",i,*(ref_r+i),*(cpu.gpr_pc+i));
       return false;}}
   return true;
 }
@@ -102,7 +105,7 @@ bool isa_difftest_checkregs(uint64_t *ref_r, vaddr_t pc) {
 static void checkregs(uint64_t *ref, vaddr_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
     npcexit(1);
-    //isa_reg_display();
+    isa_reg_display();
     inst_display();
     //printf("I am working diff\n");
   }

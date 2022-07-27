@@ -23,9 +23,13 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
 run: image
-	@echo $(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
+	@echo $(MAKE) -C $(NPC_HOME) ISA=$(ISA) run ARGS= IMG=$(IMAGE).bin
 	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run ARGS= IMG=$(IMAGE).bin
 
 gdb: image
-	@echo $(MAKE) -C $(NEMU_HOME) ISA=$(ISA) gdb ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
+	@echo $(MAKE) -C $(NPC_HOME) ISA=$(ISA) gdb ARGS= IMG=$(IMAGE).bin
 	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) gdb ARGS= IMG=$(IMAGE).bin
+
+wave:
+	@echo $(MAKE) -C $(NPC_HOME) wave
+	$(MAKE) -C $(NPC_HOME) wave

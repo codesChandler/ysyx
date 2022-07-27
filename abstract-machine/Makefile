@@ -112,7 +112,7 @@ endif
 
 ### Rule (compile): a single `.c` -> `.o` (gcc)
 $(DST_DIR)/%.o: %.c
-	@mkdir -p $(dir $@) && echo + CC $(CFLAGS) $<
+	@mkdir -p $(dir $@) && echo + CC  $<
 	@$(CC) -std=gnu11 $(CFLAGS) -c -o $@ $(realpath $<)
 
 ### Rule (compile): a single `.cc` -> `.o` (g++)

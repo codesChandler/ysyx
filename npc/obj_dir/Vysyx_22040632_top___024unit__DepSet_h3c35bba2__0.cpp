@@ -54,3 +54,13 @@ VL_INLINE_OPT void Vysyx_22040632_top___024unit____Vdpiimwrap_set_gpr_ptr__Vdpio
     VerilatedDpiOpenVar a__Vopenarray (&a__Vopenprops, &a);
     set_gpr_ptr(&a__Vopenarray);
 }
+
+extern "C" void div_exec(int cycle);
+
+VL_INLINE_OPT void Vysyx_22040632_top___024unit____Vdpiimwrap_div_exec_TOP____024unit(IData/*31:0*/ cycle) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vysyx_22040632_top___024unit____Vdpiimwrap_div_exec_TOP____024unit\n"); );
+    // Body
+    int cycle__Vcvt;
+    for (size_t cycle__Vidx = 0; cycle__Vidx < 1; ++cycle__Vidx) cycle__Vcvt = cycle;
+    div_exec(cycle__Vcvt);
+}

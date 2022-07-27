@@ -9,14 +9,14 @@ module ysyx_22040632_EXU import ysyx_22040632_RISCV_PKG::*;
     input logic [63:0] dest,
     input logic [63:0] pc,
     input func operation,
+    input logic op_div,
     output logic [63:0] data_out,
     output logic [63:0] pc_op,
     output logic pcchg,
     output logic rdy,
-    ysyx_22040632_divif.cpu dif
+    ysyx_22040632_divif.cpu dif,
+    output logic alu_busy
 );
-
-
 
 logic [63:0] data_op;
 logic rrst_n;
@@ -24,6 +24,10 @@ logic gprchg;
 logic [63:0] src1_op;
 logic [63:0] src2_op;
 logic [63:0] ld_wr;
+logic div_valid_o;
+logic signed_o;
+logic divw_o;
+logic div_doing;
 //异步复位，同步释放
 always_ff @(posedge clk)
   rrst_n <= rst_n;
@@ -85,26 +89,54 @@ always_comb
     default:data_op=src1_op+src2_op;
     endcase
 
+
 //for divide
 assign dif.dividend=src1_op;
 assign dif.divisor=src2_op;
-always_comb
-    case(operation)
-      divw,divuw,remw,remuw:dif.div_valid=1'b1;
-      default:dif.div_valid=1'b0;
-    endcase
 
-always_comb
-    case(operation)
-      divw,remw:dif.div_signed=1'b1;
-      default:dif.div_signed=1'b0;
-    endcase
 
-always_comb 
-  case(operation)
-    divw,divuw,remw,remuw:dif.divw=1'b1;
-    default:dif.divw=1'b0;
-  endcase
+assign dif.div_valid=op_div && !div_doing && !dif.out_valid;;
+assign alu_busy  = op_div && !dif.out_valid;
+
+always_comb begin
+      case(operation)
+        divw,remw:dif.div_signed=1'b1;
+        default:dif.div_signed=1'b0;
+      endcase
+    end
+
+always_comb begin
+      case(operation)
+        divw,divuw,remw,remuw:dif.divw=1'b1;
+        default:dif.divw=1'b0;
+      endcase
+end
+
+always_ff @(posedge clk or negedge rrst_n) begin
+    if (!rrst_n) begin
+        div_doing <= 1'b0;
+    end
+    /*除法结果输出后需要将div_doing置零*/
+    else if (dif.out_valid) begin
+      div_doing <= 1'b0;
+    end
+    /*握手成功后，也就是除法器接受输入的数据后需要把div_doing置高*/
+    else if(dif.div_valid && dif.div_ready) begin
+      div_doing <= 1'b1;
+    end
+    else
+      div_doing <= div_doing;
+end
+
+always_comb begin
+  if(dif.div_valid && dif.div_ready) begin
+    case(dif.divw)
+    1'b1:div_exec(32);
+    default:div_exec(64);
+    endcase
+  end
+
+end
 
 //for load and store
 always_comb begin

@@ -43,6 +43,7 @@ VM_USER_LDLIBS = \
 VM_USER_CLASSES = \
 	cpu-exce \
 	dut \
+	trace \
 	init \
 	isa \
 	paddr \
@@ -75,6 +76,8 @@ VPATH += $(VM_USER_DIR)
 cpu-exce.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/cpu-exce.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 dut.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/difftest/dut.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+trace.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/trace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 init.o: /home/chandler/ysyx-workbench/npc/srcs/init.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

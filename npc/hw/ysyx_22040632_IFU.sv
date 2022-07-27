@@ -4,6 +4,7 @@ module ysyx_22040632_IFU(
   input logic rst_n,
   input logic pcchg,
   input logic [63:0] pc_op,
+  input logic alu_busy,
   output logic [63:0] pc,
   output logic [31:0] inst
 );
@@ -24,11 +25,12 @@ always_ff @(posedge clk or negedge rrst_n) begin
   else if(pcchg)
   // begin
     pci <= pc_op;// $display("pcchg:%h\n",pcchg);end
+  else if(alu_busy)
+    pci <= pci;
   else
   // begin
     pci <= pci+64'd4;// $display("pc:%h\n",pci);end
 end
-
 
 
 always_comb begin

@@ -7,6 +7,7 @@ import "DPI-C" function void paddr_write(
   input longint waddr, input longint wdata, input byte wmask);  
 import "DPI-C" function void npcexit(int code);
 import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
+import "DPI-C" function void div_exec(int cycle);
 
 package ysyx_22040632_RISCV_PKG;
 typedef enum logic [5:0] {sltiu,addi,auipc,lw,lui,jal,jalr,sd,addw,beq,bne,sub,ld,add,addiw,srai,lbu,andi,andr,sb,sllw,sltu,xori,orr,slli,srli,bge,sw,mulw,divw,remw,bltu,subw,bgeu,remuw,divuw,blt,slt,lh,lhu,sh,slliw,sraiw,mul,srliw,sraw,srlw} func;
