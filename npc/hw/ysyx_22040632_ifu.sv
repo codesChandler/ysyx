@@ -1,5 +1,5 @@
 `include "ysyx_22040632_RISCV_PKG.svh"
-module ysyx_22040632_IFU(
+module ysyx_22040632_ifu(
   input logic clk,
   input logic rst_n,
   input logic pcchg,

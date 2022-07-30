@@ -1,6 +1,6 @@
 
 `include "ysyx_22040632_RISCV_PKG.svh"
-module ysyx_22040632_EXU import ysyx_22040632_RISCV_PKG::*;
+module ysyx_22040632_exu import ysyx_22040632_RISCV_PKG::*;
 (
     input logic clk,
     input logic rst_n,
@@ -15,6 +15,7 @@ module ysyx_22040632_EXU import ysyx_22040632_RISCV_PKG::*;
     output logic pcchg,
     output logic rdy,
     ysyx_22040632_divif.cpu dif,
+    ysyx_22040632_mulif.cpu mif,
     output logic alu_busy
 );
 
@@ -76,7 +77,7 @@ always_comb
     srli:data_op=src1_op>>src2_op[5:0];
     sraiw,sraw:data_op={{32{1'b0}},($signed(src1_op[31:0]))>>>src2_op[4:0]};
     srliw,srlw:data_op={{32{1'b0}},(src1_op[31:0])>>src2_op[4:0]};
-    mulw:data_op=$signed(src1_op[31:0])*$signed(src2_op[31:0]);
+    
     // divw:data_op={{32{1'b0}},$signed(src1_op[31:0])/$signed(src2_op[31:0])};
     // divuw:data_op={{32{1'b0}},src1_op[31:0]/src2_op[31:0]};
     divw:data_op=dif.quotient;
@@ -85,9 +86,29 @@ always_comb
     remuw:data_op=dif.remainder;
     sltiu,sltu:data_op=(src1_op<src2_op)?64'b1:'0;
     slt:data_op=($signed(src1_op)<$signed(src2_op))?64'b1:'0;
-    mul:data_op=src1_op*src2_op;
+    mul:data_op=mif.result_lo;
+    mulw:data_op=mif.result_lo;
     default:data_op=src1_op+src2_op;
     endcase
+
+//for multiply
+assign mif.multiplicand=src1_op;
+assign mif.multiplier=src2_op;
+
+always_comb begin
+  case(operation)
+    mulw:mif.mulw=1'b1;
+    default:mif.mulw=1'b0;
+  endcase
+end
+
+always_comb begin
+  case(operation)
+    mulw,mul:mif.mul_signed=2'b11;
+    default:mif.mul_signed=2'b00;
+  endcase
+end
+
 
 
 //for divide

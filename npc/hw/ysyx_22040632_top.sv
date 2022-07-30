@@ -16,9 +16,11 @@ logic [63:0] pc_op;
 logic alu_busy;
 logic op_div;
 ysyx_22040632_divif dif();
+ysyx_22040632_mulif mif();
+
 
 //logic [31:0] inst;
-ysyx_22040632_EXU ysyx_22040632_EXU_i
+ysyx_22040632_exu ysyx_22040632_exu_i
 (
     .clk(clk),
     .rst_n(rst_n),
@@ -32,17 +34,24 @@ ysyx_22040632_EXU ysyx_22040632_EXU_i
     .pcchg(pcchg),
     .rdy(rdy),
     .dif(dif),
+    .mif,
     .alu_busy,
     .op_div
 );
 
-ysyx_22040632_DIV ysyx_22040632_DIV_i(
+ysyx_22040632_mul ysyx_22040632_mul_i(
+  .clk,
+  .rst_n,
+  .mif
+);
+
+ysyx_22040632_div ysyx_22040632_div_i(
   .clk(clk),
   .rst_n(rst_n),
   .dif(dif)
 );
 
-ysyx_22040632_IFU ysyx_22040632_IFU_i(
+ysyx_22040632_ifu ysyx_22040632_ifu_i(
   .clk(clk),
   .rst_n(rst_n),
   .pcchg(pcchg),
@@ -52,7 +61,7 @@ ysyx_22040632_IFU ysyx_22040632_IFU_i(
   .alu_busy
 );
 
-ysyx_22040632_IDU ysyx_22040632_IDU_i(
+ysyx_22040632_idu ysyx_22040632_idu_i(
   .clk(clk),
   .rst_n(rst_n),
   .inst(inst),

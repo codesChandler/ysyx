@@ -92,6 +92,7 @@ static int parse_args(int argc, char *argv[]) {
 void inti_vei(int argc, char *argv[]){
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
+    // Verilated::traceEverOn(false);
     // 为对象分配内存空间
     top = new Vysyx_22040632_top;
     tfp = new VerilatedVcdC;

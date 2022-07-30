@@ -1,4 +1,4 @@
-module ysyx_22040632_DIV#(
+module ysyx_22040632_div#(
   parameter XLEN=64
 )(
 input logic clk,

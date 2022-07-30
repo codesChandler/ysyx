@@ -1,5 +1,5 @@
 `include "ysyx_22040632_RISCV_PKG.svh"
-module ysyx_22040632_IDU import ysyx_22040632_RISCV_PKG::*;(
+module ysyx_22040632_idu import ysyx_22040632_RISCV_PKG::*;(
   input logic clk,
   input logic rst_n,
   input logic [31:0] inst,
