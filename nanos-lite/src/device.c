@@ -72,8 +72,8 @@ void num2char(unsigned int n, char * buf,int base)
 static int width=0;
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   AM_GPU_CONFIG_T cfg=io_read(AM_GPU_CONFIG);
-  char w[10]="WIGTH :";
-  char h[10]="HEIGHT:";
+  char w[100]="WIGTH :";
+  char h[100]="HEIGHT:";
   width=cfg.width;
   num2char(cfg.width, w+strlen(w),10);
   num2char(cfg.height, h+strlen(h),10);
@@ -86,31 +86,14 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) { 
-  // printf("fb_write--offset:%d\n",offset);
-  //对于len,前32位为w,后32位为h
   int y=offset/width/4;
   int x=offset%width/4;
   int w=(uint32_t )len;
   int h=(int)((size_t)len>>32);
-  // printf("x=:%d--y:%d--len:%d\n",x,y,h);
   bool sync=true;
   void *pixels = (void *)buf;
-  //int x, y; void *pixels; int w, h; bool sync
   io_write(AM_GPU_FBDRAW,x,y,pixels,w,h,sync);
-  // printf("w=:%d--h:%d\n",w,h);
   return w*h*4;
-  // int y=offset/width;
-  // int x=offset%width;
-  // int w=len;
-  // int h=1;//不知道为啥len>>32就不行
-  // // printf("w=:%d--len:%d--sizeof(size_t):%d\n",w,h,sizeof(size_t));
-  // bool sync=true;
-  // // int i=0;for(;i<h;i++);//不知道为啥一定要用这种方法，C语言底层就很神奇
-  // void *pixels = (void *)buf;
-  // //int x, y; void *pixels; int w, h; bool sync
-  // io_write(AM_GPU_FBDRAW,x,y,pixels,w,h,sync);
-  // // printf("w=:%d--h:%d\n",w,h);
-  // return len;
 }
 
 void init_device() {

@@ -5,21 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-uint32_t rdb2color(SDL_Surface *s, int i, int j,int x,int y)//必须采用，小端存放
-{
-  uint8_t r;
-  uint8_t g;
-  uint8_t b;
-  uint8_t a;
-  uint32_t color;
-  a = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].a;
-  b = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].b;
-  g = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].g;
-  r = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].r;
-  color=a << 24 | r << 16 | g << 8 | b;
-  
-  return color;
-}
+
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect)
 {
@@ -89,6 +75,22 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
   }
 }
 
+
+uint32_t rdb2color(SDL_Surface *s, int i, int j,int x,int y)//必须采用，小端存放
+{
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+  uint8_t a;
+  uint32_t color;
+  a = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].a;
+  b = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].b;
+  g = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].g;
+  r = s->format->palette->colors[*(s->pixels + s->w * (y + i) + x + j)].r;
+  color=a << 24 | r << 16 | g << 8 | b;
+  
+  return color;
+}
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
 {
   if (s->format->palette == NULL)
@@ -109,22 +111,23 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
     { //NDL_OpenCanvas(&s->w, &s->h);
       w = s->w;
       h = s->h;
-      uint8_t r, g, b, a;
+      // uint8_t r, g, b, a;
       uint32_t *color_buf = (uint32_t *)malloc(w * h * sizeof(uint32_t));
-      for (int i = y; i < h; i++)   // for y direction
-        for (int j = x; j < w; j++) // for x direction
+      for (int i = 0; i < h; i++)   // for y direction
+        for (int j = 0; j < w; j++) // for x direction
         {
           *(color_buf + w * i + j) = rdb2color(s, i, j,x,y);
         }
       NDL_DrawRect(color_buf, x, y, w, h);
       free(color_buf);
       return;
+    
     }
     else
     {
       uint32_t *color_buf = (uint32_t *)malloc(w * h * sizeof(uint32_t));
-      for (int i = y; i < h; i++)   // for y direction
-        for (int j = x; j < w; j++) // for x direction
+      for (int i = 0; i < h; i++)   // for y direction
+        for (int j = 0; j < w; j++) // for x direction
         {
           *(color_buf + w * i + j) = rdb2color(s, i, j,x,y);
         }
@@ -135,6 +138,56 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
   }
   assert(0);
 }
+
+
+// uint32_t get_color(SDL_Palette *palette,int index){
+//   int i;
+//   //printf("%d\n",palette->ncolors);
+//   for(i=0;i<palette->ncolors;i++){
+//     if(i==index){
+//       uint32_t color = palette->colors[i].r<<16 | palette->colors[i].g<<8 | palette->colors[i].b;
+//       return color; 
+//     }
+//   }
+// }
+
+// void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h);
+// void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
+//   if(s->format->BitsPerPixel==32){
+//     if(x==0 && y==0 && w==0 && h==0){
+//       w = s->w;
+//       h = s->h;
+//       NDL_DrawRect((uint32_t *)s->pixels,x,y,w,h);
+//     }else{
+//       NDL_DrawRect((uint32_t *)s->pixels + y*s->w + x,x,y,w,h);
+//     }
+//   }
+//   if(s->format->BitsPerPixel==8){
+//     int i,j;
+//     if(x==0 && y==0 && w==0 && h==0){
+//       w = s->w;
+//       h = s->h;
+//       uint32_t *color_val = (uint32_t *)malloc(w*h*sizeof(uint32_t));
+//       for(i=0; i<h; i++){
+//         for(j=0; j<w; j++){
+//           *(color_val +i * w + j) = get_color(s->format->palette,*(s->pixels+(y+i)*s->w+x+j));
+//         }
+//       }
+//       NDL_DrawRect(color_val,x,y,w,h);
+//       free(color_val);
+//     }else{
+//       uint32_t *color_val = (uint32_t *)malloc(w*h*sizeof(uint32_t));
+//       for(i=0;i<h;i++){
+//         for(j=0;j<w;j++){
+//           *(color_val +i * w + j) = get_color(s->format->palette,*(s->pixels+(y+i)*s->w+x+j));
+//         }
+//       }
+//       NDL_DrawRect((uint32_t *)color_val,x,y,w,h);
+//       free(color_val);
+//     }
+//   }
+//   return;
+// }
 
 // APIs below are already implemented.
 

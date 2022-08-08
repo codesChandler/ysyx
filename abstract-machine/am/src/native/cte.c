@@ -16,6 +16,8 @@ void __am_pmem_unprotect();
 void __am_panic_on_return() { panic("should not reach here\n"); }
 
 static void irq_handle(Context *c) {
+  // assert(0);
+  // printf("irq_handle\n");
   c->vm_head = thiscpu->vm_head;
   c->ksp = thiscpu->ksp;
 
@@ -38,6 +40,7 @@ static void irq_handle(Context *c) {
 }
 
 static void setup_stack(uintptr_t event, ucontext_t *uc) {
+  // printf("setup_stack\n");
   void *rip = (void *)uc->uc_mcontext.gregs[REG_RIP];
   extern uint8_t _start, _etext;
   int trap_from_user = __am_in_userspace(rip);
@@ -83,6 +86,7 @@ static void setup_stack(uintptr_t event, ucontext_t *uc) {
 }
 
 static void iret(ucontext_t *uc) {
+  // printf("iret\n");
   Context *c = (void *)uc->uc_mcontext.gregs[REG_RDI];
   // restore the context
   *uc = c->uc;
@@ -91,6 +95,7 @@ static void iret(ucontext_t *uc) {
 }
 
 static void sig_handler(int sig, siginfo_t *info, void *ucontext) {
+  // printf("sig_handler\n");
   thiscpu->ev = (Event) {0};
   thiscpu->ev.event = EVENT_ERROR;
   switch (sig) {
@@ -128,6 +133,7 @@ static void sig_handler(int sig, siginfo_t *info, void *ucontext) {
 
 // signal handlers are inherited across fork()
 static void install_signal_handler() {
+  // printf("install_signal_handler\n");
   struct sigaction s;
   memset(&s, 0, sizeof(s));
   s.sa_sigaction = sig_handler;
@@ -146,6 +152,7 @@ static void install_signal_handler() {
 
 // setitimer() are inherited across fork(), should be called again from children
 void __am_init_timer_irq() {
+  // printf("__am_init_timer_irq\n"); 
   iset(0);
 
   struct itimerval it = {};
@@ -157,6 +164,7 @@ void __am_init_timer_irq() {
 }
 
 bool cte_init(Context*(*handler)(Event, Context*)) {
+  //  printf("cte_init\n");  
   user_handler = handler;
 
   install_signal_handler();
@@ -165,6 +173,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 }
 
 Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
+  // printf("kcontext\n");
   Context *c = (Context*)kstack.end - 1;
 
   __am_get_example_uc(c);
@@ -182,10 +191,12 @@ Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
 }
 
 void yield() {
+  // printf("yield()\n");
   raise(SIGUSR2);
 }
 
 bool ienabled() {
+  // printf("ienabled()\n");
   sigset_t set;
   int ret = sigprocmask(0, NULL, &set);
   assert(ret == 0);
@@ -193,6 +204,7 @@ bool ienabled() {
 }
 
 void iset(bool enable) {
+  // printf("iset\n");
   extern sigset_t __am_intr_sigmask;
   // NOTE: sigprocmask does not supported in multithreading
   int ret = sigprocmask(enable ? SIG_UNBLOCK : SIG_BLOCK, &__am_intr_sigmask, NULL);

@@ -6,6 +6,8 @@ FILELIST_MK = $(shell find ./srcs -name "filelist.mk")
 FILELIST_MK += $(shell find ./hw -name "filelist.mk")
 include $(FILELIST_MK)
 
+MAKEFLAGS += -j 8
+
 ifeq ($(VERILATOR_ROOT),)
 VERILATOR = verilator
 VERILATOR_COVERAGE = verilator_coverage
