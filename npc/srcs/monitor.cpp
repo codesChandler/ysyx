@@ -1,19 +1,25 @@
 #include <stdio.h>
 #include <getopt.h>
-#include "memory.h"
+#include "common.h"
 #include <stdint.h>
 #include <debug.h>
 #include "vrltr.h"
-#include "macro.h"
-#include "autoconfig.h"
 #include "isa.h"
+#include <memory/paddr.h>
 
 extern uint8_t *guest_to_host(paddr_t paddr);
 extern "C" void init_disasm(const char *triple);
 extern void load_elf_tables(char *file);
 extern void sdb_set_batch_mode();
+extern void init_device();
+extern void init_log(const char *log_file);
 extern void init_difftest(char *ref_so_file, long img_size, int port);
+
+//soc-simulator
+axi4_ptr<64,64,4> pmem_ptr;
+
 static char *img_file = NULL;
+static char *log_file = NULL;
 static char *diff_so_file = NULL;
 static int difftest_port = 1234;
 extern cpu_state cpu;
@@ -59,7 +65,7 @@ static long load_img() {
 static int parse_args(int argc, char *argv[]) {
   const struct option table[] = {
     {"binary"    , required_argument      , NULL, 'b'},
-    // {"log"      , required_argument, NULL, 'l'},
+    {"log"      , required_argument, NULL, 'l'},
     {"diff"     , required_argument, NULL, 'd'},
     {"batch"     , no_argument      , NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
@@ -72,14 +78,14 @@ static int parse_args(int argc, char *argv[]) {
     switch (o) {
       case 'b': img_file=optarg; break;
       case 'p': sdb_set_batch_mode(); break;
-      // case 'l': log_file = optarg; break;
+      case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
       case 'f': load_elf_tables(optarg);break;
       case 1: return 0; //img_file = optarg; 
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
         printf("\t-p,--batch              run with batch mode\n");
-        //printf("\t-l,--log=FILE           output log to FILE\n");
+        printf("\t-l,--log=FILE           output log to FILE\n");
         printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
         printf("\t-b,--binary=.bin          input binary file\n");
         printf("\t-f,--ftrace=.elf          input elf file\n");
@@ -101,6 +107,12 @@ void inti_vei(int argc, char *argv[]){
     tfp->open("./logs/Vysyx_22040632_top.vcd");
     top->rst_n = 1;
     top->clk = 0;
+
+    //for soc-simulator connection   
+    extern void connect_wire(axi4_ptr <64,64,4> &pmem_ptr, Vysyx_22040632_top *Top);
+    connect_wire(pmem_ptr,top);
+    assert(pmem_ptr.check());
+
     //main_time=0;
     while(main_time<9){
     main_time++;
@@ -120,6 +132,10 @@ void inti_vei(int argc, char *argv[]){
 void init_monitor(int argc, char *argv[]){
     parse_args(argc,argv);
     long img_size =load_img();
+
+    /* Open the log file. */
+    init_log(log_file);
+
     inti_vei(argc,argv);
     IFDEF(CONFIG_ITRACE, init_disasm(
     MUXDEF(CONFIG_ISA_x86,     "i686",
@@ -127,6 +143,10 @@ void init_monitor(int argc, char *argv[]){
     MUXDEF(CONFIG_ISA_riscv32, "riscv32",
     MUXDEF(1, "riscv64", "bad")))) "-pc-linux-gnu"
   ));
+
+    /* Initialize devices. */
+    IFDEF(CONFIG_DEVICE, init_device());
+
     init_difftest(diff_so_file, img_size, difftest_port);
 
     welcome();

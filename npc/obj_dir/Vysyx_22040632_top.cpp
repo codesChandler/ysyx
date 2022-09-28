@@ -4,7 +4,6 @@
 #include "Vysyx_22040632_top.h"
 #include "Vysyx_22040632_top__Syms.h"
 #include "verilated_vcd_c.h"
-#include "verilated_dpi.h"
 
 //============================================================
 // Constructors
@@ -13,11 +12,68 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     : vlSymsp{new Vysyx_22040632_top__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
-    , inst{vlSymsp->TOP.inst}
-    , pc{vlSymsp->TOP.pc}
-    , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
+    , io_uart_out_valid{vlSymsp->TOP.io_uart_out_valid}
+    , io_uart_out_ch{vlSymsp->TOP.io_uart_out_ch}
+    , axi_aw_valid_o{vlSymsp->TOP.axi_aw_valid_o}
+    , axi_aw_prot_o{vlSymsp->TOP.axi_aw_prot_o}
+    , axi_aw_id_o{vlSymsp->TOP.axi_aw_id_o}
+    , axi_aw_user_o{vlSymsp->TOP.axi_aw_user_o}
+    , axi_aw_len_o{vlSymsp->TOP.axi_aw_len_o}
+    , axi_aw_size_o{vlSymsp->TOP.axi_aw_size_o}
+    , axi_aw_burst_o{vlSymsp->TOP.axi_aw_burst_o}
+    , axi_aw_lock_o{vlSymsp->TOP.axi_aw_lock_o}
+    , axi_aw_cache_o{vlSymsp->TOP.axi_aw_cache_o}
+    , axi_aw_qos_o{vlSymsp->TOP.axi_aw_qos_o}
+    , axi_aw_region_o{vlSymsp->TOP.axi_aw_region_o}
+    , axi_aw_ready_i{vlSymsp->TOP.axi_aw_ready_i}
+    , axi_w_valid_o{vlSymsp->TOP.axi_w_valid_o}
+    , axi_w_strb_o{vlSymsp->TOP.axi_w_strb_o}
+    , axi_w_last_o{vlSymsp->TOP.axi_w_last_o}
+    , axi_w_user_o{vlSymsp->TOP.axi_w_user_o}
+    , axi_w_ready_i{vlSymsp->TOP.axi_w_ready_i}
+    , axi_b_ready_o{vlSymsp->TOP.axi_b_ready_o}
+    , axi_b_valid_i{vlSymsp->TOP.axi_b_valid_i}
+    , axi_b_resp_i{vlSymsp->TOP.axi_b_resp_i}
+    , axi_b_id_i{vlSymsp->TOP.axi_b_id_i}
+    , axi_b_user_i{vlSymsp->TOP.axi_b_user_i}
+    , axi_ar_valid_o{vlSymsp->TOP.axi_ar_valid_o}
+    , axi_ar_prot_o{vlSymsp->TOP.axi_ar_prot_o}
+    , axi_ar_id_o{vlSymsp->TOP.axi_ar_id_o}
+    , axi_ar_user_o{vlSymsp->TOP.axi_ar_user_o}
+    , axi_ar_len_o{vlSymsp->TOP.axi_ar_len_o}
+    , axi_ar_size_o{vlSymsp->TOP.axi_ar_size_o}
+    , axi_ar_burst_o{vlSymsp->TOP.axi_ar_burst_o}
+    , axi_ar_lock_o{vlSymsp->TOP.axi_ar_lock_o}
+    , axi_ar_cache_o{vlSymsp->TOP.axi_ar_cache_o}
+    , axi_ar_qos_o{vlSymsp->TOP.axi_ar_qos_o}
+    , axi_ar_region_o{vlSymsp->TOP.axi_ar_region_o}
+    , axi_ar_ready_i{vlSymsp->TOP.axi_ar_ready_i}
+    , axi_r_ready_o{vlSymsp->TOP.axi_r_ready_o}
+    , axi_r_valid_i{vlSymsp->TOP.axi_r_valid_i}
+    , axi_r_resp_i{vlSymsp->TOP.axi_r_resp_i}
+    , axi_r_last_i{vlSymsp->TOP.axi_r_last_i}
+    , axi_r_id_i{vlSymsp->TOP.axi_r_id_i}
+    , axi_r_user_i{vlSymsp->TOP.axi_r_user_i}
+    , axi_aw_addr_o{vlSymsp->TOP.axi_aw_addr_o}
+    , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
+    , axi_w_data_o{vlSymsp->TOP.axi_w_data_o}
+    , axi_r_data_i{vlSymsp->TOP.axi_r_data_i}
     , __PVT__ysyx_22040632_top__DOT__dif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__dif}
     , __PVT__ysyx_22040632_top__DOT__mif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__mif}
+    , __PVT__ysyx_22040632_top__DOT__ex2if{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__ex2if}
+    , __PVT__ysyx_22040632_top__DOT__if2id{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__if2id}
+    , __PVT__ysyx_22040632_top__DOT__wb2id{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__wb2id}
+    , __PVT__ysyx_22040632_top__DOT__id2ex{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__id2ex}
+    , __PVT__ysyx_22040632_top__DOT__ex2mem{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__ex2mem}
+    , __PVT__ysyx_22040632_top__DOT__mem2wb{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__mem2wb}
+    , __PVT__ysyx_22040632_top__DOT__id2if{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__id2if}
+    , __PVT__ysyx_22040632_top__DOT__imif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__imif}
+    , __PVT__ysyx_22040632_top__DOT__immem{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__immem}
+    , __PVT__ysyx_22040632_top__DOT__imarb{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__imarb}
+    , __PVT__ysyx_22040632_top__DOT__axi{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__axi}
+    , __PVT__ysyx_22040632_top__DOT__if2ic{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__if2ic}
+    , __PVT__ysyx_22040632_top__DOT__mem2dc{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__mem2dc}
+    , __PVT__ysyx_22040632_top__DOT__mem2clint{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__mem2clint}
     , __PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i}
     , __PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__1__KET____DOT__ysyx_22040632_walloc_32bits_i{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__1__KET____DOT__ysyx_22040632_walloc_32bits_i}
     , __PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__2__KET____DOT__ysyx_22040632_walloc_32bits_i{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__2__KET____DOT__ysyx_22040632_walloc_32bits_i}
@@ -192,7 +248,7 @@ static void _eval_initial_loop(Vysyx_22040632_top__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = Vysyx_22040632_top___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_top.sv", 2, "",
+            VL_FATAL_MT("/home/chandler/ysyx-workbench/npc/vsrc/core/ysyx_22040632_top.sv", 2, "",
                 "Verilated model didn't DC converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
@@ -223,7 +279,7 @@ void Vysyx_22040632_top::eval_step() {
             Verilated::debug(1);
             __Vchange = Vysyx_22040632_top___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/home/chandler/ysyx-workbench/npc/hw/ysyx_22040632_top.sv", 2, "",
+            VL_FATAL_MT("/home/chandler/ysyx-workbench/npc/vsrc/core/ysyx_22040632_top.sv", 2, "",
                 "Verilated model didn't converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {

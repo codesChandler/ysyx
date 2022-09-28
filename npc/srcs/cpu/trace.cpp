@@ -2,7 +2,7 @@
 #include "common.h"
 #include "time.h"
 #include "debug.h"
-#include "autoconfig.h"
+#include "generated/autoconfig.h"
 #include "ftrace.h"
 #include "isa.h"
 

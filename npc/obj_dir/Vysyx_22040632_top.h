@@ -9,14 +9,24 @@
 #define VERILATED_VYSYX_22040632_TOP_H_  // guard
 
 #include "verilated.h"
-#include "svdpi.h"
 
 class Vysyx_22040632_top__Syms;
 class Vysyx_22040632_top___024root;
 class VerilatedVcdC;
-class Vysyx_22040632_top___024unit;
 class Vysyx_22040632_top_ysyx_22040632_divif;
 class Vysyx_22040632_top_ysyx_22040632_mulif;
+class Vysyx_22040632_top_ysyx_22040632_ex2if;
+class Vysyx_22040632_top_ysyx_22040632_if2id;
+class Vysyx_22040632_top_ysyx_22040632_wb2id;
+class Vysyx_22040632_top_ysyx_22040632_id2ex;
+class Vysyx_22040632_top_ysyx_22040632_ex2mem;
+class Vysyx_22040632_top_ysyx_22040632_mem2wb;
+class Vysyx_22040632_top_ysyx_22040632_id2if;
+class Vysyx_22040632_top_ysyx_22040632_imif;
+class Vysyx_22040632_top_ysyx_22040632_axiif;
+class Vysyx_22040632_top_ysyx_22040632_if2ic;
+class Vysyx_22040632_top_ysyx_22040632_mem2dc;
+class Vysyx_22040632_top_ysyx_22040632_mem2clint;
 class Vysyx_22040632_top_ysyx_22040632_walloc_32bits;
 
 
@@ -33,15 +43,72 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst_n,0,0);
-    VL_OUT(&inst,31,0);
-    VL_OUT64(&pc,63,0);
+    VL_OUT8(&io_uart_out_valid,0,0);
+    VL_OUT8(&io_uart_out_ch,7,0);
+    VL_OUT8(&axi_aw_valid_o,0,0);
+    VL_OUT8(&axi_aw_prot_o,2,0);
+    VL_OUT8(&axi_aw_id_o,3,0);
+    VL_OUT8(&axi_aw_user_o,0,0);
+    VL_OUT8(&axi_aw_len_o,7,0);
+    VL_OUT8(&axi_aw_size_o,2,0);
+    VL_OUT8(&axi_aw_burst_o,1,0);
+    VL_OUT8(&axi_aw_lock_o,0,0);
+    VL_OUT8(&axi_aw_cache_o,3,0);
+    VL_OUT8(&axi_aw_qos_o,3,0);
+    VL_OUT8(&axi_aw_region_o,3,0);
+    VL_IN8(&axi_aw_ready_i,0,0);
+    VL_OUT8(&axi_w_valid_o,0,0);
+    VL_OUT8(&axi_w_strb_o,7,0);
+    VL_OUT8(&axi_w_last_o,0,0);
+    VL_OUT8(&axi_w_user_o,0,0);
+    VL_IN8(&axi_w_ready_i,0,0);
+    VL_OUT8(&axi_b_ready_o,0,0);
+    VL_IN8(&axi_b_valid_i,0,0);
+    VL_IN8(&axi_b_resp_i,1,0);
+    VL_IN8(&axi_b_id_i,3,0);
+    VL_IN8(&axi_b_user_i,0,0);
+    VL_OUT8(&axi_ar_valid_o,0,0);
+    VL_OUT8(&axi_ar_prot_o,2,0);
+    VL_OUT8(&axi_ar_id_o,3,0);
+    VL_OUT8(&axi_ar_user_o,0,0);
+    VL_OUT8(&axi_ar_len_o,7,0);
+    VL_OUT8(&axi_ar_size_o,2,0);
+    VL_OUT8(&axi_ar_burst_o,1,0);
+    VL_OUT8(&axi_ar_lock_o,0,0);
+    VL_OUT8(&axi_ar_cache_o,3,0);
+    VL_OUT8(&axi_ar_qos_o,3,0);
+    VL_OUT8(&axi_ar_region_o,3,0);
+    VL_IN8(&axi_ar_ready_i,0,0);
+    VL_OUT8(&axi_r_ready_o,0,0);
+    VL_IN8(&axi_r_valid_i,0,0);
+    VL_IN8(&axi_r_resp_i,1,0);
+    VL_IN8(&axi_r_last_i,0,0);
+    VL_IN8(&axi_r_id_i,3,0);
+    VL_IN8(&axi_r_user_i,0,0);
+    VL_OUT(&axi_aw_addr_o,31,0);
+    VL_OUT(&axi_ar_addr_o,31,0);
+    VL_OUT64(&axi_w_data_o,63,0);
+    VL_IN64(&axi_r_data_i,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
-    Vysyx_22040632_top___024unit* const __PVT____024unit;
     Vysyx_22040632_top_ysyx_22040632_divif* const __PVT__ysyx_22040632_top__DOT__dif;
     Vysyx_22040632_top_ysyx_22040632_mulif* const __PVT__ysyx_22040632_top__DOT__mif;
+    Vysyx_22040632_top_ysyx_22040632_ex2if* const __PVT__ysyx_22040632_top__DOT__ex2if;
+    Vysyx_22040632_top_ysyx_22040632_if2id* const __PVT__ysyx_22040632_top__DOT__if2id;
+    Vysyx_22040632_top_ysyx_22040632_wb2id* const __PVT__ysyx_22040632_top__DOT__wb2id;
+    Vysyx_22040632_top_ysyx_22040632_id2ex* const __PVT__ysyx_22040632_top__DOT__id2ex;
+    Vysyx_22040632_top_ysyx_22040632_ex2mem* const __PVT__ysyx_22040632_top__DOT__ex2mem;
+    Vysyx_22040632_top_ysyx_22040632_mem2wb* const __PVT__ysyx_22040632_top__DOT__mem2wb;
+    Vysyx_22040632_top_ysyx_22040632_id2if* const __PVT__ysyx_22040632_top__DOT__id2if;
+    Vysyx_22040632_top_ysyx_22040632_imif* const __PVT__ysyx_22040632_top__DOT__imif;
+    Vysyx_22040632_top_ysyx_22040632_imif* const __PVT__ysyx_22040632_top__DOT__immem;
+    Vysyx_22040632_top_ysyx_22040632_imif* const __PVT__ysyx_22040632_top__DOT__imarb;
+    Vysyx_22040632_top_ysyx_22040632_axiif* const __PVT__ysyx_22040632_top__DOT__axi;
+    Vysyx_22040632_top_ysyx_22040632_if2ic* const __PVT__ysyx_22040632_top__DOT__if2ic;
+    Vysyx_22040632_top_ysyx_22040632_mem2dc* const __PVT__ysyx_22040632_top__DOT__mem2dc;
+    Vysyx_22040632_top_ysyx_22040632_mem2clint* const __PVT__ysyx_22040632_top__DOT__mem2clint;
     Vysyx_22040632_top_ysyx_22040632_walloc_32bits* const __PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i;
     Vysyx_22040632_top_ysyx_22040632_walloc_32bits* const __PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__1__KET____DOT__ysyx_22040632_walloc_32bits_i;
     Vysyx_22040632_top_ysyx_22040632_walloc_32bits* const __PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__2__KET____DOT__ysyx_22040632_walloc_32bits_i;

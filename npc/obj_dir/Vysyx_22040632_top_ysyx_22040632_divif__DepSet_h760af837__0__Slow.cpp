@@ -3,7 +3,6 @@
 // See Vysyx_22040632_top.h for the primary calling header
 
 #include "verilated.h"
-#include "verilated_dpi.h"
 
 #include "Vysyx_22040632_top_ysyx_22040632_divif.h"
 
@@ -15,7 +14,6 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_divif___ctor_var_reset(Vysyx_
     vlSelf->div_valid = VL_RAND_RESET_I(1);
     vlSelf->divw = VL_RAND_RESET_I(1);
     vlSelf->div_signed = VL_RAND_RESET_I(1);
-    vlSelf->flush = VL_RAND_RESET_I(1);
     vlSelf->quotient = VL_RAND_RESET_Q(64);
     vlSelf->remainder = VL_RAND_RESET_Q(64);
 }

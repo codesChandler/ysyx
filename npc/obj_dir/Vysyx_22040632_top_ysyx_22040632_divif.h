@@ -15,7 +15,6 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_divif) {
     CData/*0:0*/ div_valid;
     CData/*0:0*/ divw;
     CData/*0:0*/ div_signed;
-    CData/*0:0*/ flush;
     QData/*63:0*/ quotient;
     QData/*63:0*/ remainder;
 

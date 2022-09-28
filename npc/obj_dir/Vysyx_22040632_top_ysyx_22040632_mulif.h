@@ -12,10 +12,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_mulif) {
   public:
 
     // DESIGN SPECIFIC STATE
-    CData/*0:0*/ __PVT__mul_valid;
-    CData/*0:0*/ __PVT__flush;
     CData/*1:0*/ mul_signed;
-    QData/*63:0*/ result_lo;
 
     // INTERNAL VARIABLES
     Vysyx_22040632_top__Syms* vlSymsp;  // Symbol table

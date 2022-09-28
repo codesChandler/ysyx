@@ -3,7 +3,6 @@
 // See Vysyx_22040632_top.h for the primary calling header
 
 #include "verilated.h"
-#include "verilated_dpi.h"
 
 #include "Vysyx_22040632_top_ysyx_22040632_walloc_32bits.h"
 
@@ -17,6 +16,7 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_walloc_32bits___ctor_var_rese
     vlSelf->cout_group = VL_RAND_RESET_I(30);
     vlSelf->cout = VL_RAND_RESET_I(1);
     vlSelf->s = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__c = VL_RAND_RESET_I(30);
     vlSelf->__PVT__first_s = VL_RAND_RESET_I(11);
     vlSelf->__PVT__second_s = VL_RAND_RESET_I(7);
     vlSelf->__Vcellinp__ysyx_22040632_csa14__in = VL_RAND_RESET_I(3);
@@ -25,9 +25,7 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_walloc_32bits___ctor_var_rese
     vlSelf->__PVT__fourth_s = VL_RAND_RESET_I(3);
     vlSelf->__Vcellinp__ysyx_22040632_csa24__in = VL_RAND_RESET_I(3);
     vlSelf->__PVT__fifth_s = VL_RAND_RESET_I(2);
-    vlSelf->__Vcellout__ysyx_22040632_csa28__cout = VL_RAND_RESET_I(1);
     vlSelf->__Vcellinp__ysyx_22040632_csa28__in = VL_RAND_RESET_I(3);
-    vlSelf->__Vcellout__ysyx_22040632_csa29__cout = VL_RAND_RESET_I(1);
     vlSelf->__Vcellinp__ysyx_22040632_csa29__in = VL_RAND_RESET_I(3);
     vlSelf->__Vcellinp__ysyx_22040632_csa30__in = VL_RAND_RESET_I(3);
 }

@@ -44,14 +44,29 @@ VM_USER_CLASSES = \
 	cpu-exce \
 	dut \
 	trace \
+	alarm \
+	audio \
+	device \
+	disk \
+	intr \
+	map \
+	mmio \
+	port-io \
+	keyboard \
+	sdcard \
+	serial \
+	timer_ \
+	vga \
 	init \
 	isa \
 	paddr \
+	vaddr \
 	monitor \
 	elf \
 	sdb \
 	sim_main \
 	disasm \
+	log \
 	timer \
 
 # User .cpp directories (from .cpp's on Verilator command line)
@@ -59,6 +74,8 @@ VM_USER_DIR = \
 	/home/chandler/ysyx-workbench/npc/srcs \
 	/home/chandler/ysyx-workbench/npc/srcs/cpu \
 	/home/chandler/ysyx-workbench/npc/srcs/cpu/difftest \
+	/home/chandler/ysyx-workbench/npc/srcs/device \
+	/home/chandler/ysyx-workbench/npc/srcs/device/io \
 	/home/chandler/ysyx-workbench/npc/srcs/memory \
 	/home/chandler/ysyx-workbench/npc/srcs/sdb \
 	/home/chandler/ysyx-workbench/npc/srcs/utils \
@@ -79,11 +96,39 @@ dut.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/difftest/dut.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 trace.o: /home/chandler/ysyx-workbench/npc/srcs/cpu/trace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+alarm.o: /home/chandler/ysyx-workbench/npc/srcs/device/alarm.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+audio.o: /home/chandler/ysyx-workbench/npc/srcs/device/audio.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+device.o: /home/chandler/ysyx-workbench/npc/srcs/device/device.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+disk.o: /home/chandler/ysyx-workbench/npc/srcs/device/disk.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+intr.o: /home/chandler/ysyx-workbench/npc/srcs/device/intr.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+map.o: /home/chandler/ysyx-workbench/npc/srcs/device/io/map.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+mmio.o: /home/chandler/ysyx-workbench/npc/srcs/device/io/mmio.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+port-io.o: /home/chandler/ysyx-workbench/npc/srcs/device/io/port-io.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+keyboard.o: /home/chandler/ysyx-workbench/npc/srcs/device/keyboard.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdcard.o: /home/chandler/ysyx-workbench/npc/srcs/device/sdcard.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+serial.o: /home/chandler/ysyx-workbench/npc/srcs/device/serial.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+timer_.o: /home/chandler/ysyx-workbench/npc/srcs/device/timer_.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+vga.o: /home/chandler/ysyx-workbench/npc/srcs/device/vga.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 init.o: /home/chandler/ysyx-workbench/npc/srcs/init.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 isa.o: /home/chandler/ysyx-workbench/npc/srcs/isa.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-paddr.o: /home/chandler/ysyx-workbench/npc/srcs/memory/paddr.cpp
+paddr.o: /home/chandler/ysyx-workbench/npc/srcs/memory/paddr.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+vaddr.o: /home/chandler/ysyx-workbench/npc/srcs/memory/vaddr.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 monitor.o: /home/chandler/ysyx-workbench/npc/srcs/monitor.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
@@ -94,6 +139,8 @@ sdb.o: /home/chandler/ysyx-workbench/npc/srcs/sdb/sdb.cpp
 sim_main.o: /home/chandler/ysyx-workbench/npc/srcs/sim_main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: /home/chandler/ysyx-workbench/npc/srcs/utils/disasm.cc
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+log.o: /home/chandler/ysyx-workbench/npc/srcs/utils/log.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 timer.o: /home/chandler/ysyx-workbench/npc/srcs/utils/timer.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

@@ -8,6 +8,18 @@
 #include "Vysyx_22040632_top_ysyx_22040632_divif.h"
 #include "Vysyx_22040632_top_ysyx_22040632_mulif.h"
 #include "Vysyx_22040632_top_ysyx_22040632_walloc_32bits.h"
+#include "Vysyx_22040632_top_ysyx_22040632_if2id.h"
+#include "Vysyx_22040632_top_ysyx_22040632_id2ex.h"
+#include "Vysyx_22040632_top_ysyx_22040632_ex2mem.h"
+#include "Vysyx_22040632_top_ysyx_22040632_ex2if.h"
+#include "Vysyx_22040632_top_ysyx_22040632_mem2wb.h"
+#include "Vysyx_22040632_top_ysyx_22040632_wb2id.h"
+#include "Vysyx_22040632_top_ysyx_22040632_id2if.h"
+#include "Vysyx_22040632_top_ysyx_22040632_mem2clint.h"
+#include "Vysyx_22040632_top_ysyx_22040632_if2ic.h"
+#include "Vysyx_22040632_top_ysyx_22040632_mem2dc.h"
+#include "Vysyx_22040632_top_ysyx_22040632_axiif.h"
+#include "Vysyx_22040632_top_ysyx_22040632_imif.h"
 
 // FUNCTIONS
 Vysyx_22040632_top__Syms::~Vysyx_22040632_top__Syms()
@@ -20,9 +32,22 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     , __Vm_modelp{modelp}
     // Setup module instances
     , TOP(namep)
-    , TOP____024unit(Verilated::catName(namep, "$unit"))
+    , TOP__ysyx_22040632_top__DOT__axi(Verilated::catName(namep, "ysyx_22040632_top.axi"))
     , TOP__ysyx_22040632_top__DOT__dif(Verilated::catName(namep, "ysyx_22040632_top.dif"))
+    , TOP__ysyx_22040632_top__DOT__ex2if(Verilated::catName(namep, "ysyx_22040632_top.ex2if"))
+    , TOP__ysyx_22040632_top__DOT__ex2mem(Verilated::catName(namep, "ysyx_22040632_top.ex2mem"))
+    , TOP__ysyx_22040632_top__DOT__id2ex(Verilated::catName(namep, "ysyx_22040632_top.id2ex"))
+    , TOP__ysyx_22040632_top__DOT__id2if(Verilated::catName(namep, "ysyx_22040632_top.id2if"))
+    , TOP__ysyx_22040632_top__DOT__if2ic(Verilated::catName(namep, "ysyx_22040632_top.if2ic"))
+    , TOP__ysyx_22040632_top__DOT__if2id(Verilated::catName(namep, "ysyx_22040632_top.if2id"))
+    , TOP__ysyx_22040632_top__DOT__imarb(Verilated::catName(namep, "ysyx_22040632_top.imarb"))
+    , TOP__ysyx_22040632_top__DOT__imif(Verilated::catName(namep, "ysyx_22040632_top.imif"))
+    , TOP__ysyx_22040632_top__DOT__immem(Verilated::catName(namep, "ysyx_22040632_top.immem"))
+    , TOP__ysyx_22040632_top__DOT__mem2clint(Verilated::catName(namep, "ysyx_22040632_top.mem2clint"))
+    , TOP__ysyx_22040632_top__DOT__mem2dc(Verilated::catName(namep, "ysyx_22040632_top.mem2dc"))
+    , TOP__ysyx_22040632_top__DOT__mem2wb(Verilated::catName(namep, "ysyx_22040632_top.mem2wb"))
     , TOP__ysyx_22040632_top__DOT__mif(Verilated::catName(namep, "ysyx_22040632_top.mif"))
+    , TOP__ysyx_22040632_top__DOT__wb2id(Verilated::catName(namep, "ysyx_22040632_top.wb2id"))
     , TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i(Verilated::catName(namep, "ysyx_22040632_top.ysyx_22040632_mul_i.genblk7[0].ysyx_22040632_walloc_32bits_i"))
     , TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__100__KET____DOT__ysyx_22040632_walloc_32bits_i(Verilated::catName(namep, "ysyx_22040632_top.ysyx_22040632_mul_i.genblk7[100].ysyx_22040632_walloc_32bits_i"))
     , TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__101__KET____DOT__ysyx_22040632_walloc_32bits_i(Verilated::catName(namep, "ysyx_22040632_top.ysyx_22040632_mul_i.genblk7[101].ysyx_22040632_walloc_32bits_i"))
@@ -156,9 +181,22 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);
     // Setup each module's pointers to their submodules
-    TOP.__PVT____024unit = &TOP____024unit;
+    TOP.__PVT__ysyx_22040632_top__DOT__axi = &TOP__ysyx_22040632_top__DOT__axi;
     TOP.__PVT__ysyx_22040632_top__DOT__dif = &TOP__ysyx_22040632_top__DOT__dif;
+    TOP.__PVT__ysyx_22040632_top__DOT__ex2if = &TOP__ysyx_22040632_top__DOT__ex2if;
+    TOP.__PVT__ysyx_22040632_top__DOT__ex2mem = &TOP__ysyx_22040632_top__DOT__ex2mem;
+    TOP.__PVT__ysyx_22040632_top__DOT__id2ex = &TOP__ysyx_22040632_top__DOT__id2ex;
+    TOP.__PVT__ysyx_22040632_top__DOT__id2if = &TOP__ysyx_22040632_top__DOT__id2if;
+    TOP.__PVT__ysyx_22040632_top__DOT__if2ic = &TOP__ysyx_22040632_top__DOT__if2ic;
+    TOP.__PVT__ysyx_22040632_top__DOT__if2id = &TOP__ysyx_22040632_top__DOT__if2id;
+    TOP.__PVT__ysyx_22040632_top__DOT__imarb = &TOP__ysyx_22040632_top__DOT__imarb;
+    TOP.__PVT__ysyx_22040632_top__DOT__imif = &TOP__ysyx_22040632_top__DOT__imif;
+    TOP.__PVT__ysyx_22040632_top__DOT__immem = &TOP__ysyx_22040632_top__DOT__immem;
+    TOP.__PVT__ysyx_22040632_top__DOT__mem2clint = &TOP__ysyx_22040632_top__DOT__mem2clint;
+    TOP.__PVT__ysyx_22040632_top__DOT__mem2dc = &TOP__ysyx_22040632_top__DOT__mem2dc;
+    TOP.__PVT__ysyx_22040632_top__DOT__mem2wb = &TOP__ysyx_22040632_top__DOT__mem2wb;
     TOP.__PVT__ysyx_22040632_top__DOT__mif = &TOP__ysyx_22040632_top__DOT__mif;
+    TOP.__PVT__ysyx_22040632_top__DOT__wb2id = &TOP__ysyx_22040632_top__DOT__wb2id;
     TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i = &TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i;
     TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__100__KET____DOT__ysyx_22040632_walloc_32bits_i = &TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__100__KET____DOT__ysyx_22040632_walloc_32bits_i;
     TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__101__KET____DOT__ysyx_22040632_walloc_32bits_i = &TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__101__KET____DOT__ysyx_22040632_walloc_32bits_i;
@@ -289,9 +327,22 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i = &TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i;
     // Setup each module's pointer back to symbol table (for public functions)
     TOP.__Vconfigure(this, true);
-    TOP____024unit.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__axi.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__dif.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__ex2if.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__ex2mem.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__id2ex.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__id2if.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__if2ic.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__if2id.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__imarb.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__imif.__Vconfigure(this, false);
+    TOP__ysyx_22040632_top__DOT__immem.__Vconfigure(this, false);
+    TOP__ysyx_22040632_top__DOT__mem2clint.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__mem2dc.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__mem2wb.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__mif.__Vconfigure(this, true);
+    TOP__ysyx_22040632_top__DOT__wb2id.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__100__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__101__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
@@ -420,7 +471,4 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__98__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__99__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
-    // Setup export functions
-    for (int __Vfinal=0; __Vfinal<2; __Vfinal++) {
-    }
 }

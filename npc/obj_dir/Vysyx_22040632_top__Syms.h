@@ -19,8 +19,18 @@
 #include "Vysyx_22040632_top_ysyx_22040632_divif.h"
 #include "Vysyx_22040632_top_ysyx_22040632_mulif.h"
 #include "Vysyx_22040632_top_ysyx_22040632_walloc_32bits.h"
-
-// DPI TYPES for DPI Export callbacks (Internal use)
+#include "Vysyx_22040632_top_ysyx_22040632_if2id.h"
+#include "Vysyx_22040632_top_ysyx_22040632_id2ex.h"
+#include "Vysyx_22040632_top_ysyx_22040632_ex2mem.h"
+#include "Vysyx_22040632_top_ysyx_22040632_ex2if.h"
+#include "Vysyx_22040632_top_ysyx_22040632_mem2wb.h"
+#include "Vysyx_22040632_top_ysyx_22040632_wb2id.h"
+#include "Vysyx_22040632_top_ysyx_22040632_id2if.h"
+#include "Vysyx_22040632_top_ysyx_22040632_mem2clint.h"
+#include "Vysyx_22040632_top_ysyx_22040632_if2ic.h"
+#include "Vysyx_22040632_top_ysyx_22040632_mem2dc.h"
+#include "Vysyx_22040632_top_ysyx_22040632_axiif.h"
+#include "Vysyx_22040632_top_ysyx_22040632_imif.h"
 
 // SYMS CLASS (contains all model state)
 class Vysyx_22040632_top__Syms final : public VerilatedSyms {
@@ -33,9 +43,22 @@ class Vysyx_22040632_top__Syms final : public VerilatedSyms {
 
     // MODULE INSTANCE STATE
     Vysyx_22040632_top___024root   TOP;
-    Vysyx_22040632_top___024unit   TOP____024unit;
+    Vysyx_22040632_top_ysyx_22040632_axiif TOP__ysyx_22040632_top__DOT__axi;
     Vysyx_22040632_top_ysyx_22040632_divif TOP__ysyx_22040632_top__DOT__dif;
+    Vysyx_22040632_top_ysyx_22040632_ex2if TOP__ysyx_22040632_top__DOT__ex2if;
+    Vysyx_22040632_top_ysyx_22040632_ex2mem TOP__ysyx_22040632_top__DOT__ex2mem;
+    Vysyx_22040632_top_ysyx_22040632_id2ex TOP__ysyx_22040632_top__DOT__id2ex;
+    Vysyx_22040632_top_ysyx_22040632_id2if TOP__ysyx_22040632_top__DOT__id2if;
+    Vysyx_22040632_top_ysyx_22040632_if2ic TOP__ysyx_22040632_top__DOT__if2ic;
+    Vysyx_22040632_top_ysyx_22040632_if2id TOP__ysyx_22040632_top__DOT__if2id;
+    Vysyx_22040632_top_ysyx_22040632_imif TOP__ysyx_22040632_top__DOT__imarb;
+    Vysyx_22040632_top_ysyx_22040632_imif TOP__ysyx_22040632_top__DOT__imif;
+    Vysyx_22040632_top_ysyx_22040632_imif TOP__ysyx_22040632_top__DOT__immem;
+    Vysyx_22040632_top_ysyx_22040632_mem2clint TOP__ysyx_22040632_top__DOT__mem2clint;
+    Vysyx_22040632_top_ysyx_22040632_mem2dc TOP__ysyx_22040632_top__DOT__mem2dc;
+    Vysyx_22040632_top_ysyx_22040632_mem2wb TOP__ysyx_22040632_top__DOT__mem2wb;
     Vysyx_22040632_top_ysyx_22040632_mulif TOP__ysyx_22040632_top__DOT__mif;
+    Vysyx_22040632_top_ysyx_22040632_wb2id TOP__ysyx_22040632_top__DOT__wb2id;
     Vysyx_22040632_top_ysyx_22040632_walloc_32bits TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i;
     Vysyx_22040632_top_ysyx_22040632_walloc_32bits TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__100__KET____DOT__ysyx_22040632_walloc_32bits_i;
     Vysyx_22040632_top_ysyx_22040632_walloc_32bits TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__101__KET____DOT__ysyx_22040632_walloc_32bits_i;

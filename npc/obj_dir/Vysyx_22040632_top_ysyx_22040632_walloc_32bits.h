@@ -21,15 +21,14 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_walloc_32bits) {
     CData/*2:0*/ __PVT__fourth_s;
     CData/*2:0*/ __Vcellinp__ysyx_22040632_csa24__in;
     CData/*1:0*/ __PVT__fifth_s;
-    CData/*0:0*/ __Vcellout__ysyx_22040632_csa28__cout;
     CData/*2:0*/ __Vcellinp__ysyx_22040632_csa28__in;
-    CData/*0:0*/ __Vcellout__ysyx_22040632_csa29__cout;
     CData/*2:0*/ __Vcellinp__ysyx_22040632_csa29__in;
     CData/*2:0*/ __Vcellinp__ysyx_22040632_csa30__in;
     SData/*10:0*/ __PVT__first_s;
     VL_IN(src_in,31,0);
     VL_IN(cin,29,0);
     VL_OUT(cout_group,29,0);
+    IData/*29:0*/ __PVT__c;
 
     // INTERNAL VARIABLES
     Vysyx_22040632_top__Syms* vlSymsp;  // Symbol table
