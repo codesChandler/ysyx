@@ -3019,18 +3019,18 @@ void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root*
         tracep->chgBit(oldp+874,((1U & VL_REDXOR_32(
                                                     (0x1c000000U 
                                                      & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U])))));
-        tracep->chgBit(oldp+875,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
-                                        >> 0x1cU))));
-        tracep->chgBit(oldp+876,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
-                                        >> 0x1bU))));
-        tracep->chgQData(oldp+877,((((QData)((IData)(
+        tracep->chgQData(oldp+875,((((QData)((IData)(
                                                      vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[3U])) 
                                      << 0x20U) | (QData)((IData)(
                                                                  vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[2U])))),64);
-        tracep->chgQData(oldp+879,((((QData)((IData)(
+        tracep->chgQData(oldp+877,((((QData)((IData)(
                                                      vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[1U])) 
                                      << 0x20U) | (QData)((IData)(
                                                                  vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[0U])))),64);
+        tracep->chgBit(oldp+879,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
+                                        >> 0x1cU))));
+        tracep->chgBit(oldp+880,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
+                                        >> 0x1bU))));
         tracep->chgBit(oldp+881,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
                                         >> 0x1aU))));
         tracep->chgBit(oldp+882,((1U & (((IData)((6U 

@@ -32,6 +32,8 @@
 #include "Vysyx_22040632_top_ysyx_22040632_axiif.h"
 #include "Vysyx_22040632_top_ysyx_22040632_imif.h"
 
+// DPI TYPES for DPI Export callbacks (Internal use)
+
 // SYMS CLASS (contains all model state)
 class Vysyx_22040632_top__Syms final : public VerilatedSyms {
   public:
@@ -43,6 +45,7 @@ class Vysyx_22040632_top__Syms final : public VerilatedSyms {
 
     // MODULE INSTANCE STATE
     Vysyx_22040632_top___024root   TOP;
+    Vysyx_22040632_top___024unit   TOP____024unit;
     Vysyx_22040632_top_ysyx_22040632_axiif TOP__ysyx_22040632_top__DOT__axi;
     Vysyx_22040632_top_ysyx_22040632_divif TOP__ysyx_22040632_top__DOT__dif;
     Vysyx_22040632_top_ysyx_22040632_ex2if TOP__ysyx_22040632_top__DOT__ex2if;

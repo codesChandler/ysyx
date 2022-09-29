@@ -8,6 +8,9 @@ typedef enum logic [2:0] {lwt,lwut,ldt,lbut,lbt,lht,lhut} ld_t;
 
 typedef enum logic [1:0] {sdt,sbt,swt,sht} sd_t;
 
+import "DPI-C" function void npcexit(int code);
+import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
+
 // `timescale 1ns / 1ps
 
 `define ZERO_WORD  64'h00000000_00000000

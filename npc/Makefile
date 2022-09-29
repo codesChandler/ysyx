@@ -62,7 +62,9 @@ NPCARGS += -l /home/chandler/ysyx-workbench/npc/logs/npc-log.txt#log file
 default: run
 
 run:$(BINARY)
+	@touch /home/chandler/ysyx-workbench/npc/logs/npc-log.txt
 	$(BINARY) $(NPCARGS)
+	make clean
 #	make wave
 
 

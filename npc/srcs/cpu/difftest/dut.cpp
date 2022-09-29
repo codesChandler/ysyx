@@ -6,6 +6,7 @@
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
+void (*ref_difftest_pccpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
@@ -69,6 +70,9 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
   ref_difftest_regcpy = (void (*)(void*, bool))dlsym(handle, "difftest_regcpy");
   assert(ref_difftest_regcpy);
 
+  ref_difftest_pccpy = (void (*)(void*, bool))dlsym(handle, "difftest_pccpy");
+  assert(ref_difftest_pccpy);
+
   ref_difftest_exec =(void (*)(uint64_t)) dlsym(handle, "difftest_exec");
   assert(ref_difftest_exec);
 
@@ -85,6 +89,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
   ref_difftest_init(port);
   ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
+  *(cpu.gpr_pc+32)=0x80000000;
   ref_difftest_regcpy(cpu.gpr_pc, DIFFTEST_TO_REF);
 }
 
@@ -104,12 +109,11 @@ static void checkregs(uint64_t *ref, vaddr_t pc) {
     npcexit(1);
     isa_reg_display();
     inst_display();
-    //printf("I am working diff\n");
   }
 }
 
 void difftest_step(vaddr_t pc) {
-
+  ref_difftest_pccpy(ref_r, DIFFTEST_TO_DUT);
   ref_difftest_exec(1);
   ref_difftest_regcpy(ref_r, DIFFTEST_TO_DUT);
 

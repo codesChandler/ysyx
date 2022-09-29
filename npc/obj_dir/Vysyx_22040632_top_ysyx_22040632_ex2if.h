@@ -12,6 +12,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_ex2if) {
   public:
 
     // DESIGN SPECIFIC STATE
+    CData/*0:0*/ pc_en2if;
     CData/*0:0*/ btb_add2if;
     IData/*31:0*/ pc2if;
 

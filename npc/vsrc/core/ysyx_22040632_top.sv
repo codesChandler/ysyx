@@ -12,9 +12,10 @@ module ysyx_22040632_top
   input logic clk,
   input logic rst_n,
 
-  //uart
-  output                              io_uart_out_valid,
-  output [7:0]                        io_uart_out_ch,
+  //to cpp
+  output logic [31:0] pc,
+  output logic [31:0] inst,
+  output logic submit,
 
   //axi4 as master
   output axi_aw_valid_o,
@@ -95,8 +96,6 @@ ysyx_22040632_id2csr id2csr();
 ysyx_22040632_mem2clint mem2clint();
 
 //difftest
-logic [31:0] pc;
-logic [31:0] inst;
 logic [63:0] regs_o[31:0];
 logic rd_w_ena;
 logic [4 : 0]rd_w_addr;
@@ -266,6 +265,9 @@ ysyx_22040632_clint ysyx_22040632_clint_i(
   .intrrupt_timing2ex
 );
 
+assign pc=mem2wb.pc2wb;
+assign inst=mem2wb.inst2wb;
+assign submit=(inst != 0) && (pc >= 32'h8000_0000  && pc<=32'h88000000) && (!mem2wb.not_submit2wb);
 /**************axi connection******/
 assign axi.axi_aw_ready=axi_aw_ready_i;              
 assign axi_aw_valid_o=axi.axi_aw_valid;

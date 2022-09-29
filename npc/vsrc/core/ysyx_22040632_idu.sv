@@ -28,7 +28,9 @@ func fun;
 typet type_t;
 logic [4:0] rd_t,rs1,rs2;
 logic [4 : 0]rd_w_addr;
-
+always_comb begin 
+  set_gpr_ptr(regs_o);
+end
 
 /*******************general purpose register***********/
 logic w_ena;
@@ -143,10 +145,10 @@ always_comb begin
   32'b?????????????????100?????1100011: begin fun=blt    ;type_t=type_b;end
   32'b?????????????????110?????1100011: begin fun=bltu   ;type_t=type_b;end
   
-  32'h0000006b:begin fun=quit;type_t=type_i;end 
+  32'h00100073:begin fun=quit;type_t=type_i;npcexit(gpr[10][31:0]);end 
   32'h0000007b:begin fun=putch;type_t=type_i;end 
   32'b00000000000000000000000000000000: begin fun=nop    ;type_t=type_i;end
-  default:begin $display("@pc:%h instruction:%x not implemented",if2id.pc2id,if2id.inst2id);end//npcexit(1);end
+  default:begin $display("@",$realtime()," @pc:%h instruction:%x not implemented",if2id.pc2id,if2id.inst2id);end//npcexit(1);end
   endcase
 end
 

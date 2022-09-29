@@ -9,10 +9,12 @@
 #define VERILATED_VYSYX_22040632_TOP_H_  // guard
 
 #include "verilated.h"
+#include "svdpi.h"
 
 class Vysyx_22040632_top__Syms;
 class Vysyx_22040632_top___024root;
 class VerilatedVcdC;
+class Vysyx_22040632_top___024unit;
 class Vysyx_22040632_top_ysyx_22040632_divif;
 class Vysyx_22040632_top_ysyx_22040632_mulif;
 class Vysyx_22040632_top_ysyx_22040632_ex2if;
@@ -43,8 +45,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst_n,0,0);
-    VL_OUT8(&io_uart_out_valid,0,0);
-    VL_OUT8(&io_uart_out_ch,7,0);
+    VL_OUT8(&submit,0,0);
     VL_OUT8(&axi_aw_valid_o,0,0);
     VL_OUT8(&axi_aw_prot_o,2,0);
     VL_OUT8(&axi_aw_id_o,3,0);
@@ -85,6 +86,8 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     VL_IN8(&axi_r_last_i,0,0);
     VL_IN8(&axi_r_id_i,3,0);
     VL_IN8(&axi_r_user_i,0,0);
+    VL_OUT(&pc,31,0);
+    VL_OUT(&inst,31,0);
     VL_OUT(&axi_aw_addr_o,31,0);
     VL_OUT(&axi_ar_addr_o,31,0);
     VL_OUT64(&axi_w_data_o,63,0);
@@ -93,6 +96,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
+    Vysyx_22040632_top___024unit* const __PVT____024unit;
     Vysyx_22040632_top_ysyx_22040632_divif* const __PVT__ysyx_22040632_top__DOT__dif;
     Vysyx_22040632_top_ysyx_22040632_mulif* const __PVT__ysyx_22040632_top__DOT__mif;
     Vysyx_22040632_top_ysyx_22040632_ex2if* const __PVT__ysyx_22040632_top__DOT__ex2if;

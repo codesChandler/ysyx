@@ -3,6 +3,7 @@
 // See Vysyx_22040632_top.h for the primary calling header
 
 #include "verilated.h"
+#include "verilated_dpi.h"
 
 #include "Vysyx_22040632_top__Syms.h"
 #include "Vysyx_22040632_top___024root.h"
@@ -5456,6 +5457,54 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__11(Vysyx_2204063
                                                                                 >> 0x1eU)) 
                                                                                 | (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[3U] 
                                                                                 >> 0x1fU))))))))))))))))))))))))))))))));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_addr 
+        = ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__mem_flg)
+            ? (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uncacheable) 
+                & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uart))
+                ? (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem)
+                : (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uncacheable) 
+                    & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uart)))
+                    ? ((IData)((vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem 
+                                >> 2U)) << 2U) : ((8U 
+                                                   == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__cs))
+                                                   ? 
+                                                  ((vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__tag_read 
+                                                    << 0xbU) 
+                                                   | (0x7c0U 
+                                                      & ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__cnt_f) 
+                                                         << 6U)))
+                                                   : 
+                                                  ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__axi_write_state)
+                                                    ? 
+                                                   ((vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__tag_read 
+                                                     << 0xbU) 
+                                                    | (0x7c0U 
+                                                       & ((IData)(
+                                                                  (vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem 
+                                                                   >> 6U)) 
+                                                          << 6U)))
+                                                    : 
+                                                   ((IData)(
+                                                            (vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem 
+                                                             >> 6U)) 
+                                                    << 6U)))))
+            : ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__uncacheable)
+                ? vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc
+                : (0xffffffc0U & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc)));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_valid 
+        = ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_valid) 
+           & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_req));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_valid 
+        = ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_valid) 
+           & (~ (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_req)));
+    vlSelf->axi_aw_addr_o = vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_addr;
+    vlSelf->axi_ar_addr_o = vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_addr;
+    vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_ar_valid 
+        = ((1U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_state)) 
+           & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_valid));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_aw_valid 
+        = ((1U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_state)) 
+           & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_valid));
     vlSelf->axi_ar_valid_o = vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_ar_valid;
     vlSelf->axi_aw_valid_o = vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_aw_valid;
 }
@@ -7544,7 +7593,7 @@ VL_INLINE_OPT QData Vysyx_22040632_top___024root___change_request_1(Vysyx_220406
          | (vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__c ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i__c)
          | (vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa28__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa28__in)
          | (vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa29__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa29__in));
-    VL_DEBUG_IF( if(__req && ((vlSelf->ysyx_22040632_top__DOT__rst_s2 ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__rst_s2))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/core/ysyx_22040632_top.sv:106: ysyx_22040632_top.rst_s2\n"); );
+    VL_DEBUG_IF( if(__req && ((vlSelf->ysyx_22040632_top__DOT__rst_s2 ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__rst_s2))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/core/ysyx_22040632_top.sv:105: ysyx_22040632_top.rst_s2\n"); );
     VL_DEBUG_IF( if(__req && ((vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__c ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i__c))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/alu_ext/mul/ysyx_22040632_walloc_32bits.sv:8: c\n"); );
     VL_DEBUG_IF( if(__req && ((vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa28__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa28__in))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/alu_ext/mul/ysyx_22040632_csa.sv:2: __Vcellinp__ysyx_22040632_csa28__in\n"); );
     VL_DEBUG_IF( if(__req && ((vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa29__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa29__in))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/alu_ext/mul/ysyx_22040632_csa.sv:2: __Vcellinp__ysyx_22040632_csa29__in\n"); );

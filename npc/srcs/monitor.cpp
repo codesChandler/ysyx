@@ -5,6 +5,7 @@
 #include <debug.h>
 #include "vrltr.h"
 #include "isa.h"
+#include "axi4.h"
 #include <memory/paddr.h>
 
 extern uint8_t *guest_to_host(paddr_t paddr);
@@ -16,7 +17,9 @@ extern void init_log(const char *log_file);
 extern void init_difftest(char *ref_so_file, long img_size, int port);
 
 //soc-simulator
-axi4_ptr<64,64,4> pmem_ptr;
+axi4_ptr<32,64,4> pmem_ptr;
+axi4<32,64,4> pmem_sigs;
+axi4_ref<32,64,4> pmem_sigs_ref(pmem_sigs);
 
 static char *img_file = NULL;
 static char *log_file = NULL;
@@ -46,19 +49,19 @@ static long load_img() {
   }
 
   FILE *fp = fopen(img_file, "rb");
-  // Assert(fp, "Can not open '%s'", img_file);
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
-  // printf("here\n");
+
   Log("The image is %s, size = %ld", img_file, size);
-  // printf("here\n");
+
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
-  // printf("here\n");
+
   assert(ret == 1);
 
   fclose(fp);
+
   return size;
 }
 
@@ -78,7 +81,7 @@ static int parse_args(int argc, char *argv[]) {
     switch (o) {
       case 'b': img_file=optarg; break;
       case 'p': sdb_set_batch_mode(); break;
-      case 'l': log_file = optarg; break;
+      case 'l': log_file = optarg;break;
       case 'd': diff_so_file = optarg; break;
       case 'f': load_elf_tables(optarg);break;
       case 1: return 0; //img_file = optarg; 
@@ -109,7 +112,7 @@ void inti_vei(int argc, char *argv[]){
     top->clk = 0;
 
     //for soc-simulator connection   
-    extern void connect_wire(axi4_ptr <64,64,4> &pmem_ptr, Vysyx_22040632_top *Top);
+    extern void connect_wire(axi4_ptr <32,64,4> &pmem_ptr, Vysyx_22040632_top *Top);
     connect_wire(pmem_ptr,top);
     assert(pmem_ptr.check());
 
@@ -117,6 +120,7 @@ void inti_vei(int argc, char *argv[]){
     while(main_time<9){
     main_time++;
     top->clk = !top->clk;
+
     if (!top->clk) 
       {if (main_time > 1 && main_time < 8) 
                 top->rst_n = 0;  // Assert rese
@@ -125,16 +129,19 @@ void inti_vei(int argc, char *argv[]){
     top->eval();
     tfp->dump(main_time);   // 波形文件写入步进
     }
+
     *(cpu.gpr_pc+32)=top->pc;
+
 
 }
 
 void init_monitor(int argc, char *argv[]){
     parse_args(argc,argv);
-    long img_size =load_img();
 
     /* Open the log file. */
     init_log(log_file);
+
+    long img_size =load_img();
 
     inti_vei(argc,argv);
     IFDEF(CONFIG_ITRACE, init_disasm(

@@ -45,7 +45,7 @@ logic wen0_vld;
 always_ff @(posedge clk or negedge rrst_n) begin
   if(!rrst_n)
     rw_valid<=1'b0;
-  else if(miss && wen0_vld)
+  else if(miss && wen0_vld && wen_tag_array)
     rw_valid<=1'b1;
   else if(imif.rw_ready)
     rw_valid<=1'b0;
@@ -67,13 +67,21 @@ always_ff @(posedge clk or negedge rrst_n)
   else if(!wen)
     w_cnt <= w_cnt +3'd1;
 
+logic r_last;
+always_ff @(posedge clk or negedge rrst_n)
+if(!rrst_n)
+  r_last <= '0;
+else
+  r_last <= imif.r_last;//imif_r_last negedge rrst_n change !!!
+
+
 always_ff @(posedge clk or negedge rrst_n) begin
   if(!rrst_n || if2ic.uncacheable)
     wen <= 1'b1;
+  else if(r_last)
+    wen <= 1'b1;
   else if(imif.r_hs)
     wen <= 1'b0;//low level active for data_array write
-  else if(imif.r_last)
-    wen <= 1'b1;
 end
 
 always_comb begin

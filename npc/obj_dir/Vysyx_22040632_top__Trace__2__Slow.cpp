@@ -8802,18 +8802,18 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_full_sub_2(Vysyx_22040632_
                                                   & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U])))))));
     tracep->fullBit(oldp+5012,((1U & VL_REDXOR_32((0x1c000000U 
                                                    & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U])))));
-    tracep->fullBit(oldp+5013,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
-                                      >> 0x1cU))));
-    tracep->fullBit(oldp+5014,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
-                                      >> 0x1bU))));
-    tracep->fullQData(oldp+5015,((((QData)((IData)(
+    tracep->fullQData(oldp+5013,((((QData)((IData)(
                                                    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[3U])) 
                                    << 0x20U) | (QData)((IData)(
                                                                vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[2U])))),64);
-    tracep->fullQData(oldp+5017,((((QData)((IData)(
+    tracep->fullQData(oldp+5015,((((QData)((IData)(
                                                    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[1U])) 
                                    << 0x20U) | (QData)((IData)(
                                                                vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[0U])))),64);
+    tracep->fullBit(oldp+5017,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
+                                      >> 0x1cU))));
+    tracep->fullBit(oldp+5018,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
+                                      >> 0x1bU))));
     tracep->fullBit(oldp+5019,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
                                       >> 0x1aU))));
     tracep->fullBit(oldp+5020,((1U & (((IData)((6U 

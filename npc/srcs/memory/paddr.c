@@ -21,7 +21,7 @@ paddr_t host_to_guest(uint8_t *haddr)
 }
 
 static word_t pmem_read(paddr_t addr, int len)
-{
+{ 
   word_t ret = host_read(guest_to_host(addr), len);
   return ret;
 }
@@ -58,7 +58,8 @@ void init_mem()
 word_t paddr_read(paddr_t addr, int len)
 { word_t data=0;
   if (likely(in_pmem(addr)))
-  {  data=pmem_read(addr, len);
+  { 
+      data=pmem_read(addr, 8);
   #ifdef CONFIG_MTRACE
     if (likely(in_pmem(addr))) printf("paddr_read-addr: "FMT_PADDR"  data:%lx\n",addr,data);
   #endif
@@ -76,6 +77,7 @@ void paddr_write(paddr_t addr, int len, word_t data)
   #endif
   if (likely(in_pmem(addr)))
   {
+    
     pmem_write(addr, len, data);
     return;
   }

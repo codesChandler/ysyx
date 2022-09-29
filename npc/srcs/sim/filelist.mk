@@ -1,0 +1,1 @@
+INCLUDES += $(addprefix -I, $(shell pwd)/srcs/sim)

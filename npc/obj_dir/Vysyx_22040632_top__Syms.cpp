@@ -32,6 +32,7 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     , __Vm_modelp{modelp}
     // Setup module instances
     , TOP(namep)
+    , TOP____024unit(Verilated::catName(namep, "$unit"))
     , TOP__ysyx_22040632_top__DOT__axi(Verilated::catName(namep, "ysyx_22040632_top.axi"))
     , TOP__ysyx_22040632_top__DOT__dif(Verilated::catName(namep, "ysyx_22040632_top.dif"))
     , TOP__ysyx_22040632_top__DOT__ex2if(Verilated::catName(namep, "ysyx_22040632_top.ex2if"))
@@ -181,6 +182,7 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);
     // Setup each module's pointers to their submodules
+    TOP.__PVT____024unit = &TOP____024unit;
     TOP.__PVT__ysyx_22040632_top__DOT__axi = &TOP__ysyx_22040632_top__DOT__axi;
     TOP.__PVT__ysyx_22040632_top__DOT__dif = &TOP__ysyx_22040632_top__DOT__dif;
     TOP.__PVT__ysyx_22040632_top__DOT__ex2if = &TOP__ysyx_22040632_top__DOT__ex2if;
@@ -327,6 +329,7 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     TOP.__PVT__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i = &TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i;
     // Setup each module's pointer back to symbol table (for public functions)
     TOP.__Vconfigure(this, true);
+    TOP____024unit.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__axi.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__dif.__Vconfigure(this, true);
     TOP__ysyx_22040632_top__DOT__ex2if.__Vconfigure(this, true);
@@ -471,4 +474,7 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__98__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__99__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
     TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vconfigure(this, false);
+    // Setup export functions
+    for (int __Vfinal=0; __Vfinal<2; __Vfinal++) {
+    }
 }

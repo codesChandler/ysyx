@@ -4,6 +4,7 @@
 #include "Vysyx_22040632_top.h"
 #include "Vysyx_22040632_top__Syms.h"
 #include "verilated_vcd_c.h"
+#include "verilated_dpi.h"
 
 //============================================================
 // Constructors
@@ -12,8 +13,7 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     : vlSymsp{new Vysyx_22040632_top__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
-    , io_uart_out_valid{vlSymsp->TOP.io_uart_out_valid}
-    , io_uart_out_ch{vlSymsp->TOP.io_uart_out_ch}
+    , submit{vlSymsp->TOP.submit}
     , axi_aw_valid_o{vlSymsp->TOP.axi_aw_valid_o}
     , axi_aw_prot_o{vlSymsp->TOP.axi_aw_prot_o}
     , axi_aw_id_o{vlSymsp->TOP.axi_aw_id_o}
@@ -54,10 +54,13 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     , axi_r_last_i{vlSymsp->TOP.axi_r_last_i}
     , axi_r_id_i{vlSymsp->TOP.axi_r_id_i}
     , axi_r_user_i{vlSymsp->TOP.axi_r_user_i}
+    , pc{vlSymsp->TOP.pc}
+    , inst{vlSymsp->TOP.inst}
     , axi_aw_addr_o{vlSymsp->TOP.axi_aw_addr_o}
     , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
     , axi_w_data_o{vlSymsp->TOP.axi_w_data_o}
     , axi_r_data_i{vlSymsp->TOP.axi_r_data_i}
+    , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , __PVT__ysyx_22040632_top__DOT__dif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__dif}
     , __PVT__ysyx_22040632_top__DOT__mif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__mif}
     , __PVT__ysyx_22040632_top__DOT__ex2if{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__ex2if}

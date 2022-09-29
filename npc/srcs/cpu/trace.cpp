@@ -34,7 +34,7 @@ void inst_display(){
   if (index_ibuf==0) value=15;
   else value=index_ibuf-1;
   printf("*************instructions***************\n");
-  for(int i=0;i<16;i++){
+  for(int i=0;i<32;i++){
     if(i==value) {printf("-->%s\n",iringbuf[i]);
     if(flag_cycle==0) break;}
     else printf("   %s\n",iringbuf[i]);
@@ -44,6 +44,7 @@ void inst_display(){
 void assert_fail_msg(){
   inst_display();
 }
+
 int ftrace_imple(uint32_t inst,uint64_t dnpc,uint64_t pc){
   uint32_t inst_f=inst;
   if(!((SEXTU(BITS(inst_f, 6, 0), 7)==111)||(SEXTU(BITS(inst_f, 6, 0), 7)==103 && SEXTU(BITS(inst_f, 14, 12), 3)==0))){
