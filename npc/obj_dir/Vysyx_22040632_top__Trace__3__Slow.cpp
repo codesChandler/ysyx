@@ -1,10 +1,10 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Tracing implementation internals
-#include "verilated_vcd_c.h"
+#include "verilated_fst_c.h"
 #include "Vysyx_22040632_top__Syms.h"
 
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_full_sub_3(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep) {
+VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_full_sub_3(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_full_sub_3\n"); );
@@ -6051,7 +6051,7 @@ VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_full_sub_3(Vysyx_22040632_
     tracep->fullBit(oldp+8015,((1U & VL_REDXOR_4(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__73__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa30__in))));
 }
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_full_sub_4(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep) {
+VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_full_sub_4(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_full_sub_4\n"); );

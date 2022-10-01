@@ -19,6 +19,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_ex2mem) {
     CData/*0:0*/ rd_w_ena;
     CData/*4:0*/ rd2mem;
     CData/*0:0*/ uart_en2mem;
+    CData/*0:0*/ quit2mem;
     CData/*0:0*/ wen_csr2mem;
     CData/*0:0*/ wen_ecall2mem;
     CData/*0:0*/ wen_mstatus_ecall2mem;
@@ -35,6 +36,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_ex2mem) {
     QData/*63:0*/ NO2mem;
     QData/*63:0*/ csr_data_write2mem;
     QData/*63:0*/ __Vdly__data_ext2mem;
+    QData/*63:0*/ __Vdly__data2mem;
 
     // INTERNAL VARIABLES
     Vysyx_22040632_top__Syms* vlSymsp;  // Symbol table

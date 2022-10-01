@@ -19,6 +19,7 @@ endinterface
 
 interface ysyx_22040632_mem2dc;
   logic [31:0] addr;
+  logic [2:0] size;
   logic ready;
   logic valid;
   logic [63:0] data_read;
@@ -29,12 +30,12 @@ interface ysyx_22040632_mem2dc;
 
 
   modport mem(
-    output addr,valid,req,data_write,wmask,wmask_uncacheble,
+    output addr,valid,req,data_write,wmask,wmask_uncacheble,size,
     input ready,data_read
   );
 
   modport dc(
-    input addr,valid,req,data_write,wmask,wmask_uncacheble,
+    input addr,valid,req,data_write,wmask,wmask_uncacheble,size,
     output ready,data_read
   );
 endinterface

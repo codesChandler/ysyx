@@ -5,11 +5,14 @@ module ysyx_22040632_ifu(
   input logic flush,
   input logic alu_busy,
   input logic fence_sig,
+  output logic [31:0] cpc,
   ysyx_22040632_ex2if.ifu ex2if,
   ysyx_22040632_if2id.ifu if2id,
   ysyx_22040632_id2if.ifu id2if,
   ysyx_22040632_if2ic.ifu if2ic//ifu to icache
 );
+
+assign cpc=pc;
 
 logic [31:0] inst_t,pc;
 logic [63:0] BTB[7:0];//Branch Target Buffer

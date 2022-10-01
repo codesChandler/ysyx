@@ -23,6 +23,7 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_id2ex___ctor_var_reset(Vysyx_
     vlSelf->rs2_2ex = VL_RAND_RESET_I(5);
     vlSelf->src_from_gpr2ex = VL_RAND_RESET_I(3);
     vlSelf->uart_en2ex = VL_RAND_RESET_I(1);
+    vlSelf->quit2ex = VL_RAND_RESET_I(1);
     vlSelf->pc_mret_ecall2ex = VL_RAND_RESET_I(32);
     vlSelf->csr_addr_write2ex = VL_RAND_RESET_I(32);
     vlSelf->__Vdly__pc2ex = VL_RAND_RESET_I(32);

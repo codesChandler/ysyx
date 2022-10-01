@@ -37,7 +37,7 @@ VERILATOR_INPUT = $(SVtop-SRCS) $(SVother-SRCS) $(SRCS)
 
 VERILATOR_FLAGS += -cc --exe
 VERILATOR_FLAGS += -Os -x-assign 0
-VERILATOR_FLAGS += --trace -sv
+VERILATOR_FLAGS += --trace-fst -sv
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
 
 ifeq ($(MAKECMDGOALS),gdb)
@@ -64,7 +64,7 @@ default: run
 run:$(BINARY)
 	@touch /home/chandler/ysyx-workbench/npc/logs/npc-log.txt
 	$(BINARY) $(NPCARGS)
-	make clean
+# make clean
 #	make wave
 
 
@@ -75,7 +75,7 @@ gdb: $(BINARY)
 	make clean
 
 wave:
-	gtkwave ./logs/Vysyx_22040632_top.vcd
+	gtkwave ./logs/Vysyx_22040632_top.wave
 
 $(BINARY):$(VERILATOR_INPUT)
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!

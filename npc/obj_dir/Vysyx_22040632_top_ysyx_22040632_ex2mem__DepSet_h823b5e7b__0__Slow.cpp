@@ -23,6 +23,7 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_ex2mem___ctor_var_reset(Vysyx
     vlSelf->pc2mem = VL_RAND_RESET_I(32);
     vlSelf->inst2mem = VL_RAND_RESET_I(32);
     vlSelf->uart_en2mem = VL_RAND_RESET_I(1);
+    vlSelf->quit2mem = VL_RAND_RESET_I(1);
     vlSelf->wen_csr2mem = VL_RAND_RESET_I(1);
     vlSelf->wen_ecall2mem = VL_RAND_RESET_I(1);
     vlSelf->NO2mem = VL_RAND_RESET_Q(64);
@@ -35,4 +36,5 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_ex2mem___ctor_var_reset(Vysyx
     vlSelf->__Vdly__rd_w_ena = VL_RAND_RESET_I(1);
     vlSelf->__Vdly__data_ext2mem = VL_RAND_RESET_Q(64);
     vlSelf->__Vdly__rd2mem = VL_RAND_RESET_I(5);
+    vlSelf->__Vdly__data2mem = VL_RAND_RESET_Q(64);
 }

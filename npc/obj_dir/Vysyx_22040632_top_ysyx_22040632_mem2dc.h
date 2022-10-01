@@ -12,6 +12,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_mem2dc) {
   public:
 
     // DESIGN SPECIFIC STATE
+    CData/*2:0*/ size;
     CData/*0:0*/ ready;
     CData/*0:0*/ valid;
 

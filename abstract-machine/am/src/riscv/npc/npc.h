@@ -1,9 +1,9 @@
-#ifndef NEMU_H__
-#define NEMU_H__
+#ifndef NPC_H__
+#define NPC_H__
 
 #include <klib-macros.h>
 
-#include ISA_H // the macro `ISA_H` is defined in CFLAGS
+#include "riscv/riscv.h" // the macro `ISA_H` is defined in CFLAGS
                // it will be expanded as "x86/x86.h", "mips/mips32.h", ...
 
 #if defined(__ISA_X86__)

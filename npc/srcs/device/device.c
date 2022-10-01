@@ -14,7 +14,14 @@ void init_audio();
 void init_disk();
 void init_sdcard();
 void init_alarm();
-void npcexit(int code);
+
+extern int break_flag;
+extern int code_t;
+
+void npcexit(int code){
+  break_flag=1;
+  code_t=code;
+}//不知道为啥npcexit链接不上
 
 void send_key(uint8_t, bool);
 void vga_update_screen();

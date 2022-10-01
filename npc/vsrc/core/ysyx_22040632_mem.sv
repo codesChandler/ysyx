@@ -15,6 +15,14 @@ module ysyx_22040632_mem(
 );
 
 /****************mem2wb register*************/
+always_ff @(posedge clk or negedge rrst_n)
+begin
+  if(!rrst_n)
+    mem2wb.quit2wb <= '0;
+  else
+    mem2wb.quit2wb <= ex2mem.quit2mem;
+end
+
 logic wt;
 assign wt = (mem_busy || ex2mem.ld_en2mem || ex2mem.sd_en2mem) && !en_clint;
 always_ff @(posedge clk or negedge rrst_n)
@@ -304,5 +312,34 @@ assign mem2dc.wmask_uncacheble=wmask_uncacheble;
 logic[63:0] data2sd;
 assign data2sd=ex2mem.data_ext2mem<<((ex2mem.data2mem & 64'd7)<<3);
 assign mem2dc.data_write=data2sd;
+
+//uncacheacle burst size
+//Burst size
+`define ysyx_22040632_AXI_SIZE_BYTES_1                                    3'b000    
+`define ysyx_22040632_AXI_SIZE_BYTES_2                                    3'b001
+`define ysyx_22040632_AXI_SIZE_BYTES_4                                    3'b010
+`define ysyx_22040632_AXI_SIZE_BYTES_8                                    3'b011
+`define ysyx_22040632_AXI_SIZE_BYTES_16                                   3'b100
+`define ysyx_22040632_AXI_SIZE_BYTES_32                                   3'b101
+`define ysyx_22040632_AXI_SIZE_BYTES_64                                   3'b110
+`define ysyx_22040632_AXI_SIZE_BYTES_128                                  3'b111
+
+always_comb 
+  if(ex2mem.sd_en2mem)
+    unique0 case(ex2mem.sd_ty)
+      sdt:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_8 ;
+      sbt:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_1 ;
+      sht:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_2 ;
+      swt:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_4 ;
+    default:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_8;
+    endcase
+  else
+    case(ex2mem.ld_ty)
+      lwt,lwut:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_4 ;
+      ldt:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_8 ;
+      lbt,lbut:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_1 ;
+      lht,lhut:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_2 ;
+    default:mem2dc.size=`ysyx_22040632_AXI_SIZE_BYTES_8;
+  endcase
 
 endmodule

@@ -8,6 +8,9 @@
 #include "Vysyx_22040632_top__Syms.h"
 #include "Vysyx_22040632_top___024root.h"
 
+extern const VlUnpacked<CData/*0:0*/, 128> Vysyx_22040632_top__ConstPool__TABLE_haf736440_0;
+extern const VlUnpacked<CData/*0:0*/, 128> Vysyx_22040632_top__ConstPool__TABLE_hb3b3546f_0;
+extern const VlUnpacked<CData/*0:0*/, 128> Vysyx_22040632_top__ConstPool__TABLE_h32bb5fb4_0;
 extern const VlUnpacked<CData/*1:0*/, 64> Vysyx_22040632_top__ConstPool__TABLE_h84f215d2_0;
 extern const VlUnpacked<CData/*1:0*/, 256> Vysyx_22040632_top__ConstPool__TABLE_hed7008f7_0;
 
@@ -18,6 +21,9 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__10(Vysyx_2204063
     // Init
     CData/*7:0*/ __Vtableidx3;
     CData/*5:0*/ __Vtableidx4;
+    CData/*6:0*/ __Vtableidx5;
+    CData/*6:0*/ __Vtableidx6;
+    CData/*6:0*/ __Vtableidx7;
     VlWide<3>/*95:0*/ __Vtemp_he9a47b61__0;
     VlWide<4>/*127:0*/ __Vtemp_h9f0d29df__0;
     VlWide<4>/*127:0*/ __Vtemp_hb0972842__0;
@@ -163,6 +169,503 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__10(Vysyx_2204063
     VlWide<4>/*127:0*/ __Vtemp_hf2ba6884__2;
     IData/*31:0*/ __Vilp;
     // Body
+    vlSelf->ysyx_22040632_top__DOT____Vcellout__ysyx_22040632_csr_i__csr_o[6U] 
+        = (IData)((((0x342U == vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.csr_addr_write2wb) 
+                    & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.wen_csr2wb))
+                    ? vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.csr_data_write2wb
+                    : ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.wen_ecall2wb)
+                        ? vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.NO2wb
+                        : vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_csr_i__DOT__csr
+                       [3U])));
+    vlSelf->ysyx_22040632_top__DOT____Vcellout__ysyx_22040632_csr_i__csr_o[7U] 
+        = (IData)(((((0x342U == vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.csr_addr_write2wb) 
+                     & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.wen_csr2wb))
+                     ? vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.csr_data_write2wb
+                     : ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.wen_ecall2wb)
+                         ? vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.NO2wb
+                         : vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_csr_i__DOT__csr
+                        [3U])) >> 0x20U));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.pc_mret_ecall2ex 
+        = ((IData)(vlSelf->ysyx_22040632_top__DOT__rst_s2)
+            ? (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_csr_i__DOT__csr_read)
+            : 0U);
+    vlSelf->npc = ((1U == (1U & (0U != vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.pc2mem)))
+                    ? vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.pc2mem
+                    : ((2U == (3U & (((0U != vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.pc2ex) 
+                                      << 1U) | (0U 
+                                                != vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.pc2mem))))
+                        ? vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.pc2ex
+                        : ((4U == (((0U != vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.pc2id) 
+                                    << 2U) | (((0U 
+                                                != vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.pc2ex) 
+                                               << 1U) 
+                                              | (0U 
+                                                 != vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.pc2mem))))
+                            ? vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.pc2id
+                            : vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc)));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__intrrupt_timing 
+        = (((IData)(vlSelf->ysyx_22040632_top__DOT__intrrupt_timing2ex) 
+            & (0U != vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.pc2ex)) 
+           & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__mem_busy)));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.csr_addr_write2ex 
+        = ((IData)(vlSelf->ysyx_22040632_top__DOT__rst_s2)
+            ? (((- (IData)((vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id 
+                            >> 0x1fU))) << 0xcU) | 
+               (vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id 
+                >> 0x14U)) : 0U);
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ex_hazard1 
+        = (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.rd_w_ena) 
+            & (0U != (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.rd2mem))) 
+           & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.src_from_gpr2ex) 
+              & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.rs1_2ex) 
+                 == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.rd2mem))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__mem_hazard1 
+        = (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd_w_ena2wb) 
+            & (0U != (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb))) 
+           & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.src_from_gpr2ex) 
+              & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.rs1_2ex) 
+                 == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ld_hazard1_1cy 
+        = (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mem_i__DOT__ld_en2wb) 
+            & (0U != (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.rd2mem))) 
+           & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.src_from_gpr2ex) 
+              & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.rs1_2ex) 
+                 == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.rd2mem))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ld_hazard1_2cy 
+        = (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.ld_en2wb) 
+            & (0U != (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb))) 
+           & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.src_from_gpr2ex) 
+              & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.rs1_2ex) 
+                 == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT__wen_1st 
+        = (1U & (((((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_tag_array)) 
+                    & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way))) 
+                   & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st))) 
+                  & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd))) 
+                 | (((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_tag_array)) 
+                     & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st)) 
+                    & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd)))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT__wen_2nd 
+        = (((((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_tag_array)) 
+              & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way)) 
+             & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st))) 
+            & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd))) 
+           | (((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_tag_array)) 
+               & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd)) 
+              & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_ddata_array_d__DOT__wen_1st 
+        = (1U & (~ ((((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen)) 
+                      & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way))) 
+                     | ((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_sd)) 
+                        & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st))) 
+                    | ((((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_sd)) 
+                         & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way))) 
+                        & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd))) 
+                       & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st))))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_ddata_array_d__DOT__wen_2nd 
+        = (1U & (~ ((((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen)) 
+                      & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way)) 
+                     | ((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_sd)) 
+                        & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd))) 
+                    | ((((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__wen_sd)) 
+                         & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way)) 
+                        & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_2nd))) 
+                       & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__hit_1st))))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__tag_read 
+        = (0x1fffffU & ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way)
+                         ? vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT__dtag_array_2ndway
+                        [vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__addr_index]
+                         : vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT__dtag_array_1stway
+                        [vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__addr_index]));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty 
+        = (((~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way)) 
+            & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty_1st)) 
+           | ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__w_way) 
+              & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty_2nd)));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty_array_reg 
+        = vlSelf->__Vdly__ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty_array_reg;
+    vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation 
+        = vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.__Vdly__operation;
+    vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id 
+        = vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.__Vdly__inst2id;
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__src1 
+        = ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ld_hazard1_2cy)
+            ? ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ld_hazard1_1cy)
+                ? vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mem_i__DOT__data_ld
+                : ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ex_hazard1)
+                    ? vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem
+                    : vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.data_ld2wb))
+            : ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ld_hazard1_1cy)
+                ? vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mem_i__DOT__data_ld
+                : ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__mem_hazard1)
+                    ? ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ex_hazard1)
+                        ? vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem
+                        : vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.data2wb)
+                    : ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__ex_hazard1)
+                        ? vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.data2mem
+                        : vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.src1))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__idle_flg 
+        = (1U & ((~ (IData)(vlSelf->ysyx_22040632_top__DOT__rst_s2)) 
+                 | (0U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__ns))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__mem_flg 
+        = ((IData)(vlSelf->ysyx_22040632_top__DOT__rst_s2) 
+           & (2U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__ns)));
+    __Vtableidx6 = vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation;
+    vlSymsp->TOP__ysyx_22040632_top__DOT__dif.div_signed 
+        = Vysyx_22040632_top__ConstPool__TABLE_haf736440_0
+        [__Vtableidx6];
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__block_ld 
+        = (((((((((((5U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation)) 
+                    | (0x38U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+                   | (0xeU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+                  | (0x12U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+                 | (0x37U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+                | (0x28U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+               | (0x29U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+              | (9U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+             | (0x15U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+            | (0x1dU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+           | (0x2aU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation)));
+    __Vtableidx7 = vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation;
+    vlSymsp->TOP__ysyx_22040632_top__DOT__dif.divw 
+        = Vysyx_22040632_top__ConstPool__TABLE_hb3b3546f_0
+        [__Vtableidx7];
+    __Vtableidx5 = vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation;
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__op_div2ex 
+        = Vysyx_22040632_top__ConstPool__TABLE_h32bb5fb4_0
+        [__Vtableidx5];
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__jen4 
+        = ((0x3bU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation)) 
+           | (0x3aU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation)));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__mif.mul_signed 
+        = ((((0x1eU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation)) 
+             | (0x2dU == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))) 
+            | (0x47U == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation)))
+            ? 3U : 0U);
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__wb_hazard1 
+        = (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd_w_ena2wb) 
+            & (0U != (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb))) 
+           & ((0x1fU & (vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id 
+                        >> 0xfU)) == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb)));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__wb_hazard2 
+        = (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd_w_ena2wb) 
+            & (0U != (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb))) 
+           & ((0x1fU & (vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id 
+                        >> 0x14U)) == (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.rd2wb)));
+    if (((((((((0x13U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+               | (0x67U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+              | (0x2003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+             | (0x6003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+            | (0x1003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+           | (0x5003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+          | (0x3003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+         | (0x4003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x13U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 3U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x67U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 8U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x2003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 5U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x6003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x38U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x1003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x28U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x5003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x29U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x3003U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xeU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x12U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        }
+    } else if (((((((((3U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x73U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                     | (0x2073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x1073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x5073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x6073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x3073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                | (0x7073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((3U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x37U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x73U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x3aU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x2073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x3cU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x1073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x3dU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x5073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x41U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x6073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x3eU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x3073U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x3fU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x40U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        }
+    } else if (((((((((0x3013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x2013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x1bU == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x40005013U == (0xfc00707fU 
+                                       & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x7013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x4013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x6013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                | (0x1013U == (0xfc00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x3013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 2U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x2013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x35U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x1bU == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x10U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x40005013U == (0xfc00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x11U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x7013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x13U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x4013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x18U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x6013U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x31U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x1aU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        }
+    } else if (((((((((0x101bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x5013U == (0xfc00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x4000501bU == (0xfe00707fU 
+                                        & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x501bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x17U == (0x7fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x37U == (0x7fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x6fU == (0x7fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                | (0x3023U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x101bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x2bU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x5013U == (0xfc00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x1bU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x4000501bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x2cU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x501bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x2eU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x17U == (0x7fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 4U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 1U;
+        } else if ((0x37U == (0x7fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 6U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 1U;
+        } else if ((0x6fU == (0x7fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 7U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 2U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 9U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 3U;
+        }
+    } else if (((((((((0x23U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x2023U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x1023U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x3bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x4000003bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x40000033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x33U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                | (0x6033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x23U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x15U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 3U;
+        } else if ((0x2023U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x1dU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 3U;
+        } else if ((0x1023U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x2aU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 3U;
+        } else if ((0x3bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xaU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x4000003bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x22U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x40000033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xdU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x33U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xfU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x19U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        }
+    } else if (((((((((0x4033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x3033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x2033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x7033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x103bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x1033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x5033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                | (0x200003bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x4033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x34U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x3033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x17U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x2033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x27U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x7033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x14U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x103bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x16U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x1033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x33U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x5033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x36U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x1eU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        }
+    } else if (((((((((0x2004033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x2005033U == (0xfe00707fU 
+                                        & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x200403bU == (0xfe00707fU 
+                                       & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x200503bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x2006033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x2007033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x200603bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                | (0x200703bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x2004033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x42U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x2005033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x45U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x200403bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x1fU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x200503bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x25U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x2006033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x43U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x2007033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x46U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x200603bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x20U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x24U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        }
+    } else if (((((((((0x2000033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x2003033U == (0xfe00707fU 
+                                        & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x4000503bU == (0xfe00707fU 
+                                        & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x40005033U == (0xfe00707fU 
+                                       & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x503bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x100fU == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                 | (0x30200073U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                | (0x63U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x2000033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x2dU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x2003033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x47U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x4000503bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x2fU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x40005033U == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x32U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x503bU == (0xfe00707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x30U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x100fU == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x44U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else if ((0x30200073U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x3bU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 4U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xbU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
+        }
+    } else if (VL_LIKELY(((((((((0x1063U == (0x707fU 
+                                             & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                                | (0x5063U == (0x707fU 
+                                               & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                               | (0x7063U == (0x707fU 
+                                              & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                              | (0x4063U == (0x707fU 
+                                             & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                             | (0x6063U == (0x707fU 
+                                            & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                            | (0x100073U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                           | (0x7bU == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                          | (0U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+        if ((0x1063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xcU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
+        } else if ((0x5063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x1cU;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
+        } else if ((0x7063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x23U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
+        } else if ((0x4063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x26U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
+        } else if ((0x6063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x21U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
+        } else if ((0x100073U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0x39U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else if ((0x7bU == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 1U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        } else {
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0U;
+            vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
+        }
+    } else {
+        VL_WRITEF("@%g @pc:%x instruction:%x not implemented\n",
+                  64,VL_TIME_UNITED_D(1),32,vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.pc2id,
+                  32,vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id);
+    }
     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__pc_op 
         = ((0x40U & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))
             ? 0U : ((0x20U & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))
@@ -1657,19 +2160,16 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__10(Vysyx_2204063
                 = vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.data_read;
             vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_len 
                 = (0xffU & 0U);
+            vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_size 
+                = vlSymsp->TOP__ysyx_22040632_top__DOT__mem2dc.size;
         } else {
             vlSelf->axi_w_strb_o = 0xffU;
             vlSymsp->TOP__ysyx_22040632_top__DOT__immem.data_read 
                 = vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.data_read;
             vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_len 
                 = (0xffU & 7U);
+            vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_size = 3U;
         }
-        vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_size 
-            = (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uncacheable) 
-                & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uart))
-                ? 0U : (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uncacheable) 
-                         & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uart)))
-                         ? 2U : 3U));
         vlSymsp->TOP__ysyx_22040632_top__DOT__imif.data_read = 0ULL;
     } else {
         vlSelf->axi_w_strb_o = 0U;
@@ -10528,1032 +11028,4 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__10(Vysyx_2204063
                                                                                 | (1U 
                                                                                 & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[1U] 
                                                                                 >> 0x1aU)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x3bU] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7dU] 
-                           << 4U)) | ((0x40000000U 
-                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x79U] 
-                                          << 3U)) | 
-                                      ((0x20000000U 
-                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x75U] 
-                                           << 2U)) 
-                                       | ((0x10000000U 
-                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x71U] 
-                                              << 1U)) 
-                                          | ((0x8000000U 
-                                              & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6dU]) 
-                                             | ((0x4000000U 
-                                                 & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x69U] 
-                                                    >> 1U)) 
-                                                | ((0x2000000U 
-                                                    & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x65U] 
-                                                       >> 2U)) 
-                                                   | ((0x1000000U 
-                                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x61U] 
-                                                          >> 3U)) 
-                                                      | ((0x800000U 
-                                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5dU] 
-                                                             >> 4U)) 
-                                                         | ((0x400000U 
-                                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x59U] 
-                                                                >> 5U)) 
-                                                            | ((0x200000U 
-                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x55U] 
-                                                                   >> 6U)) 
-                                                               | ((0x100000U 
-                                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x51U] 
-                                                                      >> 7U)) 
-                                                                  | ((0x80000U 
-                                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4dU] 
-                                                                         >> 8U)) 
-                                                                     | ((0x40000U 
-                                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x49U] 
-                                                                            >> 9U)) 
-                                                                        | ((0x20000U 
-                                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x45U] 
-                                                                               >> 0xaU)) 
-                                                                           | ((0x10000U 
-                                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x41U] 
-                                                                                >> 0xbU)) 
-                                                                              | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3dU] 
-                                                                                >> 0xcU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x39U] 
-                                                                                >> 0xdU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x35U] 
-                                                                                >> 0xeU)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x31U] 
-                                                                                >> 0xfU)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2dU] 
-                                                                                >> 0x10U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x29U] 
-                                                                                >> 0x11U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x25U] 
-                                                                                >> 0x12U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x21U] 
-                                                                                >> 0x13U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1dU] 
-                                                                                >> 0x14U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x19U] 
-                                                                                >> 0x15U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x15U] 
-                                                                                >> 0x16U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x11U] 
-                                                                                >> 0x17U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xdU] 
-                                                                                >> 0x18U)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[9U] 
-                                                                                >> 0x19U)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[5U] 
-                                                                                >> 0x1aU)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[1U] 
-                                                                                >> 0x1bU)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x3cU] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7dU] 
-                           << 3U)) | ((0x40000000U 
-                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x79U] 
-                                          << 2U)) | 
-                                      ((0x20000000U 
-                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x75U] 
-                                           << 1U)) 
-                                       | ((0x10000000U 
-                                           & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x71U]) 
-                                          | ((0x8000000U 
-                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6dU] 
-                                                 >> 1U)) 
-                                             | ((0x4000000U 
-                                                 & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x69U] 
-                                                    >> 2U)) 
-                                                | ((0x2000000U 
-                                                    & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x65U] 
-                                                       >> 3U)) 
-                                                   | ((0x1000000U 
-                                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x61U] 
-                                                          >> 4U)) 
-                                                      | ((0x800000U 
-                                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5dU] 
-                                                             >> 5U)) 
-                                                         | ((0x400000U 
-                                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x59U] 
-                                                                >> 6U)) 
-                                                            | ((0x200000U 
-                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x55U] 
-                                                                   >> 7U)) 
-                                                               | ((0x100000U 
-                                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x51U] 
-                                                                      >> 8U)) 
-                                                                  | ((0x80000U 
-                                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4dU] 
-                                                                         >> 9U)) 
-                                                                     | ((0x40000U 
-                                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x49U] 
-                                                                            >> 0xaU)) 
-                                                                        | ((0x20000U 
-                                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x45U] 
-                                                                               >> 0xbU)) 
-                                                                           | ((0x10000U 
-                                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x41U] 
-                                                                                >> 0xcU)) 
-                                                                              | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3dU] 
-                                                                                >> 0xdU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x39U] 
-                                                                                >> 0xeU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x35U] 
-                                                                                >> 0xfU)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x31U] 
-                                                                                >> 0x10U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2dU] 
-                                                                                >> 0x11U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x29U] 
-                                                                                >> 0x12U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x25U] 
-                                                                                >> 0x13U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x21U] 
-                                                                                >> 0x14U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1dU] 
-                                                                                >> 0x15U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x19U] 
-                                                                                >> 0x16U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x15U] 
-                                                                                >> 0x17U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x11U] 
-                                                                                >> 0x18U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xdU] 
-                                                                                >> 0x19U)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[9U] 
-                                                                                >> 0x1aU)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[5U] 
-                                                                                >> 0x1bU)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[1U] 
-                                                                                >> 0x1cU)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x3dU] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7dU] 
-                           << 2U)) | ((0x40000000U 
-                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x79U] 
-                                          << 1U)) | 
-                                      ((0x20000000U 
-                                        & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x75U]) 
-                                       | ((0x10000000U 
-                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x71U] 
-                                              >> 1U)) 
-                                          | ((0x8000000U 
-                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6dU] 
-                                                 >> 2U)) 
-                                             | ((0x4000000U 
-                                                 & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x69U] 
-                                                    >> 3U)) 
-                                                | ((0x2000000U 
-                                                    & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x65U] 
-                                                       >> 4U)) 
-                                                   | ((0x1000000U 
-                                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x61U] 
-                                                          >> 5U)) 
-                                                      | ((0x800000U 
-                                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5dU] 
-                                                             >> 6U)) 
-                                                         | ((0x400000U 
-                                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x59U] 
-                                                                >> 7U)) 
-                                                            | ((0x200000U 
-                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x55U] 
-                                                                   >> 8U)) 
-                                                               | ((0x100000U 
-                                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x51U] 
-                                                                      >> 9U)) 
-                                                                  | ((0x80000U 
-                                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4dU] 
-                                                                         >> 0xaU)) 
-                                                                     | ((0x40000U 
-                                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x49U] 
-                                                                            >> 0xbU)) 
-                                                                        | ((0x20000U 
-                                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x45U] 
-                                                                               >> 0xcU)) 
-                                                                           | ((0x10000U 
-                                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x41U] 
-                                                                                >> 0xdU)) 
-                                                                              | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3dU] 
-                                                                                >> 0xeU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x39U] 
-                                                                                >> 0xfU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x35U] 
-                                                                                >> 0x10U)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x31U] 
-                                                                                >> 0x11U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2dU] 
-                                                                                >> 0x12U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x29U] 
-                                                                                >> 0x13U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x25U] 
-                                                                                >> 0x14U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x21U] 
-                                                                                >> 0x15U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1dU] 
-                                                                                >> 0x16U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x19U] 
-                                                                                >> 0x17U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x15U] 
-                                                                                >> 0x18U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x11U] 
-                                                                                >> 0x19U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xdU] 
-                                                                                >> 0x1aU)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[9U] 
-                                                                                >> 0x1bU)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[5U] 
-                                                                                >> 0x1cU)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[1U] 
-                                                                                >> 0x1dU)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x3eU] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7dU] 
-                           << 1U)) | ((0x40000000U 
-                                       & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x79U]) 
-                                      | ((0x20000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x75U] 
-                                             >> 1U)) 
-                                         | ((0x10000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x71U] 
-                                                >> 2U)) 
-                                            | ((0x8000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6dU] 
-                                                   >> 3U)) 
-                                               | ((0x4000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x69U] 
-                                                      >> 4U)) 
-                                                  | ((0x2000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x65U] 
-                                                         >> 5U)) 
-                                                     | ((0x1000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x61U] 
-                                                            >> 6U)) 
-                                                        | ((0x800000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5dU] 
-                                                               >> 7U)) 
-                                                           | ((0x400000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x59U] 
-                                                                  >> 8U)) 
-                                                              | ((0x200000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x55U] 
-                                                                     >> 9U)) 
-                                                                 | ((0x100000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x51U] 
-                                                                        >> 0xaU)) 
-                                                                    | ((0x80000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4dU] 
-                                                                           >> 0xbU)) 
-                                                                       | ((0x40000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x49U] 
-                                                                              >> 0xcU)) 
-                                                                          | ((0x20000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x45U] 
-                                                                                >> 0xdU)) 
-                                                                             | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x41U] 
-                                                                                >> 0xeU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3dU] 
-                                                                                >> 0xfU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x39U] 
-                                                                                >> 0x10U)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x35U] 
-                                                                                >> 0x11U)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x31U] 
-                                                                                >> 0x12U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2dU] 
-                                                                                >> 0x13U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x29U] 
-                                                                                >> 0x14U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x25U] 
-                                                                                >> 0x15U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x21U] 
-                                                                                >> 0x16U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1dU] 
-                                                                                >> 0x17U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x19U] 
-                                                                                >> 0x18U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x15U] 
-                                                                                >> 0x19U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x11U] 
-                                                                                >> 0x1aU)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xdU] 
-                                                                                >> 0x1bU)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[9U] 
-                                                                                >> 0x1cU)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[5U] 
-                                                                                >> 0x1dU)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[1U] 
-                                                                                >> 0x1eU)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x3fU] 
-        = ((0x80000000U & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7dU]) 
-           | ((0x40000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x79U] 
-                              >> 1U)) | ((0x20000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x75U] 
-                                             >> 2U)) 
-                                         | ((0x10000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x71U] 
-                                                >> 3U)) 
-                                            | ((0x8000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6dU] 
-                                                   >> 4U)) 
-                                               | ((0x4000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x69U] 
-                                                      >> 5U)) 
-                                                  | ((0x2000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x65U] 
-                                                         >> 6U)) 
-                                                     | ((0x1000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x61U] 
-                                                            >> 7U)) 
-                                                        | ((0x800000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5dU] 
-                                                               >> 8U)) 
-                                                           | ((0x400000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x59U] 
-                                                                  >> 9U)) 
-                                                              | ((0x200000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x55U] 
-                                                                     >> 0xaU)) 
-                                                                 | ((0x100000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x51U] 
-                                                                        >> 0xbU)) 
-                                                                    | ((0x80000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4dU] 
-                                                                           >> 0xcU)) 
-                                                                       | ((0x40000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x49U] 
-                                                                              >> 0xdU)) 
-                                                                          | ((0x20000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x45U] 
-                                                                                >> 0xeU)) 
-                                                                             | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x41U] 
-                                                                                >> 0xfU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3dU] 
-                                                                                >> 0x10U)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x39U] 
-                                                                                >> 0x11U)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x35U] 
-                                                                                >> 0x12U)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x31U] 
-                                                                                >> 0x13U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2dU] 
-                                                                                >> 0x14U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x29U] 
-                                                                                >> 0x15U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x25U] 
-                                                                                >> 0x16U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x21U] 
-                                                                                >> 0x17U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1dU] 
-                                                                                >> 0x18U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x19U] 
-                                                                                >> 0x19U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x15U] 
-                                                                                >> 0x1aU)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x11U] 
-                                                                                >> 0x1bU)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xdU] 
-                                                                                >> 0x1cU)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[9U] 
-                                                                                >> 0x1dU)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[5U] 
-                                                                                >> 0x1eU)) 
-                                                                                | (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[1U] 
-                                                                                >> 0x1fU))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x40U] 
-        = ((vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7eU] 
-            << 0x1fU) | ((0x40000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7aU] 
-                                         << 0x1eU)) 
-                         | ((0x20000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x76U] 
-                                            << 0x1dU)) 
-                            | ((0x10000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x72U] 
-                                               << 0x1cU)) 
-                               | ((0x8000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6eU] 
-                                                 << 0x1bU)) 
-                                  | ((0x4000000U & 
-                                      (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6aU] 
-                                       << 0x1aU)) | 
-                                     ((0x2000000U & 
-                                       (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x66U] 
-                                        << 0x19U)) 
-                                      | ((0x1000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x62U] 
-                                             << 0x18U)) 
-                                         | ((0x800000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5eU] 
-                                                << 0x17U)) 
-                                            | ((0x400000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5aU] 
-                                                   << 0x16U)) 
-                                               | ((0x200000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x56U] 
-                                                      << 0x15U)) 
-                                                  | ((0x100000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x52U] 
-                                                         << 0x14U)) 
-                                                     | ((0x80000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4eU] 
-                                                            << 0x13U)) 
-                                                        | ((0x40000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4aU] 
-                                                               << 0x12U)) 
-                                                           | ((0x20000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x46U] 
-                                                                  << 0x11U)) 
-                                                              | ((0x10000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x42U] 
-                                                                     << 0x10U)) 
-                                                                 | ((0x8000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3eU] 
-                                                                        << 0xfU)) 
-                                                                    | ((0x4000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3aU] 
-                                                                           << 0xeU)) 
-                                                                       | ((0x2000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x36U] 
-                                                                              << 0xdU)) 
-                                                                          | ((0x1000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x32U] 
-                                                                                << 0xcU)) 
-                                                                             | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2eU] 
-                                                                                << 0xbU)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2aU] 
-                                                                                << 0xaU)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x26U] 
-                                                                                << 9U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x22U] 
-                                                                                << 8U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1eU] 
-                                                                                << 7U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1aU] 
-                                                                                << 6U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x16U] 
-                                                                                << 5U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x12U] 
-                                                                                << 4U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xeU] 
-                                                                                << 3U)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xaU] 
-                                                                                << 2U)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[6U] 
-                                                                                << 1U)) 
-                                                                                | (1U 
-                                                                                & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[2U]))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x41U] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7eU] 
-                           << 0x1eU)) | ((0x40000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7aU] 
-                                             << 0x1dU)) 
-                                         | ((0x20000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x76U] 
-                                                << 0x1cU)) 
-                                            | ((0x10000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x72U] 
-                                                   << 0x1bU)) 
-                                               | ((0x8000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6eU] 
-                                                      << 0x1aU)) 
-                                                  | ((0x4000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6aU] 
-                                                         << 0x19U)) 
-                                                     | ((0x2000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x66U] 
-                                                            << 0x18U)) 
-                                                        | ((0x1000000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x62U] 
-                                                               << 0x17U)) 
-                                                           | ((0x800000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5eU] 
-                                                                  << 0x16U)) 
-                                                              | ((0x400000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5aU] 
-                                                                     << 0x15U)) 
-                                                                 | ((0x200000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x56U] 
-                                                                        << 0x14U)) 
-                                                                    | ((0x100000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x52U] 
-                                                                           << 0x13U)) 
-                                                                       | ((0x80000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4eU] 
-                                                                              << 0x12U)) 
-                                                                          | ((0x40000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4aU] 
-                                                                                << 0x11U)) 
-                                                                             | ((0x20000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x46U] 
-                                                                                << 0x10U)) 
-                                                                                | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x42U] 
-                                                                                << 0xfU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3eU] 
-                                                                                << 0xeU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3aU] 
-                                                                                << 0xdU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x36U] 
-                                                                                << 0xcU)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x32U] 
-                                                                                << 0xbU)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2eU] 
-                                                                                << 0xaU)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2aU] 
-                                                                                << 9U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x26U] 
-                                                                                << 8U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x22U] 
-                                                                                << 7U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1eU] 
-                                                                                << 6U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1aU] 
-                                                                                << 5U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x16U] 
-                                                                                << 4U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x12U] 
-                                                                                << 3U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xeU] 
-                                                                                << 2U)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xaU] 
-                                                                                << 1U)) 
-                                                                                | ((2U 
-                                                                                & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[6U]) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[2U] 
-                                                                                >> 1U)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x42U] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7eU] 
-                           << 0x1dU)) | ((0x40000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7aU] 
-                                             << 0x1cU)) 
-                                         | ((0x20000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x76U] 
-                                                << 0x1bU)) 
-                                            | ((0x10000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x72U] 
-                                                   << 0x1aU)) 
-                                               | ((0x8000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6eU] 
-                                                      << 0x19U)) 
-                                                  | ((0x4000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6aU] 
-                                                         << 0x18U)) 
-                                                     | ((0x2000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x66U] 
-                                                            << 0x17U)) 
-                                                        | ((0x1000000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x62U] 
-                                                               << 0x16U)) 
-                                                           | ((0x800000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5eU] 
-                                                                  << 0x15U)) 
-                                                              | ((0x400000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5aU] 
-                                                                     << 0x14U)) 
-                                                                 | ((0x200000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x56U] 
-                                                                        << 0x13U)) 
-                                                                    | ((0x100000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x52U] 
-                                                                           << 0x12U)) 
-                                                                       | ((0x80000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4eU] 
-                                                                              << 0x11U)) 
-                                                                          | ((0x40000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4aU] 
-                                                                                << 0x10U)) 
-                                                                             | ((0x20000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x46U] 
-                                                                                << 0xfU)) 
-                                                                                | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x42U] 
-                                                                                << 0xeU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3eU] 
-                                                                                << 0xdU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3aU] 
-                                                                                << 0xcU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x36U] 
-                                                                                << 0xbU)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x32U] 
-                                                                                << 0xaU)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2eU] 
-                                                                                << 9U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2aU] 
-                                                                                << 8U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x26U] 
-                                                                                << 7U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x22U] 
-                                                                                << 6U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1eU] 
-                                                                                << 5U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1aU] 
-                                                                                << 4U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x16U] 
-                                                                                << 3U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x12U] 
-                                                                                << 2U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xeU] 
-                                                                                << 1U)) 
-                                                                                | ((4U 
-                                                                                & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xaU]) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[6U] 
-                                                                                >> 1U)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[2U] 
-                                                                                >> 2U)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x43U] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7eU] 
-                           << 0x1cU)) | ((0x40000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7aU] 
-                                             << 0x1bU)) 
-                                         | ((0x20000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x76U] 
-                                                << 0x1aU)) 
-                                            | ((0x10000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x72U] 
-                                                   << 0x19U)) 
-                                               | ((0x8000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6eU] 
-                                                      << 0x18U)) 
-                                                  | ((0x4000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6aU] 
-                                                         << 0x17U)) 
-                                                     | ((0x2000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x66U] 
-                                                            << 0x16U)) 
-                                                        | ((0x1000000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x62U] 
-                                                               << 0x15U)) 
-                                                           | ((0x800000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5eU] 
-                                                                  << 0x14U)) 
-                                                              | ((0x400000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5aU] 
-                                                                     << 0x13U)) 
-                                                                 | ((0x200000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x56U] 
-                                                                        << 0x12U)) 
-                                                                    | ((0x100000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x52U] 
-                                                                           << 0x11U)) 
-                                                                       | ((0x80000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4eU] 
-                                                                              << 0x10U)) 
-                                                                          | ((0x40000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4aU] 
-                                                                                << 0xfU)) 
-                                                                             | ((0x20000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x46U] 
-                                                                                << 0xeU)) 
-                                                                                | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x42U] 
-                                                                                << 0xdU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3eU] 
-                                                                                << 0xcU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3aU] 
-                                                                                << 0xbU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x36U] 
-                                                                                << 0xaU)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x32U] 
-                                                                                << 9U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2eU] 
-                                                                                << 8U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2aU] 
-                                                                                << 7U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x26U] 
-                                                                                << 6U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x22U] 
-                                                                                << 5U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1eU] 
-                                                                                << 4U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1aU] 
-                                                                                << 3U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x16U] 
-                                                                                << 2U)) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x12U] 
-                                                                                << 1U)) 
-                                                                                | ((8U 
-                                                                                & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xeU]) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xaU] 
-                                                                                >> 1U)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[6U] 
-                                                                                >> 2U)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[2U] 
-                                                                                >> 3U)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x44U] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7eU] 
-                           << 0x1bU)) | ((0x40000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7aU] 
-                                             << 0x1aU)) 
-                                         | ((0x20000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x76U] 
-                                                << 0x19U)) 
-                                            | ((0x10000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x72U] 
-                                                   << 0x18U)) 
-                                               | ((0x8000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6eU] 
-                                                      << 0x17U)) 
-                                                  | ((0x4000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6aU] 
-                                                         << 0x16U)) 
-                                                     | ((0x2000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x66U] 
-                                                            << 0x15U)) 
-                                                        | ((0x1000000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x62U] 
-                                                               << 0x14U)) 
-                                                           | ((0x800000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5eU] 
-                                                                  << 0x13U)) 
-                                                              | ((0x400000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5aU] 
-                                                                     << 0x12U)) 
-                                                                 | ((0x200000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x56U] 
-                                                                        << 0x11U)) 
-                                                                    | ((0x100000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x52U] 
-                                                                           << 0x10U)) 
-                                                                       | ((0x80000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4eU] 
-                                                                              << 0xfU)) 
-                                                                          | ((0x40000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4aU] 
-                                                                                << 0xeU)) 
-                                                                             | ((0x20000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x46U] 
-                                                                                << 0xdU)) 
-                                                                                | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x42U] 
-                                                                                << 0xcU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3eU] 
-                                                                                << 0xbU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3aU] 
-                                                                                << 0xaU)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x36U] 
-                                                                                << 9U)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x32U] 
-                                                                                << 8U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2eU] 
-                                                                                << 7U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2aU] 
-                                                                                << 6U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x26U] 
-                                                                                << 5U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x22U] 
-                                                                                << 4U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1eU] 
-                                                                                << 3U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1aU] 
-                                                                                << 2U)) 
-                                                                                | ((0x20U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x16U] 
-                                                                                << 1U)) 
-                                                                                | ((0x10U 
-                                                                                & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x12U]) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xeU] 
-                                                                                >> 1U)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xaU] 
-                                                                                >> 2U)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[6U] 
-                                                                                >> 3U)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[2U] 
-                                                                                >> 4U)))))))))))))))))))))))))))))))));
-    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x45U] 
-        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7eU] 
-                           << 0x1aU)) | ((0x40000000U 
-                                          & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7aU] 
-                                             << 0x19U)) 
-                                         | ((0x20000000U 
-                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x76U] 
-                                                << 0x18U)) 
-                                            | ((0x10000000U 
-                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x72U] 
-                                                   << 0x17U)) 
-                                               | ((0x8000000U 
-                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6eU] 
-                                                      << 0x16U)) 
-                                                  | ((0x4000000U 
-                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6aU] 
-                                                         << 0x15U)) 
-                                                     | ((0x2000000U 
-                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x66U] 
-                                                            << 0x14U)) 
-                                                        | ((0x1000000U 
-                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x62U] 
-                                                               << 0x13U)) 
-                                                           | ((0x800000U 
-                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5eU] 
-                                                                  << 0x12U)) 
-                                                              | ((0x400000U 
-                                                                  & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5aU] 
-                                                                     << 0x11U)) 
-                                                                 | ((0x200000U 
-                                                                     & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x56U] 
-                                                                        << 0x10U)) 
-                                                                    | ((0x100000U 
-                                                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x52U] 
-                                                                           << 0xfU)) 
-                                                                       | ((0x80000U 
-                                                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4eU] 
-                                                                              << 0xeU)) 
-                                                                          | ((0x40000U 
-                                                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4aU] 
-                                                                                << 0xdU)) 
-                                                                             | ((0x20000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x46U] 
-                                                                                << 0xcU)) 
-                                                                                | ((0x10000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x42U] 
-                                                                                << 0xbU)) 
-                                                                                | ((0x8000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3eU] 
-                                                                                << 0xaU)) 
-                                                                                | ((0x4000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3aU] 
-                                                                                << 9U)) 
-                                                                                | ((0x2000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x36U] 
-                                                                                << 8U)) 
-                                                                                | ((0x1000U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x32U] 
-                                                                                << 7U)) 
-                                                                                | ((0x800U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2eU] 
-                                                                                << 6U)) 
-                                                                                | ((0x400U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2aU] 
-                                                                                << 5U)) 
-                                                                                | ((0x200U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x26U] 
-                                                                                << 4U)) 
-                                                                                | ((0x100U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x22U] 
-                                                                                << 3U)) 
-                                                                                | ((0x80U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1eU] 
-                                                                                << 2U)) 
-                                                                                | ((0x40U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1aU] 
-                                                                                << 1U)) 
-                                                                                | ((0x20U 
-                                                                                & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x16U]) 
-                                                                                | ((0x10U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x12U] 
-                                                                                >> 1U)) 
-                                                                                | ((8U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xeU] 
-                                                                                >> 2U)) 
-                                                                                | ((4U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xaU] 
-                                                                                >> 3U)) 
-                                                                                | ((2U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[6U] 
-                                                                                >> 4U)) 
-                                                                                | (1U 
-                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[2U] 
-                                                                                >> 5U)))))))))))))))))))))))))))))))));
 }

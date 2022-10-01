@@ -59,8 +59,8 @@ import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
 `define ysyx_22040632_SPI_flash_XIP_mode_End      32'h3fffffff
 `define ysyx_22040632_SPI_controller_Start        32'h10001000
 `define ysyx_22040632_SPI_controller_End          32'h10001fff
-`define ysyx_22040632_UART16550_Start             32'h10000000
-`define ysyx_22040632_UART16550_End               32'h10000fff
+`define ysyx_22040632_UART16550_Start             32'ha0000000
+`define ysyx_22040632_UART16550_End               32'hafffffff
 
 `define ysyx_22040632_VGA_Start	                  32'h10002000
 `define ysyx_22040632_VGA_End	                    32'h10002fff
@@ -71,5 +71,22 @@ import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
 `define ysyx_22040632_SDRAM_Start	                32'hfc000000 
 `define ysyx_22040632_SDRAM_End	                  32'hffffffff
 
+
+// #if defined(__ARCH_X86_NEMU)
+// # define DEVICE_BASE 0x0
+// #else
+// # define DEVICE_BASE 0xa0000000
+// #endif
+
+// #define MMIO_BASE 0xa0000000
+
+// #define SERIAL_PORT     (DEVICE_BASE + 0x00003f8)
+// #define KBD_ADDR        (DEVICE_BASE + 0x0000060)
+// #define RTC_ADDR        (DEVICE_BASE + 0x0000048)
+// #define VGACTL_ADDR     (DEVICE_BASE + 0x0000100)
+// #define AUDIO_ADDR      (DEVICE_BASE + 0x0000200)
+// #define DISK_ADDR       (DEVICE_BASE + 0x0000300)
+// #define FB_ADDR         (MMIO_BASE   + 0x1000000)
+// #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
 `endif

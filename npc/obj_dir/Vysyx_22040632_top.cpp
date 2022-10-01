@@ -3,7 +3,7 @@
 
 #include "Vysyx_22040632_top.h"
 #include "Vysyx_22040632_top__Syms.h"
-#include "verilated_vcd_c.h"
+#include "verilated_fst_c.h"
 #include "verilated_dpi.h"
 
 //============================================================
@@ -56,6 +56,7 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     , axi_r_user_i{vlSymsp->TOP.axi_r_user_i}
     , pc{vlSymsp->TOP.pc}
     , inst{vlSymsp->TOP.inst}
+    , npc{vlSymsp->TOP.npc}
     , axi_aw_addr_o{vlSymsp->TOP.axi_aw_addr_o}
     , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
     , axi_w_data_o{vlSymsp->TOP.axi_w_data_o}
@@ -313,9 +314,9 @@ VL_ATTR_COLD void Vysyx_22040632_top::final() {
 //============================================================
 // Trace configuration
 
-void Vysyx_22040632_top___024root__trace_init_top(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
+void Vysyx_22040632_top___024root__trace_init_top(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
 
-VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedVcd* tracep, uint32_t code) {
+VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedFst* tracep, uint32_t code) {
     // Callback from tracep->open()
     Vysyx_22040632_top___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vysyx_22040632_top___024root*>(voidSelf);
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -330,9 +331,9 @@ VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedVcd* tracep, uint32
     tracep->scopeEscape('.');
 }
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_register(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
+VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_register(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
 
-VL_ATTR_COLD void Vysyx_22040632_top::trace(VerilatedVcdC* tfp, int levels, int options) {
+VL_ATTR_COLD void Vysyx_22040632_top::trace(VerilatedFstC* tfp, int levels, int options) {
     if (false && levels && options) {}  // Prevent unused
     tfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP));
     Vysyx_22040632_top___024root__trace_register(&(vlSymsp->TOP), tfp->spTrace());

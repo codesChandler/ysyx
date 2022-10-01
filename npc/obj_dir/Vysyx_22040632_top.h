@@ -13,7 +13,7 @@
 
 class Vysyx_22040632_top__Syms;
 class Vysyx_22040632_top___024root;
-class VerilatedVcdC;
+class VerilatedFstC;
 class Vysyx_22040632_top___024unit;
 class Vysyx_22040632_top_ysyx_22040632_divif;
 class Vysyx_22040632_top_ysyx_22040632_mulif;
@@ -88,6 +88,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     VL_IN8(&axi_r_user_i,0,0);
     VL_OUT(&pc,31,0);
     VL_OUT(&inst,31,0);
+    VL_OUT(&npc,31,0);
     VL_OUT(&axi_aw_addr_o,31,0);
     VL_OUT(&axi_ar_addr_o,31,0);
     VL_OUT64(&axi_w_data_o,63,0);
@@ -270,7 +271,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     /// Simulation complete, run final blocks.  Application must call on completion.
     void final();
     /// Trace signals in the model; called by application code
-    void trace(VerilatedVcdC* tfp, int levels, int options = 0);
+    void trace(VerilatedFstC* tfp, int levels, int options = 0);
     /// Return current simulation context for this model.
     /// Used to get to e.g. simulation time via contextp()->time()
     VerilatedContext* contextp() const;

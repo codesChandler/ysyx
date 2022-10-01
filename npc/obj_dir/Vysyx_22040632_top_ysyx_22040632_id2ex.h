@@ -18,6 +18,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_id2ex) {
     CData/*4:0*/ rs2_2ex;
     CData/*2:0*/ src_from_gpr2ex;
     CData/*0:0*/ uart_en2ex;
+    CData/*0:0*/ quit2ex;
     CData/*4:0*/ __Vdly__rd;
     CData/*4:0*/ __Vdly__rs1_2ex;
     CData/*6:0*/ __Vdly__operation;

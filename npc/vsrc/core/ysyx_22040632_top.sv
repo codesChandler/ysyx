@@ -16,6 +16,7 @@ module ysyx_22040632_top
   output logic [31:0] pc,
   output logic [31:0] inst,
   output logic submit,
+  output logic [31:0] npc,
 
   //axi4 as master
   output axi_aw_valid_o,
@@ -83,6 +84,7 @@ logic mem_busy;
 logic alu_busy;
 logic fence_sig;
 logic clean2ex;
+logic [31:0] endcode,cpc;
 
 ysyx_22040632_imif imif();
 ysyx_22040632_imif immem();
@@ -156,6 +158,7 @@ ysyx_22040632_ifu ysyx_22040632_ifu_i(
   .flush,
   .alu_busy,
   .fence_sig,
+  .cpc,
 
   .id2if,
   .if2ic
@@ -174,6 +177,7 @@ ysyx_22040632_idu ysyx_22040632_idu_i(
   .id2ex,
 
   .regs_o,
+  .endcode,
   .flush,
   .ex2id,
   .id2csr,
@@ -232,7 +236,8 @@ ysyx_22040632_mem ysyx_22040632_mem_i
 );
 
 ysyx_22040632_wb ysyx_22040632_wb_i
-(
+( 
+  .endcode,
   .mem2wb,
   .wb2id,
   .wb2csr
@@ -268,6 +273,21 @@ ysyx_22040632_clint ysyx_22040632_clint_i(
 assign pc=mem2wb.pc2wb;
 assign inst=mem2wb.inst2wb;
 assign submit=(inst != 0) && (pc >= 32'h8000_0000  && pc<=32'h88000000) && (!mem2wb.not_submit2wb);
+
+logic if2id_en,id2ex_en,ex2mem_en;
+assign if2id_en=if2id.pc2id!='0;
+assign id2ex_en=id2ex.pc2ex!='0;
+assign ex2mem_en=ex2mem.pc2mem!='0;
+
+always_comb begin
+  case({if2id_en,id2ex_en,ex2mem_en}) inside
+    3'b??1:npc=ex2mem.pc2mem;
+    3'b?10:npc=id2ex.pc2ex;
+    3'b100:npc=if2id.pc2id;
+    default:npc=cpc;
+  endcase
+end
+
 /**************axi connection******/
 assign axi.axi_aw_ready=axi_aw_ready_i;              
 assign axi_aw_valid_o=axi.axi_aw_valid;

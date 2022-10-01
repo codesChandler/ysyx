@@ -15,7 +15,8 @@ module ysyx_22040632_idu(
   ysyx_22040632_mem2id.id mem2id,
   ysyx_22040632_id2csr.id id2csr,
   // output logic op_div,
-  output logic [63:0] regs_o[0 : 31]
+  output logic [63:0] regs_o[0 : 31],
+  output logic [31:0] endcode
   
   // output logic w_ena,
   // output logic [4 : 0]rd_w_addr,// difftest
@@ -145,12 +146,14 @@ always_comb begin
   32'b?????????????????100?????1100011: begin fun=blt    ;type_t=type_b;end
   32'b?????????????????110?????1100011: begin fun=bltu   ;type_t=type_b;end
   
-  32'h00100073:begin fun=quit;type_t=type_i;npcexit(gpr[10][31:0]);end 
+  32'h00100073:begin fun=quit;type_t=type_i;end//npcexit(gpr[10][31:0]);end 
   32'h0000007b:begin fun=putch;type_t=type_i;end 
   32'b00000000000000000000000000000000: begin fun=nop    ;type_t=type_i;end
   default:begin $display("@",$realtime()," @pc:%h instruction:%x not implemented",if2id.pc2id,if2id.inst2id);end//npcexit(1);end
   endcase
 end
+
+assign endcode=gpr[10][31:0];
 
 logic csr_src2,csr_src1_imm;
 assign csr_src2=fun inside {csrrs,csrrw,csrrc,csrrsi,csrrci,csrrwi};
@@ -179,6 +182,12 @@ always_comb begin
 end
 
 /***************id2ex register**************/
+always_ff @(posedge clk or negedge rrst_n)
+if(!rrst_n)
+  id2ex.quit2ex<=0;
+else
+  id2ex.quit2ex<=(fun==quit)?1'b1:1'b0;
+
 logic block,flush_in_id;
 assign block=(ex2id.ld_en2id && !mem2id.ls_sh2id) || alu_busy;
 assign flush_in_id = flush || fence_sig;

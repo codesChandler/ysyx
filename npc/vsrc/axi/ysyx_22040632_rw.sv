@@ -16,6 +16,14 @@ module ysyx_22040632_rw # (
   wire w_valid    = ims.rw_valid & w_trans;
   wire r_valid    = ims.rw_valid & r_trans;
 
+
+  // always_comb 
+  //   if(axim.axi_aw_valid)
+  //     $display("axi-awaddr:%x",axi_addr);
+  //   else if(axim.axi_ar_valid)
+  //     $display("axi-araddr:%x  axim.axi_aw_len:%d",axi_addr,axim.axi_aw_len);
+
+
   // handshake
   wire aw_hs      = axim.axi_aw_ready & axim.axi_aw_valid;
   wire w_hs       = axim.axi_w_ready  & axim.axi_w_valid;

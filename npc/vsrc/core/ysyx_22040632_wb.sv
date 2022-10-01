@@ -1,6 +1,6 @@
 `include "ysyx_22040632_riscv_pkg.svh"
 module ysyx_22040632_wb(
-
+  input [31:0] endcode,
   ysyx_22040632_mem2wb.wb mem2wb,
   ysyx_22040632_wb2id.wb  wb2id,
   ysyx_22040632_wb2csr.wb wb2csr
@@ -19,4 +19,10 @@ assign wb2csr.csr_data_write2csr=mem2wb.csr_data_write2wb;
 assign wb2csr.csr_addr_write2csr=mem2wb.csr_addr_write2wb;
 assign wb2csr.wen_mstatus_ecall2csr=mem2wb.wen_mstatus_ecall2wb;
 assign wb2csr.wen_mstatus_mret2csr=mem2wb.wen_mstatus_mret2wb;
+
+
+always_comb begin
+  if(mem2wb.quit2wb)
+    npcexit(endcode);
+end
 endmodule

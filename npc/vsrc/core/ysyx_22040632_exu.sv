@@ -102,6 +102,14 @@ end
 
 
 /*****************ex2mem register********************/
+always_ff @(posedge clk or negedge rrst_n)
+begin
+  if(!rrst_n)
+    ex2mem.quit2mem <= '0;
+  else
+    ex2mem.quit2mem <= id2ex.quit2ex;
+end
+
 logic wt,flushinex;
 assign wt=(mem_busy || ex2mem.ld_en2mem || ex2mem.sd_en2mem) && !mem2ex.en_clint2ex;
 assign flushinex= alu_busy || flush_fence;

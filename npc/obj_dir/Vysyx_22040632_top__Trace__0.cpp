@@ -1,25 +1,25 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Tracing implementation internals
-#include "verilated_vcd_c.h"
+#include "verilated_fst_c.h"
 #include "Vysyx_22040632_top__Syms.h"
 
 
-void Vysyx_22040632_top___024root__trace_chg_sub_0(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_1(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_3(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_4(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_5(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_6(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_7(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_8(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_9(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_10(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_11(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_12(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
-void Vysyx_22040632_top___024root__trace_chg_sub_13(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_0(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_1(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_3(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_4(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_5(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_6(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_7(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_8(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_9(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_10(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_11(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_12(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__trace_chg_sub_13(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
 
-void Vysyx_22040632_top___024root__trace_chg_top_0(void* voidSelf, VerilatedVcd* tracep) {
+void Vysyx_22040632_top___024root__trace_chg_top_0(void* voidSelf, VerilatedFst* tracep) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_chg_top_0\n"); );
     // Init
     Vysyx_22040632_top___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vysyx_22040632_top___024root*>(voidSelf);
@@ -42,7 +42,7 @@ void Vysyx_22040632_top___024root__trace_chg_top_0(void* voidSelf, VerilatedVcd*
     Vysyx_22040632_top___024root__trace_chg_sub_13((&vlSymsp->TOP), tracep);
 }
 
-void Vysyx_22040632_top___024root__trace_chg_sub_0(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep) {
+void Vysyx_22040632_top___024root__trace_chg_sub_0(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_chg_sub_0\n"); );
@@ -6816,7 +6816,7 @@ void Vysyx_22040632_top___024root__trace_chg_sub_0(Vysyx_22040632_top___024root*
     }
 }
 
-void Vysyx_22040632_top___024root__trace_chg_sub_1(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep) {
+void Vysyx_22040632_top___024root__trace_chg_sub_1(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_chg_sub_1\n"); );

@@ -19,7 +19,7 @@ extern vluint64_t main_time;           // 仿真时间戳
 static uint64_t g_timer = 0; // unit: us
 uint64_t g_nr_guest_inst = 0;
 static bool g_print_step = false;
-static uint64_t pc_l;
+static uint64_t pc_l,pc_end;
 // static int code_t;
 int code_t;
 
@@ -89,6 +89,7 @@ static void exec_once() {
 
 #ifdef CONFIG_IRINGBUF
   if(top->submit){
+  pc_end=top->pc;
   trace(iringbuf[index_ibuf],inst_l,pc_l);
   index_ibuf++;
   if(index_ibuf==32) {index_ibuf=0;flag_cycle=1;}}
@@ -146,7 +147,7 @@ void cpu_exec(uint64_t n) {
         Log("npc: %s at pc = " FMT_WORD,
            (code_t == 0 ? ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN) :
             ASNI_FMT("HIT BAD TRAP", ASNI_FG_RED)),
-          pc_l);
+          pc_end);
         statistic();}
   assert(code_t == 0);
 }

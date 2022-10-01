@@ -28,7 +28,7 @@ static int difftest_port = 1234;
 extern cpu_state cpu;
 
 Vysyx_22040632_top* top;                  // 顶层dut对象指针
-VerilatedVcdC* tfp;             // 波形生成对象指针
+VerilatedFstC* tfp;             // 波形生成对象指针
 vluint64_t main_time = 0;           // 仿真时间戳
 
 static void welcome() {
@@ -104,10 +104,10 @@ void inti_vei(int argc, char *argv[]){
     // Verilated::traceEverOn(false);
     // 为对象分配内存空间
     top = new Vysyx_22040632_top;
-    tfp = new VerilatedVcdC;
+    tfp = new VerilatedFstC;
     // tfp初始化工作
     top->trace(tfp, 99);
-    tfp->open("./logs/Vysyx_22040632_top.vcd");
+    tfp->open("./logs/Vysyx_22040632_top.wave");
     top->rst_n = 1;
     top->clk = 0;
 

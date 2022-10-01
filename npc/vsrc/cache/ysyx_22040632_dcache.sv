@@ -23,15 +23,12 @@ logic uncacheable,ready_uncacheable,uart;
 assign uncacheable=     (`ysyx_22040632_Chip_Link_MMIO_Start<=mem2dc.addr      &&   mem2dc.addr<=`ysyx_22040632_Chip_Link_MMIO_End    )
                     ||  (`ysyx_22040632_SPI_flash_XIP_mode_Start<=mem2dc.addr  &&   mem2dc.addr<=`ysyx_22040632_SPI_flash_XIP_mode_End)
                     ||  (`ysyx_22040632_SPI_controller_Start<=mem2dc.addr      &&   mem2dc.addr<=`ysyx_22040632_SPI_controller_End    )
-                    ||  (`ysyx_22040632_UART16550_Start<=mem2dc.addr           &&   mem2dc.addr<=`ysyx_22040632_UART16550_End         );
-assign uncacheable=     (`ysyx_22040632_Chip_Link_MMIO_Start<=mem2dc.addr      &&   mem2dc.addr<=`ysyx_22040632_Chip_Link_MMIO_End    )
-                    ||  (`ysyx_22040632_SPI_flash_XIP_mode_Start<=mem2dc.addr  &&   mem2dc.addr<=`ysyx_22040632_SPI_flash_XIP_mode_End)
-                    ||  (`ysyx_22040632_SPI_controller_Start<=mem2dc.addr      &&   mem2dc.addr<=`ysyx_22040632_SPI_controller_End    )
                     ||  (`ysyx_22040632_UART16550_Start<=mem2dc.addr           &&   mem2dc.addr<=`ysyx_22040632_UART16550_End         )
                     ||  (`ysyx_22040632_VGA_Start<=mem2dc.addr                 &&   mem2dc.addr<=`ysyx_22040632_VGA_End               )
                     ||  (`ysyx_22040632_PS2_Start<=mem2dc.addr                 &&   mem2dc.addr<=`ysyx_22040632_PS2_End               )
                     ||  (`ysyx_22040632_Ethernet_Start<=mem2dc.addr            &&   mem2dc.addr<=`ysyx_22040632_Ethernet_End          )
                     ||  (`ysyx_22040632_SDRAM_Start<=mem2dc.addr);
+
 assign uart=(`ysyx_22040632_UART16550_Start<=mem2dc.addr           &&   mem2dc.
 addr<=`ysyx_22040632_UART16550_End         );
 
@@ -236,10 +233,8 @@ assign data_write=sd_hit_cache_w_current_state?data_write_sd:(w_cnt?{immem.data_
 // assign immem.rw_addr=uncacheable?{mem2dc.addr[31:3],3'b0}:(axi_write_state?{tag_read,mem2dc.addr[10:6],6'b0}:{mem2dc.addr[31:6],6'b0});//same for read and write,uncacheable,send unaligned addr
 
 always_comb begin
-  if(uncacheable && uart)
+  if(uncacheable)
     immem.rw_addr=mem2dc.addr;
-  else if(uncacheable && !uart)
-    immem.rw_addr={mem2dc.addr[31:2],2'b0};
   else if(fence_i_transmit_state)
     immem.rw_addr={tag_read,cnt_f[4:0],6'b0};
   else
@@ -247,10 +242,8 @@ always_comb begin
 end
 
 always_comb begin
-  if(uncacheable && uart)
-    immem.rw_size=`ysyx_22040632_AXI_SIZE_BYTES_1;
-  else if(uncacheable && !uart)
-    immem.rw_size=`ysyx_22040632_AXI_SIZE_BYTES_4;
+  if(uncacheable)
+    immem.rw_size=mem2dc.size;
   else
     immem.rw_size=`ysyx_22040632_AXI_SIZE_BYTES_8;
 end

@@ -1,10 +1,10 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Tracing implementation internals
-#include "verilated_vcd_c.h"
+#include "verilated_fst_c.h"
 #include "Vysyx_22040632_top__Syms.h"
 
 
-void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep) {
+void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_chg_sub_2\n"); );
@@ -2982,10 +2982,18 @@ void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root*
                                         >> 4U))));
         tracep->chgBit(oldp+864,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__third_s) 
                                         >> 3U))));
-        tracep->chgBit(oldp+865,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__third_s) 
+        tracep->chgQData(oldp+865,((((QData)((IData)(
+                                                     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[3U])) 
+                                     << 0x20U) | (QData)((IData)(
+                                                                 vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[2U])))),64);
+        tracep->chgQData(oldp+867,((((QData)((IData)(
+                                                     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[1U])) 
+                                     << 0x20U) | (QData)((IData)(
+                                                                 vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[0U])))),64);
+        tracep->chgBit(oldp+869,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__third_s) 
                                         >> 2U))));
-        tracep->chgCData(oldp+866,(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in),3);
-        tracep->chgBit(oldp+867,((1U & (((IData)((6U 
+        tracep->chgCData(oldp+870,(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in),3);
+        tracep->chgBit(oldp+871,((1U & (((IData)((6U 
                                                   == 
                                                   (6U 
                                                    & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in)))) 
@@ -2995,15 +3003,15 @@ void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root*
                                         | (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in) 
                                             >> 2U) 
                                            & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in))))));
-        tracep->chgBit(oldp+868,((1U & VL_REDXOR_4(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in))));
-        tracep->chgBit(oldp+869,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in) 
+        tracep->chgBit(oldp+872,((1U & VL_REDXOR_4(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in))));
+        tracep->chgBit(oldp+873,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in) 
                                         >> 2U))));
-        tracep->chgBit(oldp+870,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in) 
+        tracep->chgBit(oldp+874,((1U & ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in) 
                                         >> 1U))));
-        tracep->chgBit(oldp+871,((1U & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in))));
-        tracep->chgCData(oldp+872,((7U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
+        tracep->chgBit(oldp+875,((1U & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__44__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa24__in))));
+        tracep->chgCData(oldp+876,((7U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
                                           >> 0x1aU))),3);
-        tracep->chgBit(oldp+873,((1U & (((IData)((0x18000000U 
+        tracep->chgBit(oldp+877,((1U & (((IData)((0x18000000U 
                                                   == 
                                                   (0x18000000U 
                                                    & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U]))) 
@@ -3016,17 +3024,9 @@ void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root*
                                                    == 
                                                    (0x14000000U 
                                                     & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U])))))));
-        tracep->chgBit(oldp+874,((1U & VL_REDXOR_32(
+        tracep->chgBit(oldp+878,((1U & VL_REDXOR_32(
                                                     (0x1c000000U 
                                                      & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U])))));
-        tracep->chgQData(oldp+875,((((QData)((IData)(
-                                                     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[3U])) 
-                                     << 0x20U) | (QData)((IData)(
-                                                                 vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[2U])))),64);
-        tracep->chgQData(oldp+877,((((QData)((IData)(
-                                                     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[1U])) 
-                                     << 0x20U) | (QData)((IData)(
-                                                                 vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__result[0U])))),64);
         tracep->chgBit(oldp+879,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
                                         >> 0x1cU))));
         tracep->chgBit(oldp+880,((1U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__cin[0x29U] 
@@ -6760,7 +6760,7 @@ void Vysyx_22040632_top___024root__trace_chg_sub_2(Vysyx_22040632_top___024root*
     }
 }
 
-void Vysyx_22040632_top___024root__trace_chg_sub_3(Vysyx_22040632_top___024root* vlSelf, VerilatedVcd* tracep) {
+void Vysyx_22040632_top___024root__trace_chg_sub_3(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_chg_sub_3\n"); );
