@@ -37,7 +37,7 @@ VERILATOR_INPUT = $(SVtop-SRCS) $(SVother-SRCS) $(SRCS)
 
 VERILATOR_FLAGS += -cc --exe
 VERILATOR_FLAGS += -Os -x-assign 0
-VERILATOR_FLAGS += --trace-fst -sv
+VERILATOR_FLAGS += --trace-fst -sv --timescale "1ns/1ns"
 VERILATOR_FLAGS += $(HW_PATH) $(INCLUDES) $(SIM_PATH)
 
 ifeq ($(MAKECMDGOALS),gdb)

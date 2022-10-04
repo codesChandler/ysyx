@@ -18,6 +18,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_imif) {
     CData/*2:0*/ rw_size;
     CData/*7:0*/ rw_len;
     CData/*0:0*/ r_hs;
+    CData/*0:0*/ r_last;
     CData/*0:0*/ w_hs;
     CData/*0:0*/ w_last;
     CData/*7:0*/ w_strb;

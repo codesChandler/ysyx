@@ -322,7 +322,7 @@ always_comb
 logic wen_csr;
 logic [63:0] csr_data_write;
 logic wen_ecall;
-logic [63:0] NO;
+logic [63:0] NO;//exception number
 logic wen_mstatus_ecall;
 logic wen_mstatus_mret;
 

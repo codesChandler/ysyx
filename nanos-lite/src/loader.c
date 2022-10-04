@@ -52,11 +52,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   fs_close(fd);
+  Log("\nLoad finished\nExec app...\n");
+  asm volatile("fence.i");
   return (uint32_t)Ehdr->e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
-  //uintptr_t entry = (unsigned)(loader(pcb, filename) & 0xFFFFFFFF);
   uintptr_t entry = loader(pcb, filename);
   Log("Jump to entry = 0x%p", entry);
   ((void(*)())entry) ();

@@ -19,7 +19,7 @@ wire cen  = ~CEN;
 wire wen  = ~WEN;
 wire [Wen_Width-1:0] bwen = ~BWEN;
 
-reg [Bits-1:0] ram [0:Word_Depth-1];
+reg [Word_Depth-1:0][Bits-1:0] ram;
 always @(posedge CLK) begin
     if(cen && wen) begin
         ram[A] <= (D & bwen) | (ram[A] & ~bwen);

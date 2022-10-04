@@ -156,7 +156,7 @@ assign if2ic.valid=miss_in_inst_pb || uncacheable;//valid;
 always_ff @(posedge clk or negedge rrst_n)
   if(!rrst_n || fence_sig)
     inst_pb <='0;
-  else if((rw_sh|| inst_pb_sh) && !uncacheable) 
+  else if(inst_pb_sh && !uncacheable) 
     inst_pb <={pc[31:4],if2ic.inst};
 
 logic inst_pb_sh;
@@ -171,7 +171,7 @@ assign miss_in_inst_pb=(pc[31:4] !=inst_pb[155:128]);
 
 logic [6:0] addr_inside;
 assign addr_inside={3'b000,pc[3:0]}<<3;
-assign inst_t = uncacheable?inst_uncacheable:(inst_pb_sh?if2ic.inst[addr_inside+:32]:inst_pb[{1'b0,addr_inside}+:32]);
+assign inst_t = uncacheable?inst_uncacheable:inst_pb[{1'b0,addr_inside}+:32];
 
 /***************if2id register******************/
 logic flush_if;

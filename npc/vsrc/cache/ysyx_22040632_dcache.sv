@@ -178,17 +178,11 @@ always_ff @(posedge clk or negedge rrst_n)
   else if(!wen || axi_write_en)
     w_cnt <= w_cnt +1'd1;
 
-logic r_last;
-always_ff @(posedge clk or negedge rrst_n)
-if(!rrst_n)
-  r_last <= '0;
-else
-  r_last <= immem.r_last;//imif_r_last negedge rrst_n change !!!
 
 always_ff @(posedge clk or negedge rrst_n) begin
   priority if(!rrst_n || uncacheable)
     wen <= 1'b1;
-  else if(r_last)
+  else if(immem.r_last)
     wen <= 1'b1;
   else if(immem.r_hs)//data from axi valid
     wen <= 1'b0;//low level active for data_array write

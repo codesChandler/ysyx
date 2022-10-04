@@ -12,8 +12,12 @@ module ysyx_22040632_itag_array(
   output logic age_2nd
 );
 
-logic [22:0] tag_array_1stway[31:0];
+logic [31:0][22:0] tag_array_1stway;
 logic [31:0][22:0] tag_array_2ndway;//{1'b age bit,1'b valid bit,21'b tag bits}
+
+logic valid0,valid1;
+assign valid0=addr_tag==tag_array_1stway[addr_index][20:0];
+assign valid1=tag_array_1stway[addr_index][21];
 
 assign hit_1st=(addr_tag==tag_array_1stway[addr_index][20:0] && tag_array_1stway[addr_index][21]) ? 1'b1 :1'b0;
 assign hit_2nd=(addr_tag==tag_array_2ndway[addr_index][20:0] && tag_array_2ndway[addr_index][21]) ? 1'b1 :1'b0;

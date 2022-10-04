@@ -21,6 +21,7 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_imif___ctor_var_reset(Vysyx_2
     vlSelf->rw_size = VL_RAND_RESET_I(3);
     vlSelf->rw_len = VL_RAND_RESET_I(8);
     vlSelf->r_hs = VL_RAND_RESET_I(1);
+    vlSelf->r_last = VL_RAND_RESET_I(1);
     vlSelf->w_hs = VL_RAND_RESET_I(1);
     vlSelf->w_last = VL_RAND_RESET_I(1);
     vlSelf->w_strb = VL_RAND_RESET_I(8);

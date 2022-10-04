@@ -37,7 +37,9 @@ bool ioe_init() {
   for (int i = 0; i < LENGTH(lut); i++)
     if (!lut[i]) lut[i] = fail;
   __am_gpu_init();
-  putch('0');
+  putch('v');putch('g');putch('a');putch(' ');putch('i');putch('n');
+  putch('i');putch('t');putch(' ');putch('d');putch('o');putch('n');
+  putch('e');putch('!');putch('\n');
   __am_timer_init();
   return true;
 }

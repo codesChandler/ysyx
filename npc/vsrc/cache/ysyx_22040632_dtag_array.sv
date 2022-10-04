@@ -17,9 +17,10 @@ module ysyx_22040632_dtag_array(
   output logic [31:0] dirty_array_1st,
   output logic [31:0] dirty_array_2nd
 );
-
-logic [23:0] dtag_array_1stway [31:0];
-logic [23:0] dtag_array_2ndway [31:0];//{1'b age bit,1'b dirty bit,1'b valid bit,21'b tag bits}
+logic [23:0] tag;
+assign tag=dtag_array_1stway[0];
+logic [31:0][23:0] dtag_array_1stway ;
+logic [31:0][23:0] dtag_array_2ndway ;//{1'b age bit,1'b dirty bit,1'b valid bit,21'b tag bits}
 
 genvar k;
 generate

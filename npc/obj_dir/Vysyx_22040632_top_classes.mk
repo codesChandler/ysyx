@@ -30,7 +30,6 @@ VM_CLASSES_FAST += \
 	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__1 \
 	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__2 \
 	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__3 \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__4 \
 	Vysyx_22040632_top___024root__DepSet_hcf72544e__0 \
 	Vysyx_22040632_top___024unit__DepSet_h3c35bba2__0 \
 	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__0 \

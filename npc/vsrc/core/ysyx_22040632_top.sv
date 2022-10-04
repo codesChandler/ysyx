@@ -289,7 +289,8 @@ always_comb begin
 end
 
 /**************axi connection******/
-assign axi.axi_aw_ready=axi_aw_ready_i;              
+always_ff @(posedge clk)
+  axi.axi_aw_ready<=axi_aw_ready_i;            
 assign axi_aw_valid_o=axi.axi_aw_valid;
 assign axi_aw_addr_o=axi.axi_aw_addr;
 assign axi_aw_id_o=axi.axi_aw_id;
@@ -297,18 +298,23 @@ assign axi_aw_len_o=axi.axi_aw_len;
 assign axi_aw_size_o=axi.axi_aw_size;
 assign axi_aw_burst_o=axi.axi_aw_burst;
 
-assign axi.axi_w_ready=axi_w_ready_i;                
+always_ff @(posedge clk)
+  axi.axi_w_ready<=axi_w_ready_i;                
 assign axi_w_valid_o=axi.axi_w_valid;
 assign axi_w_data_o=axi.axi_w_data;
 assign axi_w_strb_o=axi.axi_w_strb;
 assign axi_w_last_o=axi.axi_w_last;
     
-assign axi_b_ready_o=axi.axi_b_ready;                
-assign axi.axi_b_valid=axi_b_valid_i;
-assign axi.axi_b_resp=axi_b_resp_i;                 
-assign axi.axi_b_id=axi_b_id_i;
+assign axi_b_ready_o=axi.axi_b_ready;
+always_ff @(posedge clk)
+  axi.axi_b_valid=axi_b_valid_i;
+always_ff @(posedge clk)
+  axi.axi_b_resp<=axi_b_resp_i;  
+always_ff @(posedge clk)               
+  axi.axi_b_id<=axi_b_id_i;
 
-assign axi.axi_ar_ready=axi_ar_ready_i;                
+always_ff @(posedge clk)
+  axi.axi_ar_ready=axi_ar_ready_i;                
 assign axi_ar_valid_o=axi.axi_ar_valid;
 assign axi_ar_addr_o=axi.axi_ar_addr;
 assign axi_ar_id_o=axi.axi_ar_id;
@@ -316,12 +322,14 @@ assign axi_ar_len_o=axi.axi_ar_len;
 assign axi_ar_size_o=axi.axi_ar_size;
 assign axi_ar_burst_o=axi.axi_ar_burst;
     
-assign  axi_r_ready_o=axi.axi_r_ready;                 
-assign  axi.axi_r_valid=axi_r_valid_i;                
-assign  axi.axi_r_resp=axi_r_resp_i;
-assign  axi.axi_r_data=axi_r_data_i;
-assign  axi.axi_r_last=axi_r_last_i;
-assign  axi.axi_r_id=axi_r_id_i;
+    
+assign  axi_r_ready_o=axi.axi_r_ready;
+always_ff @(posedge clk)  begin               
+  axi.axi_r_valid<=axi_r_valid_i;                
+  axi.axi_r_resp<=axi_r_resp_i;
+  axi.axi_r_data<=axi_r_data_i;
+  axi.axi_r_last<=axi_r_last_i;
+  axi.axi_r_id<=axi_r_id_i;end
 
 endmodule
 

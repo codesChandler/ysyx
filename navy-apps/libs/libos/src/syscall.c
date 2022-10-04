@@ -41,11 +41,11 @@
 #endif
 
 intptr_t _syscall_(intptr_t type, intptr_t a0, intptr_t a1, intptr_t a2) {
-  register intptr_t _gpr1 asm (GPR1) = type;//不能对寄存器变量取地址，寄存器变量没有内存地址，long int,asm汇编语言执行
-  register intptr_t _gpr2 asm (GPR2) = a0;
-  register intptr_t _gpr3 asm (GPR3) = a1;
-  register intptr_t _gpr4 asm (GPR4) = a2;
-  register intptr_t ret asm (GPRx);
+  register intptr_t _gpr1 asm (GPR1) = type;//不能对寄存器变量取地址，寄存器变量没有内存地址，long int,asm汇编语言执行,GPR1即a7
+  register intptr_t _gpr2 asm (GPR2) = a0;//a0
+  register intptr_t _gpr3 asm (GPR3) = a1;//a1
+  register intptr_t _gpr4 asm (GPR4) = a2;//a2
+  register intptr_t ret asm (GPRx);//a0
   asm volatile (SYSCALL : "=r" (ret) : "r"(_gpr1), "r"(_gpr2), "r"(_gpr3), "r"(_gpr4));//使用asm进行汇编语言的执行，volatile不可优化
   return ret;
 }
@@ -61,18 +61,15 @@ int _write(int fd, void *buf, size_t count) {
 }
 
 extern char end;
+static intptr_t pgb=(intptr_t)&end;
 void *_sbrk(intptr_t increment) {
-  static intptr_t pgb=(intptr_t)&end;
   intptr_t old=pgb;
-  intptr_t new=pgb+increment;
-  // char buf[100];
   if(!_syscall_(SYS_brk,0, 0, 0)){
     // sprintf(buf,"I am here\n");
     // _write(1, buf, 10);
-    pgb=new;
+    pgb+=increment;
     return (void *)old;}
   else return (void *)-1;
-  // return (void *)-1;
 }
 
 int _open(const char *path, int flags, mode_t mode) {

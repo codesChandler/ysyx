@@ -67,18 +67,12 @@ always_ff @(posedge clk or negedge rrst_n)
   else if(!wen)
     w_cnt <= w_cnt +3'd1;
 
-logic r_last;
-always_ff @(posedge clk or negedge rrst_n)
-if(!rrst_n)
-  r_last <= '0;
-else
-  r_last <= imif.r_last;//imif_r_last negedge rrst_n change !!!
 
 
 always_ff @(posedge clk or negedge rrst_n) begin
   if(!rrst_n || if2ic.uncacheable)
     wen <= 1'b1;
-  else if(r_last)
+  else if(imif.r_last)
     wen <= 1'b1;
   else if(imif.r_hs)
     wen <= 1'b0;//low level active for data_array write

@@ -179,8 +179,8 @@ Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, c
     , TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__9__KET____DOT__ysyx_22040632_walloc_32bits_i(Verilated::catName(namep, "ysyx_22040632_top.ysyx_22040632_mul_i.genblk7[9].ysyx_22040632_walloc_32bits_i"))
 {
     // Configure time unit / time precision
-    _vm_contextp__->timeunit(-12);
-    _vm_contextp__->timeprecision(-12);
+    _vm_contextp__->timeunit(-9);
+    _vm_contextp__->timeprecision(-9);
     // Setup each module's pointers to their submodules
     TOP.__PVT____024unit = &TOP____024unit;
     TOP.__PVT__ysyx_22040632_top__DOT__axi = &TOP__ysyx_22040632_top__DOT__axi;

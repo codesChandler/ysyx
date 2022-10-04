@@ -112,7 +112,7 @@ end
 /*************csr read or write*********/
 always_ff @(posedge clk or negedge rrst_n)
   if(!rrst_n)
-    csr[0] <= '0;
+    csr[0] <= 64'hA00000000;
   else if(csr_index_w==`ysyx_22040632_MSTATUS_INDEX && wen_csr)
     csr[0] <= (csr_data_write[14:13]==2'b11)?{1'b1,csr_data_write[62:0]}:csr_data_write;
   else if(wb2csr.wen_mstatus_ecall2csr)

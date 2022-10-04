@@ -12,8 +12,19 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_axiif) {
   public:
 
     // DESIGN SPECIFIC STATE
+    CData/*0:0*/ axi_aw_ready;
     CData/*0:0*/ axi_aw_valid;
+    CData/*0:0*/ axi_w_ready;
+    CData/*0:0*/ axi_b_valid;
+    CData/*1:0*/ axi_b_resp;
+    CData/*3:0*/ axi_b_id;
+    CData/*0:0*/ axi_ar_ready;
     CData/*0:0*/ axi_ar_valid;
+    CData/*0:0*/ axi_r_valid;
+    CData/*1:0*/ axi_r_resp;
+    CData/*0:0*/ axi_r_last;
+    CData/*3:0*/ axi_r_id;
+    QData/*63:0*/ axi_r_data;
 
     // INTERNAL VARIABLES
     Vysyx_22040632_top__Syms* vlSymsp;  // Symbol table

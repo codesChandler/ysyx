@@ -35,7 +35,8 @@ module ysyx_22040632_rw # (
 
   wire w_done     = w_hs & axim.axi_w_last;//based on data channel
   wire r_done     = r_hs && axim.axi_r_last;
-  assign ims.r_last=axim.axi_r_last;
+  always_ff @(posedge clk)
+    ims.r_last<=axim.axi_r_last;
   // wire trans_done = w_trans ? w_done : r_done;
   wire trans_done = w_trans ? b_hs : r_done;//write based on write response channel
 
