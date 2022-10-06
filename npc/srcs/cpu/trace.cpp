@@ -13,7 +13,7 @@ extern int nr_symtab_entry;
 int space_nr=1;
 
 extern int index_ibuf;//for iringbuf
-extern char iringbuf[16][128];
+extern char iringbuf[64][128];
 extern int flag_cycle;
 
 char logbuf[128];
@@ -31,10 +31,10 @@ void out_of_bound(paddr_t addr)
 
 void inst_display(){
   int value=0;
-  if (index_ibuf==0) value=15;
+  if (index_ibuf==0) value=63;
   else value=index_ibuf-1;
   printf("*************instructions***************\n");
-  for(int i=0;i<32;i++){
+  for(int i=0;i<64;i++){
     if(i==value) {printf("-->%s\n",iringbuf[i]);
     if(flag_cycle==0) break;}
     else printf("   %s\n",iringbuf[i]);

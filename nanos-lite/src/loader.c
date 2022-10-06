@@ -52,7 +52,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   fs_close(fd);
-  Log("\nLoad finished\nExec app...\n");
+  Log("Load finished");
   asm volatile("fence.i");
   return (uint32_t)Ehdr->e_entry;
 }

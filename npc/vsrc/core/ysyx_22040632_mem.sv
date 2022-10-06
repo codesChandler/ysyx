@@ -174,6 +174,13 @@ begin
   else 
     mem2wb.uart_en2wb <= ex2mem.uart_en2mem;
 end
+
+//fence_i
+always_ff @(posedge clk or negedge rrst_n)
+if(!rrst_n)
+  mem2wb.fence_ien2wb <= '0;
+else
+  mem2wb.fence_ien2wb <= ex2mem.fence_ien2mem;
 /******************load**********************/
 
 //clint load and store

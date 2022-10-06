@@ -181,6 +181,7 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         VL_IN8(rst_n,0,0);
         CData/*0:0*/ ysyx_22040632_top__DOT__rst_s2;
         VL_OUT8(submit,0,0);
+        VL_OUT8(skip,0,0);
         VL_OUT8(axi_aw_valid_o,0,0);
         VL_OUT8(axi_aw_prot_o,2,0);
         VL_OUT8(axi_aw_id_o,3,0);
@@ -240,9 +241,9 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*1:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_state_nxt;
         CData/*1:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_state;
         CData/*1:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_state_nxt;
-        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__rw_ready;
     };
     struct {
+        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__rw_ready;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__rw_ready_en;
         CData/*1:0*/ ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__rw_resp;
         CData/*1:0*/ ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__cs;
@@ -306,9 +307,9 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__18;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__19;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__20;
-        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__21;
     };
     struct {
+        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__21;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__22;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__23;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_hd5d3716f__24;
@@ -372,9 +373,9 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__18;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__19;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__20;
-        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__21;
     };
     struct {
+        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__21;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__22;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__23;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__ysyx_22040632_dtag_array_d__DOT____Vlvbound_h5df86634__24;
@@ -438,9 +439,9 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__1;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__2;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__3;
-        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__4;
     };
     struct {
+        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__4;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__5;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__6;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_h3bf85860__7;
@@ -504,9 +505,9 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__1;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__2;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__3;
-        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__4;
     };
     struct {
+        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__4;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__5;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__6;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_itag_array_i__DOT____Vlvbound_hd89b83f2__7;
@@ -570,9 +571,9 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*2:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_idata_array_i__DOT__w_cnt;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_idata_array_i__DOT__wen_1st;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_icache_i__DOT__ysyx_22040632_idata_array_i__DOT__wen_2nd;
-        CData/*2:0*/ ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__index_btb;
     };
     struct {
+        CData/*2:0*/ ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__index_btb;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pcen_btb;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__rw_sh;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__uncacheable;
@@ -592,7 +593,6 @@ VL_MODULE(Vysyx_22040632_top___024root) {
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__wb_hazard1;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__wb_hazard2;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__block;
-        CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__flush_in_id;
         CData/*2:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__src_from_gpr;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__block_ld;
         CData/*0:0*/ ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__block_ld2if;

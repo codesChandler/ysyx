@@ -48,8 +48,8 @@ VM_CLASSES_SLOW += \
 	Vysyx_22040632_top___024root__Slow \
 	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__0__Slow \
 	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__1__Slow \
+	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__2__Slow \
 	Vysyx_22040632_top___024root__DepSet_hcf72544e__0__Slow \
-	Vysyx_22040632_top___024root__DepSet_hcf72544e__1__Slow \
 	Vysyx_22040632_top___024unit__Slow \
 	Vysyx_22040632_top___024unit__DepSet_hc0b44804__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_divif__Slow \

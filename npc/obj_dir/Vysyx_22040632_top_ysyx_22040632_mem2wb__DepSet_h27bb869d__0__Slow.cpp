@@ -21,6 +21,7 @@ VL_ATTR_COLD void Vysyx_22040632_top_ysyx_22040632_mem2wb___ctor_var_reset(Vysyx
     vlSelf->inst2wb = VL_RAND_RESET_I(32);
     vlSelf->uart_en2wb = VL_RAND_RESET_I(1);
     vlSelf->quit2wb = VL_RAND_RESET_I(1);
+    vlSelf->fence_ien2wb = VL_RAND_RESET_I(1);
     vlSelf->wen_csr2wb = VL_RAND_RESET_I(1);
     vlSelf->wen_ecall2wb = VL_RAND_RESET_I(1);
     vlSelf->NO2wb = VL_RAND_RESET_Q(64);

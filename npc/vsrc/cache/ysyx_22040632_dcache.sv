@@ -168,7 +168,8 @@ always_ff @(posedge clk or negedge rrst_n) begin//same for axi read and write
   else
     rw_valid<=1'b0;
 end
-assign immem.rw_valid=uncacheable?rw_valid && !immem.rw_ready:rw_valid && !write_done;
+assign immem.rw_valid=uncacheable?rw_valid && !immem.rw_ready:rw_valid && !write_done && (axi_read_state || axi_write_state);
+
 
 always_ff @(posedge clk or negedge rrst_n)
   if(!rrst_n || (wen && (!axi_write_start && !axi_write_en)))
@@ -224,8 +225,6 @@ assign immem.rw_req = rw_req;
 
 assign data_write=sd_hit_cache_w_current_state?data_write_sd:(w_cnt?{immem.data_read,64'b0}:{64'b0,immem.data_read});//axi data 64 bits but ram 128 bits
 
-// assign immem.rw_addr=uncacheable?{mem2dc.addr[31:3],3'b0}:(axi_write_state?{tag_read,mem2dc.addr[10:6],6'b0}:{mem2dc.addr[31:6],6'b0});//same for read and write,uncacheable,send unaligned addr
-
 always_comb begin
   if(uncacheable)
     immem.rw_addr=mem2dc.addr;
@@ -234,6 +233,7 @@ always_comb begin
   else
     immem.rw_addr=axi_write_state?{tag_read,mem2dc.addr[10:6],6'b0}:{mem2dc.addr[31:6],6'b0};
 end
+
 
 always_comb begin
   if(uncacheable)
@@ -307,7 +307,8 @@ else
 
 always_comb begin
   case(cs_f)
-    get_dirty_array:   if(fence_sig && !clean_f)  ns_f=axi_write_f;
+    get_dirty_array:   if(fence_sig && !clean_f && this_line_dirty)  ns_f=axi_write_f;
+                       else if(fence_sig && !clean_f && !this_line_dirty)  ns_f=right_move;
                        else                       ns_f=get_dirty_array;
 
     axi_write_f:       if(write_done)             ns_f=right_move;
@@ -327,7 +328,7 @@ always_ff @(posedge clk or negedge rrst_n)
   if(!rrst_n)
     dirty_array_reg <= '0;
   else if(cs_f==get_dirty_array)//delay one cycle
-    dirty_array_reg <= {dirty_array_2nd,dirty_array_1st};
+    dirty_array_reg <=(ns_f==right_move)?{1'b0,dirty_array_2nd[31:0],dirty_array_1st[31:1]}:{dirty_array_2nd,dirty_array_1st};
   else if(ns_f==right_move)
     dirty_array_reg <= dirty_array_reg>>1;
   else

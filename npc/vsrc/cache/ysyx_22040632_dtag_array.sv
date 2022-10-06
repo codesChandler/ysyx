@@ -17,6 +17,7 @@ module ysyx_22040632_dtag_array(
   output logic [31:0] dirty_array_1st,
   output logic [31:0] dirty_array_2nd
 );
+
 logic [23:0] tag;
 assign tag=dtag_array_1stway[0];
 logic [31:0][23:0] dtag_array_1stway ;

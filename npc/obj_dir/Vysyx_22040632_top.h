@@ -46,6 +46,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     VL_IN8(&clk,0,0);
     VL_IN8(&rst_n,0,0);
     VL_OUT8(&submit,0,0);
+    VL_OUT8(&skip,0,0);
     VL_OUT8(&axi_aw_valid_o,0,0);
     VL_OUT8(&axi_aw_prot_o,2,0);
     VL_OUT8(&axi_aw_id_o,3,0);

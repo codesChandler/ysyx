@@ -61,6 +61,7 @@ interface ysyx_22040632_ex2mem;
   logic [31:0] inst2mem;
   logic uart_en2mem;
   logic quit2mem;
+  logic fence_ien2mem;
 
   logic wen_csr2mem;
   logic wen_ecall2mem;
@@ -72,11 +73,11 @@ interface ysyx_22040632_ex2mem;
   logic not_submit2mem;
 
   modport ex(
-    output data2mem,ld_en2mem,ld_ty,sd_en2mem,sd_ty,rd_w_ena,rd2mem,data_ext2mem,pc2mem,inst2mem,wen_csr2mem,wen_ecall2mem,NO2mem,csr_data_write2mem,csr_addr_write2mem,wen_mstatus_ecall2mem,wen_mstatus_mret2mem,not_submit2mem,uart_en2mem,quit2mem
+    output data2mem,ld_en2mem,ld_ty,sd_en2mem,sd_ty,rd_w_ena,rd2mem,data_ext2mem,pc2mem,inst2mem,wen_csr2mem,wen_ecall2mem,NO2mem,csr_data_write2mem,csr_addr_write2mem,wen_mstatus_ecall2mem,wen_mstatus_mret2mem,not_submit2mem,uart_en2mem,quit2mem,fence_ien2mem
   );
 
   modport mem(
-    input data2mem,ld_en2mem,ld_ty,sd_en2mem,sd_ty,rd_w_ena,rd2mem,data_ext2mem,pc2mem,inst2mem,wen_csr2mem,wen_ecall2mem,NO2mem,csr_data_write2mem,csr_addr_write2mem,wen_mstatus_ecall2mem,wen_mstatus_mret2mem,not_submit2mem,uart_en2mem,quit2mem
+    input data2mem,ld_en2mem,ld_ty,sd_en2mem,sd_ty,rd_w_ena,rd2mem,data_ext2mem,pc2mem,inst2mem,wen_csr2mem,wen_ecall2mem,NO2mem,csr_data_write2mem,csr_addr_write2mem,wen_mstatus_ecall2mem,wen_mstatus_mret2mem,not_submit2mem,uart_en2mem,quit2mem,fence_ien2mem
   );
 
 endinterface
@@ -106,6 +107,7 @@ interface ysyx_22040632_mem2wb;
   logic [31:0] inst2wb;
   logic uart_en2wb;
   logic quit2wb;
+  logic fence_ien2wb;
 
   logic wen_csr2wb;
   logic wen_ecall2wb;
@@ -118,11 +120,11 @@ interface ysyx_22040632_mem2wb;
   logic skip_clint2wb;
 
   modport mem(
-    output rd2wb,data2wb,data_ld2wb,ld_en2wb,rd_w_ena2wb,pc2wb,inst2wb,wen_csr2wb,wen_ecall2wb,NO2wb,csr_data_write2wb,csr_addr_write2wb,wen_mstatus_ecall2wb,wen_mstatus_mret2wb,not_submit2wb,skip_clint2wb,uart_en2wb,quit2wb
+    output rd2wb,data2wb,data_ld2wb,ld_en2wb,rd_w_ena2wb,pc2wb,inst2wb,wen_csr2wb,wen_ecall2wb,NO2wb,csr_data_write2wb,csr_addr_write2wb,wen_mstatus_ecall2wb,wen_mstatus_mret2wb,not_submit2wb,skip_clint2wb,uart_en2wb,quit2wb,fence_ien2wb
   );
 
   modport wb(
-    input rd2wb,data2wb,data_ld2wb,ld_en2wb,rd_w_ena2wb,pc2wb,inst2wb,wen_csr2wb,wen_ecall2wb,NO2wb,csr_data_write2wb,csr_addr_write2wb,wen_mstatus_ecall2wb,wen_mstatus_mret2wb,not_submit2wb,skip_clint2wb,uart_en2wb,quit2wb
+    input rd2wb,data2wb,data_ld2wb,ld_en2wb,rd_w_ena2wb,pc2wb,inst2wb,wen_csr2wb,wen_ecall2wb,NO2wb,csr_data_write2wb,csr_addr_write2wb,wen_mstatus_ecall2wb,wen_mstatus_mret2wb,not_submit2wb,skip_clint2wb,uart_en2wb,quit2wb,fence_ien2wb
   );
 
   modport ex(

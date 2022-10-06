@@ -8,6 +8,7 @@
 #include "Vysyx_22040632_top__Syms.h"
 #include "Vysyx_22040632_top___024root.h"
 
+extern const VlUnpacked<CData/*1:0*/, 256> Vysyx_22040632_top__ConstPool__TABLE_hed7008f7_0;
 extern const VlUnpacked<CData/*1:0*/, 64> Vysyx_22040632_top__ConstPool__TABLE_ha150fa3d_0;
 
 VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__11(Vysyx_22040632_top___024root* vlSelf) {
@@ -16,7 +17,102 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__11(Vysyx_2204063
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root___sequent__TOP__11\n"); );
     // Init
     CData/*5:0*/ __Vtableidx1;
+    CData/*7:0*/ __Vtableidx3;
     // Body
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x77U] 
+        = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7fU] 
+                           << 8U)) | ((0x40000000U 
+                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7bU] 
+                                          << 7U)) | 
+                                      ((0x20000000U 
+                                        & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x77U] 
+                                           << 6U)) 
+                                       | ((0x10000000U 
+                                           & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x73U] 
+                                              << 5U)) 
+                                          | ((0x8000000U 
+                                              & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6fU] 
+                                                 << 4U)) 
+                                             | ((0x4000000U 
+                                                 & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x6bU] 
+                                                    << 3U)) 
+                                                | ((0x2000000U 
+                                                    & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x67U] 
+                                                       << 2U)) 
+                                                   | ((0x1000000U 
+                                                       & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x63U] 
+                                                          << 1U)) 
+                                                      | ((0x800000U 
+                                                          & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5fU]) 
+                                                         | ((0x400000U 
+                                                             & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x5bU] 
+                                                                >> 1U)) 
+                                                            | ((0x200000U 
+                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x57U] 
+                                                                   >> 2U)) 
+                                                               | ((0x100000U 
+                                                                   & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x53U] 
+                                                                      >> 3U)) 
+                                                                  | ((0x80000U 
+                                                                      & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4fU] 
+                                                                         >> 4U)) 
+                                                                     | ((0x40000U 
+                                                                         & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x4bU] 
+                                                                            >> 5U)) 
+                                                                        | ((0x20000U 
+                                                                            & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x47U] 
+                                                                               >> 6U)) 
+                                                                           | ((0x10000U 
+                                                                               & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x43U] 
+                                                                                >> 7U)) 
+                                                                              | ((0x8000U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3fU] 
+                                                                                >> 8U)) 
+                                                                                | ((0x4000U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x3bU] 
+                                                                                >> 9U)) 
+                                                                                | ((0x2000U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x37U] 
+                                                                                >> 0xaU)) 
+                                                                                | ((0x1000U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x33U] 
+                                                                                >> 0xbU)) 
+                                                                                | ((0x800U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2fU] 
+                                                                                >> 0xcU)) 
+                                                                                | ((0x400U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x2bU] 
+                                                                                >> 0xdU)) 
+                                                                                | ((0x200U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x27U] 
+                                                                                >> 0xeU)) 
+                                                                                | ((0x100U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x23U] 
+                                                                                >> 0xfU)) 
+                                                                                | ((0x80U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1fU] 
+                                                                                >> 0x10U)) 
+                                                                                | ((0x40U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x1bU] 
+                                                                                >> 0x11U)) 
+                                                                                | ((0x20U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x17U] 
+                                                                                >> 0x12U)) 
+                                                                                | ((0x10U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x13U] 
+                                                                                >> 0x13U)) 
+                                                                                | ((8U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xfU] 
+                                                                                >> 0x14U)) 
+                                                                                | ((4U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0xbU] 
+                                                                                >> 0x15U)) 
+                                                                                | ((2U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[7U] 
+                                                                                >> 0x16U)) 
+                                                                                | (1U 
+                                                                                & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[3U] 
+                                                                                >> 0x17U)))))))))))))))))))))))))))))))));
     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__input_walloc[0x78U] 
         = ((0x80000000U & (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[0x7fU] 
                            << 7U)) | ((0x40000000U 
@@ -767,6 +863,42 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__11(Vysyx_2204063
                                                                                 >> 0x1eU)) 
                                                                                 | (vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__product[3U] 
                                                                                 >> 0x1fU))))))))))))))))))))))))))))))));
+    __Vtableidx3 = (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__if_sh) 
+                     << 7U) | (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__cnt_vld) 
+                                << 5U) | (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__mem_sh) 
+                                           << 4U) | 
+                                          (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imif.rw_valid) 
+                                            << 3U) 
+                                           | (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__immem.rw_valid) 
+                                               << 2U) 
+                                              | (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__cs))))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__ns 
+        = Vysyx_22040632_top__ConstPool__TABLE_hed7008f7_0
+        [__Vtableidx3];
+    vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_valid 
+        = ((~ (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__idle_flg) 
+                | (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__if_sh)) 
+               | (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__mem_sh))) 
+           & ((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_arbiter_i__DOT__mem_flg)
+               ? (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__immem.rw_valid)
+               : (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imif.rw_valid)));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_valid 
+        = ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_valid) 
+           & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_req));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_valid 
+        = ((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_valid) 
+           & (~ (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__imarb.rw_req)));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_ar_valid 
+        = ((1U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_state)) 
+           & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__r_valid));
+    vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_aw_valid 
+        = ((1U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_state)) 
+           & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_valid));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__axi_write_en 
+        = (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__immem.w_hs) 
+            | ((1U == (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_state)) 
+               & (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_valid))) 
+           & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__uncacheable)));
     vlSelf->axi_ar_valid_o = vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_ar_valid;
     vlSelf->axi_aw_valid_o = vlSymsp->TOP__ysyx_22040632_top__DOT__axi.axi_aw_valid;
     __Vtableidx1 = (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_rw_i__DOT__w_valid) 
@@ -2038,7 +2170,7 @@ VL_INLINE_OPT QData Vysyx_22040632_top___024root___change_request_1(Vysyx_220406
          | (vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__c ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i__c)
          | (vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa28__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa28__in)
          | (vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa29__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__127__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa29__in));
-    VL_DEBUG_IF( if(__req && ((vlSelf->ysyx_22040632_top__DOT__rst_s2 ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__rst_s2))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/core/ysyx_22040632_top.sv:107: ysyx_22040632_top.rst_s2\n"); );
+    VL_DEBUG_IF( if(__req && ((vlSelf->ysyx_22040632_top__DOT__rst_s2 ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__rst_s2))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/core/ysyx_22040632_top.sv:108: ysyx_22040632_top.rst_s2\n"); );
     VL_DEBUG_IF( if(__req && ((vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__PVT__c ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i__c))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/alu_ext/mul/ysyx_22040632_walloc_32bits.sv:8: c\n"); );
     VL_DEBUG_IF( if(__req && ((vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa28__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa28__in))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/alu_ext/mul/ysyx_22040632_csa.sv:2: __Vcellinp__ysyx_22040632_csa28__in\n"); );
     VL_DEBUG_IF( if(__req && ((vlSymsp->TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i.__Vcellinp__ysyx_22040632_csa29__in ^ vlSelf->__Vchglast__TOP__ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__genblk7__BRA__0__KET____DOT__ysyx_22040632_walloc_32bits_i____Vcellinp__ysyx_22040632_csa29__in))) VL_DBG_MSGF("        CHANGE: /home/chandler/ysyx-workbench/npc/vsrc/alu_ext/mul/ysyx_22040632_csa.sv:2: __Vcellinp__ysyx_22040632_csa29__in\n"); );

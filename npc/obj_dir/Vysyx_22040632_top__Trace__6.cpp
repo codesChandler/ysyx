@@ -9,7 +9,7 @@ void Vysyx_22040632_top___024root__trace_chg_sub_10(Vysyx_22040632_top___024root
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040632_top___024root__trace_chg_sub_10\n"); );
     // Init
-    vluint32_t* const oldp VL_ATTR_UNUSED = tracep->oldp(vlSymsp->__Vm_baseCode + 23039);
+    vluint32_t* const oldp VL_ATTR_UNUSED = tracep->oldp(vlSymsp->__Vm_baseCode + 23038);
     // Body
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[3U])) {
         tracep->chgBit(oldp+0,((1U & VL_REDXOR_32((0xe0000000U 

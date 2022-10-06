@@ -155,7 +155,7 @@ begin
   priority if(!rrst_n)
     rmd <= '0;
   else if(dif.div_valid && !eval_flag)
-    case({dif.divw,dif.div_signed})
+    case({dif.divw,(dif.div_signed && (dif.dividend[63] || (dif.divw && dif.dividend[31])))})
       2'b00:rmd <= {63'b0,dif.dividend[63]};
       2'b01:rmd <= {63'b0,dvd_s[63]};
       2'b10:rmd <= {63'b0,dif.dividend[31]};

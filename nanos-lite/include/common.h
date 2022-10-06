@@ -6,7 +6,7 @@
 //#define HAS_VME
 //#define MULTIPROGRAM
 //#define TIME_SHARING
-//#define CONFIG_STRACE 1
+// #define CONFIG_STRACE 1
 
 #include <am.h>
 #include <klib.h>

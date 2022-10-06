@@ -19,6 +19,7 @@ begin
     cs <= ns;
 end
 
+
 always_comb
 begin
   case(cs)

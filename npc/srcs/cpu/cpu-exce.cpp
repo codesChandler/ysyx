@@ -24,9 +24,10 @@ static uint64_t pc_l,pc_end;
 int code_t;
 
 int index_ibuf=0;//for iringbuf
-char iringbuf[32][128];
+char iringbuf[64][128];
 int flag_cycle=0;
 
+extern void difftest_skip_ref();
 extern void difftest_step(vaddr_t pc);
 extern void trace(char *buf,uint32_t instr,uint64_t pc);
 extern void device_update();
@@ -65,7 +66,7 @@ static void exec_once() {
       pmem_sigs.update_input(pmem_ref);//pmem_sigs<-mem_ref master->slave
 
       top->eval();
-      tfp->dump(main_time);   // 波形文件写入步进
+      IFDEF(CONFIG_WAVE, tfp->dump(main_time));// 波形文件写入步进
     
     //this update surfaces in next posedge
     //update_output:slave->master
@@ -74,7 +75,7 @@ static void exec_once() {
     else{
 
       top->eval();
-      tfp->dump(main_time);   // 波形文件写入步进
+      IFDEF(CONFIG_WAVE, tfp->dump(main_time));// 波形文件写入步进
     }
 
   }
@@ -92,7 +93,7 @@ static void exec_once() {
   pc_end=top->pc;
   trace(iringbuf[index_ibuf],inst_l,pc_l);
   index_ibuf++;
-  if(index_ibuf==32) {index_ibuf=0;flag_cycle=1;}}
+  if(index_ibuf==64) {index_ibuf=0;flag_cycle=1;}}
 #endif
 
 #ifdef CONFIG_FTRACE
@@ -106,7 +107,9 @@ static void execute(uint64_t n) {
   for (;n > 0; n --) {
     exec_once();
     
-  
+    if(top->skip){
+      difftest_skip_ref();
+    }
     if(top->submit){
       g_nr_guest_inst ++;
     trace_and_difftest(logbuf);}

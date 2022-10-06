@@ -17,6 +17,7 @@ module ysyx_22040632_top
   output logic [31:0] inst,
   output logic submit,
   output logic [31:0] npc,
+  output logic skip,
 
   //axi4 as master
   output axi_aw_valid_o,
@@ -272,7 +273,9 @@ ysyx_22040632_clint ysyx_22040632_clint_i(
 
 assign pc=mem2wb.pc2wb;
 assign inst=mem2wb.inst2wb;
-assign submit=(inst != 0) && (pc >= 32'h8000_0000  && pc<=32'h88000000) && (!mem2wb.not_submit2wb);
+assign submit=((inst != 0) && (pc >= 32'h8000_0000  && pc<=32'h88000000) && (!mem2wb.not_submit2wb) )|| mem2wb.fence_ien2wb;
+assign skip=mem2wb.fence_ien2wb;
+
 
 logic if2id_en,id2ex_en,ex2mem_en;
 assign if2id_en=if2id.pc2id!='0;

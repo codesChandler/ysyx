@@ -149,7 +149,7 @@ always_comb begin
   32'h00100073:begin fun=quit;type_t=type_i;end//npcexit(gpr[10][31:0]);end 
   32'h0000007b:begin fun=putch;type_t=type_i;end 
   32'b00000000000000000000000000000000: begin fun=nop    ;type_t=type_i;end
-  default:begin $display("@",$realtime()," @pc:%h instruction:%x not implemented",if2id.pc2id,if2id.inst2id);end//npcexit(1);end
+  default:begin fun=nop ;type_t=type_i;end//begin $display("@",$realtime()," @pc:%h instruction:%x not implemented",if2id.pc2id,if2id.inst2id);end//npcexit(1);end
   endcase
 end
 
@@ -189,13 +189,13 @@ else
   id2ex.quit2ex<=(fun==quit)?1'b1:1'b0;
 
 logic block,flush_in_id;
-assign block=(ex2id.ld_en2id && !mem2id.ls_sh2id) || alu_busy;
-assign flush_in_id = flush || fence_sig;
+assign block=(ex2id.ld_en2id && !mem2id.ls_sh2id) || alu_busy || fence_sig;
+assign flush_in_id = flush;
 always_ff @(posedge clk or negedge rrst_n)
 begin
   if(!rrst_n || flush ||id2if.block_id2if)
     id2ex.pc2ex <= '0;
-  else if(block || fence_sig)
+  else if(block)
     id2ex.pc2ex <=id2ex.pc2ex;
   else
     id2ex.pc2ex <= if2id.pc2id;
@@ -211,6 +211,8 @@ begin
   else 
     id2ex.inst2ex <= if2id.inst2id;
 end
+
+
 
 assign rd_t = if2id.inst2id[11:7];
 assign rs1 = if2id.inst2id[19:15];
@@ -265,6 +267,7 @@ begin
   else 
     id2ex.src1 <= src1_t;
 end
+
 
 always_ff @(posedge clk or negedge rrst_n)
 begin
@@ -352,7 +355,7 @@ else if(mem2id.ls_sh2id || flush_in_id)
   block_ld2if<='0;
 else if(block_ld)
   block_ld2if<=1'b1;
-assign id2if.block_id2if=(block_ld2if || block_ld) && !mem2id.ls_sh2id;
+assign id2if.block_id2if=(block_ld2if || block_ld) && !mem2id.ls_sh2id && !fence_sig;
 
 //csr
 logic [31:0] csr_addr_read;

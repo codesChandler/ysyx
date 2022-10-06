@@ -14,6 +14,7 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
     , submit{vlSymsp->TOP.submit}
+    , skip{vlSymsp->TOP.skip}
     , axi_aw_valid_o{vlSymsp->TOP.axi_aw_valid_o}
     , axi_aw_prot_o{vlSymsp->TOP.axi_aw_prot_o}
     , axi_aw_id_o{vlSymsp->TOP.axi_aw_id_o}

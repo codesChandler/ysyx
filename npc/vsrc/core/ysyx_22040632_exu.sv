@@ -100,7 +100,6 @@ always_comb begin
   endcase
 end
 
-
 /*****************ex2mem register********************/
 always_ff @(posedge clk or negedge rrst_n)
 begin
@@ -301,19 +300,11 @@ always_comb
     remuw:data_op=dif.remainder;
     remu:data_op=dif.remainder;
     rem:data_op=dif.remainder;
-    // div:data_op=$signed(src1_op)/$signed(src2_op);
-    // divw:data_op={{32{1'b0}},$signed(src1_op[31:0])/$signed(src2_op[31:0])};
-    // divuw:data_op={{32{1'b0}},src1_op[31:0]/src2_op[31:0]};
-    // rem:data_op=$signed(src1_op)%$signed(src2_op);
-    // remw:data_op={{32{1'b0}},$signed(src1_op[31:0])%$signed(src2_op[31:0])};
-    // remuw:data_op={{32{1'b0}},src1_op[31:0]%src2_op[31:0]};
     sltiu,sltu:data_op=(src1_op<src2_op)?64'd1:'0;
     slt,slti:data_op=($signed(src1_op)<$signed(src2_op))?64'd1:'0;
     mul:data_op=mif.result_lo;
     mulww:data_op=mif.result_lo;
     mulh:data_op=mif.result_hi;
-    // mul:data_op=src1_op*src2_op;
-    // mulww:data_op=src1_op[31:0]*src2_op[31:0];
     csrrs,csrrw,csrrsi,csrrc,csrrci,csrrwi:data_op=src2_op;
     default:data_op=src1_op+src2_op;
     endcase
@@ -402,7 +393,7 @@ assign ld_flg=id2ex.operation inside {lw,lwu,ld,lbu,lb,lh,lhu};
 
 always_ff @(posedge clk or negedge rrst_n)
 begin
-  if(!rrst_n || intrrupt_timing)
+  if(!rrst_n || intrrupt_timing || flushinex)
     ex2mem.ld_en2mem <='0;
   else 
     ex2mem.ld_en2mem <=ld_flg;
@@ -411,7 +402,7 @@ assign ex2id.ld_en2id =ex2mem.ld_en2mem;
 
 always_ff @(posedge clk or negedge rrst_n)
 begin
-  if(!rrst_n || intrrupt_timing)
+  if(!rrst_n || intrrupt_timing || flushinex)
     ex2mem.ld_ty <= '0;
   else if(mem_busy || ex2mem.ld_en2mem)
     ex2mem.ld_ty <= ex2mem.ld_ty;
@@ -433,7 +424,7 @@ end
 assign sd_flg=id2ex.operation inside {sd,sb,sw,sh};
 always_ff @(posedge clk or negedge rrst_n)
 begin
-  if(!rrst_n || intrrupt_timing)
+  if(!rrst_n || intrrupt_timing || flushinex)
     ex2mem.sd_en2mem <='0;
   else 
     ex2mem.sd_en2mem <=sd_flg;
@@ -441,7 +432,7 @@ end
 
 always_ff @(posedge clk or negedge rrst_n)
 begin
-  if(!rrst_n || intrrupt_timing)
+  if(!rrst_n || intrrupt_timing || flushinex)
     ex2mem.sd_ty <='0;
   else if(mem_busy || ex2mem.sd_en2mem)
     ex2mem.sd_ty <= ex2mem.sd_ty;
@@ -527,5 +518,13 @@ if(!rrst_n || clean2ex)
 else  if(fence_sig0)
   fence_sig <=1'b1;
 assign flush_fence=fence_sig0 || fence_sig;
+
+always_ff @(posedge clk or negedge rrst_n)
+if(!rrst_n)
+  ex2mem.fence_ien2mem <= '0;
+else if(fence_sig && clean2ex)
+  ex2mem.fence_ien2mem <= '1;
+else
+  ex2mem.fence_ien2mem <= '0;
 
 endmodule

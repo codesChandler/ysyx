@@ -20,6 +20,7 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_ex2mem) {
     CData/*4:0*/ rd2mem;
     CData/*0:0*/ uart_en2mem;
     CData/*0:0*/ quit2mem;
+    CData/*0:0*/ fence_ien2mem;
     CData/*0:0*/ wen_csr2mem;
     CData/*0:0*/ wen_ecall2mem;
     CData/*0:0*/ wen_mstatus_ecall2mem;
