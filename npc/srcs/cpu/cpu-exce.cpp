@@ -44,8 +44,6 @@ static void trace_and_difftest(char *logbuf) {
 #endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(top->pc));
-  // IFDEF(CONFIG_WATCHPOINT, wp_evl());
-
 }
 
 extern axi4_ptr<32,64,4> pmem_ptr;

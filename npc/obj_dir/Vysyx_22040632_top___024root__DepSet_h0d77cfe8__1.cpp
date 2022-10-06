@@ -5684,19 +5684,14 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__9(Vysyx_22040632
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xbU;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
         }
-    } else if (VL_LIKELY(((((((((0x1063U == (0x707fU 
-                                             & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
-                                | (0x5063U == (0x707fU 
-                                               & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
-                               | (0x7063U == (0x707fU 
-                                              & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
-                              | (0x4063U == (0x707fU 
-                                             & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
-                             | (0x6063U == (0x707fU 
-                                            & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
-                            | (0x100073U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
-                           | (0x7bU == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
-                          | (0U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)))) {
+    } else if (((((((((0x1063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                      | (0x5063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                     | (0x7063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                    | (0x4063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                   | (0x6063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) 
+                  | (0x100073U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                 | (0x7bU == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id)) 
+                | (0U == vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
         if ((0x1063U == (0x707fU & vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id))) {
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0xcU;
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 5U;
@@ -5723,9 +5718,8 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__9(Vysyx_22040632
             vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
         }
     } else {
-        VL_WRITEF("@%g @pc:%x instruction:%x not implemented\n",
-                  64,VL_TIME_UNITED_D(1),32,vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.pc2id,
-                  32,vlSymsp->TOP__ysyx_22040632_top__DOT__if2id.inst2id);
+        vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__fun = 0U;
+        vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_idu_i__DOT__type_t = 0U;
     }
     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_exu_i__DOT__pc_op 
         = ((0x40U & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__id2ex.operation))
