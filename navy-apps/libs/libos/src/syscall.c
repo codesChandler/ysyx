@@ -57,7 +57,7 @@ void _exit(int status) {
 
 
 int _write(int fd, void *buf, size_t count) {
-  return _syscall_(SYS_write, fd, (int)buf, count);;//write返回值需要查man
+  return _syscall_(SYS_write, fd, (intptr_t)buf, count);;//write返回值需要查man
 }
 
 extern char end;
@@ -73,11 +73,11 @@ void *_sbrk(intptr_t increment) {
 }
 
 int _open(const char *path, int flags, mode_t mode) {
-  return _syscall_(SYS_open, (int)path, flags, mode);
+  return _syscall_(SYS_open, (intptr_t)path, flags, mode);
 }
 
 int _read(int fd, void *buf, size_t count) {
-  return _syscall_(SYS_read, fd, (int)buf, count);
+  return _syscall_(SYS_read, fd, (intptr_t)buf, count);
 }
 
 int _close(int fd) {
@@ -92,12 +92,12 @@ off_t _lseek(int fd, off_t offset, int whence) {
 
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
   // _exit(SYS_gettimeofday);
-  return _syscall_(SYS_gettimeofday, (int)tv, (int)tz, 0);
+  return _syscall_(SYS_gettimeofday, (intptr_t)tv, (intptr_t)tz, 0);
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
   // _exit(SYS_execve);
-  return _syscall_(SYS_execve, (int)fname, 0, 0);
+  return _syscall_(SYS_execve, (intptr_t)fname, 0, 0);
 }
 
 // Syscalls below are not used in Nanos-lite.

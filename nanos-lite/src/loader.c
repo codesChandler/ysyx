@@ -32,6 +32,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr *Ehdr=(void *)buf;
   assert(*(uint32_t *)(Ehdr->e_ident) == 0x464C457f);
 
+  printf("%d\n%d\n",EXPECT_TYPE,Ehdr->e_machine);
+
   assert(Ehdr->e_machine == EXPECT_TYPE);
 
   int phentsize=Ehdr->e_phentsize;

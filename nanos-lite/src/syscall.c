@@ -66,9 +66,10 @@ int sys_gettimeofday(Context *c){
   AM_TIMER_UPTIME_T uptime=io_read(AM_TIMER_UPTIME);
   struct timeval *tv=(struct timeval *)c->GPR2;
   tv->tv_sec=uptime.us/1000000;
-  tv->tv_usec=uptime.us;
-  // AM_TIMER_UPTIME_T uptime=io_read(AM_TIMER_UPTIME);
-  // return get_time();
+  tv->tv_usec=uptime.us%1000000;
+  #ifdef CONFIG_STRACE
+    Log("syscall ID= sys_gettimeofday sec= %x usec= %x", tv->tv_sec,tv->tv_usec);
+  #endif
   return 0;
 }
 
@@ -79,7 +80,7 @@ void do_syscall(Context *c) {
 
   extern char *name_(int fd);
   #ifdef CONFIG_STRACE
-        if(!(a[0]==2||a[0]==3||a[0]==4||a[0]==7||a[0]==8))
+        if(!(a[0]==2||a[0]==3||a[0]==4||a[0]==7||a[0]==8||a[0]==19))
           Log("syscall ID= %s", syscall_name[a[0]]);
   #endif
 

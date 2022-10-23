@@ -92,8 +92,11 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
       "This will help you a lot for debugging, but also significantly reduce the performance. "
       "If it is not necessary, you can turn it off in autoconfig.h.", ref_so_file);
 
+  printf("=====================================================\n");
   ref_difftest_init(port);
+  printf("=====================================================\n");
   ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
+  printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
   *(cpu.gpr_pc+32)=0x80000000;
   ref_difftest_regcpy(cpu.gpr_pc, DIFFTEST_TO_REF);
 }
