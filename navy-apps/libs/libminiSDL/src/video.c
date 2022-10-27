@@ -139,56 +139,6 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
   assert(0);
 }
 
-
-// uint32_t get_color(SDL_Palette *palette,int index){
-//   int i;
-//   //printf("%d\n",palette->ncolors);
-//   for(i=0;i<palette->ncolors;i++){
-//     if(i==index){
-//       uint32_t color = palette->colors[i].r<<16 | palette->colors[i].g<<8 | palette->colors[i].b;
-//       return color; 
-//     }
-//   }
-// }
-
-// void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h);
-// void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
-//   if(s->format->BitsPerPixel==32){
-//     if(x==0 && y==0 && w==0 && h==0){
-//       w = s->w;
-//       h = s->h;
-//       NDL_DrawRect((uint32_t *)s->pixels,x,y,w,h);
-//     }else{
-//       NDL_DrawRect((uint32_t *)s->pixels + y*s->w + x,x,y,w,h);
-//     }
-//   }
-//   if(s->format->BitsPerPixel==8){
-//     int i,j;
-//     if(x==0 && y==0 && w==0 && h==0){
-//       w = s->w;
-//       h = s->h;
-//       uint32_t *color_val = (uint32_t *)malloc(w*h*sizeof(uint32_t));
-//       for(i=0; i<h; i++){
-//         for(j=0; j<w; j++){
-//           *(color_val +i * w + j) = get_color(s->format->palette,*(s->pixels+(y+i)*s->w+x+j));
-//         }
-//       }
-//       NDL_DrawRect(color_val,x,y,w,h);
-//       free(color_val);
-//     }else{
-//       uint32_t *color_val = (uint32_t *)malloc(w*h*sizeof(uint32_t));
-//       for(i=0;i<h;i++){
-//         for(j=0;j<w;j++){
-//           *(color_val +i * w + j) = get_color(s->format->palette,*(s->pixels+(y+i)*s->w+x+j));
-//         }
-//       }
-//       NDL_DrawRect((uint32_t *)color_val,x,y,w,h);
-//       free(color_val);
-//     }
-//   }
-//   return;
-// }
-
 // APIs below are already implemented.
 
 static inline int maskToShift(uint32_t mask)
