@@ -30,9 +30,10 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__10(Vysyx_2204063
     IData/*31:0*/ __Vilp;
     // Body
     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c 
-        = ((0x7fffffffU & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c) 
-           | (0x80000000U & (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mif.mul_signed) 
-                              << 0x1fU) & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c_beta)));
+        = ((0x7ffffU & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c) 
+           | ((0x80000000U & (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mif.mul_signed) 
+                               << 0x1fU) & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c_beta)) 
+              | (0x7ff80000U & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c_beta)));
     vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c 
         = ((0xffff7fffU & vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_mul_i__DOT__c) 
            | (0x8000U & (((1U & (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__mif.mul_signed))

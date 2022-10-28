@@ -9,5 +9,6 @@
 !*.cpp
 !*.sv
 !*.svh
+!*.hpp
 !.gitignore
 !README.md

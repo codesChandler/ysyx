@@ -51,18 +51,18 @@ LIBS += -lreadline -ldl -pie -lSDL2
 export CXXFLAGS LIBS
 
 BINARY = obj_dir/Vysyx_22040632_top
-ARGS_DIFF = -d /home/chandler/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
+ARGS_DIFF = -d $(NEMU_HOME)/build/riscv64-nemu-interpreter-so
 
 NPCARGS +=-b $(IMG) #binary file
 NPCARGS += -f $(IMG:.bin=.elf) #elf file
 NPCARGS += $(ARGS_DIFF) #difftest
 NPCARGS += -p #batch mode
-NPCARGS += -l /home/chandler/ysyx-workbench/npc/logs/npc-log.txt#log file
+NPCARGS += -l $(WORK_DIR)/logs/npc-log.txt#log file
 
 default: run
 
 run:$(BINARY)
-	@touch /home/chandler/ysyx-workbench/npc/logs/npc-log.txt
+	@touch $(WORK_DIR)/logs/npc-log.txt
 	$(BINARY) $(NPCARGS)
 # make clean
 #	make wave
@@ -78,6 +78,7 @@ wave:
 	gtkwave ./logs/Vysyx_22040632_top.wave
 
 $(BINARY):$(VERILATOR_INPUT)
+	@echo $(CXXFLAGS)
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo + VERILATE "->" $(BINARY) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
