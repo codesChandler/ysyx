@@ -3057,12 +3057,14 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__9(Vysyx_22040632
                     << 0x20U) | (QData)((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_div_i__DOT__dvd_qt))));
     }
     vlSelf->skip = vlSymsp->TOP__ysyx_22040632_top__DOT__mem2wb.fence_ien2wb;
+    vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.fence_ien2mem 
+        = ((IData)(vlSelf->ysyx_22040632_top__DOT__rst_s2) 
+           & ((IData)(vlSelf->ysyx_22040632_top__DOT__fence_sig) 
+              & (~ (IData)((0U != vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty_array_reg)))));
+    vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc_en 
+        = (1U & ((~ (IData)(vlSelf->ysyx_22040632_top__DOT__rst_s2)) 
+                 | (IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2if.pc_en2if)));
     if (vlSelf->ysyx_22040632_top__DOT__rst_s2) {
-        vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.fence_ien2mem 
-            = ((IData)(vlSelf->ysyx_22040632_top__DOT__fence_sig) 
-               & (~ (IData)((0U != vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_dcache_i__DOT__dirty_array_reg))));
-        vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc_en 
-            = vlSymsp->TOP__ysyx_22040632_top__DOT__ex2if.pc_en2if;
         if (((IData)(vlSymsp->TOP__ysyx_22040632_top__DOT__ex2if.pc_en2if) 
              & (((IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__miss_in_inst_pb) 
                  & (~ (IData)(vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__uncacheable))) 
@@ -3105,8 +3107,6 @@ VL_INLINE_OPT void Vysyx_22040632_top___024root___sequent__TOP__9(Vysyx_22040632
                    >> 4U);
         }
     } else {
-        vlSymsp->TOP__ysyx_22040632_top__DOT__ex2mem.fence_ien2mem = 0U;
-        vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc_en = 0U;
         vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pc_nxt_miss_pre_fail = 0U;
         vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__pcen_nxt_miss_pre_fail = 0U;
         vlSelf->ysyx_22040632_top__DOT__ysyx_22040632_ifu_i__DOT__inst_pb[0U] = 0U;

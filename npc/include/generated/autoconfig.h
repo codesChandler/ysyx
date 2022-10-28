@@ -10,7 +10,7 @@
 #define CONFIG_DIFFTEST 1
 // #define CONFIG_IRINGBUF 1
 // #define CONFIG_MTRACE 1
-// #define CONFIG_WVAE 1
+#define CONFIG_WVAE 1
 
 
 #define CONFIG_ISA_riscv64 1
