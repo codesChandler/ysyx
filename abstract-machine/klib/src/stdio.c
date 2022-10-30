@@ -95,7 +95,6 @@ int sprintf(char *out, const char *fmt, ...)
   int n=vsprintf(out,fmt,ap);
   va_end(ap);
   return n;
-  // panic("Not implemented");
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
