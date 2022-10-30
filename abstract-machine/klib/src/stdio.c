@@ -78,7 +78,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
       memcpy(str, buf, strlen(buf));
       str += strlen(buf);
       break;
-      default:assert(0);}fmt++;}
+      default:;}fmt++;}
     else {*str=*fmt;
     str++;fmt++;}}
     *str='\0';

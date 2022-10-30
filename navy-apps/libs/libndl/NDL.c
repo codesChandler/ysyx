@@ -13,7 +13,7 @@ static int evtdev = -1;
 static int fbdev = -1;
 static int dpdev=-1;
 static int screen_w = 0, screen_h = 0;//屏幕的宽度和高度
-
+static int canvas_w = 0, canvas_h = 0;//画布的宽度和高度
 uint32_t NDL_GetTicks() {
   struct timeval tv;
   assert(gettimeofday(&tv,NULL)==0);
@@ -43,6 +43,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     }
     close(fbctl);
   }
+
   char buf[100];
   assert(read(dpdev,buf,30)!=0);
   int wp=0;int flag=0;int hp=0;
@@ -57,43 +58,21 @@ void NDL_OpenCanvas(int *w, int *h) {
   // printf("wp:%d--hp:%d\n",wp,hp);
   screen_w=wp;
   screen_h=hp;
+
   if(*w==0 && *h==0){
   *w=wp;
   *h=hp;}
-  // else{
-  // if(*w>wp) screen_w=wp;
-  // else screen_w = *w;
-  // if(*h>hp) screen_h=hp;
-  // else screen_h = *h;}
-  //read(fbdev,0,screen_w*screen_h);
-  // screen_w = *w; screen_h = *h;
+
+  canvas_w = *w;
+  canvas_h = *h;
 
 }
 
-typedef union {
-  struct {
-    uint32_t w, h;
-  };
-  uint64_t len;
-} NDL_len;
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {//对于len,前32位为w,后32位为h
-  // printf("I am here\n");
-  // uint64_t h_=h;
-  // lseek(fbdev,screen_w*y+x,SEEK_SET);
-  // for(int i=0;i<32;i++)
-  //   h_=h_*2;
-  #if defined(__ISA_RISCV64__)
-  NDL_len len_;
-  len_.w=w;len_.h=h;
-  lseek(fbdev,(screen_w*(y))*4,SEEK_SET);
-  write(fbdev,pixels,len_.len);
-  #elif defined(__ISA_NATIVE__)
-    for(int i=0;i<h;i++){
-      // printf("screen_w%d--screen_h%d\n",screen_w,screen_h);
-      lseek(fbdev,(screen_w*(y+i)+x)*4,SEEK_SET);
-      assert(write(fbdev,pixels+i*w,w*4)!=0);}
-  #endif
+  for(int i=0;i<h;i++){
+    lseek(fbdev,(screen_w*(y+i)+x)*4,SEEK_SET);
+    assert(write(fbdev,pixels+i*w,w*4)!=0);}
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
