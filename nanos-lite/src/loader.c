@@ -19,7 +19,7 @@ extern int fs_size(int fd);
 extern size_t fs_lseek(int fd, size_t offset, int whence);
 extern int fs_close(int fd);
 
-static uintptr_t loader(PCB *pcb, const char *filename) {
+uintptr_t loader(PCB *pcb, const char *filename) {
   int fd=fs_open(filename, 0, 0);
 
   int elf_size=sizeof(Elf_Ehdr);//fs_size(fd);
