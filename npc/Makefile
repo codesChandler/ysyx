@@ -51,7 +51,7 @@ LIBS += -lreadline -ldl -pie -lSDL2
 export CXXFLAGS LIBS
 
 BINARY = obj_dir/Vysyx_22040632_top
-ARGS_DIFF = -d $(NEMU_HOME)/build/riscv64-nemu-interpreter-so
+ARGS_DIFF = -d $(NPC_HOME)/srcs/cpu/riscv64-nemu-interpreter-so
 
 NPCARGS +=-b $(IMG) #binary file
 NPCARGS += -f $(IMG:.bin=.elf) #elf file
@@ -63,6 +63,7 @@ default: run
 
 run:$(BINARY)
 	@touch $(WORK_DIR)/logs/npc-log.txt
+	@
 	$(BINARY) $(NPCARGS)
 # make clean
 #	make wave
