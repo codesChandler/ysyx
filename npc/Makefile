@@ -68,7 +68,6 @@ run:$(BINARY)
 # make clean
 #	make wave
 
-
 # Other targets
 gdb: $(BINARY)
 	gdb --args $(BINARY) $(NPCARGS)

@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <assert.h>
 #include <stdio.h>
+#include <std>
 
 
 #define AUTO_SIG(name, msb, lsb) \
