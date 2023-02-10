@@ -8,12 +8,13 @@
 #ifndef VERILATED_VYSYX_22040632_TOP_H_
 #define VERILATED_VYSYX_22040632_TOP_H_  // guard
 
-#include "verilated.h"
+#include "verilated_heavy.h"
 #include "svdpi.h"
 
 class Vysyx_22040632_top__Syms;
 class Vysyx_22040632_top___024root;
 class VerilatedFstC;
+class Vysyx_22040632_top_VerilatedFst;
 class Vysyx_22040632_top___024unit;
 class Vysyx_22040632_top_ysyx_22040632_divif;
 class Vysyx_22040632_top_ysyx_22040632_mulif;
@@ -45,9 +46,13 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst_n,0,0);
+    VL_OUT(&pc,31,0);
+    VL_OUT(&inst,31,0);
     VL_OUT8(&submit,0,0);
+    VL_OUT(&npc,31,0);
     VL_OUT8(&skip,0,0);
     VL_OUT8(&axi_aw_valid_o,0,0);
+    VL_OUT(&axi_aw_addr_o,31,0);
     VL_OUT8(&axi_aw_prot_o,2,0);
     VL_OUT8(&axi_aw_id_o,3,0);
     VL_OUT8(&axi_aw_user_o,0,0);
@@ -60,6 +65,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     VL_OUT8(&axi_aw_region_o,3,0);
     VL_IN8(&axi_aw_ready_i,0,0);
     VL_OUT8(&axi_w_valid_o,0,0);
+    VL_OUT64(&axi_w_data_o,63,0);
     VL_OUT8(&axi_w_strb_o,7,0);
     VL_OUT8(&axi_w_last_o,0,0);
     VL_OUT8(&axi_w_user_o,0,0);
@@ -70,6 +76,7 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     VL_IN8(&axi_b_id_i,3,0);
     VL_IN8(&axi_b_user_i,0,0);
     VL_OUT8(&axi_ar_valid_o,0,0);
+    VL_OUT(&axi_ar_addr_o,31,0);
     VL_OUT8(&axi_ar_prot_o,2,0);
     VL_OUT8(&axi_ar_id_o,3,0);
     VL_OUT8(&axi_ar_user_o,0,0);
@@ -84,16 +91,10 @@ class Vysyx_22040632_top VL_NOT_FINAL {
     VL_OUT8(&axi_r_ready_o,0,0);
     VL_IN8(&axi_r_valid_i,0,0);
     VL_IN8(&axi_r_resp_i,1,0);
+    VL_IN64(&axi_r_data_i,63,0);
     VL_IN8(&axi_r_last_i,0,0);
     VL_IN8(&axi_r_id_i,3,0);
     VL_IN8(&axi_r_user_i,0,0);
-    VL_OUT(&pc,31,0);
-    VL_OUT(&inst,31,0);
-    VL_OUT(&npc,31,0);
-    VL_OUT(&axi_aw_addr_o,31,0);
-    VL_OUT(&axi_ar_addr_o,31,0);
-    VL_OUT64(&axi_w_data_o,63,0);
-    VL_IN64(&axi_r_data_i,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

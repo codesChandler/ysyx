@@ -5,9 +5,16 @@
 #ifndef VERILATED_VYSYX_22040632_TOP___024UNIT_H_
 #define VERILATED_VYSYX_22040632_TOP___024UNIT_H_  // guard
 
-#include "verilated.h"
+#include "verilated_heavy.h"
+
+//==========
 
 class Vysyx_22040632_top__Syms;
+class Vysyx_22040632_top_VerilatedFst;
+
+
+//----------
+
 VL_MODULE(Vysyx_22040632_top___024unit) {
   public:
 
@@ -15,13 +22,17 @@ VL_MODULE(Vysyx_22040632_top___024unit) {
     Vysyx_22040632_top__Syms* vlSymsp;  // Symbol table
 
     // CONSTRUCTORS
+  private:
+    VL_UNCOPYABLE(Vysyx_22040632_top___024unit);  ///< Copying not allowed
+  public:
     Vysyx_22040632_top___024unit(const char* name);
     ~Vysyx_22040632_top___024unit();
-    VL_UNCOPYABLE(Vysyx_22040632_top___024unit);
 
     // INTERNAL METHODS
     void __Vconfigure(Vysyx_22040632_top__Syms* symsp, bool first);
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+
+//----------
 
 
 #endif  // guard

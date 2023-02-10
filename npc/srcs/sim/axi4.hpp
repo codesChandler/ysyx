@@ -6,8 +6,7 @@
 #include <cstdint>
 #include <assert.h>
 #include <stdio.h>
-#include <std>
-
+#include <set>
 
 #define AUTO_SIG(name, msb, lsb) \
     typename std::conditional <(msb-lsb+1) <=  8, CData, \

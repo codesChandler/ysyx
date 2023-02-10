@@ -5,13 +5,20 @@
 #ifndef VERILATED_VYSYX_22040632_TOP_YSYX_22040632_MEM2WB_H_
 #define VERILATED_VYSYX_22040632_TOP_YSYX_22040632_MEM2WB_H_  // guard
 
-#include "verilated.h"
+#include "verilated_heavy.h"
+
+//==========
 
 class Vysyx_22040632_top__Syms;
+class Vysyx_22040632_top_VerilatedFst;
+
+
+//----------
+
 VL_MODULE(Vysyx_22040632_top_ysyx_22040632_mem2wb) {
   public:
 
-    // DESIGN SPECIFIC STATE
+    // LOCAL SIGNALS
     CData/*4:0*/ rd2wb;
     CData/*0:0*/ ld_en2wb;
     CData/*0:0*/ rd_w_ena2wb;
@@ -36,13 +43,17 @@ VL_MODULE(Vysyx_22040632_top_ysyx_22040632_mem2wb) {
     Vysyx_22040632_top__Syms* vlSymsp;  // Symbol table
 
     // CONSTRUCTORS
+  private:
+    VL_UNCOPYABLE(Vysyx_22040632_top_ysyx_22040632_mem2wb);  ///< Copying not allowed
+  public:
     Vysyx_22040632_top_ysyx_22040632_mem2wb(const char* name);
     ~Vysyx_22040632_top_ysyx_22040632_mem2wb();
-    VL_UNCOPYABLE(Vysyx_22040632_top_ysyx_22040632_mem2wb);
 
     // INTERNAL METHODS
     void __Vconfigure(Vysyx_22040632_top__Syms* symsp, bool first);
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+
+//----------
 
 
 #endif  // guard

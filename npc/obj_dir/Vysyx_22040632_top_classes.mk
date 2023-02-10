@@ -26,71 +26,69 @@ VM_TRACE_FST_WRITER_THREAD = 0
 # Generated module classes, fast-path, compile with highest optimization
 VM_CLASSES_FAST += \
 	Vysyx_22040632_top \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__0 \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__1 \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__2 \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__3 \
-	Vysyx_22040632_top___024root__DepSet_hcf72544e__0 \
-	Vysyx_22040632_top___024unit__DepSet_h3c35bba2__0 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__0 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__1 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__2 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__3 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__4 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__5 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__6 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__7 \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_h2c1bd6a0__0 \
+	Vysyx_22040632_top___024root \
+	Vysyx_22040632_top___024root__1 \
+	Vysyx_22040632_top___024root__2 \
+	Vysyx_22040632_top___024root__3 \
+	Vysyx_22040632_top___024unit \
+	Vysyx_22040632_top_ysyx_22040632_divif \
+	Vysyx_22040632_top_ysyx_22040632_mulif \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__1 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__2 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__3 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__4 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__5 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__6 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__7 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__8 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__9 \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__10 \
+	Vysyx_22040632_top_ysyx_22040632_if2id \
+	Vysyx_22040632_top_ysyx_22040632_id2ex \
+	Vysyx_22040632_top_ysyx_22040632_ex2mem \
+	Vysyx_22040632_top_ysyx_22040632_ex2if \
+	Vysyx_22040632_top_ysyx_22040632_mem2wb \
+	Vysyx_22040632_top_ysyx_22040632_wb2id \
+	Vysyx_22040632_top_ysyx_22040632_id2if \
+	Vysyx_22040632_top_ysyx_22040632_mem2clint \
+	Vysyx_22040632_top_ysyx_22040632_if2ic \
+	Vysyx_22040632_top_ysyx_22040632_mem2dc \
+	Vysyx_22040632_top_ysyx_22040632_axiif \
+	Vysyx_22040632_top_ysyx_22040632_imif \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
 	Vysyx_22040632_top__ConstPool_0 \
 	Vysyx_22040632_top___024root__Slow \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__0__Slow \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__1__Slow \
-	Vysyx_22040632_top___024root__DepSet_h0d77cfe8__2__Slow \
-	Vysyx_22040632_top___024root__DepSet_hcf72544e__0__Slow \
+	Vysyx_22040632_top___024root__1__Slow \
+	Vysyx_22040632_top___024root__2__Slow \
 	Vysyx_22040632_top___024unit__Slow \
-	Vysyx_22040632_top___024unit__DepSet_hc0b44804__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_divif__Slow \
-	Vysyx_22040632_top_ysyx_22040632_divif__DepSet_h760af837__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_mulif__Slow \
-	Vysyx_22040632_top_ysyx_22040632_mulif__DepSet_h6d11eb84__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__Slow \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__0__Slow \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__1__Slow \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__2__Slow \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_hd18e4a1e__3__Slow \
-	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__DepSet_h2c1bd6a0__0__Slow \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__1__Slow \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__2__Slow \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__3__Slow \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__4__Slow \
+	Vysyx_22040632_top_ysyx_22040632_walloc_32bits__5__Slow \
 	Vysyx_22040632_top_ysyx_22040632_if2id__Slow \
-	Vysyx_22040632_top_ysyx_22040632_if2id__DepSet_h8173bbbf__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_id2ex__Slow \
-	Vysyx_22040632_top_ysyx_22040632_id2ex__DepSet_hc64aa23a__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_ex2mem__Slow \
-	Vysyx_22040632_top_ysyx_22040632_ex2mem__DepSet_h823b5e7b__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_ex2if__Slow \
-	Vysyx_22040632_top_ysyx_22040632_ex2if__DepSet_h5eee70f8__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_mem2wb__Slow \
-	Vysyx_22040632_top_ysyx_22040632_mem2wb__DepSet_h27bb869d__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_wb2id__Slow \
-	Vysyx_22040632_top_ysyx_22040632_wb2id__DepSet_h2b14a611__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_id2if__Slow \
-	Vysyx_22040632_top_ysyx_22040632_id2if__DepSet_h529a9ea6__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_mem2clint__Slow \
-	Vysyx_22040632_top_ysyx_22040632_mem2clint__DepSet_h15c2c881__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_if2ic__Slow \
-	Vysyx_22040632_top_ysyx_22040632_if2ic__DepSet_h349bc833__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_mem2dc__Slow \
-	Vysyx_22040632_top_ysyx_22040632_mem2dc__DepSet_h359edd89__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_axiif__Slow \
-	Vysyx_22040632_top_ysyx_22040632_axiif__DepSet_h0fd4fd1e__0__Slow \
 	Vysyx_22040632_top_ysyx_22040632_imif__Slow \
-	Vysyx_22040632_top_ysyx_22040632_imif__DepSet_h50a36c34__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
 	Vysyx_22040632_top__Dpi \
-	Vysyx_22040632_top__Trace__0 \
+	Vysyx_22040632_top__Trace \
 	Vysyx_22040632_top__Trace__1 \
 	Vysyx_22040632_top__Trace__2 \
 	Vysyx_22040632_top__Trace__3 \
@@ -100,11 +98,15 @@ VM_SUPPORT_FAST += \
 	Vysyx_22040632_top__Trace__7 \
 	Vysyx_22040632_top__Trace__8 \
 	Vysyx_22040632_top__Trace__9 \
+	Vysyx_22040632_top__Trace__10 \
+	Vysyx_22040632_top__Trace__11 \
+	Vysyx_22040632_top__Trace__12 \
+	Vysyx_22040632_top__Trace__13 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
 	Vysyx_22040632_top__Syms \
-	Vysyx_22040632_top__Trace__0__Slow \
+	Vysyx_22040632_top__Trace__Slow \
 	Vysyx_22040632_top__Trace__1__Slow \
 	Vysyx_22040632_top__Trace__2__Slow \
 	Vysyx_22040632_top__Trace__3__Slow \
@@ -116,6 +118,9 @@ VM_SUPPORT_SLOW += \
 	Vysyx_22040632_top__Trace__9__Slow \
 	Vysyx_22040632_top__Trace__10__Slow \
 	Vysyx_22040632_top__Trace__11__Slow \
+	Vysyx_22040632_top__Trace__12__Slow \
+	Vysyx_22040632_top__Trace__13__Slow \
+	Vysyx_22040632_top__Trace__14__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \

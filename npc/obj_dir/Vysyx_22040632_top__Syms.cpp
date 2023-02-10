@@ -29,7 +29,7 @@ Vysyx_22040632_top__Syms::~Vysyx_22040632_top__Syms()
 Vysyx_22040632_top__Syms::Vysyx_22040632_top__Syms(VerilatedContext* contextp, const char* namep,Vysyx_22040632_top* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
-    , __Vm_modelp{modelp}
+    , __Vm_modelp(modelp)
     // Setup module instances
     , TOP(namep)
     , TOP____024unit(Verilated::catName(namep, "$unit"))

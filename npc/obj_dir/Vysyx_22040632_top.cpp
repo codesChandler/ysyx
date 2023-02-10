@@ -13,9 +13,13 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     : vlSymsp{new Vysyx_22040632_top__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
+    , pc{vlSymsp->TOP.pc}
+    , inst{vlSymsp->TOP.inst}
     , submit{vlSymsp->TOP.submit}
+    , npc{vlSymsp->TOP.npc}
     , skip{vlSymsp->TOP.skip}
     , axi_aw_valid_o{vlSymsp->TOP.axi_aw_valid_o}
+    , axi_aw_addr_o{vlSymsp->TOP.axi_aw_addr_o}
     , axi_aw_prot_o{vlSymsp->TOP.axi_aw_prot_o}
     , axi_aw_id_o{vlSymsp->TOP.axi_aw_id_o}
     , axi_aw_user_o{vlSymsp->TOP.axi_aw_user_o}
@@ -28,6 +32,7 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     , axi_aw_region_o{vlSymsp->TOP.axi_aw_region_o}
     , axi_aw_ready_i{vlSymsp->TOP.axi_aw_ready_i}
     , axi_w_valid_o{vlSymsp->TOP.axi_w_valid_o}
+    , axi_w_data_o{vlSymsp->TOP.axi_w_data_o}
     , axi_w_strb_o{vlSymsp->TOP.axi_w_strb_o}
     , axi_w_last_o{vlSymsp->TOP.axi_w_last_o}
     , axi_w_user_o{vlSymsp->TOP.axi_w_user_o}
@@ -38,6 +43,7 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     , axi_b_id_i{vlSymsp->TOP.axi_b_id_i}
     , axi_b_user_i{vlSymsp->TOP.axi_b_user_i}
     , axi_ar_valid_o{vlSymsp->TOP.axi_ar_valid_o}
+    , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
     , axi_ar_prot_o{vlSymsp->TOP.axi_ar_prot_o}
     , axi_ar_id_o{vlSymsp->TOP.axi_ar_id_o}
     , axi_ar_user_o{vlSymsp->TOP.axi_ar_user_o}
@@ -52,16 +58,10 @@ Vysyx_22040632_top::Vysyx_22040632_top(VerilatedContext* _vcontextp__, const cha
     , axi_r_ready_o{vlSymsp->TOP.axi_r_ready_o}
     , axi_r_valid_i{vlSymsp->TOP.axi_r_valid_i}
     , axi_r_resp_i{vlSymsp->TOP.axi_r_resp_i}
+    , axi_r_data_i{vlSymsp->TOP.axi_r_data_i}
     , axi_r_last_i{vlSymsp->TOP.axi_r_last_i}
     , axi_r_id_i{vlSymsp->TOP.axi_r_id_i}
     , axi_r_user_i{vlSymsp->TOP.axi_r_user_i}
-    , pc{vlSymsp->TOP.pc}
-    , inst{vlSymsp->TOP.inst}
-    , npc{vlSymsp->TOP.npc}
-    , axi_aw_addr_o{vlSymsp->TOP.axi_aw_addr_o}
-    , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
-    , axi_w_data_o{vlSymsp->TOP.axi_w_data_o}
-    , axi_r_data_i{vlSymsp->TOP.axi_r_data_i}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , __PVT__ysyx_22040632_top__DOT__dif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__dif}
     , __PVT__ysyx_22040632_top__DOT__mif{vlSymsp->TOP.__PVT__ysyx_22040632_top__DOT__mif}
@@ -291,7 +291,13 @@ void Vysyx_22040632_top::eval_step() {
             __Vchange = Vysyx_22040632_top___024root___change_request(&(vlSymsp->TOP));
         }
     } while (VL_UNLIKELY(__Vchange));
-    // Evaluate cleanup
+}
+
+//============================================================
+// Invoke final blocks
+
+void Vysyx_22040632_top::final() {
+    Vysyx_22040632_top___024root___final(&(vlSymsp->TOP));
 }
 
 //============================================================
@@ -306,18 +312,11 @@ const char* Vysyx_22040632_top::name() const {
 }
 
 //============================================================
-// Invoke final blocks
-
-VL_ATTR_COLD void Vysyx_22040632_top::final() {
-    Vysyx_22040632_top___024root___final(&(vlSymsp->TOP));
-}
-
-//============================================================
 // Trace configuration
 
-void Vysyx_22040632_top___024root__trace_init_top(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__traceInitTop(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
 
-VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedFst* tracep, uint32_t code) {
+static void traceInit(void* voidSelf, VerilatedFst* tracep, uint32_t code) {
     // Callback from tracep->open()
     Vysyx_22040632_top___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vysyx_22040632_top___024root*>(voidSelf);
     Vysyx_22040632_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -328,14 +327,13 @@ VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedFst* tracep, uint32
     vlSymsp->__Vm_baseCode = code;
     tracep->module(vlSymsp->name());
     tracep->scopeEscape(' ');
-    Vysyx_22040632_top___024root__trace_init_top(vlSelf, tracep);
+    Vysyx_22040632_top___024root__traceInitTop(vlSelf, tracep);
     tracep->scopeEscape('.');
 }
 
-VL_ATTR_COLD void Vysyx_22040632_top___024root__trace_register(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
+void Vysyx_22040632_top___024root__traceRegister(Vysyx_22040632_top___024root* vlSelf, VerilatedFst* tracep);
 
-VL_ATTR_COLD void Vysyx_22040632_top::trace(VerilatedFstC* tfp, int levels, int options) {
-    if (false && levels && options) {}  // Prevent unused
-    tfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP));
-    Vysyx_22040632_top___024root__trace_register(&(vlSymsp->TOP), tfp->spTrace());
+void Vysyx_22040632_top::trace(VerilatedFstC* tfp, int, int) {
+    tfp->spTrace()->addInitCb(&traceInit, &(vlSymsp->TOP));
+    Vysyx_22040632_top___024root__traceRegister(&(vlSymsp->TOP), tfp->spTrace());
 }
