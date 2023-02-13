@@ -17,7 +17,7 @@ int SDL_PushEvent(SDL_Event *ev)
 }
 
 int SDL_PollEvent(SDL_Event *ev)
-{ printf("SDL_PollEvent\n");
+{ 
   assert(ev);
   char buf[64];
   memset(buf,0,64);
@@ -65,6 +65,6 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask)
 
 uint8_t *SDL_GetKeyState(int *numkeys)
 {
-  printf("SDL_GetKeyState\n");
+
   return state;
 }
