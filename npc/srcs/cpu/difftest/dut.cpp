@@ -110,11 +110,11 @@ bool isa_difftest_checkregs(uint64_t *ref_r, vaddr_t pc) {
 }
 
 static void checkregs(uint64_t *ref, vaddr_t pc) {
-  // if (!isa_difftest_checkregs(ref, pc)) {
-  //   npcexit(1);
-  //   isa_reg_display();
-  //   inst_display();
-  // }
+  if (!isa_difftest_checkregs(ref, pc)) {
+    npcexit(1);
+    isa_reg_display();
+    inst_display();
+  }
 }
 
 void difftest_step(vaddr_t pc) {
@@ -131,7 +131,10 @@ void difftest_step(vaddr_t pc) {
   //     panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, ref_r.pc, pc);
   //   return;
   // }
-
+  
+  #ifdef CONFIG_RUNFAST
+  ;
+  #else
   if (is_skip_ref) {
     // to skip the checking of an instruction, just copy the reg state to reference design
 
@@ -148,6 +151,7 @@ void difftest_step(vaddr_t pc) {
   ref_difftest_regcpy(ref_r, DIFFTEST_TO_DUT);
 
   checkregs(ref_r, pc);
+  #endif
 }
 #else
 void init_difftest(char *ref_so_file, long img_size, int port) { }

@@ -5,12 +5,13 @@
 #define CONFIG_TRACE_START 0
 #define CONFIG_TRACE_END 10000
 // #define CONFIG_ITRACE 1
-#define CONFIG_ITRACE_COND "true"
+// #define CONFIG_ITRACE_COND "true"
 // #define CONFIG_FTRACE 1
 #define CONFIG_DIFFTEST 1
+#define CONFIG_RUNFAST 1
 // #define CONFIG_IRINGBUF 1
 // #define CONFIG_MTRACE 1
-#define CONFIG_WVAE 1
+// #define CONFIG_WVAE 1
 
 
 #define CONFIG_ISA_riscv64 1
@@ -53,4 +54,5 @@
 #define CONFIG_ISA "riscv64"
 #define CONFIG_VGA_CTL_MMIO 0xa0000100
 #define CONFIG_PMEM_GARRAY 1
+
 #endif
